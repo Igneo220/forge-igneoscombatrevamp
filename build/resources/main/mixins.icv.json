@@ -1,0 +1,19 @@
+{
+  "package": "net.igneo.icv.mixin",
+  "plugin": "net.igneo.icv.init.AutoDiscoveryMixinPlugin",
+  "refmap": "mixins.icv.refmap.json",
+  "minVersion": "0.7",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "ThrownTridentMixin"
+  ],
+  "mixins": [
+    "ArrowMixin",
+    "BowItemMixin",
+    "CrossbowItemMixin",
+    "EnchantmentHelperMixin",
+    "LivingEntityMixin",
+    "PlayerMixin",
+    "TridentItemMixin"
+  ]
+}
