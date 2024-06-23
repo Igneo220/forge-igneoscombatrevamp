@@ -1,5 +1,6 @@
 package net.igneo.icv;
 
+import net.igneo.icv.enchantment.ModEnchantments;
 import net.igneo.icv.entity.ModEntities;
 import net.igneo.icv.entity.client.BlackHoleRenderer;
 import net.igneo.icv.entity.client.BoltRenderer;
@@ -7,6 +8,7 @@ import net.igneo.icv.entity.client.CometRenderer;
 import net.igneo.icv.entity.client.IcicleRenderer;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.particle.ModParticles;
+import net.igneo.icv.sound.ModSounds;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
@@ -35,12 +37,21 @@ public class ICV
 
     public ICV() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
         modEventBus.addListener(this::commonSetup);
+
         MinecraftForge.EVENT_BUS.register(this);
+
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-        //ModEnchantments.register(modEventBus);
+
+
+
+        ModEnchantments.register(modEventBus);
+
         ModParticles.register(modEventBus);
-        System.out.println(LOGGER);
+
+        ModSounds.register(modEventBus);
+
         if (FMLEnvironment.dist.isClient()) {
             ModEntities.register(modEventBus);
         }

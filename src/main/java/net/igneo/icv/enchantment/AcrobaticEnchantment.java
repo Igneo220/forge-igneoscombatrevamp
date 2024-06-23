@@ -13,11 +13,9 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 public class AcrobaticEnchantment extends Enchantment {
     public static long flipTime;
     public static boolean flipping = false;
-    //public static LocalPlayer pPlayer = Minecraft.getInstance().player;
     public AcrobaticEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
-
     @Override
     public void doPostAttack(LivingEntity pAttacker, Entity pTarget, int pLevel) {
         super.doPostAttack(pAttacker, pTarget, pLevel);

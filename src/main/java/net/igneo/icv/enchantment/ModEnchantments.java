@@ -18,6 +18,10 @@ public class ModEnchantments {
     public static final DeferredRegister<Enchantment> ENCHANTMENTS =
             DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, ICV.MOD_ID);
 
+    public static RegistryObject<Enchantment> BLITZ =
+            ENCHANTMENTS.register("blitz",
+                    () -> new BlitzEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
     public static RegistryObject<Enchantment> BREAKTHROUGH =
             ENCHANTMENTS.register("breakthrough",
                     () -> new BreakthroughEnchantment(Enchantment.Rarity.UNCOMMON,
@@ -30,6 +34,13 @@ public class ModEnchantments {
             ENCHANTMENTS.register("skewering",
                     () -> new SkeweringEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
+
+
+
+    public static RegistryObject<Enchantment> ACROBATIC =
+            ENCHANTMENTS.register("acrobatic",
+                    () -> new AcrobaticEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_LEGS, EquipmentSlot.LEGS));
 
     public static void register(IEventBus eventBus) {
         ENCHANTMENTS.register(eventBus);

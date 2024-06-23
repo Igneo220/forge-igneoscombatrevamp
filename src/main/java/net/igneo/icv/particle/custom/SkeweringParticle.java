@@ -6,8 +6,8 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class AttackSpeedParticle extends TextureSheetParticle {
-    protected AttackSpeedParticle(ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, SpriteSet spriteSet, double pYSpeed, double pZSpeed) {
+public class SkeweringParticle extends TextureSheetParticle {
+    protected SkeweringParticle(ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, SpriteSet spriteSet, double pYSpeed, double pZSpeed) {
 
 
         super(pLevel, pX, pY, pZ, pXSpeed, pYSpeed, pZSpeed);
@@ -51,7 +51,7 @@ public class AttackSpeedParticle extends TextureSheetParticle {
         public Particle createParticle(SimpleParticleType particleType, ClientLevel level,
                                        double x, double y, double z,
                                        double dx, double dy, double dz) {
-            return new AttackSpeedParticle(level, x, y, z, dx, this.sprites, dy, dz);
+            return new SkeweringParticle(level, x, y, z, dx, this.sprites, dy, dz);
         }
     }
 }
