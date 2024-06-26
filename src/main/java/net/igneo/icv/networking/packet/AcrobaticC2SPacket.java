@@ -1,5 +1,6 @@
 package net.igneo.icv.networking.packet;
 
+import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.igneo.icv.particle.ModParticles;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.FriendlyByteBuf;
@@ -34,8 +35,12 @@ public class AcrobaticC2SPacket {
             ServerPlayer player = context.getSender();
             ServerLevel level = player.serverLevel();
 
-            level.sendParticles(player, ParticleTypes.POOF,true,player.getX(),player.getY(),player.getZ(),10,Math.random()/5,Math.random()/5,Math.random()/5,0.1);
-            level.playSound(null,player.blockPosition(),SoundEvents.PLAYER_ATTACK_SWEEP,SoundSource.PLAYERS,1,0.1F);
+            player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+                enchVar.setAcrobatBonus(true);
+                player.addDeltaMovement(new Vec3(0, 0.5, 0));
+                level.sendParticles(player, ParticleTypes.POOF, true, player.getX(), player.getY(), player.getZ(), 10, Math.random() / 5, Math.random() / 5, Math.random() / 5, 0.1);
+                level.playSound(null, player.blockPosition(), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1, 0.1F);
+            });
         });
         return true;
     }

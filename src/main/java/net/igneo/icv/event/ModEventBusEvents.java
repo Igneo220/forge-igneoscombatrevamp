@@ -11,11 +11,5 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = ICV.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventBusEvents {
-    @SubscribeEvent
-    public static void registerParticleFactories(final RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(ModParticles.ATTACK_SPEED_PARTICLE.get(),
-                AttackSpeedParticle.Provider::new);
-        event.registerSpriteSet(ModParticles.SKEWERING_PARTICLE.get(),
-                SkeweringParticle.Provider::new);
-    }
+
 }

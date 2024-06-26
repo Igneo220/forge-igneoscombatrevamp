@@ -1,19 +1,13 @@
 package net.igneo.icv;
 
+import net.igneo.icv.enchantment.AcrobaticEnchantment;
 import net.igneo.icv.enchantment.ModEnchantments;
 import net.igneo.icv.entity.ModEntities;
-import net.igneo.icv.entity.client.BlackHoleRenderer;
-import net.igneo.icv.entity.client.BoltRenderer;
 import net.igneo.icv.entity.client.CometRenderer;
-import net.igneo.icv.entity.client.IcicleRenderer;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.sound.ModSounds;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;

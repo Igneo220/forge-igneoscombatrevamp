@@ -1,28 +1,18 @@
 package net.igneo.icv.mixin;
 
 import net.igneo.icv.enchantment.ModEnchantments;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
+import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Collections;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin extends LivingEntity{
@@ -34,6 +24,8 @@ public abstract class PlayerMixin extends LivingEntity{
     @Shadow
     public void disableShield(boolean pBecauseOfAxe) {
     }
+
+    @Shadow public abstract void resetAttackStrengthTicker();
 
     /**
      * @author Igneo
@@ -48,9 +40,21 @@ public abstract class PlayerMixin extends LivingEntity{
 
     @ModifyVariable(method = "attack", at = @At(value = "STORE"), index = 4)
     private float attack(float f1, Entity pTarget) {
-        float tempf = f1;
+        float tempf;
         if (EnchantmentHelper.getEnchantments(this.getMainHandItem()).containsKey(ModEnchantments.SKEWERING.get()) && !pTarget.onGround() && !pTarget.isInFluidType() && !pTarget.isPassenger()) {
             tempf = 1.4F;
+        } else {
+            tempf = f1;
+        }
+        AtomicReference<Float> tempf2 = new AtomicReference<>((float) 0);
+        this.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+            if (enchVar.getAcrobatBonus()) {
+                tempf2.set(0.4F);
+            }
+        });
+        tempf += tempf2.get();
+        if (tempf > 1.6) {
+            tempf = 1.6F;
         }
         return tempf;
     }

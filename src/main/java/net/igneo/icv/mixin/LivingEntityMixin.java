@@ -82,35 +82,6 @@ public abstract class LivingEntityMixin extends Entity {
      * @author Igneo
      * @reason changing shield breaking
      */
-    @Overwrite
-    public boolean isDamageSourceBlocked(DamageSource pDamageSource) {
-        Entity entity = pDamageSource.getDirectEntity();
-        boolean flag = false;
-        boolean flag2 = false;
-        if (entity instanceof AbstractArrow abstractarrow) {
-            if (abstractarrow.getPierceLevel() > 0) {
-                flag = true;
-            }
-        }
-        if (entity instanceof LivingEntity) {
-            LivingEntity entity1 = (LivingEntity) entity;
-            flag = EnchantmentHelper.getEnchantments(entity1.getMainHandItem()).containsKey(ModEnchantments.BREAKTHROUGH.get());
-        }
-
-        if (!pDamageSource.is(DamageTypeTags.BYPASSES_SHIELD) && this.isBlocking() && !flag && !flag2) {
-            Vec3 vec32 = pDamageSource.getSourcePosition();
-            if (vec32 != null) {
-                Vec3 vec3 = this.getViewVector(1.0F);
-                Vec3 vec31 = vec32.vectorTo(this.position()).normalize();
-                vec31 = new Vec3(vec31.x, 0.0D, vec31.z);
-                if (vec31.dot(vec3) < 0.0D) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
 
     @Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
     public void hurt(DamageSource pSource, float pAmount, CallbackInfoReturnable<Boolean> cir) {

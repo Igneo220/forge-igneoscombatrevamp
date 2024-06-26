@@ -4,6 +4,20 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
 
 public class PlayerEnchantmentActions {
+
+
+    //acrobatic enchantment work
+    private boolean acrobatBonus;
+    public boolean getAcrobatBonus() {
+        return this.acrobatBonus;
+    }
+    public void setAcrobatBonus(boolean newValue) {
+        this.acrobatBonus = newValue;
+    }
+
+
+    //blitz enchantment work
+
     private int blitzBoostCount;
     private long blitzTime;
 
@@ -27,6 +41,9 @@ public class PlayerEnchantmentActions {
         this.blitzTime = time;
     }
 
+
+
+    //phantom pain enchantment work
     private int phantomHurt;
     private long phantomDelay;
     private LivingEntity phantomVictim;
@@ -56,11 +73,19 @@ public class PlayerEnchantmentActions {
         this.phantomVictim = null;
     }
 
+
+
+    //general work
     public void copyFrom(PlayerEnchantmentActions source) {
+
+        this.acrobatBonus = source.acrobatBonus;
 
         this.blitzBoostCount = source.blitzBoostCount;
         this.blitzTime = source.blitzTime;
 
+        this.phantomVictim = source.phantomVictim;
+        this.phantomDelay = source.phantomDelay;
+        this.phantomHurt = source.phantomHurt;
     }
     public void saveNBTData(CompoundTag nbt) {
 

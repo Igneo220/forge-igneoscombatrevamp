@@ -4,5 +4,23 @@
     "sounds": [
       "icv:skewering_hit"
     ]
+  },
+  "phantom_heal": {
+    "subtitles": "sounds.icv.phantom_heal",
+    "sounds": [
+      "icv:phantom_heal"
+    ]
+  },
+  "phantom_hurt": {
+    "subtitles": "sounds.icv.phantom_hurt",
+    "sounds": [
+      "icv:phantom_hurt"
+    ]
+  },
+  "acro_hit": {
+    "subtitles": "sounds.icv.acro_hit",
+    "sounds": [
+      "icv:acro_hit"
+    ]
   }
 }

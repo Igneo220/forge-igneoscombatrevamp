@@ -46,7 +46,7 @@ resourcePacks:["vanilla","mod_resources"]
 incompatibleResourcePacks:[]
 lastServer:0.0.0.0
 lang:en_us
-soundDevice:"OpenAL Soft on Speakers (3- Realtek(R) Audio)"
+soundDevice:"OpenAL Soft on SteelSeries Sonar - Gaming (SteelSeries Sonar Virtual Audio Device)"
 chatVisibility:0
 chatOpacity:1.0
 chatLineSpacing:0.0

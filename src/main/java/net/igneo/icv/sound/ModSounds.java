@@ -13,6 +13,9 @@ public class ModSounds {
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, ICV.MOD_ID);
 
     public static final RegistryObject<SoundEvent> SKEWERING_HIT = registerSoundEvents("skewering_hit");
+    public static final RegistryObject<SoundEvent> PHANTOM_HURT = registerSoundEvents("phantom_hurt");
+    public static final RegistryObject<SoundEvent> PHANTOM_HEAL = registerSoundEvents("phantom_heal");
+    public static final RegistryObject<SoundEvent> ACRO_HIT = registerSoundEvents("acro_hit");
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ICV.MOD_ID,name)));

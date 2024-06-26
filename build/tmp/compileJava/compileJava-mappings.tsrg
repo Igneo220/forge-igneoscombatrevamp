@@ -12,8 +12,8 @@ net/igneo/icv/mixin/LivingEntityMixin hurt (Lnet/minecraft/world/damagesource/Da
 net/igneo/icv/mixin/LivingEntityMixin isUsingItem ()Z m_6117_
 net/igneo/icv/mixin/LivingEntityMixin isBlocking ()Z m_21254_
 net/igneo/icv/mixin/LivingEntityMixin canDisableShield ()Z m_213824_
-net/igneo/icv/mixin/LivingEntityMixin isDamageSourceBlocked (Lnet/minecraft/world/damagesource/DamageSource;)Z m_21275_
 net/igneo/icv/mixin/PlayerMixin disableShield (Z)V m_36384_
+net/igneo/icv/mixin/PlayerMixin resetAttackStrengthTicker ()V m_36334_
 net/igneo/icv/mixin/PlayerMixin blockUsingShield (Lnet/minecraft/world/entity/LivingEntity;)V m_6728_
 net/igneo/icv/mixin/ThrownTridentMixin tick ()V m_8119_
 net/igneo/icv/mixin/ThrownTridentMixin onHitEntity (Lnet/minecraft/world/phys/EntityHitResult;)V m_5790_
