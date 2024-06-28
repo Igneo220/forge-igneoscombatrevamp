@@ -42,6 +42,11 @@ public class ModEnchantments {
                     () -> new AcrobaticEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_LEGS, EquipmentSlot.LEGS));
 
+    public static RegistryObject<Enchantment> ACCELERATE =
+            ENCHANTMENTS.register("accelerate",
+                    () -> new AccelerateEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.BOW, EquipmentSlot.MAINHAND));
+
     public static void register(IEventBus eventBus) {
         ENCHANTMENTS.register(eventBus);
     }

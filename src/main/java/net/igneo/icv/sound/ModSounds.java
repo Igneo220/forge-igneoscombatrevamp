@@ -16,6 +16,8 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> PHANTOM_HURT = registerSoundEvents("phantom_hurt");
     public static final RegistryObject<SoundEvent> PHANTOM_HEAL = registerSoundEvents("phantom_heal");
     public static final RegistryObject<SoundEvent> ACRO_HIT = registerSoundEvents("acro_hit");
+    public static final RegistryObject<SoundEvent> BOW_FUMBLE = registerSoundEvents("bow_fumble");
+    public static final RegistryObject<SoundEvent> ACCELERATE = registerSoundEvents("accelerate");
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ICV.MOD_ID,name)));

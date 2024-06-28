@@ -6,6 +6,9 @@ net/igneo/icv/mixin/ThrownTridentMixin ID_LOYALTY f_37558_
 net/igneo/icv/mixin/ThrownTridentMixin ID_FOIL f_37554_
 net/igneo/icv/mixin/ThrownTridentMixin clientSideReturnTridentTickCount f_37557_
 net/igneo/icv/mixin/ThrownTridentMixin tridentItem f_37555_
+net/igneo/icv/mixin/BowItemMixin getUseDuration (Lnet/minecraft/world/item/ItemStack;)I m_8105_
+net/igneo/icv/mixin/BowItemMixin getPowerForTime (I)F m_40661_
+net/igneo/icv/mixin/BowItemMixin releaseUsing (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V m_5551_
 net/igneo/icv/mixin/LivingEntityMixin getMainHandItem ()Lnet/minecraft/world/item/ItemStack; m_21205_
 net/igneo/icv/mixin/LivingEntityMixin getItemBySlot (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack; m_6844_
 net/igneo/icv/mixin/LivingEntityMixin hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z m_6469_

@@ -22,5 +22,17 @@
     "sounds": [
       "icv:acro_hit"
     ]
+  },
+  "bow_fumble": {
+    "subtitles": "sounds.icv.bow_fumble",
+    "sounds": [
+      "icv:bow_fumble"
+    ]
+  },
+  "accelerate": {
+    "subtitles": "sounds.icv.accelerate",
+    "sounds": [
+      "icv:accelerate"
+    ]
   }
 }

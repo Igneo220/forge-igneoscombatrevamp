@@ -2,6 +2,7 @@ package net.igneo.icv.mixin;
 
 import net.igneo.icv.enchantment.ModEnchantments;
 //import net.igneo.icv.enchantment.WardenScreamEnchantment;
+import net.igneo.icv.sound.ModSounds;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -26,11 +27,10 @@ import org.spongepowered.asm.mixin.Unique;
 
 import java.util.function.Predicate;
 
+import static java.lang.Math.abs;
+
 @Mixin(BowItem.class)
 public class BowItemMixin{
-    /*
-    @Unique
-    private static boolean whistle;
 
     @Shadow
     public int getUseDuration(ItemStack pStack) {
@@ -56,7 +56,7 @@ public class BowItemMixin{
      * @author Igneo
      * @reason adding bow enchant
      */
-    /*
+
     @Overwrite
     public void releaseUsing(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving, int pTimeLeft) {
         if (pEntityLiving instanceof Player player && !EnchantmentHelper.getEnchantments(pStack).containsKey(ModEnchantments.ACCELERATE.get())) {
@@ -77,14 +77,12 @@ public class BowItemMixin{
                     boolean flag1 = player.getAbilities().instabuild || (itemstack.getItem() instanceof ArrowItem && ((ArrowItem)itemstack.getItem()).isInfinite(itemstack, pStack, player));
                     ArrowItem arrowitem = (ArrowItem)(itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
                     AbstractArrow abstractarrow = arrowitem.createArrow(pLevel, itemstack, player);
-                    if (EnchantmentHelper.getEnchantments(pEntityLiving.getMainHandItem()).toString().contains("Whistler")){
-                        whistle = true;
-                        abstractarrow.addTag("whistle");
-                    }
-                    if (EnchantmentHelper.getEnchantments(pEntityLiving.getMainHandItem()).containsKey(ModEnchantments.PHASING.get())){
-                        whistle = true;
-                        abstractarrow.addTag("phase");
-                    }
+                    //if (EnchantmentHelper.getEnchantments(pEntityLiving.getMainHandItem()).containsKey(ModEnchantments.WHISTLER.get())){
+                    //    abstractarrow.addTag("whistle");
+                    //}
+                    //if (EnchantmentHelper.getEnchantments(pEntityLiving.getMainHandItem()).containsKey(ModEnchantments.PHASING.get())){
+                    //    abstractarrow.addTag("phase");
+                    //}
                     if (!pLevel.isClientSide) {
                         abstractarrow = customArrow(abstractarrow);
                         abstractarrow.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, f * 3.0F, 1.0F);
@@ -135,8 +133,8 @@ public class BowItemMixin{
                 int i = this.getUseDuration(pStack) - pTimeLeft;
                 i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(pStack, pLevel, player, i, !itemstack.isEmpty() || flag);
                 float f = getPowerForTime(i);
+                ServerLevel level = (ServerLevel) pLevel;
                 if (f == 1.0F) {
-                    ServerLevel level = (ServerLevel) pLevel;
                     Vec3 vec3 = pEntityLiving.getEyePosition();
                     Vec3 vec31 = pEntityLiving.getLookAngle().scale(25);//p_217704_.getEyePosition().subtract(vec3);
                     Vec3 vec32 = vec31.normalize();
@@ -151,14 +149,16 @@ public class BowItemMixin{
                         AbstractArrow arrow = arrowitem.createArrow(level, pStack, pEntityLiving);
                         for (Entity entity : level.getAllEntities()) {
                             if (entity.getBoundingBox().intersects(player.getEyePosition(), player.position().add(player.getLookAngle().scale(15))) && entity != player && entity instanceof LivingEntity) {
-                                System.out.println("killing the " + entity);
                                 entity.hurt(player.damageSources().arrow(arrow, pEntityLiving), 3);
                             }
                         }
                     });
                     AccelerateHurtEntities.start();
+                    level.playSound(null,player.blockPosition(), ModSounds.ACCELERATE.get(),SoundSource.PLAYERS, 4, (float) abs(Math.random() + 0.5));
+                } else {
+                    level.playSound(null,player.blockPosition(), ModSounds.BOW_FUMBLE.get(),SoundSource.PLAYERS);
                 }
             }
         }
-    }*/
+    }
 }
