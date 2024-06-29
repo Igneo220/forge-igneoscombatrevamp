@@ -32,8 +32,7 @@ public class BlockHoleC2SPacket {
             ServerPlayer player = context.getSender();
             ServerLevel level = player.serverLevel();
 
-            Fireball entity;
-            //ModEntities.BLACK_HOLE.get().spawn(level,player.blockPosition().atY((int)player.getEyeY()),MobSpawnType.MOB_SUMMONED).setOwner(player);
+            ModEntities.BLACK_HOLE.get().spawn(level,player.blockPosition().atY((int)player.getEyeY()),MobSpawnType.MOB_SUMMONED).setOwner(player);
         });
         return true;
     }

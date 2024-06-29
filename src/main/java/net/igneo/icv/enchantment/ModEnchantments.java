@@ -26,6 +26,10 @@ public class ModEnchantments {
             ENCHANTMENTS.register("breakthrough",
                     () -> new BreakthroughEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
+    public static RegistryObject<Enchantment> KINETIC =
+            ENCHANTMENTS.register("kinetic",
+                    () -> new KineticEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
     public static RegistryObject<Enchantment> PHANTOM_PAIN =
             ENCHANTMENTS.register("phantom_pain",
                     () -> new PhantomPainEnchantment(Enchantment.Rarity.UNCOMMON,
@@ -37,10 +41,19 @@ public class ModEnchantments {
 
 
 
+    public static RegistryObject<Enchantment> BLACK_HOLE =
+            ENCHANTMENTS.register("black_hole",
+                    () -> new BlackHoleEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_HEAD, EquipmentSlot.HEAD));
+
+
+
     public static RegistryObject<Enchantment> ACROBATIC =
             ENCHANTMENTS.register("acrobatic",
                     () -> new AcrobaticEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_LEGS, EquipmentSlot.LEGS));
+
+
 
     public static RegistryObject<Enchantment> ACCELERATE =
             ENCHANTMENTS.register("accelerate",

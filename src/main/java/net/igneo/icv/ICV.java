@@ -3,11 +3,13 @@ package net.igneo.icv;
 import net.igneo.icv.enchantment.AcrobaticEnchantment;
 import net.igneo.icv.enchantment.ModEnchantments;
 import net.igneo.icv.entity.ModEntities;
+import net.igneo.icv.entity.client.BlackHoleRenderer;
 import net.igneo.icv.entity.client.CometRenderer;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.sound.ModSounds;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -46,9 +48,7 @@ public class ICV
 
         ModSounds.register(modEventBus);
 
-        if (FMLEnvironment.dist.isClient()) {
-            ModEntities.register(modEventBus);
-        }
+        ModEntities.register(modEventBus);
 
     }
     private void commonSetup(final FMLCommonSetupEvent event)
@@ -72,7 +72,7 @@ public class ICV
             //EntityRenderers.register((EntityType)ModEntities.ICICLE.get(), IcicleRenderer::new);
             //EntityRenderers.register((EntityType)ModEntities.BOLT.get(), BoltRenderer::new);
             //EntityRenderers.register((EntityType)ModEntities.FIRE.get(), ThrownItemRenderer::new);
-            //EntityRenderers.register((EntityType)ModEntities.BLACK_HOLE.get(), BlackHoleRenderer::new);
+            EntityRenderers.register(ModEntities.BLACK_HOLE.get(), BlackHoleRenderer::new);
         }
     }
 }

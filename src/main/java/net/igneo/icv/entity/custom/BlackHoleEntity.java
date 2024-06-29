@@ -1,6 +1,8 @@
 package net.igneo.icv.entity.custom;
 
+import net.igneo.icv.particle.ModParticles;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -11,6 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Fireball;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 public class BlackHoleEntity extends Fireball {
     public Vec3 trajectory;
@@ -32,7 +35,7 @@ public class BlackHoleEntity extends Fireball {
 
     @Override
     public void tick() {
-        if (level().isClientSide) {
+        if (level().isClientSide && FMLEnvironment.dist.isClient()) {
             if (this.getOwner() == null) {
                 System.out.println(level().getNearestPlayer(this,4));
                 this.setOwner(level().getNearestPlayer(this,4));
@@ -51,29 +54,32 @@ public class BlackHoleEntity extends Fireball {
         }
         if (!level().isClientSide) {
             ServerLevel level = (ServerLevel) level();
+            if (this.getOwner() != null) {
+                level.sendParticles((ServerPlayer) this.getOwner(), ModParticles.BLACK_HOLE_PARTICLE.get(), true, this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 0.01);
+            }
             for (Entity entity : level.getAllEntities()) {
                 //System.out.println(this.getOwner());
-                Vec3 pushVec = (((this.position().subtract(entity.position())).scale((10.1 - entity.distanceTo(this)) * 0.1)).scale(0.04));
-                if (entity.distanceTo(this) < 1.5 && entity != this && entity != this.getOwner()) {
-                    if (entity instanceof LivingEntity || entity instanceof Player) {
+                Vec3 pushVec = (((this.position().subtract(entity.position())).scale((10.1 - entity.distanceTo(this)) * 0.1)).scale(0.035));
+                if (entity.distanceTo(this) < 2 && entity != this && entity != this.getOwner()) {
+                    if (entity instanceof LivingEntity || entity instanceof ServerPlayer) {
                         LivingEntity entity1 = (LivingEntity) entity;
-                        entity1.hurt(this.damageSources().cramming(), 3);
+                        entity1.hurt(this.damageSources().cramming(), 2);
                     }
                     entity.addDeltaMovement((this.position().subtract(entity.position())).scale(0.14));
                 } else if (entity.distanceTo(this) < 10 && entity != this && entity != this.getOwner()) {
                     entity.addDeltaMovement(pushVec);
                 }
             }
-        } else if (Minecraft.getInstance().player != null){
-            Entity entity = Minecraft.getInstance().player;
-            //System.out.println((this.getOwner() == Minecraft.getInstance().player));
-            Vec3 pushVec = (((this.position().subtract(entity.position())).scale((10.1 - entity.distanceTo(this)) * 0.1)).scale(0.04));
-            if (entity.distanceTo(this) < 1 && entity != this && Minecraft.getInstance().player != this.getOwner()) {
-                entity.addDeltaMovement((this.position().subtract(entity.position())).scale(0.14));
-            } else if (entity.distanceTo(this) < 10 && Minecraft.getInstance().player != this.getOwner()) {
-                entity.addDeltaMovement(pushVec);
-            }
-            //&& entity != this.getOwner()
+        } else if (level().isClientSide){
+                LocalPlayer player = Minecraft.getInstance().player;
+                //System.out.println((this.getOwner() == Minecraft.getInstance().player));
+                Vec3 pushVec = (((this.position().subtract(player.position())).scale((10.1 - player.distanceTo(this)) * 0.1)).scale(0.04));
+                if (player.distanceTo(this) < 1 && Minecraft.getInstance().player != this.getOwner()) {
+                    player.addDeltaMovement((this.position().subtract(player.position())).scale(0.14));
+                } else if (player.distanceTo(this) < 10 && Minecraft.getInstance().player != this.getOwner()) {
+                    player.addDeltaMovement(pushVec);
+                }
+                //&& player != this.getOwner()
         }
         super.tick();
     }

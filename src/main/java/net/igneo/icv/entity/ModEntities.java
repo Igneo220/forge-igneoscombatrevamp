@@ -1,6 +1,7 @@
 package net.igneo.icv.entity;
 
 import net.igneo.icv.ICV;
+import net.igneo.icv.entity.custom.BlackHoleEntity;
 import net.igneo.icv.entity.custom.CometEntity;
 import net.igneo.icv.entity.custom.FireEntity;
 import net.minecraft.world.entity.EntityType;
@@ -17,9 +18,9 @@ public class ModEntities {
     public static final RegistryObject<EntityType<CometEntity>> COMET =
             ENTITY_TYPES.register("comet",() -> EntityType.Builder.<CometEntity>of(CometEntity::new, MobCategory.MISC)
                     .sized(1f,1f).build("comet"));
-    public static final RegistryObject<EntityType<FireEntity>> FIRE =
-            ENTITY_TYPES.register("fire",() -> EntityType.Builder.<FireEntity>of(FireEntity::new, MobCategory.MISC)
-                    .sized(1f,1f).build("comet"));
+    public static final RegistryObject<EntityType<BlackHoleEntity>> BLACK_HOLE =
+            ENTITY_TYPES.register("black_hole",() -> EntityType.Builder.<BlackHoleEntity>of(BlackHoleEntity::new, MobCategory.MISC)
+                    .sized(1f,1f).build("black_hole"));
 
 
     public static void register(IEventBus eventBus) {

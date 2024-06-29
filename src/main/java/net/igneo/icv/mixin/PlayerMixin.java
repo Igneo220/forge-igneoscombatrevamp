@@ -43,9 +43,16 @@ public abstract class PlayerMixin extends LivingEntity{
         float tempf;
         if (EnchantmentHelper.getEnchantments(this.getMainHandItem()).containsKey(ModEnchantments.SKEWERING.get()) && !pTarget.onGround() && !pTarget.isInFluidType() && !pTarget.isPassenger()) {
             tempf = 1.4F;
+        } else  if (EnchantmentHelper.getEnchantments(this.getMainHandItem()).containsKey(ModEnchantments.SKEWERING.get())) {
+            float speedDamage = (float) (((Math.abs(this.getDeltaMovement().x) + Math.abs(this.getDeltaMovement().z))) * 30);
+            if (speedDamage >= 20) {
+                speedDamage = 20;
+            }
+            tempf = speedDamage/3;
         } else {
             tempf = f1;
         }
+
         AtomicReference<Float> tempf2 = new AtomicReference<>((float) 0);
         this.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
             if (enchVar.getAcrobatBonus()) {
@@ -53,8 +60,8 @@ public abstract class PlayerMixin extends LivingEntity{
             }
         });
         tempf += tempf2.get();
-        if (tempf > 1.6) {
-            tempf = 1.6F;
+        if (tempf > 1.8) {
+            tempf = 1.8F;
         }
         return tempf;
     }

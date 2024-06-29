@@ -2,6 +2,7 @@ package net.igneo.icv.event;
 
 import net.igneo.icv.ICV;
 import net.igneo.icv.enchantment.AcrobaticEnchantment;
+import net.igneo.icv.enchantment.BlackHoleEnchantment;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActions;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.igneo.icv.networking.ModMessages;
@@ -99,6 +100,7 @@ public class ModEvents {
             }
 
             if (FMLEnvironment.dist.isClient()) {
+                BlackHoleEnchantment.onClientTick();
                 AcrobaticEnchantment.onClientTick();
             }
         });
