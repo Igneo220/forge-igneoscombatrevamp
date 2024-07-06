@@ -1,5 +1,6 @@
 package net.igneo.icv.enchantment;
 
+import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.BlockHoleC2SPacket;
@@ -15,19 +16,20 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
 public class BlackHoleEnchantment extends Enchantment {
-    private static long blockHoleTime;
     public BlackHoleEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
     public static void onClientTick() {
         if (Minecraft.getInstance().player != null) {
             LocalPlayer pPlayer = Minecraft.getInstance().player;
-            if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(3)).containsKey(ModEnchantments.BLACK_HOLE.get())) {
-                if (System.currentTimeMillis() >= blockHoleTime + 29000 && Keybindings.INSTANCE.black_hole.isDown()) {
-                    ModMessages.sendToServer(new BlockHoleC2SPacket());
-                    blockHoleTime = System.currentTimeMillis();
+            pPlayer.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+                if (System.currentTimeMillis() > enchVar.getHoleCooldown() + 200 && EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(3)).containsKey(ModEnchantments.BLACK_HOLE.get())) {
+                    if (Keybindings.INSTANCE.black_hole.isDown()) {
+                        ModMessages.sendToServer(new BlockHoleC2SPacket());
+                        enchVar.setHoleCooldown(System.currentTimeMillis());
+                    }
                 }
-            }
+            });
         }
     }
 }

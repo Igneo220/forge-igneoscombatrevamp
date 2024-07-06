@@ -29,6 +29,10 @@ public class ModEventBusClientEvents {
                 AcroHitParticles.Provider::new);
         event.registerSpriteSet(ModParticles.BLACK_HOLE_PARTICLE.get(),
                 BlackHoleParticles.Provider::new);
+        event.registerSpriteSet(ModParticles.CONCUSS_HIT_PARTICLE.get(),
+                AcroHitParticles.Provider::new);
+        event.registerSpriteSet(ModParticles.CONCUSS_USE_PARTICLE.get(),
+                AcroHitParticles.Provider::new);
     }
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event){

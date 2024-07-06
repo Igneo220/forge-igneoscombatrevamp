@@ -48,10 +48,24 @@ public class ModEnchantments {
 
 
 
+    public static RegistryObject<Enchantment> CONCUSSION =
+            ENCHANTMENTS.register("concussion",
+                    () -> new ConcussionEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
+
+
+
     public static RegistryObject<Enchantment> ACROBATIC =
             ENCHANTMENTS.register("acrobatic",
                     () -> new AcrobaticEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_LEGS, EquipmentSlot.LEGS));
+
+
+
+    public static RegistryObject<Enchantment> STONE_CALLER =
+            ENCHANTMENTS.register("stone_caller",
+                    () -> new StoneCallerEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET));
 
 
 

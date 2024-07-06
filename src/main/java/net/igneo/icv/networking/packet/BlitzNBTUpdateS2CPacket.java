@@ -19,7 +19,7 @@ public class BlitzNBTUpdateS2CPacket {
     }
     public BlitzNBTUpdateS2CPacket(FriendlyByteBuf buf) {
         this.boostCount = buf.readInt();
-        this.boostTime = buf.readInt();
+        this.boostTime = buf.readLong();
     }
 
     public void toBytes(FriendlyByteBuf buf) {

@@ -3,12 +3,17 @@ package net.igneo.icv.event;
 import net.igneo.icv.ICV;
 import net.igneo.icv.enchantment.AcrobaticEnchantment;
 import net.igneo.icv.enchantment.BlackHoleEnchantment;
+import net.igneo.icv.enchantment.ConcussionEnchantment;
+import net.igneo.icv.enchantment.StoneCallerEnchantment;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActions;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.BlitzNBTUpdateS2CPacket;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.sound.ModSounds;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -17,6 +22,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -68,7 +74,7 @@ public class ModEvents {
             //Blitz check
             if (enchVar.getBlitzBoostCount() > 0) {
                 if (System.currentTimeMillis() >= enchVar.getBlitzTime() + 1000) {
-                    if (FMLEnvironment.dist.isClient()) {
+                    if (!(event.player instanceof ServerPlayer)) {
                         enchVar.resetBoostCount();
                         enchVar.setBlitzTime(System.currentTimeMillis());
                     } else {
@@ -99,9 +105,52 @@ public class ModEvents {
                 }
             }
 
+            //stone caller check
+            if (enchVar.getStoneTime() != 0) {
+                if (System.currentTimeMillis() >= enchVar.getStoneTime() + 6000) {
+                    if (event.player instanceof ServerPlayer) {
+                        ServerPlayer player = (ServerPlayer) event.player;
+                        ServerLevel level = player.serverLevel();
+                        level.playSound(null, new BlockPos(enchVar.getStoneX(), enchVar.getStoneY() + 1, enchVar.getStoneZ()), SoundEvents.WITHER_BREAK_BLOCK, SoundSource.PLAYERS, 2F, 5.0F);
+                        level.setBlock(new BlockPos(enchVar.getStoneX(), enchVar.getStoneY(), enchVar.getStoneZ()), Blocks.AIR.defaultBlockState(), 2);
+                        level.setBlock(new BlockPos(enchVar.getStoneX(), enchVar.getStoneY() + 1, enchVar.getStoneZ()), Blocks.AIR.defaultBlockState(), 2);
+                        level.setBlock(new BlockPos(enchVar.getStoneX(), enchVar.getStoneY() + 2, enchVar.getStoneZ()), Blocks.AIR.defaultBlockState(), 2);
+                        level.setBlock(new BlockPos(enchVar.getStoneX(), enchVar.getStoneY() + 3, enchVar.getStoneZ()), Blocks.AIR.defaultBlockState(), 2);
+
+                        double d0 = level.random.nextGaussian() * 0.02D;
+                        double d1 = level.random.nextGaussian() * 0.02D;
+                        double d2 = level.random.nextGaussian() * 0.02D;
+
+                        level.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE,
+                                enchVar.getStoneX() + (double) (level.random.nextFloat()),
+                                enchVar.getStoneY() + 0.5,
+                                enchVar.getStoneZ() + (double) (level.random.nextFloat()),
+                                10, d0, d1, d2, 0.0F);
+                        level.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE,
+                                enchVar.getStoneX() + (double) (level.random.nextFloat()),
+                                enchVar.getStoneY() + 1.5,
+                                enchVar.getStoneZ() + (double) (level.random.nextFloat()),
+                                10, d0, d1, d2, 0.0F);
+                        level.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE,
+                                enchVar.getStoneX() + (double) (level.random.nextFloat()),
+                                enchVar.getStoneY() + 2.5,
+                                enchVar.getStoneZ() + (double) (level.random.nextFloat()),
+                                10, d0, d1, d2, 0.0F);
+                        level.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE,
+                                enchVar.getStoneX() + (double) (level.random.nextFloat()),
+                                enchVar.getStoneY() + 3.5,
+                                enchVar.getStoneZ() + (double) (level.random.nextFloat()),
+                                10, d0, d1, d2, 0.0F);
+                    }
+                    enchVar.setStoneTime(0);
+                }
+            }
+
             if (FMLEnvironment.dist.isClient()) {
                 BlackHoleEnchantment.onClientTick();
                 AcrobaticEnchantment.onClientTick();
+                ConcussionEnchantment.onClientTick();
+                StoneCallerEnchantment.onClientTick();
             }
         });
     }

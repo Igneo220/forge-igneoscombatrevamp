@@ -1,27 +1,6 @@
 package net.igneo.icv.networking;
 
-import net.igneo.icv.networking.packet.AcrobaticC2SPacket;
-import net.igneo.icv.networking.packet.BlitzNBTUpdateS2CPacket;
-import net.igneo.icv.networking.packet.BlizzardC2SPacket;
-import net.igneo.icv.networking.packet.BlockHoleC2SPacket;
-import net.igneo.icv.networking.packet.CometStrikeC2SPacket;
-import net.igneo.icv.networking.packet.ConcussC2SPacket;
-import net.igneo.icv.networking.packet.CounterweightedC2SPacket;
-import net.igneo.icv.networking.packet.CrushC2SPacket;
-import net.igneo.icv.networking.packet.FlameC2SPacket;
-import net.igneo.icv.networking.packet.FlareC2SPacket;
-import net.igneo.icv.networking.packet.GustC2SPacket;
-import net.igneo.icv.networking.packet.IncaC2SPacket;
-import net.igneo.icv.networking.packet.JudgementC2SPacket;
-import net.igneo.icv.networking.packet.MomentumC2SPacket;
-import net.igneo.icv.networking.packet.PhantomPainC2SPacket;
-import net.igneo.icv.networking.packet.RendC2SPacket;
-import net.igneo.icv.networking.packet.SiphonC2SPacket;
-import net.igneo.icv.networking.packet.SmiteC2SPacket;
-import net.igneo.icv.networking.packet.TempoTheftC2SPacket;
-import net.igneo.icv.networking.packet.TrainDashC2SPacket;
-import net.igneo.icv.networking.packet.WardenScreamC2SPacket;
-import net.igneo.icv.networking.packet.WardenspineC2SPacket;
+import net.igneo.icv.networking.packet.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
@@ -50,7 +29,7 @@ public class ModMessages {
         }).simpleChannel();
         INSTANCE = net;
         net.messageBuilder(CometStrikeC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER).decoder(CometStrikeC2SPacket::new).encoder(CometStrikeC2SPacket::toBytes).consumerMainThread(CometStrikeC2SPacket::handle).add();
-        //net.messageBuilder(StoneCallC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER).decoder(StoneCallC2SPacket::new).encoder(StoneCallC2SPacket::toBytes).consumerMainThread(StoneCallC2SPacket::handle).add();
+        net.messageBuilder(StoneCallerC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER).decoder(StoneCallerC2SPacket::new).encoder(StoneCallerC2SPacket::toBytes).consumerMainThread(StoneCallerC2SPacket::handle).add();
         //net.messageBuilder(StoneBreakC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER).decoder(StoneBreakC2SPacket::new).encoder(StoneBreakC2SPacket::toBytes).consumerMainThread(StoneBreakC2SPacket::handle).add();
         net.messageBuilder(CrushC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER).decoder(CrushC2SPacket::new).encoder(CrushC2SPacket::toBytes).consumerMainThread(CrushC2SPacket::handle).add();
         net.messageBuilder(PhantomPainC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER).decoder(PhantomPainC2SPacket::new).encoder(PhantomPainC2SPacket::toBytes).consumerMainThread(PhantomPainC2SPacket::handle).add();
@@ -68,6 +47,7 @@ public class ModMessages {
         net.messageBuilder(BlizzardC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER).decoder(BlizzardC2SPacket::new).encoder(BlizzardC2SPacket::toBytes).consumerMainThread(BlizzardC2SPacket::handle).add();
         net.messageBuilder(WardenScreamC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER).decoder(WardenScreamC2SPacket::new).encoder(WardenScreamC2SPacket::toBytes).consumerMainThread(WardenScreamC2SPacket::handle).add();
         net.messageBuilder(ConcussC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER).decoder(ConcussC2SPacket::new).encoder(ConcussC2SPacket::toBytes).consumerMainThread(ConcussC2SPacket::handle).add();
+        net.messageBuilder(ConcussHurtC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER).decoder(ConcussHurtC2SPacket::new).encoder(ConcussHurtC2SPacket::toBytes).consumerMainThread(ConcussHurtC2SPacket::handle).add();
         net.messageBuilder(SmiteC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER).decoder(SmiteC2SPacket::new).encoder(SmiteC2SPacket::toBytes).consumerMainThread(SmiteC2SPacket::handle).add();
         net.messageBuilder(AcrobaticC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER).decoder(AcrobaticC2SPacket::new).encoder(AcrobaticC2SPacket::toBytes).consumerMainThread(AcrobaticC2SPacket::handle).add();
         net.messageBuilder(BlockHoleC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER).decoder(BlockHoleC2SPacket::new).encoder(BlockHoleC2SPacket::toBytes).consumerMainThread(BlockHoleC2SPacket::handle).add();

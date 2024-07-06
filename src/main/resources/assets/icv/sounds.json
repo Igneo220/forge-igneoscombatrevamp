@@ -34,5 +34,17 @@
     "sounds": [
       "icv:accelerate"
     ]
+  },
+  "hole_shot": {
+    "subtitles": "sounds.icv.hole_shot",
+    "sounds": [
+      "icv:hole_shot"
+    ]
+  },
+  "hole_idle": {
+    "subtitles": "sounds.icv.hole_idle",
+    "sounds": [
+      "icv:hole_idle"
+    ]
   }
 }

@@ -24,6 +24,10 @@ public class ModParticles {
             PARTICLE_TYPES.register("acro_hit_particles", () -> new SimpleParticleType(true));
     public static final RegistryObject<SimpleParticleType> BLACK_HOLE_PARTICLE =
             PARTICLE_TYPES.register("black_hole_particles", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> CONCUSS_HIT_PARTICLE =
+            PARTICLE_TYPES.register("concuss_hit_particles", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> CONCUSS_USE_PARTICLE =
+            PARTICLE_TYPES.register("concuss_use_particles", () -> new SimpleParticleType(true));
 
     public static void register(IEventBus eventbus) {
         PARTICLE_TYPES.register(eventbus);

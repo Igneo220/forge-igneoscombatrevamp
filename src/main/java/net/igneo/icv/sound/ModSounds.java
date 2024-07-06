@@ -18,6 +18,8 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> ACRO_HIT = registerSoundEvents("acro_hit");
     public static final RegistryObject<SoundEvent> BOW_FUMBLE = registerSoundEvents("bow_fumble");
     public static final RegistryObject<SoundEvent> ACCELERATE = registerSoundEvents("accelerate");
+    public static final RegistryObject<SoundEvent> HOLE_SHOT = registerSoundEvents("hole_shot");
+    public static final RegistryObject<SoundEvent> HOLE_IDLE = registerSoundEvents("hole_idle");
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ICV.MOD_ID,name)));

@@ -1,10 +1,13 @@
 package net.igneo.icv.entity.custom;
 
 import net.igneo.icv.particle.ModParticles;
+import net.igneo.icv.sound.ModSounds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -21,6 +24,7 @@ public class BlackHoleEntity extends Fireball {
     public BlackHoleEntity(EntityType<? extends Fireball> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         blackHoleTime = 0;
+        this.setPos(this.getX(),this.getY() - 0.3,this.getZ());
     }
 
     @Override
@@ -47,6 +51,9 @@ public class BlackHoleEntity extends Fireball {
         }
         if (blackHoleTime == 0) {
             trajectory = null;
+            if (!level().isClientSide) {
+                level().playSound(null, this.blockPosition(), ModSounds.HOLE_IDLE.get(), SoundSource.PLAYERS, 20F, 1F);
+            }
             blackHoleTime = System.currentTimeMillis();
         }
         if (System.currentTimeMillis() >= blackHoleTime + 14000) {

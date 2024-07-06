@@ -1,7 +1,9 @@
 package net.igneo.icv.enchantmentActions;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 public class PlayerEnchantmentActions {
 
@@ -43,6 +45,18 @@ public class PlayerEnchantmentActions {
 
 
 
+    //black hole enchantment work
+    private long holeCooldown;
+
+    public long getHoleCooldown() {
+        return this.holeCooldown;
+    }
+    public void setHoleCooldown(long newCooldown) {
+        this.holeCooldown = newCooldown;
+    }
+
+
+
     //phantom pain enchantment work
     private int phantomHurt;
     private long phantomDelay;
@@ -74,6 +88,37 @@ public class PlayerEnchantmentActions {
     }
 
 
+    //stone caller work
+    private long stoneTime = 0;
+    private int stoneX;
+    private int stoneY;
+    private int stoneZ;
+    public long getStoneTime() {
+        return this.stoneTime;
+    }
+    public void setStoneTime(long newTime) {
+        this.stoneTime = newTime;
+    }
+    public int getStoneX() {
+        return this.stoneX;
+    }
+    public void setStoneX(int newint) {
+        this.stoneX = newint;
+    }
+    public int getStoneY() {
+        return this.stoneY;
+    }
+    public void setStoneY(int newint) {
+        this.stoneY = newint;
+    }
+    public int getStoneZ() {
+        return this.stoneZ;
+    }
+    public void setStoneZ(int newint) {
+        this.stoneZ = newint;
+    }
+
+
 
     //general work
     public void copyFrom(PlayerEnchantmentActions source) {
@@ -83,21 +128,50 @@ public class PlayerEnchantmentActions {
         this.blitzBoostCount = source.blitzBoostCount;
         this.blitzTime = source.blitzTime;
 
+        this.holeCooldown = source.holeCooldown;
+
         this.phantomVictim = source.phantomVictim;
         this.phantomDelay = source.phantomDelay;
         this.phantomHurt = source.phantomHurt;
+
+        this.stoneTime = source.stoneTime;
+        this.stoneX = source.stoneX;
+        this.stoneY = source.stoneY;
+        this.stoneZ = source.stoneZ;
     }
     public void saveNBTData(CompoundTag nbt) {
+
+        nbt.putBoolean("acrobatBonus",acrobatBonus);
 
         nbt.putInt("blitzBoostCount", blitzBoostCount);
         nbt.putLong("blitzTime", blitzTime);
 
+        nbt.putLong("holeCooldown",holeCooldown);
+
+        nbt.putLong("phantomDelay",phantomDelay);
+        nbt.putInt("phantomHurt",phantomHurt);
+
+        nbt.putLong("stoneTime",stoneTime);
+        nbt.putInt("stoneX",stoneX);
+        nbt.putInt("stoneY",stoneY);
+        nbt.putInt("stoneZ",stoneZ);
     }
 
     public void loadNBTData(CompoundTag nbt) {
 
+        acrobatBonus = nbt.getBoolean("acrobatBonus");
+
         blitzBoostCount = nbt.getInt("blitzBoostCount");
         blitzTime = nbt.getLong("blitzTime");
 
+        holeCooldown = nbt.getLong("holeCooldown");
+
+        phantomDelay = nbt.getLong("phantomDelay");
+        phantomHurt = nbt.getInt("phantomHurt");
+
+        stoneTime = nbt.getLong("stoneTime");
+        stoneX = nbt.getInt("stoneX");
+        stoneY = nbt.getInt("stoneY");
+        stoneZ = nbt.getInt("stoneZ");
     }
 }

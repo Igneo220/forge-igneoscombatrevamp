@@ -1,9 +1,13 @@
 package net.igneo.icv.networking.packet;
 
+import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.igneo.icv.entity.ModEntities;
+import net.igneo.icv.sound.ModSounds;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.projectile.Fireball;
@@ -32,7 +36,13 @@ public class BlockHoleC2SPacket {
             ServerPlayer player = context.getSender();
             ServerLevel level = player.serverLevel();
 
-            ModEntities.BLACK_HOLE.get().spawn(level,player.blockPosition().atY((int)player.getEyeY()),MobSpawnType.MOB_SUMMONED).setOwner(player);
+            player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+                if (System.currentTimeMillis() > enchVar.getHoleCooldown() + 2900) {
+                    level.playSound(null, player.blockPosition(), ModSounds.HOLE_SHOT.get(), SoundSource.PLAYERS, 0.5F, 0.1F);
+                    ModEntities.BLACK_HOLE.get().spawn(level, player.blockPosition().atY((int) player.getEyeY()), MobSpawnType.MOB_SUMMONED).setOwner(player);
+                    enchVar.setHoleCooldown(System.currentTimeMillis());
+                }
+            });
         });
         return true;
     }
