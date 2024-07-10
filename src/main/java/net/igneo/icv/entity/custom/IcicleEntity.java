@@ -1,9 +1,14 @@
 package net.igneo.icv.entity.custom;
 
 import net.igneo.icv.enchantment.BlizzardEnchantment;
+import net.igneo.icv.particle.ModParticles;
+import net.igneo.icv.sound.ModSounds;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -28,6 +33,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 import java.util.Objects;
 
 public class IcicleEntity extends Fireball {
+    private long iceTime = 0;
     private Vec3 finaltrajectory;
     private BlockState lastState;
 
@@ -45,15 +51,25 @@ public class IcicleEntity extends Fireball {
 
     @Override
     protected void onHitEntity(EntityHitResult pResult) {
-        pResult.getEntity().hurt(damageSources().magic(),6);
-        if (pResult.getEntity() instanceof LivingEntity) {
-            LivingEntity living = (LivingEntity) pResult.getEntity();
-            living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,50,100));
+        if (System.currentTimeMillis() >= iceTime + 50) {
+            pResult.getEntity().hurt(damageSources().magic(), 6);
+            if (pResult.getEntity() instanceof LivingEntity) {
+                if (this.level() instanceof ServerLevel) {
+                    ServerLevel level = (ServerLevel) this.level();
+                    level.playSound(null,this.blockPosition(), ModSounds.ICE_HIT.get(), SoundSource.PLAYERS,0.2F,1);
+                    level.sendParticles(ModParticles.ICE_HIT_PARTICLE.get(), this.getX(), this.getY(), this.getZ(), 3, 0, 0, 0, 0.1);
+                }
+                LivingEntity living = (LivingEntity) pResult.getEntity();
+                living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 50, 100));
+            }
         }
     }
 
     @Override
     public void tick() {
+        if (iceTime == 0) {
+            iceTime = System.currentTimeMillis();
+        }
         //setDeltaMovement(0.1,0.1,0.1);
         if (finaltrajectory != null) {
             this.setDeltaMovement(finaltrajectory);
@@ -121,7 +137,9 @@ public class IcicleEntity extends Fireball {
 
     @Override
     protected void onHit(HitResult pResult) {
-        this.discard();
-        super.onHit(pResult);
+        if (System.currentTimeMillis() >= iceTime + 50) {
+            this.discard();
+            super.onHit(pResult);
+        }
     }
 }

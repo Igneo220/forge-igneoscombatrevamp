@@ -12,6 +12,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Fireball;
 import net.minecraft.world.level.Level;
@@ -61,9 +62,7 @@ public class BlackHoleEntity extends Fireball {
         }
         if (!level().isClientSide) {
             ServerLevel level = (ServerLevel) level();
-            if (this.getOwner() != null) {
-                level.sendParticles((ServerPlayer) this.getOwner(), ModParticles.BLACK_HOLE_PARTICLE.get(), true, this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 0.01);
-            }
+            level.sendParticles(ModParticles.BLACK_HOLE_PARTICLE.get(), this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 0.01);
             for (Entity entity : level.getAllEntities()) {
                 //System.out.println(this.getOwner());
                 Vec3 pushVec = (((this.position().subtract(entity.position())).scale((10.1 - entity.distanceTo(this)) * 0.1)).scale(0.035));

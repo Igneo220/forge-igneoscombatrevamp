@@ -20,6 +20,14 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> ACCELERATE = registerSoundEvents("accelerate");
     public static final RegistryObject<SoundEvent> HOLE_SHOT = registerSoundEvents("hole_shot");
     public static final RegistryObject<SoundEvent> HOLE_IDLE = registerSoundEvents("hole_idle");
+    public static final RegistryObject<SoundEvent> KINETIC_HIT = registerSoundEvents("kinetic_hit");
+    public static final RegistryObject<SoundEvent> ICE_HIT = registerSoundEvents("ice_hit");
+    public static final RegistryObject<SoundEvent> BLIZZARD_START = registerSoundEvents("blizzard_start");
+    public static final RegistryObject<SoundEvent> COMET_HIT = registerSoundEvents("comet_hit");
+    public static final RegistryObject<SoundEvent> COMET_IDLE = registerSoundEvents("comet_idle");
+    public static final RegistryObject<SoundEvent> COMET_SPAWN = registerSoundEvents("comet_spawn");
+    public static final RegistryObject<SoundEvent> COUNTERWEIGHTED_MISS = registerSoundEvents("c_miss");
+    public static final RegistryObject<SoundEvent> CRUSH = registerSoundEvents("crush");
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ICV.MOD_ID,name)));

@@ -28,13 +28,14 @@ public class PhantomPainEnchantment extends Enchantment {
         System.out.println(pAttacker + " just got hit by " + pTarget);
         pTarget.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
             //if (!FMLEnvironment.dist.isClient()) {
+            if (pAttacker instanceof LivingEntity) {
                 ServerPlayer player = (ServerPlayer) pTarget;
                 ServerLevel level = player.serverLevel();
                  //}
 
             if (enchVar.getPhantomVictim() !=null) {
                 if (enchVar.getPhantomVictim() != pAttacker && enchVar.getPhantomVictim().isAlive()) {
-                    level.sendParticles(player, ModParticles.PHANTOM_HEAL_PARTICLE.get(), true, enchVar.getPhantomVictim().getX(), enchVar.getPhantomVictim().getY() + 1.5, enchVar.getPhantomVictim().getZ(), 10, Math.random(), Math.random(), Math.random(), 0.5);
+                    level.sendParticles(ModParticles.PHANTOM_HEAL_PARTICLE.get(), enchVar.getPhantomVictim().getX(), enchVar.getPhantomVictim().getY() + 1.5, enchVar.getPhantomVictim().getZ(), 10, Math.random(), Math.random(), Math.random(), 0.5);
                     level.playSound(null, enchVar.getPhantomVictim().blockPosition(), ModSounds.PHANTOM_HEAL.get(), SoundSource.PLAYERS, 0.25F, (float) 0.3 + (float) abs(Math.random() + 0.5));
                     enchVar.getPhantomVictim().heal(enchVar.getPhantomHurt());
                     enchVar.resetPhantomHurt();
@@ -44,23 +45,28 @@ public class PhantomPainEnchantment extends Enchantment {
                         //ServerPlayer player = (ServerPlayer) pTarget;
                         //ServerLevel level = player.serverLevel();
                         //}
+                } else if (!enchVar.getPhantomVictim().isAlive()) {
+                    enchVar.resetPhantomHurt();
+                    enchVar.deletePhantomVictim();
                 }
             }
             enchVar.setPhantomVictim((LivingEntity) pAttacker);
-            enchVar.addPhantomHurt(4);
+            enchVar.addPhantomHurt(2);
             enchVar.setPhantomDelay(System.currentTimeMillis());
 
-            level.sendParticles(player, ModParticles.PHANTOM_HURT_PARTICLE.get(), true, pAttacker.getX(), pAttacker.getY() + 1.5, pAttacker.getZ(), 10, Math.random(), Math.random(), Math.random(), 0.5);
+
+            level.sendParticles(ModParticles.PHANTOM_HURT_PARTICLE.get(), pAttacker.getX(), pAttacker.getY() + 1.5, pAttacker.getZ(), 10, Math.random(), Math.random(), Math.random(), 0.5);
             level.playSound(null, pAttacker.blockPosition(), ModSounds.PHANTOM_HURT.get(), SoundSource.PLAYERS, 0.5F, (float) 0.3 + (float) abs(Math.random() + 0.5));
 
             System.out.println(enchVar.getPhantomVictim());
             System.out.println(enchVar.getPhantomHurt());
+            }
         });
         super.doPostAttack(pTarget, pAttacker, pLevel);
     }
 
     @Override
     public float getDamageBonus(int level, MobType mobType, ItemStack enchantedItem) {
-        return 4;
+        return 2;
     }
 }

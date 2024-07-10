@@ -39,7 +39,7 @@ public class ConcussHurtC2SPacket {
 
 
             LivingEntity target = level.getNearestEntity(LivingEntity.class, TargetingConditions.forCombat(),null, player.getX(), player.getY(), player.getZ(),player.getBoundingBox().inflate(1.5));
-            level.sendParticles(player, ModParticles.CONCUSS_HIT_PARTICLE.get(),true,target.getX(),target.getY() + 1.5,target.getZ(),10,Math.random(),Math.random(),Math.random(),0.5);
+            level.sendParticles(ModParticles.CONCUSS_HIT_PARTICLE.get(),target.getX(),target.getY() + 1.5,target.getZ(),10,Math.random(),Math.random(),Math.random(),0.5);
             level.playSound(null, target.blockPosition(), SoundEvents.PLAYER_ATTACK_CRIT, SoundSource.PLAYERS, 1, 0.1F);
             target.hurt(player.damageSources().playerAttack(player),5);
             target.setDeltaMovement(new Vec3(0,0.8,0));

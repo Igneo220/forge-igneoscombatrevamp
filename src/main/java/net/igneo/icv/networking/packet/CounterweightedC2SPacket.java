@@ -1,8 +1,10 @@
 package net.igneo.icv.networking.packet;
 
+import net.igneo.icv.sound.ModSounds;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -30,14 +32,14 @@ public class CounterweightedC2SPacket {
             //SERVER WORK
             LivingEntity player = context.getSender();
             ServerLevel level = context.getSender().serverLevel();
-/*
-            if (!CounterweightedEnchantment.initialHit) {
-                player.getAttributes().getInstance(Attributes.ATTACK_SPEED).removeModifier(ATTACK_SPEED_MODIFIER_UUID);
-            } else {
-                player.getAttributes().getInstance(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(ATTACK_SPEED_MODIFIER_UUID, "Attack speed boost blitz", 3, AttributeModifier.Operation.ADDITION));
-            }
+
+
+            //    player.getAttributes().getInstance(Attributes.ATTACK_SPEED).removeModifier(ATTACK_SPEED_MODIFIER_UUID);
+
+            player.getAttributes().getInstance(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(ATTACK_SPEED_MODIFIER_UUID, "Attack speed boost blitz", 3, AttributeModifier.Operation.ADDITION));
+            level.playSound(null, player.blockPosition(), ModSounds.COUNTERWEIGHTED_MISS.get(), SoundSource.PLAYERS, 0.5F,1);
             System.out.println(player.getAttributes().getInstance(Attributes.ATTACK_SPEED));
-        */});
+        });
         return true;
     }
 }

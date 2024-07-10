@@ -204,5 +204,17 @@
     },
     "done": true
   },
+  "minecraft:recipes/misc/iron_nugget_from_smelting": {
+    "criteria": {
+      "has_iron_sword": "2024-07-08 23:34:04 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/iron_nugget_from_blasting": {
+    "criteria": {
+      "has_iron_sword": "2024-07-08 23:34:04 -0400"
+    },
+    "done": true
+  },
   "DataVersion": 3465
 }

@@ -40,28 +40,31 @@ public abstract class PlayerMixin extends LivingEntity{
 
     @ModifyVariable(method = "attack", at = @At(value = "STORE"), index = 4)
     private float attack(float f1, Entity pTarget) {
-        float tempf;
-        if (EnchantmentHelper.getEnchantments(this.getMainHandItem()).containsKey(ModEnchantments.SKEWERING.get()) && !pTarget.onGround() && !pTarget.isInFluidType() && !pTarget.isPassenger()) {
-            tempf = 1.4F;
-        } else  if (EnchantmentHelper.getEnchantments(this.getMainHandItem()).containsKey(ModEnchantments.SKEWERING.get())) {
-            float speedDamage = (float) (((Math.abs(this.getDeltaMovement().x) + Math.abs(this.getDeltaMovement().z))) * 30);
-            if (speedDamage >= 20) {
-                speedDamage = 20;
+        float tempf = f1;
+        if (pTarget instanceof LivingEntity) {
+            AtomicReference<Float> tempf1 = new AtomicReference<>((float) 0);
+            if (EnchantmentHelper.getEnchantments(this.getMainHandItem()).containsKey(ModEnchantments.SKEWERING.get()) && !pTarget.onGround() && !pTarget.isInFluidType() && !pTarget.isPassenger()) {
+                tempf = 1.2F;
+            } else if (EnchantmentHelper.getEnchantments(this.getMainHandItem()).containsKey(ModEnchantments.KINETIC.get())) {
+                this.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+                    float speedDamage = (float) (((Math.abs(enchVar.getKinX()) + Math.abs(enchVar.getKinZ()))) * 20);
+                    if (speedDamage >= 20) {
+                        speedDamage = 20;
+                    }
+                    tempf1.set(speedDamage / 3);
+                });
             }
-            tempf = speedDamage/3;
-        } else {
-            tempf = f1;
-        }
 
-        AtomicReference<Float> tempf2 = new AtomicReference<>((float) 0);
-        this.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-            if (enchVar.getAcrobatBonus()) {
-                tempf2.set(0.4F);
+            AtomicReference<Float> tempf2 = new AtomicReference<>((float) 0);
+            this.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+                if (enchVar.getAcrobatBonus()) {
+                    tempf2.set(0.2F);
+                }
+            });
+            tempf += tempf1.get() + tempf2.get();
+            if (tempf > 1.6) {
+                tempf = 1.6F;
             }
-        });
-        tempf += tempf2.get();
-        if (tempf > 1.8) {
-            tempf = 1.8F;
         }
         return tempf;
     }

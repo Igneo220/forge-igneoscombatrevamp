@@ -1,10 +1,7 @@
 package net.igneo.icv.event;
 
 import net.igneo.icv.ICV;
-import net.igneo.icv.enchantment.AcrobaticEnchantment;
-import net.igneo.icv.enchantment.BlackHoleEnchantment;
-import net.igneo.icv.enchantment.ConcussionEnchantment;
-import net.igneo.icv.enchantment.StoneCallerEnchantment;
+import net.igneo.icv.enchantment.*;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActions;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.igneo.icv.networking.ModMessages;
@@ -95,7 +92,7 @@ public class ModEvents {
                     if (System.currentTimeMillis() >= enchVar.getPhantomDelay() + 4000) {
                         ServerPlayer player = (ServerPlayer) event.player;
                         ServerLevel level = player.serverLevel();
-                        level.sendParticles(player, ModParticles.PHANTOM_HEAL_PARTICLE.get(), true, enchVar.getPhantomVictim().getX(), enchVar.getPhantomVictim().getY() + 1.5, enchVar.getPhantomVictim().getZ(), 10, Math.random(), Math.random(), Math.random(), 0.5);
+                        level.sendParticles(ModParticles.PHANTOM_HEAL_PARTICLE.get(), enchVar.getPhantomVictim().getX(), enchVar.getPhantomVictim().getY() + 1.5, enchVar.getPhantomVictim().getZ(), 10, Math.random(), Math.random(), Math.random(), 0.5);
                         level.playSound(null, enchVar.getPhantomVictim().blockPosition(), ModSounds.PHANTOM_HEAL.get(), SoundSource.PLAYERS, 0.25F, (float) 0.3 + (float) abs(Math.random() + 0.5));
                         enchVar.getPhantomVictim().heal(enchVar.getPhantomHurt());
                         enchVar.resetPhantomHurt();
@@ -151,6 +148,12 @@ public class ModEvents {
                 AcrobaticEnchantment.onClientTick();
                 ConcussionEnchantment.onClientTick();
                 StoneCallerEnchantment.onClientTick();
+                BlizzardEnchantment.onClientTick();
+                KineticEnchantment.onClientTick();
+                CometStrikeEnchantment.onClientTick();
+                CounterweightedEnchantment.onClientTick();
+                DoubleJumpEnchantment.onClientTick();
+                CrushEnchantment.onClientTick();
             }
         });
     }

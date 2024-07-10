@@ -57,6 +57,25 @@ public class PlayerEnchantmentActions {
 
 
 
+    //Kinetic enchantment work
+    private double kinX;
+    private double kinZ;
+
+    public double getKinX() {
+        return this.kinX;
+    }
+    public void setKinX(double X) {
+        this.kinX = X;
+    }
+    public double getKinZ() {
+        return this.kinZ;
+    }
+    public void setKinZ(double Z) {
+        this.kinZ = Z;
+    }
+
+
+
     //phantom pain enchantment work
     private int phantomHurt;
     private long phantomDelay;
@@ -148,6 +167,9 @@ public class PlayerEnchantmentActions {
 
         nbt.putLong("holeCooldown",holeCooldown);
 
+        nbt.putDouble("kinX",kinX);
+        nbt.putDouble("kinZ",kinZ);
+
         nbt.putLong("phantomDelay",phantomDelay);
         nbt.putInt("phantomHurt",phantomHurt);
 
@@ -165,6 +187,9 @@ public class PlayerEnchantmentActions {
         blitzTime = nbt.getLong("blitzTime");
 
         holeCooldown = nbt.getLong("holeCooldown");
+
+        kinX = nbt.getLong("kinX");
+        kinZ = nbt.getLong("kinZ");
 
         phantomDelay = nbt.getLong("phantomDelay");
         phantomHurt = nbt.getInt("phantomHurt");

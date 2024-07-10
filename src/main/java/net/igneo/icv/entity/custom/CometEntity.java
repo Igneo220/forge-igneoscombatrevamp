@@ -1,6 +1,10 @@
 package net.igneo.icv.entity.custom;
 
+import net.igneo.icv.sound.ModSounds;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
@@ -17,6 +21,7 @@ import net.minecraft.world.phys.HitResult.Type;
 import net.minecraftforge.event.ForgeEventFactory;
 
 public class CometEntity extends AbstractHurtingProjectile {
+    private long cometTime;
     private double explosionPower = 0.0;
     public double xPower;
     public double yPower;
@@ -24,10 +29,10 @@ public class CometEntity extends AbstractHurtingProjectile {
     public boolean hurt = false;
     public final AnimationState idleAnimationState = new AnimationState();
     private int cometAnimationTimeout = 0;
+    private int cometSoundTimeout;
 
     private void setupAnimationStates() {
         if (this.cometAnimationTimeout <= 0) {
-            System.out.println("bruh");
             this.cometAnimationTimeout = this.random.nextInt(40) + 80;
             this.idleAnimationState.start(0);
         } else {
@@ -39,13 +44,25 @@ public class CometEntity extends AbstractHurtingProjectile {
     public CometEntity(EntityType<? extends AbstractHurtingProjectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.noPhysics = true;
-        this.setDeltaMovement(0.0, 0.25, 0.0);
+        this.addDeltaMovement(new Vec3(0.0, 0.25, 0.0));
+        cometTime = System.currentTimeMillis();
     }
     @Override
     public boolean hurt(DamageSource pSource, float pAmount) {
+        if (this.level() instanceof  ServerLevel) {
+            ServerLevel level = (ServerLevel) this.level();
+            level.playSound(null, this.blockPosition(), ModSounds.COMET_HIT.get(), SoundSource.PLAYERS);
+        }
         hurt = true;
-        explosionPower += pAmount;
-        System.out.println(this.explosionPower);
+        if (pAmount > 10) {
+            explosionPower += 7;
+        } else {
+            explosionPower += pAmount/1.5;
+        }
+        if (explosionPower > 40) {
+            explosionPower = 40;
+        }
+        System.out.println("power: " + this.explosionPower);
         this.markHurt();
         Entity entity = pSource.getEntity();
         if (entity != null) {
@@ -64,8 +81,13 @@ public class CometEntity extends AbstractHurtingProjectile {
     }
     @Override
     public void tick() {
+        if(System.currentTimeMillis() > cometTime + 16006) {
+            this.discard();
+        }
         if (this.level().isClientSide) {
             this.setupAnimationStates();
+        } else if (this.level() instanceof  ServerLevel) {
+            this.soundTick();
         }
 
         if (!this.hurt && this.getDeltaMovement().y > 0.0) {
@@ -106,16 +128,27 @@ public class CometEntity extends AbstractHurtingProjectile {
 
     }
 
+    private void soundTick() {
+        if (this.cometSoundTimeout <= 0) {
+            ServerLevel level = (ServerLevel) this.level();
+            level.playSound(null, this.blockPosition(), ModSounds.COMET_IDLE.get(), SoundSource.PLAYERS);
+            level.sendParticles(ParticleTypes.END_ROD, this.getX(), this.getY() + 0.5, this.getZ(), 5, 0, 0, 0, 0.1);
+            this.cometSoundTimeout = this.random.nextInt(40) + 80;
+        } else {
+            --this.cometSoundTimeout;
+        }
+    }
+
     @Override
     protected void onHitEntity(EntityHitResult pResult) {
-        this.level().explode(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower / 2.0F, ExplosionInteraction.NONE);
+        this.level().explode(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower / 3.0F, ExplosionInteraction.NONE);
         //this.level().m_7106_(ParticleTypes.f_123813_, this.m_20185_(), this.m_20186_(), this.m_20189_(), 0.0, 0.0, 0.0);
         this.discard();
     }
 
     @Override
     protected void onHitBlock(BlockHitResult pResult) {
-        this.level().explode(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower / 2.0F, ExplosionInteraction.NONE);
+        this.level().explode(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower / 3.0F, ExplosionInteraction.NONE);
         //this.level().m_7106_(ParticleTypes.f_123813_, this.m_20185_(), this.m_20186_(), this.m_20189_(), 0.0, 0.0, 0.0);
         this.discard();
     }

@@ -5,6 +5,8 @@ package net.igneo.icv.entity.client;// Made with Blockbench 4.9.4
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.igneo.icv.entity.animations.ModAnimationsDefinitions;
+import net.igneo.icv.entity.custom.CometEntity;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -23,7 +25,7 @@ public class CometModel<T extends Entity> extends HierarchicalModel<T> {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition whole = partdefinition.addOrReplaceChild("whole", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
+		PartDefinition whole = partdefinition.addOrReplaceChild("whole", CubeListBuilder.create(), PartPose.offset(0.0F, 12.0F, 0.0F));
 
 		PartDefinition outer = whole.addOrReplaceChild("outer", CubeListBuilder.create(), PartPose.offset(0.0F, -2.0F, 0.0F));
 
@@ -36,7 +38,7 @@ public class CometModel<T extends Entity> extends HierarchicalModel<T> {
 
 	@Override
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
+		this.animate(((CometEntity) entity).idleAnimationState,ModAnimationsDefinitions.idle,ageInTicks,0.1F);
 	}
 
 	@Override

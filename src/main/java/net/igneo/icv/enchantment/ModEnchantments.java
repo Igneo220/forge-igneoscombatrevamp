@@ -26,6 +26,10 @@ public class ModEnchantments {
             ENCHANTMENTS.register("breakthrough",
                     () -> new BreakthroughEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
+    public static RegistryObject<Enchantment> COUNTERWEIGHTED =
+            ENCHANTMENTS.register("counterweighted",
+                    () -> new CounterweightedEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
     public static RegistryObject<Enchantment> KINETIC =
             ENCHANTMENTS.register("kinetic",
                     () -> new KineticEnchantment(Enchantment.Rarity.UNCOMMON,
@@ -45,6 +49,10 @@ public class ModEnchantments {
             ENCHANTMENTS.register("black_hole",
                     () -> new BlackHoleEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_HEAD, EquipmentSlot.HEAD));
+    public static RegistryObject<Enchantment> BLIZZARD =
+            ENCHANTMENTS.register("blizzard",
+                    () -> new BlizzardEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_HEAD, EquipmentSlot.HEAD));
 
 
 
@@ -59,9 +67,21 @@ public class ModEnchantments {
             ENCHANTMENTS.register("acrobatic",
                     () -> new AcrobaticEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_LEGS, EquipmentSlot.LEGS));
+    public static RegistryObject<Enchantment> CRUSH =
+            ENCHANTMENTS.register("crush",
+                    () -> new CrushEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_LEGS, EquipmentSlot.LEGS));
 
 
 
+    public static RegistryObject<Enchantment> COMET_STRIKE =
+            ENCHANTMENTS.register("comet_strike",
+                    () -> new CometStrikeEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET));
+    public static RegistryObject<Enchantment> DOUBLE_JUMP =
+            ENCHANTMENTS.register("double_jump",
+                    () -> new DoubleJumpEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET));
     public static RegistryObject<Enchantment> STONE_CALLER =
             ENCHANTMENTS.register("stone_caller",
                     () -> new StoneCallerEnchantment(Enchantment.Rarity.UNCOMMON,

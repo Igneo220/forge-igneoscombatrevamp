@@ -23,7 +23,7 @@ public class BlackHoleEnchantment extends Enchantment {
         if (Minecraft.getInstance().player != null) {
             LocalPlayer pPlayer = Minecraft.getInstance().player;
             pPlayer.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-                if (System.currentTimeMillis() > enchVar.getHoleCooldown() + 200 && EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(3)).containsKey(ModEnchantments.BLACK_HOLE.get())) {
+                if (System.currentTimeMillis() > enchVar.getHoleCooldown() + 29000 && EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(3)).containsKey(ModEnchantments.BLACK_HOLE.get())) {
                     if (Keybindings.INSTANCE.black_hole.isDown()) {
                         ModMessages.sendToServer(new BlockHoleC2SPacket());
                         enchVar.setHoleCooldown(System.currentTimeMillis());

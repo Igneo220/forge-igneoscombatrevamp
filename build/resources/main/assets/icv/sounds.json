@@ -46,5 +46,55 @@
     "sounds": [
       "icv:hole_idle"
     ]
+  },
+  "kinetic_hit": {
+    "subtitles": "sounds.icv.kinetic_hit",
+    "sounds": [
+      "icv:kinetic_hit"
+    ]
+  },
+  "ice_hit": {
+    "subtitles": "sounds.icv.ice_hit",
+    "sounds": [
+      "icv:ice_hit"
+    ]
+  },
+  "blizzard_start": {
+    "subtitles": "sounds.icv.blizzard_start",
+    "sounds": [
+      "icv:blizzard_start"
+    ]
+  },
+  "comet_hit": {
+    "subtitles": "sounds.icv.comet_hit",
+    "sounds": [
+      "icv:comet_hit"
+    ]
+  },
+  "comet_idle": {
+    "subtitles": "sounds.icv.comet_idle",
+    "sounds": [
+      "icv:comet_idle1",
+      "icv:comet_idle2",
+      "icv:comet_idle3"
+    ]
+  },
+  "comet_spawn": {
+    "subtitles": "sounds.icv.comet_spawn",
+    "sounds": [
+      "icv:comet_spawn"
+    ]
+  },
+  "c_miss": {
+    "subtitles": "sounds.icv.c_miss",
+    "sounds": [
+      "icv:c_miss"
+    ]
+  },
+  "crush": {
+    "subtitles": "sounds.icv.crush",
+    "sounds": [
+      "icv:crush"
+    ]
   }
 }

@@ -1,15 +1,14 @@
 package net.igneo.icv;
 
-import net.igneo.icv.enchantment.AcrobaticEnchantment;
 import net.igneo.icv.enchantment.ModEnchantments;
 import net.igneo.icv.entity.ModEntities;
 import net.igneo.icv.entity.client.BlackHoleRenderer;
 import net.igneo.icv.entity.client.CometRenderer;
+import net.igneo.icv.entity.client.IcicleRenderer;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.sound.ModSounds;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -21,7 +20,6 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -69,7 +67,7 @@ public class ICV
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             EntityRenderers.register(ModEntities.COMET.get(), CometRenderer::new);
-            //EntityRenderers.register((EntityType)ModEntities.ICICLE.get(), IcicleRenderer::new);
+            EntityRenderers.register(ModEntities.ICICLE.get(), IcicleRenderer::new);
             //EntityRenderers.register((EntityType)ModEntities.BOLT.get(), BoltRenderer::new);
             //EntityRenderers.register((EntityType)ModEntities.FIRE.get(), ThrownItemRenderer::new);
             EntityRenderers.register(ModEntities.BLACK_HOLE.get(), BlackHoleRenderer::new);

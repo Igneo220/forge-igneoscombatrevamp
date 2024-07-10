@@ -4,7 +4,9 @@ import net.igneo.icv.ICV;
 import net.igneo.icv.enchantment.AcrobaticEnchantment;
 import net.igneo.icv.entity.client.BlackHoleModel;
 import net.igneo.icv.entity.client.CometModel;
+import net.igneo.icv.entity.client.IcicleModel;
 import net.igneo.icv.entity.client.ModModelLayers;
+import net.igneo.icv.entity.custom.IcicleEntity;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.particle.custom.*;
 import net.minecraftforge.api.distmarker.Dist;
@@ -33,10 +35,17 @@ public class ModEventBusClientEvents {
                 AcroHitParticles.Provider::new);
         event.registerSpriteSet(ModParticles.CONCUSS_USE_PARTICLE.get(),
                 AcroHitParticles.Provider::new);
+        event.registerSpriteSet(ModParticles.ICE_HIT_PARTICLE.get(),
+                IceHitParticles.Provider::new);
+        event.registerSpriteSet(ModParticles.ICE_SPAWN_PARTICLE.get(),
+                IceSpawnParticles.Provider::new);
+        event.registerSpriteSet(ModParticles.KINETIC_HIT_PARTICLE.get(),
+                KineticHitParticles.Provider::new);
     }
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event){
         event.registerLayerDefinition(ModModelLayers.COMET_LAYER, CometModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BLACK_HOLE_LAYER, BlackHoleModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.ICICLE_LAYER, IcicleModel::createBodyLayer);
     }
 }

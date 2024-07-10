@@ -2,6 +2,8 @@ package net.igneo.icv.enchantment;
 
 import com.mojang.brigadier.CommandDispatcher;
 import net.igneo.icv.ICV;
+import net.igneo.icv.networking.ModMessages;
+import net.igneo.icv.networking.packet.DoubleJumpC2SPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.FireworkParticles;
 import net.minecraft.client.player.LocalPlayer;
@@ -20,6 +22,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.client.event.sound.SoundEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -31,7 +34,6 @@ import javax.annotation.Nullable;
 
 public class DoubleJumpEnchantment extends Enchantment {
 
-    public static LocalPlayer pPlayer = Minecraft.getInstance().player;
     public static boolean CanDoubleJump = false;
 
     public static double startY;
@@ -39,33 +41,30 @@ public class DoubleJumpEnchantment extends Enchantment {
     public DoubleJumpEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
-/*
+
     @SubscribeEvent
-    public static void onKeyInputEvent() {
-        pPlayer = Minecraft.getInstance().player;
-        if (Minecraft.getInstance().options.keyJump.isDown() && !(pPlayer == null)) {
-            var enchant = EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(0));
-            var enchants = enchant.toString();
-            if (enchants.contains("net.igneo.icv.enchantment.DoubleJumpEnchantment")) {
-                pPlayer = Minecraft.getInstance().player;
-                if (Minecraft.getInstance().options.keyJump.isDown() && pPlayer.onGround()) {
+    public static void onClientTick() {
+        if (Minecraft.getInstance().player != null) {
+            LocalPlayer pPlayer = Minecraft.getInstance().player;
+            if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.DOUBLE_JUMP.get())) {
+                if (pPlayer.onGround() && !CanDoubleJump) {
                     startY = Minecraft.getInstance().player.getY();
                     System.out.println("on land");
                     CanDoubleJump = true;
-                } else {
-                    System.out.println("in the air!!");
                 }
                 if (Minecraft.getInstance().options.keyJump.isDown() && !pPlayer.onGround() && !pPlayer.isInFluidType() && !pPlayer.isPassenger() && CanDoubleJump) {
                     System.out.println(Minecraft.getInstance().player.getDeltaMovement().y);
                     if (Minecraft.getInstance().player.getDeltaMovement().y <= 0) {
                         CanDoubleJump = false;
                         System.out.println("SUPER hooorayyyy");
-                        onDoubleJumped();
+                        pPlayer.setDeltaMovement(pPlayer.getDeltaMovement().x,0.6,pPlayer.getDeltaMovement().z);
+                        ModMessages.sendToServer(new DoubleJumpC2SPacket());
                     }
                 }
             }
         }
     }
+    /*
     public static void onDoubleJumped()
     {
             pPlayer = Minecraft.getInstance().player;

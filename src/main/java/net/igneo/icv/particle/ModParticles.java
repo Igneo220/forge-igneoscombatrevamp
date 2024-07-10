@@ -28,6 +28,12 @@ public class ModParticles {
             PARTICLE_TYPES.register("concuss_hit_particles", () -> new SimpleParticleType(true));
     public static final RegistryObject<SimpleParticleType> CONCUSS_USE_PARTICLE =
             PARTICLE_TYPES.register("concuss_use_particles", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> ICE_HIT_PARTICLE =
+            PARTICLE_TYPES.register("ice_hit_particles", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> ICE_SPAWN_PARTICLE =
+            PARTICLE_TYPES.register("ice_spawn_particles", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> KINETIC_HIT_PARTICLE =
+            PARTICLE_TYPES.register("kinetic_hit_particles", () -> new SimpleParticleType(true));
 
     public static void register(IEventBus eventbus) {
         PARTICLE_TYPES.register(eventbus);

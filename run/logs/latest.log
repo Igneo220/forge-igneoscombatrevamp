@@ -1,74 +1,65 @@
-[05Jul2024 22:25:27.699] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeserveruserdev, --gameDir, ., --fml.forgeVersion, 47.2.30, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --nogui, --mixin.config, mixins.icv.json]
-[05Jul2024 22:25:27.706] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.8 by Eclipse Adoptium; OS Windows 10 arch amd64 version 10.0
-[05Jul2024 22:25:27.922] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgeserveruserdev
-[05Jul2024 22:25:27.994] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Igneo/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=SERVER
-[05Jul2024 22:25:28.348] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Igneo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.2.30\306080746b55301f533d17a1f75c0416bfa6425d\javafmllanguage-1.20.1-47.2.30.jar is missing mods.toml file
-[05Jul2024 22:25:28.353] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Igneo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.2.30\ed4251688f57da24ffceb91f85693e28171bc4de\lowcodelanguage-1.20.1-47.2.30.jar is missing mods.toml file
-[05Jul2024 22:25:28.356] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Igneo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.2.30\66fae321e7c1e488bb0a63661153f415efa06665\mclanguage-1.20.1-47.2.30.jar is missing mods.toml file
-[05Jul2024 22:25:28.360] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Igneo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.2.30\34b7d69dcc2b769d597be488ba457877f9d57cd9\fmlcore-1.20.1-47.2.30.jar is missing mods.toml file
-[05Jul2024 22:25:28.453] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
-[05Jul2024 22:25:29.842] [main/INFO] [mixin/]: Compatibility level JAVA_8 specified by mixins.icv.json is lower than the default level supported by the current mixin service (JAVA_16).
-[05Jul2024 22:25:29.847] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeserveruserdev' with arguments [--gameDir, ., --nogui]
-[05Jul2024 22:25:29.891] [main/INFO] [mixin/]: Attempting to load Fernflower decompiler (Threaded mode)
-[05Jul2024 22:25:29.892] [main/INFO] [mixin/]: Fernflower could not be loaded, exported classes will not be decompiled. NoClassDefFoundError: org/jetbrains/java/decompiler/main/extern/IResultSaver
-[05Jul2024 22:25:29.903] [main/INFO] [mixin/]: Preparing mixins for MixinEnvironment[DEFAULT]
-[05Jul2024 22:25:29.903] [main/INFO] [mixin/]: Selecting config mixins.icv.json
-[05Jul2024 22:25:29.926] [main/WARN] [mixin/]: Reference map 'mixins.icv.refmap.json' for mixins.icv.json could not be read. If this is a development environment you can ignore this message
-[05Jul2024 22:25:29.927] [main/INFO] [mixin/]: Preparing mixins.icv.json (8)
-[05Jul2024 22:25:31.325] [main/INFO] [mixin/]: Mixing LivingEntityMixin from mixins.icv.json into net.minecraft.world.entity.LivingEntity
-[05Jul2024 22:25:31.345] [main/WARN] [mixin/]: mixins.icv.json:LivingEntityMixin: Class version 61 required is higher than the class version supported by the current version of Mixin (JAVA_8 supports class version 52)
-[05Jul2024 22:25:31.347] [main/WARN] [mixin/]: @Shadow target mixins.icv.json:LivingEntityMixin::DATA_LIVING_ENTITY_FLAGS is final but shadow is not decorated with @Final
-[05Jul2024 22:25:31.658] [main/INFO] [mixin/]: Mixing PlayerMixin from mixins.icv.json into net.minecraft.world.entity.player.Player
-[05Jul2024 22:25:31.661] [main/INFO] [mixin/]: Renaming synthetic method lambda$attack$0(Ljava/util/concurrent/atomic/AtomicReference;Lnet/igneo/icv/enchantmentActions/PlayerEnchantmentActions;)V to md1de740$lambda$attack$0$0 in mixins.icv.json:PlayerMixin
-[05Jul2024 22:25:33.722] [main/INFO] [mixin/]: Mixing BowItemMixin from mixins.icv.json into net.minecraft.world.item.BowItem
-[05Jul2024 22:25:33.727] [main/INFO] [mixin/]: Renaming synthetic method lambda$releaseUsing$1(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/player/Player;)V to md1de740$lambda$releaseUsing$1$0 in mixins.icv.json:BowItemMixin
-[05Jul2024 22:25:33.727] [main/INFO] [mixin/]: Renaming synthetic method lambda$releaseUsing$0(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/player/Player;)V to md1de740$lambda$releaseUsing$0$1 in mixins.icv.json:BowItemMixin
-[05Jul2024 22:25:33.989] [main/INFO] [mixin/]: Mixing TridentItemMixin from mixins.icv.json into net.minecraft.world.item.TridentItem
-[05Jul2024 22:25:33.995] [main/INFO] [mixin/]: Mixing CrossbowItemMixin from mixins.icv.json into net.minecraft.world.item.CrossbowItem
-[05Jul2024 22:25:35.119] [main/INFO] [mixin/]: Mixing ArrowMixin from mixins.icv.json into net.minecraft.world.entity.projectile.Arrow
-[05Jul2024 22:25:35.290] [main/INFO] [mixin/]: Mixing ThrownTridentMixin from mixins.icv.json into net.minecraft.world.entity.projectile.ThrownTrident
-[05Jul2024 22:25:35.292] [main/WARN] [mixin/]: @Shadow target mixins.icv.json:ThrownTridentMixin::ID_LOYALTY is final but shadow is not decorated with @Final
-[05Jul2024 22:25:35.292] [main/WARN] [mixin/]: @Shadow target mixins.icv.json:ThrownTridentMixin::ID_FOIL is final but shadow is not decorated with @Final
-[05Jul2024 22:25:36.720] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.2.30, for MC 1.20.1 with MCP 20230612.114412
-[05Jul2024 22:25:36.720] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.2.30 Initialized
-[05Jul2024 22:25:37.271] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
-[05Jul2024 22:25:37.604] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: OUTDATED Current: 47.2.30 Target: 47.3.0
-[05Jul2024 22:25:37.988] [main/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
-[05Jul2024 22:25:38.057] [main/WARN] [net.minecraftforge.common.ForgeHooks/WP]: The following mods have version differences that were not resolved:
-icv (version 1.1.7 -> 1.1.10)
+[09Jul2024 22:55:26.419] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeserveruserdev, --gameDir, ., --fml.forgeVersion, 47.2.30, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --nogui, --mixin.config, mixins.icv.json]
+[09Jul2024 22:55:26.422] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.8 by Eclipse Adoptium; OS Windows 10 arch amd64 version 10.0
+[09Jul2024 22:55:26.536] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgeserveruserdev
+[09Jul2024 22:55:26.578] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Igneo/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=SERVER
+[09Jul2024 22:55:26.871] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Igneo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.2.30\306080746b55301f533d17a1f75c0416bfa6425d\javafmllanguage-1.20.1-47.2.30.jar is missing mods.toml file
+[09Jul2024 22:55:26.875] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Igneo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.2.30\ed4251688f57da24ffceb91f85693e28171bc4de\lowcodelanguage-1.20.1-47.2.30.jar is missing mods.toml file
+[09Jul2024 22:55:26.878] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Igneo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.2.30\66fae321e7c1e488bb0a63661153f415efa06665\mclanguage-1.20.1-47.2.30.jar is missing mods.toml file
+[09Jul2024 22:55:26.881] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Igneo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.2.30\34b7d69dcc2b769d597be488ba457877f9d57cd9\fmlcore-1.20.1-47.2.30.jar is missing mods.toml file
+[09Jul2024 22:55:26.953] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
+[09Jul2024 22:55:28.137] [main/INFO] [mixin/]: Compatibility level JAVA_8 specified by mixins.icv.json is lower than the default level supported by the current mixin service (JAVA_16).
+[09Jul2024 22:55:28.140] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeserveruserdev' with arguments [--gameDir, ., --nogui]
+[09Jul2024 22:55:28.186] [main/INFO] [mixin/]: Attempting to load Fernflower decompiler (Threaded mode)
+[09Jul2024 22:55:28.187] [main/INFO] [mixin/]: Fernflower could not be loaded, exported classes will not be decompiled. NoClassDefFoundError: org/jetbrains/java/decompiler/main/extern/IResultSaver
+[09Jul2024 22:55:28.194] [main/INFO] [mixin/]: Preparing mixins for MixinEnvironment[DEFAULT]
+[09Jul2024 22:55:28.195] [main/INFO] [mixin/]: Selecting config mixins.icv.json
+[09Jul2024 22:55:28.215] [main/WARN] [mixin/]: Reference map 'mixins.icv.refmap.json' for mixins.icv.json could not be read. If this is a development environment you can ignore this message
+[09Jul2024 22:55:28.216] [main/INFO] [mixin/]: Preparing mixins.icv.json (8)
+[09Jul2024 22:55:29.223] [main/INFO] [mixin/]: Mixing LivingEntityMixin from mixins.icv.json into net.minecraft.world.entity.LivingEntity
+[09Jul2024 22:55:29.233] [main/WARN] [mixin/]: mixins.icv.json:LivingEntityMixin: Class version 61 required is higher than the class version supported by the current version of Mixin (JAVA_8 supports class version 52)
+[09Jul2024 22:55:29.236] [main/WARN] [mixin/]: @Shadow target mixins.icv.json:LivingEntityMixin::DATA_LIVING_ENTITY_FLAGS is final but shadow is not decorated with @Final
+[09Jul2024 22:55:29.483] [main/INFO] [mixin/]: Mixing PlayerMixin from mixins.icv.json into net.minecraft.world.entity.player.Player
+[09Jul2024 22:55:29.486] [main/INFO] [mixin/]: Renaming synthetic method lambda$attack$1(Ljava/util/concurrent/atomic/AtomicReference;Lnet/igneo/icv/enchantmentActions/PlayerEnchantmentActions;)V to mddc36fe$lambda$attack$1$0 in mixins.icv.json:PlayerMixin
+[09Jul2024 22:55:29.487] [main/INFO] [mixin/]: Renaming synthetic method lambda$attack$0(Ljava/util/concurrent/atomic/AtomicReference;Lnet/igneo/icv/enchantmentActions/PlayerEnchantmentActions;)V to mddc36fe$lambda$attack$0$1 in mixins.icv.json:PlayerMixin
+[09Jul2024 22:55:30.814] [main/INFO] [mixin/]: Mixing BowItemMixin from mixins.icv.json into net.minecraft.world.item.BowItem
+[09Jul2024 22:55:30.816] [main/INFO] [mixin/]: Renaming synthetic method lambda$releaseUsing$1(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/player/Player;)V to mddc36fe$lambda$releaseUsing$1$0 in mixins.icv.json:BowItemMixin
+[09Jul2024 22:55:30.816] [main/INFO] [mixin/]: Renaming synthetic method lambda$releaseUsing$0(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/player/Player;)V to mddc36fe$lambda$releaseUsing$0$1 in mixins.icv.json:BowItemMixin
+[09Jul2024 22:55:30.914] [main/INFO] [mixin/]: Mixing TridentItemMixin from mixins.icv.json into net.minecraft.world.item.TridentItem
+[09Jul2024 22:55:30.918] [main/INFO] [mixin/]: Mixing CrossbowItemMixin from mixins.icv.json into net.minecraft.world.item.CrossbowItem
+[09Jul2024 22:55:31.427] [main/INFO] [mixin/]: Mixing ArrowMixin from mixins.icv.json into net.minecraft.world.entity.projectile.Arrow
+[09Jul2024 22:55:31.556] [main/INFO] [mixin/]: Mixing ThrownTridentMixin from mixins.icv.json into net.minecraft.world.entity.projectile.ThrownTrident
+[09Jul2024 22:55:31.557] [main/WARN] [mixin/]: @Shadow target mixins.icv.json:ThrownTridentMixin::ID_LOYALTY is final but shadow is not decorated with @Final
+[09Jul2024 22:55:31.557] [main/WARN] [mixin/]: @Shadow target mixins.icv.json:ThrownTridentMixin::ID_FOIL is final but shadow is not decorated with @Final
+[09Jul2024 22:55:32.859] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.2.30, for MC 1.20.1 with MCP 20230612.114412
+[09Jul2024 22:55:32.859] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.2.30 Initialized
+[09Jul2024 22:55:33.384] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
+[09Jul2024 22:55:33.685] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: OUTDATED Current: 47.2.30 Target: 47.3.0
+[09Jul2024 22:55:34.086] [main/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[09Jul2024 22:55:34.153] [main/WARN] [net.minecraftforge.common.ForgeHooks/WP]: The following mods have version differences that were not resolved:
+icv (version 0.1.14 -> 0.1.15)
 Things may not work well.
-[05Jul2024 22:25:38.070] [main/INFO] [net.minecraftforge.registries.GameData/REGISTRIES]: Injecting existing registry data into this CLIENT instance
-[05Jul2024 22:25:38.112] [main/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:enchantment: Object did not get ID it asked for. Name: icv:concussion Expected: 45 Got: 47
-[05Jul2024 22:25:38.113] [main/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:enchantment: Object did not get ID it asked for. Name: icv:stone_caller Expected: 47 Got: 48
-[05Jul2024 22:25:38.544] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Igneo/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/assets/.mcassetsroot' uses unexpected schema
-[05Jul2024 22:25:38.545] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Igneo/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/data/.mcassetsroot' uses unexpected schema
-[05Jul2024 22:25:39.762] [main/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 7 recipes
-[05Jul2024 22:25:39.844] [main/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 1271 advancements
-[05Jul2024 22:25:40.184] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer/]: Starting minecraft server version 1.20.1
-[05Jul2024 22:25:40.184] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer/]: Loading properties
-[05Jul2024 22:25:40.184] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer/]: Default game type: CREATIVE
-[05Jul2024 22:25:40.184] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
-[05Jul2024 22:25:40.248] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer/]: Starting Minecraft server on *:25565
-[05Jul2024 22:25:40.259] [Server thread/INFO] [net.minecraft.server.network.ServerConnectionListener/]: Using default channel type
-[05Jul2024 22:25:40.396] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer/]: Preparing level "world"
-[05Jul2024 22:25:41.533] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
-[05Jul2024 22:25:44.189] [Worker-Main-7/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[05Jul2024 22:25:44.215] [Worker-Main-10/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[05Jul2024 22:25:44.221] [Worker-Main-6/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[05Jul2024 22:25:44.228] [Worker-Main-7/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[05Jul2024 22:25:44.234] [Worker-Main-7/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[05Jul2024 22:25:44.239] [Worker-Main-7/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[05Jul2024 22:25:44.534] [Worker-Main-5/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 9%
-[05Jul2024 22:25:45.034] [Worker-Main-1/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 94%
-[05Jul2024 22:25:45.055] [Server thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 3521 ms
-[05Jul2024 22:25:45.055] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer/]: Done (4.682s)! For help, type "help"
-[05Jul2024 22:25:45.070] [LanServerPinger #1/WARN] [net.minecraft.client.server.LanServerPinger/]: LanServerPinger: Network is unreachable: no further information
-[05Jul2024 22:25:45.071] [Server thread/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [icv]
-[05Jul2024 22:25:45.077] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
-[05Jul2024 22:25:45.193] [Server thread/INFO] [mixin/]: Mixing EnchantmentHelperMixin from mixins.icv.json into net.minecraft.world.item.enchantment.EnchantmentHelper
-[05Jul2024 22:28:32.314] [User Authenticator #1/INFO] [net.minecraft.server.network.ServerLoginPacketListenerImpl/]: UUID of player Igneo221 is 7f34f945-bb72-42da-adc9-3b3642d5ca5a
-[05Jul2024 22:28:33.921] [Server thread/INFO] [net.minecraft.server.players.PlayerList/]: Igneo221[/[::1]:65040] logged in with entity id 93 at (-41.30000001192093, 87.0, 152.58312613353795)
-[05Jul2024 22:28:34.036] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Igneo221 joined the game
-[05Jul2024 22:28:54.669] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: [Igneo221: Applied enchantment enchantment.icv.stone_caller to Igneo221's item]
-[05Jul2024 22:29:50.187] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Igneo221 lost connection: Disconnected
-[05Jul2024 22:29:50.188] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Igneo221 left the game
+[09Jul2024 22:55:34.166] [main/INFO] [net.minecraftforge.registries.GameData/REGISTRIES]: Injecting existing registry data into this CLIENT instance
+[09Jul2024 22:55:34.202] [main/WARN] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry minecraft:enchantment: Object did not get ID it asked for. Name: icv:crush Expected: 49 Got: 53
+[09Jul2024 22:55:34.627] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Igneo/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/assets/.mcassetsroot' uses unexpected schema
+[09Jul2024 22:55:34.627] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Igneo/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/data/.mcassetsroot' uses unexpected schema
+[09Jul2024 22:55:35.604] [main/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 7 recipes
+[09Jul2024 22:55:35.687] [main/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 1271 advancements
+[09Jul2024 22:55:36.073] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer/]: Starting minecraft server version 1.20.1
+[09Jul2024 22:55:36.073] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer/]: Loading properties
+[09Jul2024 22:55:36.073] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer/]: Default game type: CREATIVE
+[09Jul2024 22:55:36.073] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
+[09Jul2024 22:55:36.114] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer/]: Starting Minecraft server on *:25565
+[09Jul2024 22:55:36.124] [Server thread/INFO] [net.minecraft.server.network.ServerConnectionListener/]: Using default channel type
+[09Jul2024 22:55:36.262] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer/]: Preparing level "world"
+[09Jul2024 22:55:37.220] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
+[09Jul2024 22:55:39.188] [Worker-Main-3/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[09Jul2024 22:55:39.203] [Worker-Main-10/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[09Jul2024 22:55:39.208] [Worker-Main-3/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[09Jul2024 22:55:39.211] [Worker-Main-10/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[09Jul2024 22:55:39.224] [Worker-Main-4/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[09Jul2024 22:55:39.721] [Worker-Main-2/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 60%
+[09Jul2024 22:55:39.886] [Server thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 2665 ms
+[09Jul2024 22:55:39.886] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer/]: Done (3.646s)! For help, type "help"
+[09Jul2024 22:55:39.901] [Server thread/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [icv]
+[09Jul2024 22:55:39.905] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
+[09Jul2024 22:55:40.019] [Server thread/INFO] [mixin/]: Mixing EnchantmentHelperMixin from mixins.icv.json into net.minecraft.world.item.enchantment.EnchantmentHelper

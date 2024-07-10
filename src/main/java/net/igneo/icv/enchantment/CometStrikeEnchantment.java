@@ -14,20 +14,17 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class CometStrikeEnchantment extends Enchantment {
 
-    public static long cometCooldown = -2500;
+    private static long cometCooldown = -2500;
 
     public CometStrikeEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
-    }/*
-    @SubscribeEvent
+    }
+
     public static void onClientTick() {
-        pPlayer = Minecraft.getInstance().player;
-        if (!(pPlayer == null)) {
-            pPlayer = Minecraft.getInstance().player;
-            var enchant = EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(0));
-            var enchants = enchant.toString();
-            if (enchants.contains("net.igneo.icv.enchantment.CometStrikeEnchantment")) {
-                if (Minecraft.getInstance().options.keyShift.isDown() && System.currentTimeMillis() >= cometCooldown + 2500) {
+        if (Minecraft.getInstance().player != null) {
+            LocalPlayer pPlayer = Minecraft.getInstance().player;
+            if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.COMET_STRIKE.get())) {
+                if (Minecraft.getInstance().options.keyShift.isDown() && System.currentTimeMillis() >= cometCooldown + 2500 && pPlayer.onGround() && !pPlayer.isPassenger()) {
                     cometCooldown = System.currentTimeMillis();
                     ModMessages.sendToServer(new CometStrikeC2SPacket());
                 }
@@ -35,16 +32,5 @@ public class CometStrikeEnchantment extends Enchantment {
         }
 
     }
-    public static void addOneEntity() {
-        System.out.println("hoooraayyyy");
-        WitherBoss witherBoss = new WitherBoss(EntityType.WITHER, pPlayer.level());
-        witherBoss.moveTo(pPlayer.getX(), pPlayer.getY(), pPlayer.getZ());
-        pPlayer.level().addFreshEntity(witherBoss);
-        //EntityType.WITHER.spawn(CometStrikeEnchantment., pPlayer.blockPosition(), MobSpawnType.MOB_SUMMONED);
-        new MyThisTest();
-    }
-    public static class MyThisTest {
-        
-    }*/
 
 }

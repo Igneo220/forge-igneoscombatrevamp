@@ -37,11 +37,9 @@ public class BlockHoleC2SPacket {
             ServerLevel level = player.serverLevel();
 
             player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-                if (System.currentTimeMillis() > enchVar.getHoleCooldown() + 2900) {
-                    level.playSound(null, player.blockPosition(), ModSounds.HOLE_SHOT.get(), SoundSource.PLAYERS, 0.5F, 0.1F);
-                    ModEntities.BLACK_HOLE.get().spawn(level, player.blockPosition().atY((int) player.getEyeY()), MobSpawnType.MOB_SUMMONED).setOwner(player);
-                    enchVar.setHoleCooldown(System.currentTimeMillis());
-                }
+                level.playSound(null, player.blockPosition(), ModSounds.HOLE_SHOT.get(), SoundSource.PLAYERS, 0.5F, 0.1F);
+                ModEntities.BLACK_HOLE.get().spawn(level, player.blockPosition().atY((int) player.getEyeY()), MobSpawnType.MOB_SUMMONED).setOwner(player);
+                enchVar.setHoleCooldown(System.currentTimeMillis());
             });
         });
         return true;

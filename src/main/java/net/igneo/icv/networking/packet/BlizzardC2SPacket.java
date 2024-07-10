@@ -1,6 +1,7 @@
 package net.igneo.icv.networking.packet;
 
 import net.igneo.icv.entity.ModEntities;
+import net.igneo.icv.particle.ModParticles;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -48,7 +49,10 @@ public class BlizzardC2SPacket {
             } else {
                 z = -0.1;
             }
-            //ModEntities.ICICLE.get().spawn(level,player.blockPosition().atY((int) player.getEyeY() + 2), MobSpawnType.MOB_SUMMONED).setTrajectory(new Vec3(look.x + (Math.random() * x), look.y + (Math.random() * y),look.z + (Math.random() * z)));
+            for (ServerPlayer player1 : level.players()) {
+                level.sendParticles(ModParticles.ICE_SPAWN_PARTICLE.get(), player.getX(), player.getEyeY(), player.getZ(), 1, 0, 0, 0, 0.1);
+            }
+            ModEntities.ICICLE.get().spawn(level,player.blockPosition().atY((int) player.getEyeY()), MobSpawnType.MOB_SUMMONED).setTrajectory(new Vec3(player.getLookAngle().x + (Math.random() * x), player.getLookAngle().y + (Math.random() * y),player.getLookAngle().z + (Math.random() * z)));
         });
         return true;
     }
