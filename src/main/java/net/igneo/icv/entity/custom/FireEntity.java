@@ -13,8 +13,11 @@ import net.minecraft.world.phys.Vec3;
 
 public class FireEntity extends SmallFireball {
     private Vec3 finaltrajectory;
+    private long despawnTimer;
     public FireEntity(EntityType<FireEntity> pEntityType, Level pLevel) {
+
         super(pEntityType, pLevel);
+        despawnTimer = System.currentTimeMillis();
     }
 
     @Override
@@ -26,6 +29,9 @@ public class FireEntity extends SmallFireball {
     }
     @Override
     public void tick() {
+        if (System.currentTimeMillis() >= despawnTimer + 5000) {
+            this.discard();
+        }
         if (finaltrajectory != null) {
             this.setDeltaMovement(finaltrajectory);
         }

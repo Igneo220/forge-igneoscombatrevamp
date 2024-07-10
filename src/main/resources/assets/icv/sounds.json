@@ -96,5 +96,23 @@
     "sounds": [
       "icv:crush"
     ]
+  },
+  "extract": {
+    "subtitles": "sounds.icv.extract",
+    "sounds": [
+      "icv:extract"
+    ]
+  },
+  "gust": {
+    "subtitles": "sounds.icv.gust",
+    "sounds": [
+      "icv:gust"
+    ]
+  },
+  "flare": {
+    "subtitles": "sounds.icv.flare",
+    "sounds": [
+      "icv:flare"
+    ]
   }
 }

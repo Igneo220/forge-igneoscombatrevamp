@@ -28,6 +28,9 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> COMET_SPAWN = registerSoundEvents("comet_spawn");
     public static final RegistryObject<SoundEvent> COUNTERWEIGHTED_MISS = registerSoundEvents("c_miss");
     public static final RegistryObject<SoundEvent> CRUSH = registerSoundEvents("crush");
+    public static final RegistryObject<SoundEvent> EXTRACT = registerSoundEvents("extract");
+    public static final RegistryObject<SoundEvent> GUST = registerSoundEvents("gust");
+    public static final RegistryObject<SoundEvent> FLARE = registerSoundEvents("flare");
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ICV.MOD_ID,name)));

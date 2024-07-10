@@ -9,6 +9,8 @@ import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.sound.ModSounds;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -68,8 +70,8 @@ public class ICV
         {
             EntityRenderers.register(ModEntities.COMET.get(), CometRenderer::new);
             EntityRenderers.register(ModEntities.ICICLE.get(), IcicleRenderer::new);
-            //EntityRenderers.register((EntityType)ModEntities.BOLT.get(), BoltRenderer::new);
-            //EntityRenderers.register((EntityType)ModEntities.FIRE.get(), ThrownItemRenderer::new);
+            //EntityRenderers.register(ModEntities.BOLT.get(), BoltRenderer::new);
+            EntityRenderers.register(ModEntities.FIRE.get(), ThrownItemRenderer::new);
             EntityRenderers.register(ModEntities.BLACK_HOLE.get(), BlackHoleRenderer::new);
         }
     }

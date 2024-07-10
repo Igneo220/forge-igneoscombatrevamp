@@ -154,6 +154,8 @@ public class ModEvents {
                 CounterweightedEnchantment.onClientTick();
                 DoubleJumpEnchantment.onClientTick();
                 CrushEnchantment.onClientTick();
+                FlamethrowerEnchantment.onClientTick();
+                FlareEnchantment.onClientTick();
             }
         });
     }

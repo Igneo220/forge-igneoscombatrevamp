@@ -1,5 +1,8 @@
 {
   "mappings": {
+    "net/igneo/icv/mixin/TridentItemMixin": {
+      "releaseUsing": "Lnet/minecraft/world/item/TridentItem;m_5551_(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V"
+    },
     "net/igneo/icv/mixin/PlayerMixin": {
       "attack": "Lnet/minecraft/world/entity/player/Player;m_5706_(Lnet/minecraft/world/entity/Entity;)V"
     },
@@ -9,6 +12,9 @@
   },
   "data": {
     "searge": {
+      "net/igneo/icv/mixin/TridentItemMixin": {
+        "releaseUsing": "Lnet/minecraft/world/item/TridentItem;m_5551_(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V"
+      },
       "net/igneo/icv/mixin/PlayerMixin": {
         "attack": "Lnet/minecraft/world/entity/player/Player;m_5706_(Lnet/minecraft/world/entity/Entity;)V"
       },

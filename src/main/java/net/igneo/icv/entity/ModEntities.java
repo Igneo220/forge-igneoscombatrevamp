@@ -22,6 +22,9 @@ public class ModEntities {
     public static final RegistryObject<EntityType<BlackHoleEntity>> BLACK_HOLE =
             ENTITY_TYPES.register("black_hole",() -> EntityType.Builder.<BlackHoleEntity>of(BlackHoleEntity::new, MobCategory.MISC)
                     .sized(1f,1f).build("black_hole"));
+    public static final RegistryObject<EntityType<FireEntity>> FIRE =
+            ENTITY_TYPES.register("fire",() -> EntityType.Builder.<FireEntity>of(FireEntity::new, MobCategory.MISC)
+                    .sized(1f,1f).build("fire"));
     public static final RegistryObject<EntityType<IcicleEntity>> ICICLE =
             ENTITY_TYPES.register("icicle",() -> EntityType.Builder.<IcicleEntity>of(IcicleEntity::new, MobCategory.MISC)
                     .sized(1f,1f).build("black_hole"));

@@ -19,11 +19,11 @@ public class EnchantmentHelperMixin {
      * @author Igneo
      * @reason wont exist anymore
      */
-    /*
+
     @Overwrite
     public static int getLoyalty(ItemStack pStack) {
         return getItemEnchantmentLevel(ModEnchantments.EXTRACT.get(), pStack);
     }
-*/
+
 
 }

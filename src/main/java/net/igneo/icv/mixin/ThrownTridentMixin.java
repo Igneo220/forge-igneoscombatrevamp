@@ -1,6 +1,7 @@
 package net.igneo.icv.mixin;
 
 import net.igneo.icv.enchantment.ModEnchantments;
+import net.igneo.icv.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -9,6 +10,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -35,7 +37,7 @@ public class ThrownTridentMixin extends AbstractArrow{
     @Shadow
     private boolean dealtDamage;
     @Shadow
-    private static final EntityDataAccessor<Byte> ID_LOYALTY = SynchedEntityData.defineId(ThrownTridentMixin.class, EntityDataSerializers.BYTE);
+    static final EntityDataAccessor<Byte> ID_LOYALTY = SynchedEntityData.defineId(ThrownTridentMixin.class, EntityDataSerializers.BYTE);
     @Shadow
     private static final EntityDataAccessor<Boolean> ID_FOIL = SynchedEntityData.defineId(ThrownTridentMixin.class, EntityDataSerializers.BOOLEAN);
     @Shadow
@@ -61,7 +63,7 @@ public class ThrownTridentMixin extends AbstractArrow{
         //}
         //System.out.println(EnchantmentHelper.getEnchantmentLevel(ModEnchantments.EXTRACT.get(),pShooter));
         //idk = EnchantmentHelper.getEnchantmentLevel(ModEnchantments.EXTRACT.get(),pShooter);
-        if (EnchantmentHelper.getEnchantments(pStack).toString().contains("ExtractEnchantment")) {
+        if (EnchantmentHelper.getEnchantments(pStack).containsKey(ModEnchantments.EXTRACT.get())) {
             extract = true;
         }
         idk = pStack.getEnchantmentLevel(Enchantments.LOYALTY);
@@ -82,12 +84,17 @@ public class ThrownTridentMixin extends AbstractArrow{
      */
     @Overwrite
     public void tick() {
+        if (this.entityData.get(ID_LOYALTY) > 0) {
+            if (!this.getTags().contains("EXTRACT")) {
+                this.getTags().add("EXTRACT");
+            }
+        }
         if (this.inGroundTime > 4) {
             this.dealtDamage = true;
         }
 
         Entity entity = this.getOwner();
-        int i = 2;//this.entityData.get(ID_LOYALTY);
+        int i = 3;//this.entityData.get(ID_LOYALTY);
         if (i > 0 && (this.dealtDamage || this.isNoPhysics()) && entity != null) {
             if (!this.isAcceptibleReturnOwner()) {
                 if (!this.level().isClientSide && this.pickup == AbstractArrow.Pickup.ALLOWED) {
@@ -178,6 +185,10 @@ public class ThrownTridentMixin extends AbstractArrow{
     protected void pullEntity(Entity pEntity) {
         System.out.println(this.entityData.get(ID_LOYALTY));
         if (this.entityData.get(ID_LOYALTY) > 0) {
+            if (this.level() instanceof ServerLevel) {
+                ServerLevel level = (ServerLevel) this.level();
+                level.playSound(null,this.blockPosition(), ModSounds.EXTRACT.get(), SoundSource.PLAYERS);
+            }
             Entity entity = this.getOwner();
             if (entity != null) {
                 double scale = 0.1;

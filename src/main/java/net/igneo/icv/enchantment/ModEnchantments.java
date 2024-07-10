@@ -3,8 +3,10 @@ package net.igneo.icv.enchantment;
 import net.igneo.icv.ICV;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.entity.FishingHookRenderer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.MobType;
+import net.minecraft.world.item.FishingRodItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -30,6 +32,10 @@ public class ModEnchantments {
             ENCHANTMENTS.register("counterweighted",
                     () -> new CounterweightedEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
+    public static RegistryObject<Enchantment> GUST =
+            ENCHANTMENTS.register("gust",
+                    () -> new GustEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
     public static RegistryObject<Enchantment> KINETIC =
             ENCHANTMENTS.register("kinetic",
                     () -> new KineticEnchantment(Enchantment.Rarity.UNCOMMON,
@@ -45,6 +51,24 @@ public class ModEnchantments {
 
 
 
+    public static RegistryObject<Enchantment> ACCELERATE =
+            ENCHANTMENTS.register("accelerate",
+                    () -> new AccelerateEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.BOW, EquipmentSlot.MAINHAND));
+
+
+
+    public static RegistryObject<Enchantment> EXTRACT =
+            ENCHANTMENTS.register("extract",
+                    () -> new ExtractEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.TRIDENT, EquipmentSlot.MAINHAND));
+    public static RegistryObject<Enchantment> RECOIL =
+            ENCHANTMENTS.register("recoil",
+                    () -> new RecoilEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.TRIDENT, EquipmentSlot.MAINHAND));
+
+
+
     public static RegistryObject<Enchantment> BLACK_HOLE =
             ENCHANTMENTS.register("black_hole",
                     () -> new BlackHoleEnchantment(Enchantment.Rarity.UNCOMMON,
@@ -53,12 +77,20 @@ public class ModEnchantments {
             ENCHANTMENTS.register("blizzard",
                     () -> new BlizzardEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_HEAD, EquipmentSlot.HEAD));
+    public static RegistryObject<Enchantment> FLAMETHROWER =
+            ENCHANTMENTS.register("flamethrower",
+                    () -> new FlamethrowerEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_HEAD, EquipmentSlot.HEAD));
 
 
 
     public static RegistryObject<Enchantment> CONCUSSION =
             ENCHANTMENTS.register("concussion",
                     () -> new ConcussionEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
+    public static RegistryObject<Enchantment> FLARE =
+            ENCHANTMENTS.register("flare",
+                    () -> new FlareEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
 
 
@@ -88,11 +120,6 @@ public class ModEnchantments {
                             EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET));
 
 
-
-    public static RegistryObject<Enchantment> ACCELERATE =
-            ENCHANTMENTS.register("accelerate",
-                    () -> new AccelerateEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.BOW, EquipmentSlot.MAINHAND));
 
     public static void register(IEventBus eventBus) {
         ENCHANTMENTS.register(eventBus);

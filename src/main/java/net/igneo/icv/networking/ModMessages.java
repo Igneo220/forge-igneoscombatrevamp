@@ -118,6 +118,16 @@ public class ModMessages {
                 .encoder(FlareC2SPacket::toBytes)
                 .consumerMainThread(FlareC2SPacket::handle)
                 .add();
+        net.messageBuilder(FlareSoundC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(FlareSoundC2SPacket::new)
+                .encoder(FlareSoundC2SPacket::toBytes)
+                .consumerMainThread(FlareSoundC2SPacket::handle)
+                .add();
+        net.messageBuilder(FlareParticleC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(FlareParticleC2SPacket::new)
+                .encoder(FlareParticleC2SPacket::toBytes)
+                .consumerMainThread(FlareParticleC2SPacket::handle)
+                .add();
         net.messageBuilder(FlameC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(FlameC2SPacket::new)
                 .encoder(FlameC2SPacket::toBytes)
