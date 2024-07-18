@@ -1,5 +1,6 @@
 package net.igneo.icv.networking.packet;
 
+import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.particle.ModParticles;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
@@ -42,7 +43,11 @@ public class ConcussHurtC2SPacket {
             level.sendParticles(ModParticles.CONCUSS_HIT_PARTICLE.get(),target.getX(),target.getY() + 1.5,target.getZ(),10,Math.random(),Math.random(),Math.random(),0.5);
             level.playSound(null, target.blockPosition(), SoundEvents.PLAYER_ATTACK_CRIT, SoundSource.PLAYERS, 1, 0.1F);
             target.hurt(player.damageSources().playerAttack(player),5);
-            target.setDeltaMovement(new Vec3(0,0.8,0));
+            if (target instanceof ServerPlayer) {
+                ModMessages.sendToPlayer(new GustS2CPacket(),(ServerPlayer) target);
+            } else {
+                target.setDeltaMovement(new Vec3(0, 0.8, 0));
+            }
             target.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 30, 50), player);
             System.out.println(target);
         });

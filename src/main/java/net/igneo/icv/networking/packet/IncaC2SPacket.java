@@ -1,9 +1,12 @@
 package net.igneo.icv.networking.packet;
 
+import net.igneo.icv.particle.ModParticles;
+import net.igneo.icv.sound.ModSounds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -48,15 +51,31 @@ public class IncaC2SPacket {
                 }
             });
             DetectEntity.start();
+            level.playSound(null,player.blockPosition(), ModSounds.INCAPACITATE.get(), SoundSource.PLAYERS);
+            //particle engine
+            for (int i = -3; i < 4;) {
+                double j;
+                if (i > 0) {
+                    j = 1;
+                } else {
+                    j = -1;
+                }
+                if (i !=0) {
+                    //X
+                    level.sendParticles(ModParticles.INCAPACITATE_PARTICLE.get(), player.getX() + i, player.getY(), player.getZ(), 1, 0, 0, 0, 1);
+                    //Z
+                    level.sendParticles(ModParticles.INCAPACITATE_PARTICLE.get(), player.getX(), player.getY(), player.getZ() + i, 1, 0, 0, 0, 1);
+                    //XZ
+                    level.sendParticles(ModParticles.INCAPACITATE_PARTICLE.get(), player.getX() + i + j, player.getY(), player.getZ() + i + j, 1, 0, 0, 0, 1);
+                    //-XZ
+                    level.sendParticles(ModParticles.INCAPACITATE_PARTICLE.get(), player.getX() - i - j, player.getY(), player.getZ() + i + j, 1, 0, 0, 0, 1);
+                }
+                ++i;
+            }
 
 
-            //List e = player.worldObj.getEntitiesWithinAABB(EntityMob.class, AxisAlignedBB.getBoundingBox(player.posX, player.posY, player.posZ, (player.posX + 5),(player.posY + 5),(player.posZ + 5)));
-            //level.getEntities().get(player.getBoundingBox().expandTowards((player.getX() + 5),(player.getY() + 5),(player.getZ() + 5)), (Consumer<Entity>) player);
 
-
-            //System.out.println(level.getEntities().get(player.getBoundingBox().expandTowards((player.getX() + 5),(player.getY() + 5),(player.getZ() + 5)), (Consumer<Entity>) player));
-                    //getBoundingBox(player.getX(), player.getY(), player.getZ(), (player.getX() + 5),(player.getY() + 5),(player.getZ() + 5)));)
-        });
+            });
         return true;
     }
 }

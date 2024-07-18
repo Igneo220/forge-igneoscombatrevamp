@@ -114,5 +114,71 @@
     "sounds": [
       "icv:flare"
     ]
+  },
+  "incap": {
+    "subtitles": "sounds.icv.incap",
+    "sounds": [
+      "icv:incap"
+    ]
+  },
+  "judge": {
+    "subtitles": "sounds.icv.judge",
+    "sounds": [
+      "icv:judgement"
+    ]
+  },
+  "rend_hit": {
+    "subtitles": "sounds.icv.rend_hit",
+    "sounds": [
+      "icv:rend_hit"
+    ]
+  },
+  "rend_hurt": {
+    "subtitles": "sounds.icv.rend_hurt",
+    "sounds": [
+      "icv:rend_hurt"
+    ]
+  },
+  "rend_use": {
+    "subtitles": "sounds.icv.rend_use",
+    "sounds": [
+      "icv:rend_use"
+    ]
+  },
+  "mitosis": {
+    "subtitles": "sounds.icv.mitosis",
+    "sounds": [
+      "icv:mitosis"
+    ]
+  },
+  "momentum": {
+    "subtitles": "sounds.icv.momentum",
+    "sounds": [
+      "icv:momentum"
+    ]
+  },
+  "momentum_lose": {
+    "subtitles": "sounds.icv.momentum_lose",
+    "sounds": [
+      "icv:momentum_lose"
+    ]
+  },
+  "parry": {
+    "subtitles": "sounds.icv.parry",
+    "sounds": [
+      "icv:parry"
+    ]
+  },
+  "phase": {
+    "subtitles": "sounds.icv.phase",
+    "sounds": [
+      "icv:phase"
+    ]
+  },
+  "scatter": {
+    "subtitles": "sounds.icv.scatter",
+    "sounds": [
+      "icv:scatter"
+    ]
   }
 }

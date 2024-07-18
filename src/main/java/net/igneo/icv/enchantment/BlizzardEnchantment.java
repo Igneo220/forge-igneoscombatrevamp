@@ -26,7 +26,7 @@ public class BlizzardEnchantment extends Enchantment {
         if (Minecraft.getInstance().player != null) {
             LocalPlayer player = Minecraft.getInstance().player;
             if (EnchantmentHelper.getEnchantments(player.getInventory().getArmor(3)).containsKey(ModEnchantments.BLIZZARD.get())) {
-                if (Keybindings.INSTANCE.blizzard.isDown() && System.currentTimeMillis() >= iceTime + 15000 && !doBeIcin) {
+                if (Keybindings.INSTANCE.blizzard.isDown() && System.currentTimeMillis() >= iceTime + 17000 && !doBeIcin) {
                     look = Minecraft.getInstance().player.getLookAngle();
                     doBeIcin = true;
                     iceTime = System.currentTimeMillis();

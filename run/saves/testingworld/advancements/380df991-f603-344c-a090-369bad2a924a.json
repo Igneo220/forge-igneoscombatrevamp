@@ -62,7 +62,8 @@
   "minecraft:adventure/kill_all_mobs": {
     "criteria": {
       "minecraft:creeper": "2024-05-24 23:50:42 -0400",
-      "minecraft:wither": "2024-06-19 18:47:41 -0400"
+      "minecraft:wither": "2024-06-19 18:47:41 -0400",
+      "minecraft:zombified_piglin": "2024-07-17 00:14:35 -0400"
     },
     "done": false
   },
@@ -219,6 +220,18 @@
   "minecraft:adventure/throw_trident": {
     "criteria": {
       "shot_trident": "2024-07-09 23:15:54 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/soul_campfire": {
+    "criteria": {
+      "has_soul_sand": "2024-07-16 23:28:40 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/soul_torch": {
+    "criteria": {
+      "has_soul_sand": "2024-07-16 23:28:40 -0400"
     },
     "done": true
   },

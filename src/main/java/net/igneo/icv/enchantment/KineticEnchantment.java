@@ -21,6 +21,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import org.apache.logging.log4j.core.jmx.Server;
 
 public class KineticEnchantment extends Enchantment{
+    private static boolean kin;
     public KineticEnchantment(Enchantment.Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
@@ -28,24 +29,31 @@ public class KineticEnchantment extends Enchantment{
     public static void onClientTick() {
         if (Minecraft.getInstance().player != null) {
             LocalPlayer pPlayer = Minecraft.getInstance().player;
-            if (EnchantmentHelper.getEnchantments(pPlayer.getMainHandItem()).containsKey(ModEnchantments.KINETIC.get()))
-            if (Minecraft.getInstance().mouseHandler.isLeftPressed()) {
-                ModMessages.sendToServer(new KineticC2SPacket(pPlayer.getDeltaMovement().x,pPlayer.getDeltaMovement().z));
+            if (EnchantmentHelper.getEnchantments(pPlayer.getMainHandItem()).containsKey(ModEnchantments.KINETIC.get())) {
+                if (Minecraft.getInstance().mouseHandler.isLeftPressed()) {
+                    ModMessages.sendToServer(new KineticC2SPacket(pPlayer.getDeltaMovement().x, pPlayer.getDeltaMovement().z));
+                    kin = true;
+                } else if (kin){
+                    //ModMessages.sendToServer(new KineticC2SPacket(0,0));
+                    kin = false;
+                }
             }
         }
     }
 
     @Override
     public void doPostAttack(LivingEntity pAttacker, Entity pTarget, int pLevel) {
-        pAttacker.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-            if (pAttacker instanceof ServerPlayer) {
-                ServerLevel level = ((ServerPlayer) pAttacker).serverLevel();
-                level.sendParticles(ModParticles.KINETIC_HIT_PARTICLE.get(), pTarget.getX(), pTarget.getEyeY(), pTarget.getZ(), 15, 1, 1, 1, 1);
-                ServerPlayer player = (ServerPlayer) pAttacker;
-                double f = ((Math.abs(enchVar.getKinX() + (Math.abs(enchVar.getKinZ())))));
-                level.playSound(null, pAttacker.blockPosition(), ModSounds.KINETIC_HIT.get(), SoundSource.PLAYERS, 0.5F, (float) f);
-            }
-        });
+        if (pAttacker.level() instanceof ServerLevel) {
+            pAttacker.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+                if (pAttacker instanceof ServerPlayer) {
+                    ServerLevel level = ((ServerPlayer) pAttacker).serverLevel();
+                    level.sendParticles(ModParticles.KINETIC_HIT_PARTICLE.get(), pTarget.getX(), pTarget.getEyeY(), pTarget.getZ(), 15, 1, 1, 1, 1);
+                    ServerPlayer player = (ServerPlayer) pAttacker;
+                    double f = ((Math.abs(enchVar.getKinX() + (Math.abs(enchVar.getKinZ())))));
+                    level.playSound(null, pAttacker.blockPosition(), ModSounds.KINETIC_HIT.get(), SoundSource.PLAYERS, 0.5F, (float) f);
+                }
+            });
+        }
         super.doPostAttack(pAttacker, pTarget, pLevel);
     }
 }

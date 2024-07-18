@@ -51,9 +51,28 @@ public class ModEnchantments {
 
 
 
+    public static RegistryObject<Enchantment> MITOSIS =
+            ENCHANTMENTS.register("mitosis",
+                    () -> new MitosisEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.CROSSBOW, EquipmentSlot.MAINHAND));
+    public static RegistryObject<Enchantment> REND =
+            ENCHANTMENTS.register("rend",
+                    () -> new RendEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.CROSSBOW, EquipmentSlot.MAINHAND));
+    public static RegistryObject<Enchantment> SCATTER =
+            ENCHANTMENTS.register("scatter",
+                    () -> new ScatterEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.CROSSBOW, EquipmentSlot.MAINHAND));
+
+
+
     public static RegistryObject<Enchantment> ACCELERATE =
             ENCHANTMENTS.register("accelerate",
                     () -> new AccelerateEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.BOW, EquipmentSlot.MAINHAND));
+    public static RegistryObject<Enchantment> PHASING =
+            ENCHANTMENTS.register("phasing",
+                    () -> new PhasingEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.BOW, EquipmentSlot.MAINHAND));
 
 
@@ -92,6 +111,14 @@ public class ModEnchantments {
             ENCHANTMENTS.register("flare",
                     () -> new FlareEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
+    public static RegistryObject<Enchantment> PARRY =
+            ENCHANTMENTS.register("parry",
+                    () -> new ParryEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
+    public static RegistryObject<Enchantment> SIPHON =
+            ENCHANTMENTS.register("siphon",
+                    () -> new SiphonEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
 
 
 
@@ -103,6 +130,14 @@ public class ModEnchantments {
             ENCHANTMENTS.register("crush",
                     () -> new CrushEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_LEGS, EquipmentSlot.LEGS));
+    public static RegistryObject<Enchantment> INCAPACITATE =
+            ENCHANTMENTS.register("incapacitate",
+                    () -> new CrushEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_LEGS, EquipmentSlot.LEGS));
+    public static RegistryObject<Enchantment> JUDGEMENT =
+            ENCHANTMENTS.register("judgement",
+                    () -> new JudgementEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_LEGS, EquipmentSlot.LEGS));
 
 
 
@@ -113,6 +148,14 @@ public class ModEnchantments {
     public static RegistryObject<Enchantment> DOUBLE_JUMP =
             ENCHANTMENTS.register("double_jump",
                     () -> new DoubleJumpEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET));
+    public static RegistryObject<Enchantment> MOMENTUM =
+            ENCHANTMENTS.register("momentum",
+                    () -> new MomentumEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET));
+    public static RegistryObject<Enchantment> SKY_CHARGE =
+            ENCHANTMENTS.register("sky_charge",
+                    () -> new SkyChargeEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET));
     public static RegistryObject<Enchantment> STONE_CALLER =
             ENCHANTMENTS.register("stone_caller",

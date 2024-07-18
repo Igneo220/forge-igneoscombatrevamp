@@ -22,8 +22,6 @@ public class EnchantmentHelperMixin {
 
     @Overwrite
     public static int getLoyalty(ItemStack pStack) {
-        return getItemEnchantmentLevel(ModEnchantments.EXTRACT.get(), pStack);
+        return 3;
     }
-
-
 }

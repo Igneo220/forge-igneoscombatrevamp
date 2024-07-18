@@ -4,28 +4,17 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.igneo.icv.ICV;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.TridentModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.monster.Guardian;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrownTrident;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
@@ -35,52 +24,25 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ThrownTridentRenderer.class)
-public class ThrownTridentRendererMixin extends EntityRenderer<ThrownTrident> {
-    private static final EntityDataAccessor<Byte> ID_LOYALTY = SynchedEntityData.defineId(ThrownTrident.class, EntityDataSerializers.BYTE);
-    @Shadow
-    private final TridentModel model;
+@Mixin(value = ThrownTridentRenderer.class,priority = 999999999)
+public class ThrownTridentRendererMixin {
+    //@Shadow
+    //private final TridentModel model;
     @Shadow
     public static final ResourceLocation TRIDENT_LOCATION = new ResourceLocation("textures/entity/trident.png");
     @Unique
-    private static final ResourceLocation GUARDIAN_BEAM_LOCATION = new ResourceLocation(ICV.MOD_ID,"textures/entity/guardian_beam.png");
+    private static final ResourceLocation CHAIN_LOCATION = new ResourceLocation(ICV.MOD_ID,"textures/entity/chain.png");
     @Unique
-    private static final RenderType BEAM_RENDER_TYPE = RenderType.entityCutoutNoCull(GUARDIAN_BEAM_LOCATION);
+    private static final RenderType CHAIN_RENDER_TYPE = RenderType.entityCutoutNoCull(CHAIN_LOCATION);
 
-    protected ThrownTridentRendererMixin(EntityRendererProvider.Context pContext) {
-        super(pContext);
-        this.model = new TridentModel(pContext.bakeLayer(ModelLayers.TRIDENT));
-    }
-    @Unique
-    public boolean shouldRender(ThrownTrident pEntity, Frustum pCamera, double pCamX, double pCamY, double pCamZ) {
-        if (super.shouldRender(pEntity, pCamera, pCamX, pCamY, pCamZ)) {
-            return true;
-        } else {
-            if (pEntity.getOwner() != null) {
-                LivingEntity livingentity = (LivingEntity) pEntity.getOwner();
-                Vec3 vec3 = this.getPosition(livingentity, (double)livingentity.getBbHeight() * 0.5D, 1.0F);
-                Vec3 vec31 = this.getPosition(pEntity, (double)pEntity.getEyeHeight(), 1.0F);
-                return pCamera.isVisible(new AABB(vec31.x, vec31.y, vec31.z, vec3.x, vec3.y, vec3.z));
-            }
-
-            return false;
-        }
-    }
-    //@Inject(method = "render" ,at = @At("HEAD"))
-    /**
-     * @author igneo
-     * @reason test
-     */
-    @Overwrite
-    public void render(ThrownTrident pEntity, float pEntityYaw, float pPartialTicks, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
-        pPoseStack.pushPose();
-        pPoseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(pPartialTicks, pEntity.yRotO, pEntity.getYRot()) - 90.0F));
-        pPoseStack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(pPartialTicks, pEntity.xRotO, pEntity.getXRot()) + 90.0F));
-        VertexConsumer vertexconsumer = ItemRenderer.getFoilBufferDirect(pBuffer, this.model.renderType(this.getTextureLocation(pEntity)), false, pEntity.isFoil());
-        this.model.renderToBuffer(pPoseStack, vertexconsumer, pPackedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-        pPoseStack.popPose();
-        super.render(pEntity, pEntityYaw, pPartialTicks, pPoseStack, pBuffer, pPackedLight);
+    //protected ThrownTridentRendererMixin(EntityRendererProvider.Context pContext) {
+    //    super(pContext);
+    //    this.model = new TridentModel(pContext.bakeLayer(ModelLayers.TRIDENT));
+    //}
+    @Inject(method = "render" ,at = @At("HEAD"))
+    public void render(ThrownTrident pEntity, float pEntityYaw, float pPartialTicks, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, CallbackInfo ci) {
         if (pEntity.getTags().contains("EXTRACT")) {
             LivingEntity livingentity = (LivingEntity) pEntity.getOwner();
             float f = 100000;
@@ -126,7 +88,7 @@ public class ThrownTridentRendererMixin extends EntityRenderer<ThrownTrident> {
             float f28 = 0.4999F;
             float f29 = -1.0F + f2;
             float f30 = f4 * 2.5F + f29;
-            VertexConsumer vertexconsumer1 = pBuffer.getBuffer(BEAM_RENDER_TYPE);
+            VertexConsumer vertexconsumer1 = pBuffer.getBuffer(CHAIN_RENDER_TYPE);
             PoseStack.Pose posestack$pose = pPoseStack.last();
             Matrix4f matrix4f = posestack$pose.pose();
             Matrix3f matrix3f = posestack$pose.normal();
@@ -147,15 +109,15 @@ public class ThrownTridentRendererMixin extends EntityRenderer<ThrownTrident> {
             vertex(vertexconsumer1, matrix4f, matrix3f, f13, f4, f14, j, k, l, 1.0F, f31 + 0.5F);
             vertex(vertexconsumer1, matrix4f, matrix3f, f17, f4, f18, j, k, l, 1.0F, f31);
             vertex(vertexconsumer1, matrix4f, matrix3f, f15, f4, f16, j, k, l, 0.5F, f31);
-            System.out.println("running");
+
             pPoseStack.popPose();
         }
     }
 
-    @Override
-    public ResourceLocation getTextureLocation(ThrownTrident pEntity) {
-        return TRIDENT_LOCATION;
-    }
+    //@Override
+    //public ResourceLocation getTextureLocation(ThrownTrident pEntity) {
+    //    return TRIDENT_LOCATION;
+    //}
 
     private static void vertex(VertexConsumer pConsumer, Matrix4f pPose, Matrix3f pNormal, float pX, float pY, float pZ, int pRed, int pGreen, int pBlue, float pU, float pV) {
         pConsumer.vertex(pPose, pX, pY, pZ).color(1000, 1000, 1000, 1000).uv(pU, pV).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(15728880).normal(pNormal, 0.0F, 1.0F, 0.0F).endVertex();

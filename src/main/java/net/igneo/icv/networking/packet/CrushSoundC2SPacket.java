@@ -29,7 +29,7 @@ public class CrushSoundC2SPacket {
             ServerPlayer player = context.getSender();
             ServerLevel level = player.serverLevel();
 
-            level.playSound(null, player.blockPosition(), ModSounds.CRUSH.get(), SoundSource.PLAYERS,0.1F,1);
+            level.playSound(null, player.blockPosition(), ModSounds.CRUSH.get(), SoundSource.PLAYERS,1F,1);
             });
         return true;
     }

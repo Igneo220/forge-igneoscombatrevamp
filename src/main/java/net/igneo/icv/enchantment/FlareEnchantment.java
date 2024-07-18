@@ -21,7 +21,7 @@ public class FlareEnchantment extends Enchantment {
 
     public static void onClientTick() {
         if (Minecraft.getInstance().player != null) {
-            if (EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(2)).containsKey(ModEnchantments.FLARE.get()) && Keybindings.INSTANCE.flare.isDown() && !charging) {
+            if (EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(2)).containsKey(ModEnchantments.FLARE.get()) && Keybindings.INSTANCE.flare.isDown() && !charging && System.currentTimeMillis() > chargeTime + 7000) {
                 charging = true;
                 chargeTime = System.currentTimeMillis();
                 ModMessages.sendToServer(new FlareSoundC2SPacket());

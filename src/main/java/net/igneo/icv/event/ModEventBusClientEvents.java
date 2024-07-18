@@ -2,6 +2,7 @@ package net.igneo.icv.event;
 
 import net.igneo.icv.ICV;
 import net.igneo.icv.enchantment.AcrobaticEnchantment;
+import net.igneo.icv.enchantment.SiphonEnchantment;
 import net.igneo.icv.entity.client.BlackHoleModel;
 import net.igneo.icv.entity.client.CometModel;
 import net.igneo.icv.entity.client.IcicleModel;
@@ -9,11 +10,15 @@ import net.igneo.icv.entity.client.ModModelLayers;
 import net.igneo.icv.entity.custom.IcicleEntity;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.particle.custom.*;
+import net.minecraft.client.player.KeyboardInput;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.awt.event.KeyEvent;
 
 @Mod.EventBusSubscriber(modid = ICV.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModEventBusClientEvents {
@@ -41,6 +46,20 @@ public class ModEventBusClientEvents {
                 IceSpawnParticles.Provider::new);
         event.registerSpriteSet(ModParticles.KINETIC_HIT_PARTICLE.get(),
                 KineticHitParticles.Provider::new);
+        event.registerSpriteSet(ModParticles.INCAPACITATE_PARTICLE.get(),
+                IncaParticles.Provider::new);
+        event.registerSpriteSet(ModParticles.REND_HIT_PARTICLE.get(),
+                RendHitParticles.Provider::new);
+        event.registerSpriteSet(ModParticles.REND_USE_PARTICLE.get(),
+                RendUseParticles.Provider::new);
+        event.registerSpriteSet(ModParticles.MOMENTUM_PARTICLE.get(),
+                MomentumParticles.Provider::new);
+        event.registerSpriteSet(ModParticles.PARRY_PARTICLE.get(),
+                ParryParticles.Provider::new);
+        event.registerSpriteSet(ModParticles.PHASE_PARTICLE.get(),
+                PhaseParticles.Provider::new);
+        event.registerSpriteSet(ModParticles.SIPHON_PARTICLE.get(),
+                SiphonParticles.Provider::new);
     }
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event){

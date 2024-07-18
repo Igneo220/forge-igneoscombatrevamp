@@ -80,9 +80,9 @@ public class BowItemMixin{
                     //if (EnchantmentHelper.getEnchantments(pEntityLiving.getMainHandItem()).containsKey(ModEnchantments.WHISTLER.get())){
                     //    abstractarrow.addTag("whistle");
                     //}
-                    //if (EnchantmentHelper.getEnchantments(pEntityLiving.getMainHandItem()).containsKey(ModEnchantments.PHASING.get())){
-                    //    abstractarrow.addTag("phase");
-                    //}
+                    if (EnchantmentHelper.getEnchantments(pEntityLiving.getMainHandItem()).containsKey(ModEnchantments.PHASING.get())){
+                        abstractarrow.addTag("phase");
+                    }
                     if (!pLevel.isClientSide) {
                         abstractarrow = customArrow(abstractarrow);
                         abstractarrow.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, f * 3.0F, 1.0F);

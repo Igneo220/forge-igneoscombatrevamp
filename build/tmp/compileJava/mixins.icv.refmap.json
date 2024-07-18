@@ -6,8 +6,18 @@
     "net/igneo/icv/mixin/PlayerMixin": {
       "attack": "Lnet/minecraft/world/entity/player/Player;m_5706_(Lnet/minecraft/world/entity/Entity;)V"
     },
+    "net/igneo/icv/mixin/ThrownTridentRendererMixin": {
+      "render": "Lnet/minecraft/client/renderer/entity/ThrownTridentRenderer;m_7392_(Lnet/minecraft/world/entity/projectile/ThrownTrident;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V"
+    },
     "net/igneo/icv/mixin/LivingEntityMixin": {
       "hurt": "Lnet/minecraft/world/entity/LivingEntity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
+    },
+    "net/igneo/icv/mixin/ThrownTridentMixin": {
+      "tick": "Lnet/minecraft/world/entity/projectile/ThrownTrident;m_8119_()V",
+      "onHitEntity": "Lnet/minecraft/world/entity/projectile/ThrownTrident;m_5790_(Lnet/minecraft/world/phys/EntityHitResult;)V"
+    },
+    "net/igneo/icv/mixin/ArrowMixin": {
+      "tick": "Lnet/minecraft/world/entity/projectile/Arrow;m_8119_()V"
     }
   },
   "data": {
@@ -18,8 +28,18 @@
       "net/igneo/icv/mixin/PlayerMixin": {
         "attack": "Lnet/minecraft/world/entity/player/Player;m_5706_(Lnet/minecraft/world/entity/Entity;)V"
       },
+      "net/igneo/icv/mixin/ThrownTridentRendererMixin": {
+        "render": "Lnet/minecraft/client/renderer/entity/ThrownTridentRenderer;m_7392_(Lnet/minecraft/world/entity/projectile/ThrownTrident;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V"
+      },
       "net/igneo/icv/mixin/LivingEntityMixin": {
         "hurt": "Lnet/minecraft/world/entity/LivingEntity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
+      },
+      "net/igneo/icv/mixin/ThrownTridentMixin": {
+        "tick": "Lnet/minecraft/world/entity/projectile/ThrownTrident;m_8119_()V",
+        "onHitEntity": "Lnet/minecraft/world/entity/projectile/ThrownTrident;m_5790_(Lnet/minecraft/world/phys/EntityHitResult;)V"
+      },
+      "net/igneo/icv/mixin/ArrowMixin": {
+        "tick": "Lnet/minecraft/world/entity/projectile/Arrow;m_8119_()V"
       }
     }
   }

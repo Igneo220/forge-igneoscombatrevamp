@@ -1,16 +1,14 @@
 net/igneo/icv/mixin/LivingEntityMixin DATA_LIVING_ENTITY_FLAGS f_20909_
 net/igneo/icv/mixin/LivingEntityMixin useItem f_20935_
 net/igneo/icv/mixin/LivingEntityMixin useItemRemaining f_20936_
-net/igneo/icv/mixin/ThrownTridentMixin dealtDamage f_37556_
 net/igneo/icv/mixin/ThrownTridentMixin ID_LOYALTY f_37558_
 net/igneo/icv/mixin/ThrownTridentMixin ID_FOIL f_37554_
-net/igneo/icv/mixin/ThrownTridentMixin clientSideReturnTridentTickCount f_37557_
 net/igneo/icv/mixin/ThrownTridentMixin tridentItem f_37555_
-net/igneo/icv/mixin/ThrownTridentRendererMixin model f_116095_
 net/igneo/icv/mixin/ThrownTridentRendererMixin TRIDENT_LOCATION f_116094_
 net/igneo/icv/mixin/BowItemMixin getUseDuration (Lnet/minecraft/world/item/ItemStack;)I m_8105_
 net/igneo/icv/mixin/BowItemMixin getPowerForTime (I)F m_40661_
 net/igneo/icv/mixin/BowItemMixin releaseUsing (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V m_5551_
+net/igneo/icv/mixin/CrossbowItemMixin shootProjectile (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;FZFFF)V m_40894_
 net/igneo/icv/mixin/EnchantmentHelperMixin getLoyalty (Lnet/minecraft/world/item/ItemStack;)I m_44928_
 net/igneo/icv/mixin/LivingEntityMixin getMainHandItem ()Lnet/minecraft/world/item/ItemStack; m_21205_
 net/igneo/icv/mixin/LivingEntityMixin getItemBySlot (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack; m_6844_
@@ -21,7 +19,4 @@ net/igneo/icv/mixin/LivingEntityMixin canDisableShield ()Z m_213824_
 net/igneo/icv/mixin/PlayerMixin disableShield (Z)V m_36384_
 net/igneo/icv/mixin/PlayerMixin resetAttackStrengthTicker ()V m_36334_
 net/igneo/icv/mixin/PlayerMixin blockUsingShield (Lnet/minecraft/world/entity/LivingEntity;)V m_6728_
-net/igneo/icv/mixin/ThrownTridentMixin tick ()V m_8119_
-net/igneo/icv/mixin/ThrownTridentMixin onHitEntity (Lnet/minecraft/world/phys/EntityHitResult;)V m_5790_
-net/igneo/icv/mixin/ThrownTridentRendererMixin render (Lnet/minecraft/world/entity/projectile/ThrownTrident;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V m_7392_
 net/igneo/icv/mixin/TridentItemMixin getUseDuration (Lnet/minecraft/world/item/ItemStack;)I m_8105_

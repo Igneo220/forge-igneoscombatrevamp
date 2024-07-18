@@ -44,8 +44,8 @@ public class CrushEnchantment extends Enchantment {
                     if (floatTime == 0) {
                         floatTime = System.currentTimeMillis();
                     }
-                    if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.STONE_CALLER.get())) {
-                        System.out.println("wearing stone caller");
+                    if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.STONE_CALLER.get()) || EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.SKY_CHARGE.get())) {
+                        System.out.println("wearing stone caller or sky charge");
                         if (pPlayer.getDeltaMovement().y < 0) {
                             if (System.currentTimeMillis() < floatTime + 300) {
                                 pPlayer.setDeltaMovement(0, 0, 0);

@@ -91,7 +91,7 @@ public class CometEntity extends AbstractHurtingProjectile {
         }
 
         if (!this.hurt && this.getDeltaMovement().y > 0.0) {
-            this.setDeltaMovement(this.getDeltaMovement().x, this.getDeltaMovement().y - 0.01, this.getDeltaMovement().z);
+            this.setDeltaMovement(this.getDeltaMovement().x, this.getDeltaMovement().y - 0.02, this.getDeltaMovement().z);
         } else if (this.hurt) {
             this.yPower -= 0.002;
         }
@@ -119,7 +119,7 @@ public class CometEntity extends AbstractHurtingProjectile {
                 f = 0.8F;
             }
 
-            this.setDeltaMovement(vec3.add(this.xPower, this.yPower, this.zPower).scale((double)f));
+            this.setDeltaMovement(vec3.add(this.xPower, this.yPower, this.zPower));
             this.level().addParticle(ParticleTypes.END_ROD, d0, d1 + 0.5, d2, 0.0, 0.0, 0.0);
             this.setPos(d0, d1, d2);
         } else {
@@ -148,7 +148,7 @@ public class CometEntity extends AbstractHurtingProjectile {
 
     @Override
     protected void onHitBlock(BlockHitResult pResult) {
-        this.level().explode(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower / 3.0F, ExplosionInteraction.NONE);
+        this.level().explode(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower / 2.0F, ExplosionInteraction.NONE);
         //this.level().m_7106_(ParticleTypes.f_123813_, this.m_20185_(), this.m_20186_(), this.m_20189_(), 0.0, 0.0, 0.0);
         this.discard();
     }

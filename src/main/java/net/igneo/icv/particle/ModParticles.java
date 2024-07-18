@@ -34,6 +34,20 @@ public class ModParticles {
             PARTICLE_TYPES.register("ice_spawn_particles", () -> new SimpleParticleType(true));
     public static final RegistryObject<SimpleParticleType> KINETIC_HIT_PARTICLE =
             PARTICLE_TYPES.register("kinetic_hit_particles", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> INCAPACITATE_PARTICLE =
+            PARTICLE_TYPES.register("inca_particles", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> REND_HIT_PARTICLE =
+            PARTICLE_TYPES.register("rend_hit_particles", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> REND_USE_PARTICLE =
+            PARTICLE_TYPES.register("rend_use_particles", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> MOMENTUM_PARTICLE =
+            PARTICLE_TYPES.register("momentum_particles", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> PARRY_PARTICLE =
+            PARTICLE_TYPES.register("parry_particles", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> PHASE_PARTICLE =
+            PARTICLE_TYPES.register("phase_particles", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> SIPHON_PARTICLE =
+            PARTICLE_TYPES.register("siphon_particles", () -> new SimpleParticleType(true));
 
     public static void register(IEventBus eventbus) {
         PARTICLE_TYPES.register(eventbus);

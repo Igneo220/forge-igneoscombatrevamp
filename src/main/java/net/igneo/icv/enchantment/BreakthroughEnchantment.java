@@ -14,10 +14,4 @@ public class BreakthroughEnchantment extends Enchantment {
     public BreakthroughEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
-
-    @Override
-    public void doPostAttack(LivingEntity pAttacker, Entity pTarget, int pLevel) {
-        //System.out.println(pAttacker.canDisableShield());
-        super.doPostAttack(pAttacker, pTarget, pLevel);
-    }
 }

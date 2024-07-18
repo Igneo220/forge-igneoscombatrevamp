@@ -32,7 +32,7 @@ public class ConcussionEnchantment extends Enchantment {
                     //lookDirection = pPlayer.getLookAngle();
                     searchTarget = true;
                     concussTime = System.currentTimeMillis();
-                    pPlayer.setDeltaMovement(pPlayer.getLookAngle().scale(2.5));
+                    pPlayer.setDeltaMovement(pPlayer.getLookAngle().scale(1.5).x,pPlayer.getLookAngle().scale(0.5).y,pPlayer.getLookAngle().scale(1.5).z);
                     ModMessages.sendToServer(new ConcussC2SPacket());
                 }
                 if (searchTarget && System.currentTimeMillis() <= concussTime + 1000) {

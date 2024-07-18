@@ -31,6 +31,17 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> EXTRACT = registerSoundEvents("extract");
     public static final RegistryObject<SoundEvent> GUST = registerSoundEvents("gust");
     public static final RegistryObject<SoundEvent> FLARE = registerSoundEvents("flare");
+    public static final RegistryObject<SoundEvent> INCAPACITATE = registerSoundEvents("incap");
+    public static final RegistryObject<SoundEvent> JUDGEMENT = registerSoundEvents("judge");
+    public static final RegistryObject<SoundEvent> REND_HIT = registerSoundEvents("rend_hit");
+    public static final RegistryObject<SoundEvent> REND_USE = registerSoundEvents("rend_use");
+    public static final RegistryObject<SoundEvent> REND_HURT = registerSoundEvents("rend_hurt");
+    public static final RegistryObject<SoundEvent> MITOSIS = registerSoundEvents("mitosis");
+    public static final RegistryObject<SoundEvent> MOMENTUM = registerSoundEvents("momentum");
+    public static final RegistryObject<SoundEvent> MOMENTUM_LOSE = registerSoundEvents("momentum_lose");
+    public static final RegistryObject<SoundEvent> PARRY = registerSoundEvents("parry");
+    public static final RegistryObject<SoundEvent> PHASE = registerSoundEvents("phase");
+    public static final RegistryObject<SoundEvent> SCATTER = registerSoundEvents("scatter");
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ICV.MOD_ID,name)));

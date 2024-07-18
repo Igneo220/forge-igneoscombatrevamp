@@ -4,6 +4,7 @@ import net.igneo.icv.ICV;
 import net.igneo.icv.enchantment.*;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActions;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
+import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.BlitzNBTUpdateS2CPacket;
 import net.igneo.icv.particle.ModParticles;
@@ -17,13 +18,17 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
@@ -32,9 +37,27 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 
 import static java.lang.Math.abs;
 import static net.igneo.icv.enchantment.BlitzEnchantment.ATTACK_SPEED_MODIFIER_UUID;
+import static net.igneo.icv.enchantment.SiphonEnchantment.consumeClick;
 
 @Mod.EventBusSubscriber(modid = ICV.MOD_ID)
 public class ModEvents {
+    @SubscribeEvent
+    public static void livingHurtEvent(LivingHurtEvent event) {
+        if (event.getEntity() instanceof ServerPlayer) {
+            ServerPlayer player = (ServerPlayer) event.getEntity();
+            player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+                if (EnchantmentHelper.getEnchantments(player.getInventory().getArmor(2)).containsKey(ModEnchantments.PARRY.get())) {
+                    if (System.currentTimeMillis() <= enchVar.getParryTime() + 250) {
+                        ServerLevel level = player.serverLevel();
+                        level.playSound(null,player.blockPosition(),ModSounds.PARRY.get(), SoundSource.PLAYERS,30,0.9F);
+                        level.sendParticles(ModParticles.PARRY_PARTICLE.get(), player.getX(),player.getEyeY(),player.getZ(),10,0,0,0,1);
+                        System.out.println("parried");
+                        event.setCanceled(true);
+                    }
+                }
+            });
+        }
+    }
     @SubscribeEvent
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {
         if(event.getObject() instanceof Player) {
@@ -58,6 +81,15 @@ public class ModEvents {
     @SubscribeEvent
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
         event.register(PlayerEnchantmentActions.class);
+    }
+    @SubscribeEvent
+    public static void Key(InputEvent.Key event){
+        if(Keybindings.INSTANCE.siphon.isDown()) {
+            SiphonEnchantment.onKeyInputEvent();
+        } else {
+            consumeClick = false;
+        }
+        SkyChargeEnchantment.onClientTick();
     }
 
     @SubscribeEvent
@@ -156,6 +188,11 @@ public class ModEvents {
                 CrushEnchantment.onClientTick();
                 FlamethrowerEnchantment.onClientTick();
                 FlareEnchantment.onClientTick();
+                IncapacitateEnchantment.onClientTick();
+                JudgementEnchantment.onClientTick();
+                RendEnchantment.onClientTick();
+                MomentumEnchantment.onClientTick();
+                ParryEnchantment.onClientTick();
             }
         });
     }

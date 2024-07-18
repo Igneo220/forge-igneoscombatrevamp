@@ -76,6 +76,17 @@ public class PlayerEnchantmentActions {
 
 
 
+    //parry enchantment work
+    private long parryTime;
+    public long getParryTime() {
+        return this.parryTime;
+    }
+    public void setParryTime() {
+        this.parryTime = System.currentTimeMillis();
+    }
+
+
+
     //phantom pain enchantment work
     private int phantomHurt;
     private long phantomDelay;
@@ -149,6 +160,8 @@ public class PlayerEnchantmentActions {
 
         this.holeCooldown = source.holeCooldown;
 
+        this.parryTime = source.parryTime;
+
         this.phantomVictim = source.phantomVictim;
         this.phantomDelay = source.phantomDelay;
         this.phantomHurt = source.phantomHurt;
@@ -170,6 +183,8 @@ public class PlayerEnchantmentActions {
         nbt.putDouble("kinX",kinX);
         nbt.putDouble("kinZ",kinZ);
 
+        nbt.putLong("parryTime",parryTime);
+
         nbt.putLong("phantomDelay",phantomDelay);
         nbt.putInt("phantomHurt",phantomHurt);
 
@@ -190,6 +205,8 @@ public class PlayerEnchantmentActions {
 
         kinX = nbt.getLong("kinX");
         kinZ = nbt.getLong("kinZ");
+
+        parryTime = nbt.getLong("parryTime");
 
         phantomDelay = nbt.getLong("phantomDelay");
         phantomHurt = nbt.getInt("phantomHurt");

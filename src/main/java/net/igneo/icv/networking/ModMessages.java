@@ -33,6 +33,16 @@ public class ModMessages {
                 .encoder(DoubleJumpC2SPacket::toBytes)
                 .consumerMainThread(DoubleJumpC2SPacket::handle)
                 .add();
+        net.messageBuilder(SkyChargeC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(SkyChargeC2SPacket::new)
+                .encoder(SkyChargeC2SPacket::toBytes)
+                .consumerMainThread(SkyChargeC2SPacket::handle)
+                .add();
+        net.messageBuilder(ParryC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(ParryC2SPacket::new)
+                .encoder(ParryC2SPacket::toBytes)
+                .consumerMainThread(ParryC2SPacket::handle)
+                .add();
         net.messageBuilder(CometStrikeC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(CometStrikeC2SPacket::new)
                 .encoder(CometStrikeC2SPacket::toBytes)
@@ -113,6 +123,11 @@ public class ModMessages {
                 .encoder(JudgementC2SPacket::toBytes)
                 .consumerMainThread(JudgementC2SPacket::handle)
                 .add();
+        net.messageBuilder(JudgementHitC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(JudgementHitC2SPacket::new)
+                .encoder(JudgementHitC2SPacket::toBytes)
+                .consumerMainThread(JudgementHitC2SPacket::handle)
+                .add();
         net.messageBuilder(FlareC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(FlareC2SPacket::new)
                 .encoder(FlareC2SPacket::toBytes)
@@ -182,6 +197,26 @@ public class ModMessages {
                 .decoder(BlitzNBTUpdateS2CPacket::new)
                 .encoder(BlitzNBTUpdateS2CPacket::toBytes)
                 .consumerMainThread(BlitzNBTUpdateS2CPacket::handle)
+                .add();
+        net.messageBuilder(ExtractUpdateS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(ExtractUpdateS2CPacket::new)
+                .encoder(ExtractUpdateS2CPacket::toBytes)
+                .consumerMainThread(ExtractUpdateS2CPacket::handle)
+                .add();
+        net.messageBuilder(GustS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(GustS2CPacket::new)
+                .encoder(GustS2CPacket::toBytes)
+                .consumerMainThread(GustS2CPacket::handle)
+                .add();
+        net.messageBuilder(RendS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(RendS2CPacket::new)
+                .encoder(RendS2CPacket::toBytes)
+                .consumerMainThread(RendS2CPacket::handle)
+                .add();
+        net.messageBuilder(PhaseUpdateS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PhaseUpdateS2CPacket::new)
+                .encoder(PhaseUpdateS2CPacket::toBytes)
+                .consumerMainThread(PhaseUpdateS2CPacket::handle)
                 .add();
     }
 

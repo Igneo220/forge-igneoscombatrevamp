@@ -2,10 +2,21 @@ package net.igneo.icv.mixin;
 
 import net.igneo.icv.enchantment.ModEnchantments;
 import net.igneo.icv.enchantment.RendEnchantment;
+import net.igneo.icv.networking.ModMessages;
+import net.igneo.icv.networking.packet.ExtractUpdateS2CPacket;
+import net.igneo.icv.networking.packet.PhaseUpdateS2CPacket;
+import net.igneo.icv.networking.packet.RendS2CPacket;
+import net.igneo.icv.particle.ModParticles;
+import net.igneo.icv.sound.ModSounds;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -25,6 +36,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.fml.loading.FMLEnvironment;
+import org.apache.logging.log4j.core.jmx.Server;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -32,14 +45,17 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import static java.lang.Math.abs;
 import static net.igneo.icv.enchantment.RendEnchantment.rendHit;
 
 @Mixin(Arrow.class)
-public class ArrowMixin {/*extends AbstractArrow {
+public class ArrowMixin extends AbstractArrow {
 
+    @Unique
+    private long inblock = 0;
 
-
-    private static long arrowtime;
+    @Unique
+    private long arrowtime = 0;
     protected ArrowMixin(EntityType<? extends AbstractArrow> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
 
@@ -47,7 +63,6 @@ public class ArrowMixin {/*extends AbstractArrow {
     @Unique
     @Override
     protected void onHitEntity(EntityHitResult pResult) {
-        this.isNoPhysics();
         if (this.getTags().contains("rend")) {
             Entity entity = pResult.getEntity();
             Entity entity1 = this.getOwner();
@@ -64,19 +79,22 @@ public class ArrowMixin {/*extends AbstractArrow {
             if (entity instanceof LivingEntity) {
                 LivingEntity entity2 = (LivingEntity) entity;
                 System.out.println(entity2.getHealth());
-            }
-            if (level().isClientSide) {
-                System.out.println(this.getOwner());
-                System.out.println(Minecraft.getInstance().player);
-                System.out.println(this.getOwner() == Minecraft.getInstance().player);
-                if (this.getOwner() == Minecraft.getInstance().player) {
-                    rendHit(entity);
+                if (this.getOwner() instanceof ServerPlayer) {
+                    ModMessages.sendToPlayer(new RendS2CPacket(pResult.getEntity().getId()),(ServerPlayer) this.getOwner());
+                }
+                if (entity.level() instanceof ServerLevel) {
+                    ServerLevel level = (ServerLevel) entity.level();
+                    level.playSound(null,this.blockPosition(), ModSounds.REND_HIT.get(), SoundSource.PLAYERS);
+                    level.sendParticles(ModParticles.REND_HIT_PARTICLE.get(),this.getX(),this.getY(),this.getZ(),10,0,0,0,1);
                 }
             }
             this.discard();
-        } else if (!this.getTags().contains("phase")) {
-            super.onHitEntity(pResult);
-        } else {
+        } else if (this.getTags().contains("phase")) {
+            if(this.level() instanceof ServerLevel) {
+                ServerLevel level = (ServerLevel) this.level();
+                level.playSound(null, this.blockPosition(), ModSounds.PHASE.get(), SoundSource.PLAYERS,2,(float) 0.3 + (float) abs(Math.random() + 0.5));
+
+            }
             Entity entity = pResult.getEntity();
             Entity entity1 = this.getOwner();
             DamageSource damagesource;
@@ -89,26 +107,36 @@ public class ArrowMixin {/*extends AbstractArrow {
                 }
             }
             entity.hurt(damagesource, 6);
-        }
-    }
-    @Unique
-    @Override
-    protected void onHit(HitResult pResult) {
-        if (!this.getTags().contains("phase")) {
-            super.onHit(pResult);
-        }
-        HitResult.Type hitresult$type = pResult.getType();
-        if (hitresult$type == HitResult.Type.ENTITY) {
-            this.onHitEntity((EntityHitResult)pResult);
+        } else if (this.getTags().contains("scatter")) {
+            Entity entity = pResult.getEntity();
+            Entity entity1 = this.getOwner();
+            DamageSource damagesource;
+            if (entity1 == null) {
+                damagesource = this.damageSources().arrow(this, this);
+            } else {
+                damagesource = this.damageSources().arrow(this, entity1);
+                if (entity1 instanceof LivingEntity) {
+                    ((LivingEntity) entity1).setLastHurtMob(entity);
+                }
             }
+            entity.hurt(damagesource, 1.5F);
+            this.discard();
+        } else {
+            super.onHitEntity(pResult);
+            this.discard();
+        }
     }
+
     @Unique
     @Override
     protected void onHitBlock(BlockHitResult pResult) {
         if (!this.getTags().contains("phase")) {
             super.onHitBlock(pResult);
+        } else {
+            inblock = System.currentTimeMillis();
+            this.noPhysics = true;
+            isNoPhysics();
         }
-        this.isNoPhysics();
     }
 
     @Override
@@ -133,28 +161,27 @@ public class ArrowMixin {/*extends AbstractArrow {
 
     @Inject(method = "tick",at = @At("HEAD"))
     public void tick(CallbackInfo ci) {
-        if (this.getTags().contains("phase")) {
-            this.noPhysics = false;
-            isNoPhysics();
-        }
-        if (level().isClientSide) {
-            if (this.getOwner() instanceof LocalPlayer){
-                LocalPlayer player = (LocalPlayer) this.getOwner();
-                if (this.getTags().isEmpty()) {
-                    if (EnchantmentHelper.getEnchantments(player.getMainHandItem()).containsKey(ModEnchantments.WHISTLER.get())) {
-                        if (!this.getTags().contains("whistle")) {
-                            this.addTag("whistle");
-                        }
-                    } else if (EnchantmentHelper.getEnchantments(player.getMainHandItem()).containsKey(ModEnchantments.PHASING.get())) {
-                        if (!this.getTags().contains("phase")) {
-                            this.addTag("phase");
-                        }
-                    } else if (EnchantmentHelper.getEnchantments(player.getMainHandItem()).containsKey(ModEnchantments.REND.get())) {
-                        if (!this.getTags().contains("rend")) {
-                            this.addTag("rend");
-                        }
+        if(this.level() instanceof ServerLevel) {
+            ServerLevel level = (ServerLevel) this.level();
+            if (arrowtime == 0) {
+                arrowtime = System.currentTimeMillis();
+                if (this.getTags().contains("phase")) {
+                    for (ServerPlayer player : level.players()) {
+                        ModMessages.sendToPlayer(new PhaseUpdateS2CPacket(this.getId()), player);
                     }
                 }
+            } else if (System.currentTimeMillis() >= arrowtime + 5000) {
+                this.discard();
+            }
+            if (this.getTags().contains("phase")) {
+                //level.playSound(null,this.blockPosition(),ModSounds.PHASE.get(),SoundSource.PLAYERS);
+                if (inblock != 0 && System.currentTimeMillis() > inblock + 50) {
+                    level.playSound(null, this.blockPosition(), ModSounds.PHASE.get(), SoundSource.PLAYERS, 2, (float) 0.3 + (float) abs(Math.random() + 0.5));
+                    inblock = 0;
+                }
+                level.sendParticles(ModParticles.PHASE_PARTICLE.get(), this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 0);
+                this.noPhysics = false;
+                isNoPhysics();
             }
         }
         if (this.getTags().contains("whistle")){
@@ -171,6 +198,10 @@ public class ArrowMixin {/*extends AbstractArrow {
                 double d2 = Math.abs(this.getDeltaMovement().z);
                 if (System.currentTimeMillis() >= arrowtime + 250 && !this.inGround && !this.isInWater() && (d0 + d1 + d2) >= 2) {
                     System.out.println("splitting!!");
+                    if (this.level() instanceof ServerLevel) {
+                        ServerLevel level = (ServerLevel) this.level();
+                        level.playSound(null,this.blockPosition(), ModSounds.MITOSIS.get(),SoundSource.PLAYERS);
+                    }
                     arrowtime = System.currentTimeMillis();
                     Projectile mitosisArrow;
                     mitosisArrow = createArrow(level(),(LivingEntity) this.getOwner());
@@ -210,5 +241,5 @@ public class ArrowMixin {/*extends AbstractArrow {
         abstractarrow.setShotFromCrossbow(true);
 
         return abstractarrow;
-    }*/
+    }
 }

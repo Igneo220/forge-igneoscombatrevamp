@@ -1,8 +1,13 @@
 package net.igneo.icv.enchantment;
 
+import net.igneo.icv.networking.ModMessages;
+import net.igneo.icv.networking.packet.SkyChargeC2SPacket;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class SkyChargeEnchantment extends Enchantment {
@@ -14,27 +19,31 @@ public class SkyChargeEnchantment extends Enchantment {
     public SkyChargeEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
-/*
+
     @SubscribeEvent
-    public static void OnClientTick() {
-        pPlayer = Minecraft.getInstance().player;
+    public static void onClientTick() {
+        LocalPlayer pPlayer = Minecraft.getInstance().player;
         if (!(pPlayer == null)) {
-            if (ModEnchantments.checkBootEnchantments().contains("net.igneo.icv.enchantment.SkyChargeEnchantment")) {
+            if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.SKY_CHARGE.get())) {
                 if (Minecraft.getInstance().options.keyShift.isDown() && pPlayer.onGround() && !pPlayer.isPassenger()) {
                     if (!charged) {
+                        ModMessages.sendToServer(new SkyChargeC2SPacket(0));
                         charge = System.currentTimeMillis();
                     }
                     chargeamount = (double) (System.currentTimeMillis() - charge) / 2000;
                     if (chargeamount >= 1.1) {
                         chargeamount = 1.1;
+                    } else if (chargeamount == 0) {
+                        chargeamount = 0.1;
                     }
                     charged = true;
                 } else if (charged) {
                     pPlayer.setDeltaMovement(0, chargeamount, 0);
+                    ModMessages.sendToServer(new SkyChargeC2SPacket(chargeamount));
                     charged = false;
                 }
             }
         }
-    }*/
+    }
 
 }

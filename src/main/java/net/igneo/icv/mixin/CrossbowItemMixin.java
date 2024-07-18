@@ -1,8 +1,10 @@
 package net.igneo.icv.mixin;
 
 import net.igneo.icv.enchantment.ModEnchantments;
+import net.igneo.icv.sound.ModSounds;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
@@ -43,7 +45,6 @@ public class CrossbowItemMixin {
      * @author Igneo221
      * @reason enchant behaviors
      */
-    /*
     @Overwrite
     private static void shootProjectile(Level pLevel, LivingEntity pShooter, InteractionHand pHand, ItemStack pCrossbowStack, ItemStack pAmmoStack, float pSoundPitch, boolean pIsCreativeMode, float pVelocity, float pInaccuracy, float pProjectileAngle) {
         if (!pLevel.isClientSide) {
@@ -68,15 +69,20 @@ public class CrossbowItemMixin {
                 Vec3 vec3 = pShooter.getViewVector(1.0F);
                 Vector3f vector3f = vec3.toVector3f().rotate(quaternionf);
                 System.out.println(EnchantmentHelper.getEnchantments(pCrossbowStack));
-                if (EnchantmentHelper.getEnchantments(pCrossbowStack).toString().contains("Scatter")) {
-                    int i = 15;
+                if (EnchantmentHelper.getEnchantments(pCrossbowStack).containsKey(ModEnchantments.SCATTER.get())) {
+                    ServerLevel level = (ServerLevel) pLevel;
+                    level.playSound(null,pShooter.blockPosition(),ModSounds.SCATTER.get(), SoundSource.PLAYERS);
                     System.out.println("shootin!");
                     scatterProjectile = createArrow(pLevel,pShooter,pCrossbowStack,pAmmoStack);
                     System.out.println(projectile);
                     System.out.println(scatterProjectile);
                     projectile.shoot((double) vector3f.x(), (double) vector3f.y(), (double) vector3f.z(), pVelocity/4, (float) (Math.random() * 50));
                     scatterProjectile.shoot((double) vector3f.x(), (double) vector3f.y(), (double) vector3f.z(), pVelocity/4, (float) (Math.random() * 25));
-                } else if (EnchantmentHelper.getEnchantments(pCrossbowStack).toString().contains("Mitosis")){
+                } else if (EnchantmentHelper.getEnchantments(pCrossbowStack).containsKey(ModEnchantments.MITOSIS.get())){
+                    if (pLevel instanceof ServerLevel) {
+                        ServerLevel level = (ServerLevel) pLevel;
+                        level.playSound(null,pShooter.blockPosition(), ModSounds.MITOSIS.get(),SoundSource.PLAYERS);
+                    }
                     System.out.println("mitosisin'");
                     projectile = createArrow(pLevel,pShooter,pCrossbowStack,pAmmoStack);
                     projectile.shoot((double) vector3f.x(), (double) vector3f.y(), (double) vector3f.z(), pVelocity, pInaccuracy);
@@ -93,11 +99,12 @@ public class CrossbowItemMixin {
                 p_40858_.broadcastBreakEvent(pHand);
             });
             if (scatterProjectile != null) {
-                int i = 15;
-                while (i != 0) {
+                int i = 10;
+                while (i > 0) {
                     Projectile tempProjectile;
                     tempProjectile = createArrow(pLevel,pShooter,pCrossbowStack,pAmmoStack);
                     tempProjectile.shoot(scatterProjectile.getDeltaMovement().x,scatterProjectile.getDeltaMovement().y,scatterProjectile.getDeltaMovement().z, pVelocity/4, (float) (Math.random() * 25));
+                    tempProjectile.addTag("scatter");
                     pLevel.addFreshEntity(tempProjectile);
                     --i;
                 }
@@ -141,5 +148,5 @@ public class CrossbowItemMixin {
         abstractarrow.setShotFromCrossbow(true);
 
         return abstractarrow;
-    }*/
+    }
 }

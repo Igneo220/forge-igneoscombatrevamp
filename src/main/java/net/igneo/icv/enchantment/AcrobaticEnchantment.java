@@ -34,15 +34,17 @@ public class AcrobaticEnchantment extends Enchantment {
 
     @Override
     public void doPostAttack(LivingEntity pAttacker, Entity pTarget, int pLevel) {
-        pAttacker.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-            if (enchVar.getAcrobatBonus()) {
-                ServerPlayer player = (ServerPlayer) pAttacker;
-                ServerLevel level = player.serverLevel();
-                level.sendParticles(ModParticles.ACRO_HIT_PARTICLE.get(), pTarget.getX(), pTarget.getY() + 1.5, pTarget.getZ(), 10, Math.random(), Math.random(), Math.random(), 0.5);
-                level.playSound(null, pTarget.blockPosition(), ModSounds.ACRO_HIT.get(), SoundSource.PLAYERS, 20F, (float) 0.3 + (float) abs(Math.random() + 0.5));
-                enchVar.setAcrobatBonus(false);
-            }
-        });
+        if (pTarget.level() instanceof ServerLevel) {
+            pAttacker.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+                if (enchVar.getAcrobatBonus()) {
+                    ServerPlayer player = (ServerPlayer) pAttacker;
+                    ServerLevel level = player.serverLevel();
+                    level.sendParticles(ModParticles.ACRO_HIT_PARTICLE.get(), pTarget.getX(), pTarget.getY() + 1.5, pTarget.getZ(), 10, Math.random(), Math.random(), Math.random(), 0.5);
+                    level.playSound(null, pTarget.blockPosition(), ModSounds.ACRO_HIT.get(), SoundSource.PLAYERS, 20F, (float) 0.3 + (float) abs(Math.random() + 0.5));
+                    enchVar.setAcrobatBonus(false);
+                }
+            });
+        }
         super.doPostAttack(pAttacker, pTarget, pLevel);
     }
 
