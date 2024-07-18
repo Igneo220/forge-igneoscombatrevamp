@@ -10,6 +10,7 @@ import java.util.function.Supplier;
 
 
 public class JudgementHitC2SPacket {
+
     public JudgementHitC2SPacket(){
 
     }

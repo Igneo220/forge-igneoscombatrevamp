@@ -7,6 +7,7 @@ import net.igneo.icv.networking.packet.ConcussHurtC2SPacket;
 import net.igneo.icv.networking.packet.JudgementC2SPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
@@ -19,6 +20,7 @@ public class ConcussionEnchantment extends Enchantment {
     //public static LocalPlayer pPlayer = Minecraft.getInstance().player;
     private static long concussTime = -5000;
     private static boolean searchTarget;
+    private static int targetID;
     public ConcussionEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
@@ -36,13 +38,23 @@ public class ConcussionEnchantment extends Enchantment {
                     ModMessages.sendToServer(new ConcussC2SPacket());
                 }
                 if (searchTarget && System.currentTimeMillis() <= concussTime + 1000) {
-                    if (pPlayer.level().getNearestEntity(LivingEntity.class, TargetingConditions.forCombat(),null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), pPlayer.getBoundingBox()) != null && pPlayer.level().getNearestEntity(LivingEntity.class, TargetingConditions.forCombat(),null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), pPlayer.getBoundingBox()) != pPlayer) {
+                    if (targetID == 0) {
+                        for (LivingEntity entity : pPlayer.level().getEntitiesOfClass(LivingEntity.class, pPlayer.getBoundingBox())) {
+                            if (entity != pPlayer) {
+                                targetID = entity.getId();
+                                break;
+                            }
+                        }
+                    } else {
                         System.out.println("found");
                         concussTime = System.currentTimeMillis();
+
                         //targetFound = true;
                         searchTarget = false;
-                        ModMessages.sendToServer(new ConcussHurtC2SPacket());
+                        ModMessages.sendToServer(new ConcussHurtC2SPacket(targetID));
                     }
+                } else {
+                    targetID = 0;
                 }
             }
         }

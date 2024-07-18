@@ -45,11 +45,17 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import static java.lang.Math.abs;
 import static net.igneo.icv.enchantment.RendEnchantment.rendHit;
 
 @Mixin(Arrow.class)
 public class ArrowMixin extends AbstractArrow {
+    @Unique
+    private List<LivingEntity> phaseList = new ArrayList<LivingEntity>();
 
     @Unique
     private long inblock = 0;
@@ -58,7 +64,6 @@ public class ArrowMixin extends AbstractArrow {
     private long arrowtime = 0;
     protected ArrowMixin(EntityType<? extends AbstractArrow> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-
     }
     @Unique
     @Override
@@ -90,23 +95,7 @@ public class ArrowMixin extends AbstractArrow {
             }
             this.discard();
         } else if (this.getTags().contains("phase")) {
-            if(this.level() instanceof ServerLevel) {
-                ServerLevel level = (ServerLevel) this.level();
-                level.playSound(null, this.blockPosition(), ModSounds.PHASE.get(), SoundSource.PLAYERS,2,(float) 0.3 + (float) abs(Math.random() + 0.5));
 
-            }
-            Entity entity = pResult.getEntity();
-            Entity entity1 = this.getOwner();
-            DamageSource damagesource;
-            if (entity1 == null) {
-                damagesource = this.damageSources().arrow(this, this);
-            } else {
-                damagesource = this.damageSources().arrow(this, entity1);
-                if (entity1 instanceof LivingEntity) {
-                    ((LivingEntity) entity1).setLastHurtMob(entity);
-                }
-            }
-            entity.hurt(damagesource, 6);
         } else if (this.getTags().contains("scatter")) {
             Entity entity = pResult.getEntity();
             Entity entity1 = this.getOwner();
@@ -133,6 +122,7 @@ public class ArrowMixin extends AbstractArrow {
         if (!this.getTags().contains("phase")) {
             super.onHitBlock(pResult);
         } else {
+            //this.addDeltaMovement(this.getDeltaMovement().scale(0.3));
             inblock = System.currentTimeMillis();
             this.noPhysics = true;
             isNoPhysics();
@@ -142,7 +132,7 @@ public class ArrowMixin extends AbstractArrow {
     @Override
     public boolean isNoPhysics() {
         if (this.getTags().contains("phase") && this.inGround) {
-            return true;
+            return false;
         } else if (this.getTags().contains("phase")) {
             return false;
         } else {
@@ -161,6 +151,10 @@ public class ArrowMixin extends AbstractArrow {
 
     @Inject(method = "tick",at = @At("HEAD"))
     public void tick(CallbackInfo ci) {
+        if (this.getTags().contains("phase")) {
+            this.setNoPhysics(true);
+            this.noPhysics = true;
+        }
         if(this.level() instanceof ServerLevel) {
             ServerLevel level = (ServerLevel) this.level();
             if (arrowtime == 0) {
@@ -174,13 +168,38 @@ public class ArrowMixin extends AbstractArrow {
                 this.discard();
             }
             if (this.getTags().contains("phase")) {
+                for (LivingEntity entity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(this.getDeltaMovement().x/2,0,this.getDeltaMovement().z/2))) {
+                    boolean cancel = false;
+                    if (!phaseList.isEmpty()) {
+                        for (LivingEntity phaseEntity : phaseList) {
+                            if (entity == phaseEntity) {
+                                cancel = true;
+                            }
+                        }
+                    }
+                    if (!cancel) {
+                        level.playSound(null, this.blockPosition(), ModSounds.PHASE.get(), SoundSource.PLAYERS, 2, (float) 0.3 + (float) abs(Math.random() + 0.5));
+                        Entity entity1 = this.getOwner();
+                        DamageSource damagesource;
+                        if (entity1 == null) {
+                            damagesource = this.damageSources().arrow(this, this);
+                        } else {
+                            damagesource = this.damageSources().arrow(this, entity1);
+                            if (entity1 instanceof LivingEntity) {
+                                ((LivingEntity) entity1).setLastHurtMob(entity);
+                            }
+                        }
+                        entity.hurt(damagesource, 6);
+                        phaseList.add(entity);
+                    }
+                }
                 //level.playSound(null,this.blockPosition(),ModSounds.PHASE.get(),SoundSource.PLAYERS);
                 if (inblock != 0 && System.currentTimeMillis() > inblock + 50) {
                     level.playSound(null, this.blockPosition(), ModSounds.PHASE.get(), SoundSource.PLAYERS, 2, (float) 0.3 + (float) abs(Math.random() + 0.5));
                     inblock = 0;
                 }
                 level.sendParticles(ModParticles.PHASE_PARTICLE.get(), this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 0);
-                this.noPhysics = false;
+                this.noPhysics = true;
                 isNoPhysics();
             }
         }

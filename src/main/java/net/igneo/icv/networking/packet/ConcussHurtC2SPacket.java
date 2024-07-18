@@ -19,16 +19,17 @@ import java.util.function.Supplier;
 
 
 public class ConcussHurtC2SPacket {
+    private static int targetID;
 
-    public ConcussHurtC2SPacket(){
-
+    public ConcussHurtC2SPacket(int ID){
+        targetID = ID;
     }
     public ConcussHurtC2SPacket(FriendlyByteBuf buf) {
-
+        targetID = buf.readInt();
     }
 
     public void toBytes(FriendlyByteBuf buf) {
-
+        buf.writeInt(targetID);
     }
 
     public boolean handle(Supplier<NetworkEvent.Context> supplier) {
@@ -39,7 +40,7 @@ public class ConcussHurtC2SPacket {
             ServerLevel level = context.getSender().serverLevel();
 
 
-            LivingEntity target = level.getNearestEntity(LivingEntity.class, TargetingConditions.forCombat(),null, player.getX(), player.getY(), player.getZ(),player.getBoundingBox().inflate(1.5));
+            LivingEntity target = (LivingEntity) level.getEntity(targetID);
             level.sendParticles(ModParticles.CONCUSS_HIT_PARTICLE.get(),target.getX(),target.getY() + 1.5,target.getZ(),10,Math.random(),Math.random(),Math.random(),0.5);
             level.playSound(null, target.blockPosition(), SoundEvents.PLAYER_ATTACK_CRIT, SoundSource.PLAYERS, 1, 0.1F);
             target.hurt(player.damageSources().playerAttack(player),5);

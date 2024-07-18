@@ -22,7 +22,7 @@ public class PhaseUpdateS2CPacket {
     public boolean handle(Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
-            Minecraft.getInstance().level.getEntity(ArrowID).getTags().add("EXTRACT");
+            Minecraft.getInstance().level.getEntity(ArrowID).getTags().add("phase");
         });
         return true;
     }

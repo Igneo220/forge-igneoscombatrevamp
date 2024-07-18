@@ -37,11 +37,14 @@ public class JudgementEnchantment extends Enchantment {
                     ModMessages.sendToServer(new JudgementC2SPacket());
                 }
                 if (searchTarget && System.currentTimeMillis() <= judgeTime + 1000) {
-                    if (pPlayer.level().getNearestEntity(LivingEntity.class, TargetingConditions.forCombat(),null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), pPlayer.getBoundingBox()) != null && pPlayer.level().getNearestEntity(LivingEntity.class, TargetingConditions.forCombat(),null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), pPlayer.getBoundingBox()) != pPlayer) {
-                        judgeTime = System.currentTimeMillis();
-                        targetFound = true;
-                        searchTarget = false;
-                        ModMessages.sendToServer(new JudgementHitC2SPacket());
+                    for (LivingEntity entity : pPlayer.level().getEntitiesOfClass(LivingEntity.class, pPlayer.getBoundingBox())) {
+                        if (entity != pPlayer) {
+                            judgeTime = System.currentTimeMillis();
+                            targetFound = true;
+                            searchTarget = false;
+                            ModMessages.sendToServer(new JudgementHitC2SPacket());
+                            break;
+                        }
                     }
                 }
             }
