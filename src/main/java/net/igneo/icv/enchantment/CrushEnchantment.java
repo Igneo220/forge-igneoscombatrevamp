@@ -40,7 +40,7 @@ public class CrushEnchantment extends Enchantment {
                     crushTime = System.currentTimeMillis();
                     floatTime = 0;
                 }
-                if (!pPlayer.onGround() && System.currentTimeMillis() > crushTime + 600 && Minecraft.getInstance().options.keyShift.isDown()) {
+                if (!pPlayer.onGround() && System.currentTimeMillis() > crushTime + 600 && Minecraft.getInstance().options.keyShift.isDown() && !pPlayer.isPassenger() && !pPlayer.isInFluidType()) {
                     if (floatTime == 0) {
                         floatTime = System.currentTimeMillis();
                     }

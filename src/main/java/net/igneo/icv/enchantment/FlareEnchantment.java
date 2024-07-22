@@ -5,7 +5,6 @@ import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.FlareC2SPacket;
 import net.igneo.icv.networking.packet.FlareParticleC2SPacket;
 import net.igneo.icv.networking.packet.FlareSoundC2SPacket;
-import net.igneo.icv.sound.ModSounds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -21,7 +20,7 @@ public class FlareEnchantment extends Enchantment {
 
     public static void onClientTick() {
         if (Minecraft.getInstance().player != null) {
-            if (EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(2)).containsKey(ModEnchantments.FLARE.get()) && Keybindings.INSTANCE.flare.isDown() && !charging && System.currentTimeMillis() > chargeTime + 7000) {
+            if (EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(2)).containsKey(ModEnchantments.FLARE.get()) && Keybindings.flare.isDown() && !charging && System.currentTimeMillis() > chargeTime + 7000) {
                 charging = true;
                 chargeTime = System.currentTimeMillis();
                 ModMessages.sendToServer(new FlareSoundC2SPacket());

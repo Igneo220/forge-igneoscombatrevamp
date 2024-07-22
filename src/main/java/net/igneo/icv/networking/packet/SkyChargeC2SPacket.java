@@ -35,7 +35,7 @@ public class SkyChargeC2SPacket {
             ServerLevel level = player.serverLevel();
 
             if (chargeAmount > 0) {
-                player.setDeltaMovement(0, chargeAmount, 0);
+                player.setDeltaMovement(new Vec3(0, chargeAmount, 0));
                 level.sendParticles(ParticleTypes.POOF, player.getX(), player.getY(), player.getZ(), 10, Math.random() / 5, Math.random() / 5, Math.random() / 5, 0.1);
                 level.playSound(null, player.blockPosition(), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 2, 0.1F);
             } else {

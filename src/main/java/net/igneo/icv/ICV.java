@@ -1,8 +1,11 @@
 package net.igneo.icv;
 
+import net.igneo.icv.config.ICVClientConfigs;
+import net.igneo.icv.config.ICVCommonConfigs;
 import net.igneo.icv.enchantment.ModEnchantments;
 import net.igneo.icv.entity.ModEntities;
 import net.igneo.icv.entity.client.BlackHoleRenderer;
+import net.igneo.icv.entity.client.BoltRenderer;
 import net.igneo.icv.entity.client.CometRenderer;
 import net.igneo.icv.entity.client.IcicleRenderer;
 import net.igneo.icv.networking.ModMessages;
@@ -38,7 +41,8 @@ public class ICV
 
         MinecraftForge.EVENT_BUS.register(this);
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ICVCommonConfigs.SPEC,"icv-common.toml");
+        //ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ICVCommonConfigs.SPEC);
 
 
 
@@ -64,7 +68,7 @@ public class ICV
         {
             EntityRenderers.register(ModEntities.COMET.get(), CometRenderer::new);
             EntityRenderers.register(ModEntities.ICICLE.get(), IcicleRenderer::new);
-            //EntityRenderers.register(ModEntities.BOLT.get(), BoltRenderer::new);
+            EntityRenderers.register(ModEntities.BOLT.get(), BoltRenderer::new);
             EntityRenderers.register(ModEntities.FIRE.get(), ThrownItemRenderer::new);
             EntityRenderers.register(ModEntities.BLACK_HOLE.get(), BlackHoleRenderer::new);
         }

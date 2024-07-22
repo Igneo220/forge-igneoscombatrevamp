@@ -4,17 +4,13 @@ import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.ConcussC2SPacket;
 import net.igneo.icv.networking.packet.ConcussHurtC2SPacket;
-import net.igneo.icv.networking.packet.JudgementC2SPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.phys.Vec3;
 
 public class ConcussionEnchantment extends Enchantment {
     //public static LocalPlayer pPlayer = Minecraft.getInstance().player;
@@ -25,12 +21,12 @@ public class ConcussionEnchantment extends Enchantment {
         super(pRarity, pCategory, pApplicableSlots);
     }
 
-    public static void onClientTick() {
+    public static void onKeyInputEvent() {
         if (Minecraft.getInstance().player != null){
             LocalPlayer pPlayer = Minecraft.getInstance().player;
-            //System.out.println(EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(2)).containsKey(ModEnchantments.CONCUSSION.get()));
+            //System.out.println(EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(2)).containsKey(ModEnchantments.concussion.get()));
             if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(2)).containsKey(ModEnchantments.CONCUSSION.get())) {
-                if (Keybindings.INSTANCE.concussion.isDown() && System.currentTimeMillis() >= concussTime + 5000) {
+                if (Keybindings.concussion.isDown() && System.currentTimeMillis() >= concussTime + 5000) {
                     //lookDirection = pPlayer.getLookAngle();
                     searchTarget = true;
                     concussTime = System.currentTimeMillis();

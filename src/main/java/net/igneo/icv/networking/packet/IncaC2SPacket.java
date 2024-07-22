@@ -45,7 +45,7 @@ public class IncaC2SPacket {
                         System.out.println("running!!!");
                         if (entity instanceof LivingEntity) {
                             LivingEntity newEntity = (LivingEntity) entity;
-                            newEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 30, 5), player);
+                            newEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 5), player);
                         }
                     }
                 }

@@ -48,6 +48,10 @@ public class ModEnchantments {
             ENCHANTMENTS.register("skewering",
                     () -> new SkeweringEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
+    public static RegistryObject<Enchantment> TEMPO_THEFT =
+            ENCHANTMENTS.register("tempo_theft",
+                    () -> new TempoTheftEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
 
 
 
@@ -73,6 +77,10 @@ public class ModEnchantments {
     public static RegistryObject<Enchantment> PHASING =
             ENCHANTMENTS.register("phasing",
                     () -> new PhasingEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.BOW, EquipmentSlot.MAINHAND));
+    public static RegistryObject<Enchantment> WHISTLER =
+            ENCHANTMENTS.register("whistler",
+                    () -> new WhistlerEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.BOW, EquipmentSlot.MAINHAND));
 
 
@@ -100,6 +108,14 @@ public class ModEnchantments {
             ENCHANTMENTS.register("flamethrower",
                     () -> new FlamethrowerEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_HEAD, EquipmentSlot.HEAD));
+    public static RegistryObject<Enchantment> SMITE =
+            ENCHANTMENTS.register("smite",
+                    () -> new SmiteEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_HEAD, EquipmentSlot.HEAD));
+    public static RegistryObject<Enchantment> WARDEN_SCREAM =
+            ENCHANTMENTS.register("warden_scream",
+                    () -> new WardenScreamEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_HEAD, EquipmentSlot.HEAD));
 
 
 
@@ -119,6 +135,10 @@ public class ModEnchantments {
             ENCHANTMENTS.register("siphon",
                     () -> new SiphonEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
+    public static RegistryObject<Enchantment> WARDENSPINE =
+            ENCHANTMENTS.register("wardenspine",
+                    () -> new WardenspineEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
 
 
 
@@ -137,6 +157,10 @@ public class ModEnchantments {
     public static RegistryObject<Enchantment> JUDGEMENT =
             ENCHANTMENTS.register("judgement",
                     () -> new JudgementEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_LEGS, EquipmentSlot.LEGS));
+    public static RegistryObject<Enchantment> TRAIN_DASH =
+            ENCHANTMENTS.register("train_dash",
+                    () -> new TrainDashEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_LEGS, EquipmentSlot.LEGS));
 
 

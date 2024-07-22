@@ -4,12 +4,10 @@ import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.JudgementC2SPacket;
 import net.igneo.icv.networking.packet.JudgementHitC2SPacket;
-import net.igneo.icv.networking.packet.TrainDashC2SPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -25,11 +23,11 @@ public class JudgementEnchantment extends Enchantment {
         super(pRarity, pCategory, pApplicableSlots);
     }
 
-    public static void onClientTick() {
+    public static void onKeyInputEvent() {
         if (Minecraft.getInstance().player != null){
             LocalPlayer pPlayer = Minecraft.getInstance().player;
             if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(1)).containsKey(ModEnchantments.JUDGEMENT.get())) {
-                if (Keybindings.INSTANCE.judgement.isDown() && System.currentTimeMillis() >= judgeTime + 5000) {
+                if (Keybindings.judgement.isDown() && System.currentTimeMillis() >= judgeTime + 5000) {
                     lookDirection = pPlayer.getLookAngle();
                     searchTarget = true;
                     judgeTime = System.currentTimeMillis();

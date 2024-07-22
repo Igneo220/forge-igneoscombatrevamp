@@ -2,22 +2,13 @@ package net.igneo.icv.enchantment;
 
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
-import net.igneo.icv.networking.packet.BlizzardC2SPacket;
 import net.igneo.icv.networking.packet.WardenScreamC2SPacket;
-import net.minecraft.core.BlockPos;
-import net.minecraft.server.gui.MinecraftServerGui;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.level.entity.EntityTickList;
-import net.minecraft.world.level.entity.EntityTypeTest;
-import net.minecraft.world.level.levelgen.structure.BoundingBox;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.Tags;
 
 import java.util.List;
 
@@ -29,21 +20,22 @@ public class WardenScreamEnchantment extends Enchantment {
     public WardenScreamEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
-/*
-    public static void onClientTick() {
+
+    public static void onKeyInputEvent() {
         if (Minecraft.getInstance().player != null) {
-            if (ModEnchantments.checkHelmEnchantments().contains("Scream")) {
-                if (Keybindings.INSTANCE.wardenscream.isDown() && System.currentTimeMillis() >= wardenTime + 1500) {
+            if (EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(3)).containsKey(ModEnchantments.WARDEN_SCREAM.get())) {
+                if (Keybindings.wardenscream.isDown() && System.currentTimeMillis() >= wardenTime + 10000) {
                     look = Minecraft.getInstance().player.getLookAngle();
                     wardenTime = System.currentTimeMillis();
                     //wardenhit.add(raycastEntities(Minecraft.getInstance().player.getEyePosition(),Minecraft.getInstance().player.getEyePosition().add(look)));
                     //System.out.println(wardenhit);
                     playerpos = Minecraft.getInstance().player.getEyePosition();
                     System.out.println(playerpos);
+                    Minecraft.getInstance().player.addDeltaMovement(new Vec3(Minecraft.getInstance().player.getLookAngle().reverse().scale(0.5).x,0,Minecraft.getInstance().player.getLookAngle().reverse().scale(0.5).z));
                     ModMessages.sendToServer(new WardenScreamC2SPacket());
                 }
             }
         }
-    }*/
+    }
 
 }

@@ -218,6 +218,16 @@ public class ModMessages {
                 .encoder(PhaseUpdateS2CPacket::toBytes)
                 .consumerMainThread(PhaseUpdateS2CPacket::handle)
                 .add();
+        net.messageBuilder(TempoTheftS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(TempoTheftS2CPacket::new)
+                .encoder(TempoTheftS2CPacket::toBytes)
+                .consumerMainThread(TempoTheftS2CPacket::handle)
+                .add();
+        net.messageBuilder(WhistlerUpdateS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(WhistlerUpdateS2CPacket::new)
+                .encoder(WhistlerUpdateS2CPacket::toBytes)
+                .consumerMainThread(WhistlerUpdateS2CPacket::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG message) {

@@ -1,27 +1,36 @@
 package net.igneo.icv.event;
 
+import com.mojang.authlib.yggdrasil.response.HasJoinedMinecraftServerResponse;
 import net.igneo.icv.ICV;
-import net.igneo.icv.enchantment.AcrobaticEnchantment;
-import net.igneo.icv.enchantment.SiphonEnchantment;
-import net.igneo.icv.entity.client.BlackHoleModel;
-import net.igneo.icv.entity.client.CometModel;
-import net.igneo.icv.entity.client.IcicleModel;
-import net.igneo.icv.entity.client.ModModelLayers;
-import net.igneo.icv.entity.custom.IcicleEntity;
+import net.igneo.icv.entity.client.*;
+import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.particle.custom.*;
-import net.minecraft.client.player.KeyboardInput;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.awt.event.KeyEvent;
-
 @Mod.EventBusSubscriber(modid = ICV.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModEventBusClientEvents {
+    @SubscribeEvent
+    public static void onKeyRegister(RegisterKeyMappingsEvent event) {
+        event.register(Keybindings.black_hole);
+        event.register(Keybindings.blizzard);
+        event.register(Keybindings.concussion);
+        event.register(Keybindings.flamethrower);
+        event.register(Keybindings.flare);
+        event.register(Keybindings.incapacitate);
+        event.register(Keybindings.judgement);
+        event.register(Keybindings.parry);
+        event.register(Keybindings.siphon);
+        event.register(Keybindings.smite);
+        event.register(Keybindings.train_dash);
+        event.register(Keybindings.wardenscream);
+        event.register(Keybindings.wardenspine);
+    }
     @SubscribeEvent
     public static void registerParticleFactories(final RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(ModParticles.ATTACK_SPEED_PARTICLE.get(),
@@ -60,11 +69,14 @@ public class ModEventBusClientEvents {
                 PhaseParticles.Provider::new);
         event.registerSpriteSet(ModParticles.SIPHON_PARTICLE.get(),
                 SiphonParticles.Provider::new);
+        event.registerSpriteSet(ModParticles.SMITE_PARTICLE.get(),
+                SmiteParticles.Provider::new);
     }
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event){
         event.registerLayerDefinition(ModModelLayers.COMET_LAYER, CometModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BLACK_HOLE_LAYER, BlackHoleModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.ICICLE_LAYER, IcicleModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BOLT_LAYER, BoltModel::createBodyLayer);
     }
 }

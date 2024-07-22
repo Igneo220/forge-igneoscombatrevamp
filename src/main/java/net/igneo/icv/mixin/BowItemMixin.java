@@ -77,9 +77,9 @@ public class BowItemMixin{
                     boolean flag1 = player.getAbilities().instabuild || (itemstack.getItem() instanceof ArrowItem && ((ArrowItem)itemstack.getItem()).isInfinite(itemstack, pStack, player));
                     ArrowItem arrowitem = (ArrowItem)(itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
                     AbstractArrow abstractarrow = arrowitem.createArrow(pLevel, itemstack, player);
-                    //if (EnchantmentHelper.getEnchantments(pEntityLiving.getMainHandItem()).containsKey(ModEnchantments.WHISTLER.get())){
-                    //    abstractarrow.addTag("whistle");
-                    //}
+                    if (EnchantmentHelper.getEnchantments(pEntityLiving.getMainHandItem()).containsKey(ModEnchantments.WHISTLER.get())){
+                        abstractarrow.addTag("whistle");
+                    }
                     if (EnchantmentHelper.getEnchantments(pEntityLiving.getMainHandItem()).containsKey(ModEnchantments.PHASING.get())){
                         abstractarrow.addTag("phase");
                     }
@@ -110,8 +110,16 @@ public class BowItemMixin{
                         if (flag1 || player.getAbilities().instabuild && (itemstack.is(Items.SPECTRAL_ARROW) || itemstack.is(Items.TIPPED_ARROW))) {
                             abstractarrow.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                         }
-
-                        pLevel.addFreshEntity(abstractarrow);
+                        if (abstractarrow.getTags().contains("whistle")) {
+                            if (f == 1) {
+                                pLevel.addFreshEntity(abstractarrow);
+                            } else {
+                                ServerLevel level = (ServerLevel) pLevel;
+                                level.playSound(null,player.blockPosition(), ModSounds.BOW_FUMBLE.get(),SoundSource.PLAYERS);
+                            }
+                        } else {
+                            pLevel.addFreshEntity(abstractarrow);
+                        }
                     }
 
                     pLevel.playSound((Player)null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);

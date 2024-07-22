@@ -17,10 +17,10 @@ public class ParryEnchantment extends Enchantment {
         super(pRarity, pCategory, pApplicableSlots);
     }
 
-    public static void onClientTick() {
+    public static void onKeyInputEvent() {
         if (Minecraft.getInstance().player != null) {
             LocalPlayer pPlayer = Minecraft.getInstance().player;
-            if (Keybindings.INSTANCE.parry.isDown() && EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(2)).containsKey(ModEnchantments.PARRY.get()) && System.currentTimeMillis() >= parryCooldown + 1000) {
+            if (Keybindings.parry.isDown() && EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(2)).containsKey(ModEnchantments.PARRY.get()) && System.currentTimeMillis() >= parryCooldown + 2000) {
                 parryCooldown = System.currentTimeMillis();
                 parrying = true;
                 System.out.println("parrying");

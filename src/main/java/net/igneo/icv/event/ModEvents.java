@@ -10,6 +10,7 @@ import net.igneo.icv.networking.packet.BlitzNBTUpdateS2CPacket;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.sound.ModSounds;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
@@ -18,12 +19,11 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -31,7 +31,6 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
@@ -41,6 +40,7 @@ import static net.igneo.icv.enchantment.SiphonEnchantment.consumeClick;
 
 @Mod.EventBusSubscriber(modid = ICV.MOD_ID)
 public class ModEvents {
+    private static boolean joined = false;
     @SubscribeEvent
     public static void livingHurtEvent(LivingHurtEvent event) {
         if (event.getEntity() instanceof ServerPlayer) {
@@ -83,19 +83,42 @@ public class ModEvents {
         event.register(PlayerEnchantmentActions.class);
     }
     @SubscribeEvent
-    public static void Key(InputEvent.Key event){
-        if(Keybindings.INSTANCE.siphon.isDown()) {
-            SiphonEnchantment.onKeyInputEvent();
-        } else {
-            consumeClick = false;
+    public static void onKeyInputEvent(InputEvent.Key event){
+        if (Minecraft.getInstance().player != null) {
+            if (wearingArmor(Minecraft.getInstance().player)) {
+                if (Keybindings.siphon.isDown()) {
+                    SiphonEnchantment.onKeyInputEvent();
+                } else {
+                    consumeClick = false;
+                }
+                CometStrikeEnchantment.onKeyInputEvent();
+                BlackHoleEnchantment.onKeyInputEvent();
+                ConcussionEnchantment.onKeyInputEvent();
+                KineticEnchantment.onKeyInputEvent();
+                CounterweightedEnchantment.onKeyInputEvent();
+                IncapacitateEnchantment.onKeyInputEvent();
+                JudgementEnchantment.onKeyInputEvent();
+                RendEnchantment.onKeyInputEvent();
+                ParryEnchantment.onKeyInputEvent();
+                SmiteEnchantment.onKeyInputEvent();
+                WardenScreamEnchantment.onKeyInputEvent();
+            }
         }
-        SkyChargeEnchantment.onClientTick();
+    }
+
+    private static boolean wearingArmor(LocalPlayer player) {
+        boolean armordetected = false;
+        for (ItemStack armor : player.getInventory().armor) {
+            if (!armor.getItem().toString().contains("air")) {
+                armordetected = true;
+            }
+        }
+        return armordetected;
     }
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         event.player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-
             if (enchVar.getAcrobatBonus() && (event.player.onGround() || event.player.isInFluidType() || event.player.isPassenger())) {
                 enchVar.setAcrobatBonus(false);
             }
@@ -176,23 +199,18 @@ public class ModEvents {
             }
 
             if (FMLEnvironment.dist.isClient()) {
-                BlackHoleEnchantment.onClientTick();
-                AcrobaticEnchantment.onClientTick();
-                ConcussionEnchantment.onClientTick();
                 StoneCallerEnchantment.onClientTick();
                 BlizzardEnchantment.onClientTick();
-                KineticEnchantment.onClientTick();
-                CometStrikeEnchantment.onClientTick();
-                CounterweightedEnchantment.onClientTick();
-                DoubleJumpEnchantment.onClientTick();
+                SkyChargeEnchantment.onClientTick();
                 CrushEnchantment.onClientTick();
+                AcrobaticEnchantment.onClientTick();
+                DoubleJumpEnchantment.onClientTick();
                 FlamethrowerEnchantment.onClientTick();
                 FlareEnchantment.onClientTick();
-                IncapacitateEnchantment.onClientTick();
-                JudgementEnchantment.onClientTick();
-                RendEnchantment.onClientTick();
                 MomentumEnchantment.onClientTick();
-                ParryEnchantment.onClientTick();
+                TempoTheftEnchantment.onClientTick();
+                TrainDashEnchantment.onClientTick();
+                WardenspineEnchantment.onClientTick();
             }
         });
     }

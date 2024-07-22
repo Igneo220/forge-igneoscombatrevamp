@@ -24,7 +24,7 @@ public class FlamethrowerEnchantment extends Enchantment {
         if (Minecraft.getInstance().player != null) {
             LocalPlayer pPlayer = Minecraft.getInstance().player;
             if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(3)).containsKey(ModEnchantments.FLAMETHROWER.get())) {
-                if (Keybindings.INSTANCE.flamethrower.isDown() && System.currentTimeMillis() >= flameTime + 15000 && !flameo) {
+                if (Keybindings.flamethrower.isDown() && System.currentTimeMillis() >= flameTime + 15000 && !flameo) {
                     look = Minecraft.getInstance().player.getLookAngle();
                     flameo = true;
                     flameTime = System.currentTimeMillis();

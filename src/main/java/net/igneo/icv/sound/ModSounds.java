@@ -42,6 +42,7 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> PARRY = registerSoundEvents("parry");
     public static final RegistryObject<SoundEvent> PHASE = registerSoundEvents("phase");
     public static final RegistryObject<SoundEvent> SCATTER = registerSoundEvents("scatter");
+    public static final RegistryObject<SoundEvent> TRAINDASH = registerSoundEvents("traindash");
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ICV.MOD_ID,name)));

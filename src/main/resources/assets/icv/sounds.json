@@ -180,5 +180,11 @@
     "sounds": [
       "icv:scatter"
     ]
+  },
+  "traindash": {
+    "subtitles": "sounds.icv.traindash",
+    "sounds": [
+      "icv:traindash"
+    ]
   }
 }

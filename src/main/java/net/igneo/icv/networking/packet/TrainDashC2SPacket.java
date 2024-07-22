@@ -1,9 +1,11 @@
 package net.igneo.icv.networking.packet;
 
 import net.igneo.icv.networking.ModMessages;
+import net.igneo.icv.sound.ModSounds;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -19,17 +21,18 @@ import java.util.function.Supplier;
 
 
 public class TrainDashC2SPacket {
+    private static int j;
 
-    public static long hitCooldown;
-    public TrainDashC2SPacket(){
 
+    public TrainDashC2SPacket(int value){
+        j = value;
     }
     public TrainDashC2SPacket(FriendlyByteBuf buf) {
-
+        j = buf.readInt();
     }
 
     public void toBytes(FriendlyByteBuf buf) {
-
+        buf.writeInt(j);
     }
 
     public boolean handle(Supplier<NetworkEvent.Context> supplier) {
@@ -38,15 +41,15 @@ public class TrainDashC2SPacket {
             //SERVER WORK
             ServerPlayer player = context.getSender();
             ServerLevel level = player.serverLevel();
-/*
-            if (dashing && System.currentTimeMillis() >= hitCooldown + 500) {
-                hitCooldown = System.currentTimeMillis();
-                System.out.println("KILL THE " + unluckyGirlfriend);
-                level.explode(player,player.getX(),player.getY(),player.getZ(),1, Level.ExplosionInteraction.NONE);
-            } else {
-                level.explode(null,player.getX(),player.getY(),player.getZ(),1, Level.ExplosionInteraction.NONE);
+
+            if (j == 1) {
+                level.explode(player,player.getX(),player.getY(),player.getZ(),2, Level.ExplosionInteraction.NONE);
+            } else  if (j == 0){
+                level.explode(null,player.getX(),player.getY(),player.getZ(),2, Level.ExplosionInteraction.NONE);
+            } else if (j == 3) {
+                level.playSound(null,player.blockPosition(), ModSounds.TRAINDASH.get(), SoundSource.PLAYERS);
             }
-*/
+
         });
         return true;
     }

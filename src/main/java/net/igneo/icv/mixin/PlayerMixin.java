@@ -42,6 +42,7 @@ public abstract class PlayerMixin extends LivingEntity{
     private float attack(float f1, Entity pTarget) {
         float tempf = f1;
         if (pTarget instanceof LivingEntity) {
+            System.out.println(pTarget);
             AtomicReference<Float> tempf1 = new AtomicReference<>((float) 0);
             if (EnchantmentHelper.getEnchantments(this.getMainHandItem()).containsKey(ModEnchantments.SKEWERING.get()) && !pTarget.onGround() && !pTarget.isInFluidType() && !pTarget.isPassenger()) {
                 tempf = 1.2F;

@@ -36,8 +36,6 @@ import org.spongepowered.asm.mixin.Unique;
 
 import java.util.UUID;
 
-import static net.igneo.icv.Config.items;
-
 @Mixin(CrossbowItem.class)
 public class CrossbowItemMixin {
 

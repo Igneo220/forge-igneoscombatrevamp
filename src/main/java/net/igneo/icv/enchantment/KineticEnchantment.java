@@ -13,12 +13,9 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import org.apache.logging.log4j.core.jmx.Server;
 
 public class KineticEnchantment extends Enchantment{
     private static boolean kin;
@@ -26,7 +23,7 @@ public class KineticEnchantment extends Enchantment{
         super(pRarity, pCategory, pApplicableSlots);
     }
 
-    public static void onClientTick() {
+    public static void onKeyInputEvent() {
         if (Minecraft.getInstance().player != null) {
             LocalPlayer pPlayer = Minecraft.getInstance().player;
             if (EnchantmentHelper.getEnchantments(pPlayer.getMainHandItem()).containsKey(ModEnchantments.KINETIC.get())) {

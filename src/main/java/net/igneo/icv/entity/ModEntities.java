@@ -1,10 +1,7 @@
 package net.igneo.icv.entity;
 
 import net.igneo.icv.ICV;
-import net.igneo.icv.entity.custom.BlackHoleEntity;
-import net.igneo.icv.entity.custom.CometEntity;
-import net.igneo.icv.entity.custom.FireEntity;
-import net.igneo.icv.entity.custom.IcicleEntity;
+import net.igneo.icv.entity.custom.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -28,6 +25,9 @@ public class ModEntities {
     public static final RegistryObject<EntityType<IcicleEntity>> ICICLE =
             ENTITY_TYPES.register("icicle",() -> EntityType.Builder.<IcicleEntity>of(IcicleEntity::new, MobCategory.MISC)
                     .sized(1f,1f).build("black_hole"));
+    public static final RegistryObject<EntityType<BoltEntity>> BOLT =
+            ENTITY_TYPES.register("bolt",() -> EntityType.Builder.<BoltEntity>of(BoltEntity::new, MobCategory.MISC)
+                    .sized(1f,1f).build("black_hole"));
 
 
     public static void register(IEventBus eventBus) {
@@ -39,7 +39,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<FireEntity>> FIRE;
     public static final RegistryObject<EntityType<IcicleEntity>> ICICLE;
     public static final RegistryObject<EntityType<BoltEntity>> BOLT;
-    public static final RegistryObject<EntityType<BlackHoleEntity>> BLACK_HOLE;
+    public static final RegistryObject<EntityType<BlackHoleEntity>> black_hole;
 
     public ModEntities() {
     }
@@ -62,7 +62,7 @@ public class ModEntities {
         BOLT = ENTITY_TYPES.register("bolt", () -> {
             return Builder.of(BoltEntity::new, MobCategory.MISC).sized(1.0F, 0.5F).build("bolt");
         });
-        BLACK_HOLE = ENTITY_TYPES.register("black_hole", () -> {
+        black_hole = ENTITY_TYPES.register("black_hole", () -> {
             return Builder.of(BlackHoleEntity::new, MobCategory.MISC).sized(0.9F, 0.9F).build("black_hole");
         });
     }*/

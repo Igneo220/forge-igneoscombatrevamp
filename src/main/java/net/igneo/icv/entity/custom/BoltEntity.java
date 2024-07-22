@@ -1,5 +1,6 @@
 package net.igneo.icv.entity.custom;
 
+import net.igneo.icv.particle.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -11,14 +12,16 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.projectile.Fireball;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 public class BoltEntity extends Fireball {
-    public static long boltTime = 0;
+    private static long boltTime;
     public BoltEntity(EntityType<? extends Fireball> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
+        boltTime = System.currentTimeMillis();
     }
 
     //@Override
@@ -28,8 +31,12 @@ public class BoltEntity extends Fireball {
 
     @Override
     protected void onHitEntity(EntityHitResult pResult) {
-        if (System.currentTimeMillis() >= boltTime + 500) {
-            pResult.getEntity().hurt(level().damageSources().lightningBolt(), 15);
+        if (System.currentTimeMillis() >= boltTime + 100) {
+            pResult.getEntity().hurt(level().damageSources().lightningBolt(), 10);
+            if (!level().isClientSide) {
+                ServerLevel level = (ServerLevel) level();
+                EntityType.LIGHTNING_BOLT.spawn(level, new BlockPos((int) pResult.getLocation().x, (int) pResult.getLocation().y, (int) pResult.getLocation().z), MobSpawnType.MOB_SUMMONED);
+            }
             this.discard();
         }
     }
@@ -40,21 +47,24 @@ public class BoltEntity extends Fireball {
     }
 
     @Override
-    protected void onHit(HitResult pResult) {
-        if (System.currentTimeMillis() >= boltTime + 500) {
+    protected void onHitBlock(BlockHitResult pResult) {
+        if (System.currentTimeMillis() >= boltTime + 100) {
             if (!level().isClientSide) {
                 ServerLevel level = (ServerLevel) level();
                 EntityType.LIGHTNING_BOLT.spawn(level, new BlockPos((int) pResult.getLocation().x, (int) pResult.getLocation().y, (int) pResult.getLocation().z), MobSpawnType.MOB_SUMMONED);
             }
             this.discard();
-            super.onHit(pResult);
         }
     }
 
     @Override
     public void tick() {
-        if (boltTime == 0) {
-            boltTime = System.currentTimeMillis();
+        if (!this.level().isClientSide) {
+            ServerLevel level = (ServerLevel) this.level();
+            level.sendParticles(ModParticles.SMITE_PARTICLE.get(),this.getX(),this.getY(),this.getZ(),18,0,0,0,1);
+        }
+        if (System.currentTimeMillis() >= boltTime + 10000) {
+            this.discard();
         }
         Entity entity = this.getOwner();
         if (this.level().isClientSide || (entity == null || !entity.isRemoved()) && this.level().hasChunkAt(this.blockPosition())) {

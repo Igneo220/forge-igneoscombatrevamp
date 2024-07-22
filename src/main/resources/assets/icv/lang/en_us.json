@@ -1,0 +1,124 @@
+{
+    "key.categories.icv.enchantments": "Enchantment Keybinds",
+
+    "enchantment.icv.accelerate": "Accelerate",
+    "enchantment.icv.accelerate.desc": "Accelerate your arrow to ludicrous speeds, piercing everything roughly 20 blocks in front of you. It deals 3 damage",
+
+    "enchantment.icv.acrobatic": "Acrobatic",
+    "enchantment.icv.acrobatic.desc": "Gain a small boost when flipping by simultaneously pressing A & D at the same time. Also gain a damage boost before hitting the ground after flipping",
+
+    "enchantment.icv.black_hole": "Black Hole",
+    "enchantment.icv.black_hole.desc": "Shoot out a black hole that draws nearby entities in, dealing constant cramming damage if touched",
+    "key.icv.black_hole": "Activate Black Hole",
+
+    "enchantment.icv.blitz": "Blitz",
+    "enchantment.icv.blitz.desc": "Upon attacking, gain an attack speed boost that increases for every hit. Resets if you take too long to hit again, or you take damage yourself",
+
+    "enchantment.icv.blizzard": "Blizzard",
+    "enchantment.icv.blizzard.desc": "Unleash a blizzard unto your foes, dealing 3 damage per icicle that hits, and applying a heavy slowness",
+    "key.icv.blizzard": "Activate Blizzard",
+
+    "enchantment.icv.breakthrough": "breakthrough",
+    "enchantment.icv.breakthrough.desc": "Makes this weapon able to break shields. Axes no longer have this functionality",
+
+    "enchantment.icv.comet_strike": "Comet Strike",
+    "enchantment.icv.comet_strike.desc": "When you crouch, summon a comet from the ground. Hit it to make it explode where it lands, scaling with how much damage it takes. You can hit it multiple times. It despawns on its third chime",
+
+    "enchantment.icv.concussion": "Concussion",
+    "enchantment.icv.concussion.desc": "Lunge forward and deal 5 damage to whatever you hit, launching it into the air and giving it a temporary slow falling",
+    "key.icv.concussion": "Activate Concussion",
+
+    "enchantment.icv.counterweighted": "Counterweighted",
+    "enchantment.icv.counterweighted.desc": "If you miss a swing, you gain a large attack speed boost allowing you to recover. Will do nothing if you're looking at or near a target",
+
+    "enchantment.icv.crush": "Crush",
+    "enchantment.icv.crush.desc": "Crouch in air to send yourself hurtling towards the ground. If you fall more than 3 blocks, you'll create an explosion damaging nearby enemies. Does not negate fall damage",
+
+    "enchantment.icv.double_jump": "Double Jump",
+    "enchantment.icv.double_jump.desc": "Jump while in air to get a second jump, launching you an extra 2 blocks in the air from where you used it",
+
+    "enchantment.icv.extract": "Extract",
+    "enchantment.icv.extract.desc": "Pull whatever entity you hit towards you",
+
+    "enchantment.icv.flare": "Flare",
+    "enchantment.icv.flare.desc": "Charge up a huge explosion after a considerable amount of time",
+    "key.icv.flare": "Activate Flare",
+
+    "enchantment.icv.flamethrower": "Flamethrower",
+    "enchantment.icv.flamethrower.desc": "Unleash a fiery maelstrom unto your opponent, lighting a large area and your enemy on fire",
+    "key.icv.flamethrower":"Activate Flamethrower",
+
+    "enchantment.icv.gust": "Gust",
+    "enchantment.icv.gust.desc": "When you crit, launch your enemy high up into the air",
+
+    "enchantment.icv.incapacitate": "Incapacitate",
+    "enchantment.icv.incapacitate.desc": "Perform a large sweeping attack, immobilizing nearby enemies for a short time",
+    "key.icv.incapacitate": "Activate Incapacitate",
+
+    "enchantment.icv.judgement": "Judgement",
+    "enchantment.icv.judgement.desc": "Lunge forward, exploding on the first enemy you hit",
+    "key.icv.judgement": "Activate Judgement",
+
+    "enchantment.icv.kinetic": "Kinetic",
+    "enchantment.icv.kinetic.desc": "Deal more damage the faster you move. Jump prior to swinging to avoid being slowed down",
+
+    "enchantment.icv.mitosis": "Mitosis",
+    "enchantment.icv.mitosis.desc": "Make your arrow duplicate while it's in the air, the farther the target, the more arrows will strike it",
+
+    "enchantment.icv.momentum": "Momentum",
+    "enchantment.icv.momentum.desc": "Gain a speed boost up to 3 times while sprinting, resets on taking damage, or slowing down",
+
+    "enchantment.icv.parry": "Parry",
+    "enchantment.icv.parry.desc": "Block the next instance of damage for a quarter of a second",
+    "key.icv.parry": "Activate Parry",
+
+    "enchantment.icv.phantom_pain": "Phantom Pain",
+    "enchantment.icv.phantom_pain.desc": "Deal extra damage each hit, but the target will heal if you take to long to strike again, or you attack a different target",
+
+    "enchantment.icv.phasing": "Phasing",
+    "enchantment.icv.phasing.desc": "Your arrow now phases through blocks and entities, dealing less damage than a normal arrow, but more than accelerate",
+
+    "enchantment.icv.recoil": "Recoil",
+    "enchantment.icv.recoil.desc": "Be sent the opposite direction you throw your trident",
+
+    "enchantment.icv.rend": "Rend",
+    "enchantment.icv.rend.desc": "Deal zero damage on hit, but after left clicking explode all arrows you shot the target with, dealing exponential damage. Can only affect one target",
+
+    "enchantment.icv.scatter": "Scatter",
+    "enchantment.icv.scatter.desc": "Turn your crossbow into a shotgun, shooting out 10 low damage arrows at short range",
+
+    "enchantment.icv.siphon": "Siphon",
+    "enchantment.icv.siphon.desc": "Heal one heart by taking away durability from your armor",
+    "key.icv.siphon": "Activate Siphon",
+
+    "enchantment.icv.skewering": "Skewering",
+    "enchantment.icv.skewering.desc": "Deal bonus damage to enemies in the air",
+
+    "enchantment.icv.sky_charge": "Sky Charge",
+    "enchantment.icv.sky_charge.desc": "Charge up a jump by crouching. You get launched higher the longer you wait, with a maximum of 7 blocks",
+
+    "enchantment.icv.smite": "Smite",
+    "enchantment.icv.smite.desc": "Rise up into the air, and activate again to throw lightning bolts at your enemies",
+    "key.icv.smite": "Activate Smite",
+
+    "enchantment.icv.stone_caller": "Stone Caller",
+    "enchantment.icv.stone_caller.desc": "Hold down crouch to be launched up into the air atop a pillar of stone. Breaks after a few seconds, and becomes usable once more",
+
+    "enchantment.icv.tempo_theft": "Tempo Theft",
+    "enchantment.icv.tempo_theft.desc": "Steal your enemies speed, inflicting slowness on them, and up to 3 speed boosts on yourself",
+
+    "enchantment.icv.train_dash": "Train Dash",
+    "enchantment.icv.train_dash.desc": "Dash forward in a straight line, exploding every enemy you hit on the way. Cause a self damaging explosion on impact with a block",
+    "key.icv.train_dash": "Activate Train Dash",
+
+    "enchantment.icv.warden_scream": "Warden Scream",
+    "enchantment.icv.warden_scream.desc": "Unleash a sonic shriek from your skull, dealing 15 damage",
+    "key.icv.wardenscream": "Activate Warden Scream",
+
+    "enchantment.icv.wardenspine": "Wardenspine",
+    "enchantment.icv.wardenspine.desc": "Go blind in exchange for a damage boost. Use again to remove the effect with a delay on both ends",
+    "key.icv.wardenspine": "Activate Wardenspine",
+
+    "enchantment.icv.whistler": "Whistler",
+    "enchantment.icv.whistler.desc": "Make your arrow now controlled by the direction you look, at a slower velocity. Deals more damage than a normal arrow"
+}

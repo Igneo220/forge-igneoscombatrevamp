@@ -25,10 +25,10 @@ public class RendEnchantment extends Enchantment {
             rendEntity = hitEntity;
             rendCount = 0;
         }
-        rendCount += 0.5F;
+        rendCount += 1;
     }
 
-    public static void onClientTick() {
+    public static void onKeyInputEvent() {
         if (Minecraft.getInstance().player != null) {
             if (EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getMainHandItem()).containsKey(ModEnchantments.REND.get()) &&
                     Minecraft.getInstance().mouseHandler.isLeftPressed() &&

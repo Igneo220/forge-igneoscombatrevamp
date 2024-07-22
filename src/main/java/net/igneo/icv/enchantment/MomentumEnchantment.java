@@ -35,40 +35,37 @@ public class MomentumEnchantment extends Enchantment {
     public static void onClientTick() {
         LocalPlayer pPlayer = Minecraft.getInstance().player;
         if (pPlayer != null) {
-            if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.MOMENTUM.get())) {
-                if (pPlayer.isSprinting()) {
-                    if (shouldCheck) {
-                        delay = System.currentTimeMillis();
-                        ++loopCount;
-                        shouldCheck = false;
-                    }
-                    if (System.currentTimeMillis() >= delay + 3000 && loopCount <= 3) {
-                        spedUp = true;
-                        System.out.println("increasing speed!!!");
-                        if (loopCount != 0) {
-                            ModMessages.sendToServer(new MomentumC2SPacket(loopCount));
-                        }
-                        shouldCheck = true;
-                    }
-                } else if (spedUp){
-                    loopCount = 0;
-                    spedUp = false;
-                    ModMessages.sendToServer(new MomentumC2SPacket(0));
+            if (pPlayer.isSprinting() && EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.MOMENTUM.get())) {
+                if (shouldCheck) {
+                    delay = System.currentTimeMillis();
+                    ++loopCount;
+                    shouldCheck = false;
                 }
-                if (spedUp) {
-                    double d0 = pPlayer.getDeltaMovement().x;
-                    double d1 = pPlayer.getDeltaMovement().y;
-                    double d2 = pPlayer.getDeltaMovement().z;
-
-                    if ((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)) <= 0.15) {
-                        System.out.println((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)));
-                        spedUp = false;
-                        ModMessages.sendToServer(new MomentumC2SPacket(0));
-                        loopCount = 0;
+                if (System.currentTimeMillis() >= delay + 3000 && loopCount <= 3) {
+                    spedUp = true;
+                    System.out.println("increasing speed!!!");
+                    if (loopCount != 0) {
+                        ModMessages.sendToServer(new MomentumC2SPacket(loopCount));
                     }
+                    shouldCheck = true;
                 }
-
+            } else if (spedUp){
+                loopCount = 0;
+                spedUp = false;
+                ModMessages.sendToServer(new MomentumC2SPacket(0));
             }
+            if (spedUp) {
+                double d0 = pPlayer.getDeltaMovement().x;
+                double d1 = pPlayer.getDeltaMovement().y;
+                double d2 = pPlayer.getDeltaMovement().z;
+                 if ((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)) <= 0.15) {
+                     System.out.println((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)));
+                     spedUp = false;
+                     ModMessages.sendToServer(new MomentumC2SPacket(0));
+                     loopCount = 0;
+                 }
+            }
+
         }
     }
 }

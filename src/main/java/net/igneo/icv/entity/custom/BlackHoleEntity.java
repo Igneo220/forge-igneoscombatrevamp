@@ -66,13 +66,13 @@ public class BlackHoleEntity extends Fireball {
             for (Entity entity : level.getAllEntities()) {
                 //System.out.println(this.getOwner());
                 Vec3 pushVec = (((this.position().subtract(entity.position())).scale((10.1 - entity.distanceTo(this)) * 0.1)).scale(0.035));
-                if (entity.distanceTo(this) < 2 && entity != this && entity != this.getOwner()) {
+                if (entity.distanceTo(this) < 2 && entity != this && entity != this.getOwner() && !(entity instanceof BlackHoleEntity)) {
                     if (entity instanceof LivingEntity || entity instanceof ServerPlayer) {
                         LivingEntity entity1 = (LivingEntity) entity;
-                        entity1.hurt(this.damageSources().cramming(), 2);
+                        entity1.hurt(this.damageSources().cramming(), 1);
                     }
                     entity.addDeltaMovement((this.position().subtract(entity.position())).scale(0.14));
-                } else if (entity.distanceTo(this) < 10 && entity != this && entity != this.getOwner()) {
+                } else if (entity.distanceTo(this) < 10 && entity != this && entity != this.getOwner() && !(entity instanceof BlackHoleEntity)) {
                     entity.addDeltaMovement(pushVec);
                 }
             }
@@ -81,9 +81,9 @@ public class BlackHoleEntity extends Fireball {
                 //System.out.println((this.getOwner() == Minecraft.getInstance().player));
                 Vec3 pushVec = (((this.position().subtract(player.position())).scale((10.1 - player.distanceTo(this)) * 0.1)).scale(0.04));
                 if (player.distanceTo(this) < 1 && Minecraft.getInstance().player != this.getOwner()) {
-                    player.addDeltaMovement((this.position().subtract(player.position())).scale(0.14));
+                    player.addDeltaMovement((this.position().subtract(player.position())).scale(0.14).scale(0.8));
                 } else if (player.distanceTo(this) < 10 && Minecraft.getInstance().player != this.getOwner()) {
-                    player.addDeltaMovement(pushVec);
+                    player.addDeltaMovement(pushVec.scale(0.8));
                 }
                 //&& player != this.getOwner()
         }

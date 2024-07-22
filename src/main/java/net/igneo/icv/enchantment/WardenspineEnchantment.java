@@ -3,9 +3,11 @@ package net.igneo.icv.enchantment;
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.WardenspineC2SPacket;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 public class WardenspineEnchantment extends Enchantment {
     public static long wardenCooldown;
@@ -14,10 +16,10 @@ public class WardenspineEnchantment extends Enchantment {
     public WardenspineEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
-/*
+
     public static void onClientTick() {
         if (Minecraft.getInstance().player != null) {
-            if (ModEnchantments.checkChestEnchantments().contains("Warden") && Keybindings.INSTANCE.wardenspine.isDown() && System.currentTimeMillis() >= wardenCooldown + 1000 && !blind && !blinding) {
+            if (EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(2)).containsKey(ModEnchantments.WARDENSPINE.get()) && Keybindings.wardenspine.isDown() && System.currentTimeMillis() >= wardenCooldown + 1000 && !blind && !blinding) {
                 blinding = true;
                 wardenCooldown = System.currentTimeMillis();
             }
@@ -25,9 +27,9 @@ public class WardenspineEnchantment extends Enchantment {
                 blind = true;
                 blinding = false;
                 wardenCooldown = System.currentTimeMillis();
-                ModMessages.sendToServer(new WardenspineC2SPacket());
+                ModMessages.sendToServer(new WardenspineC2SPacket(blind));
             }
-            if (ModEnchantments.checkChestEnchantments().contains("Warden") && Keybindings.INSTANCE.wardenspine.isDown() && System.currentTimeMillis() >= wardenCooldown + 1000 && blind && !blinding) {
+            if (EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(2)).containsKey(ModEnchantments.WARDENSPINE.get()) && Keybindings.wardenspine.isDown() && System.currentTimeMillis() >= wardenCooldown + 1000 && blind && !blinding) {
                 blinding = true;
                 blind = true;
                 wardenCooldown = System.currentTimeMillis();
@@ -36,8 +38,8 @@ public class WardenspineEnchantment extends Enchantment {
                 blind = false;
                 blinding = false;
                 wardenCooldown = System.currentTimeMillis();
-                ModMessages.sendToServer(new WardenspineC2SPacket());
+                ModMessages.sendToServer(new WardenspineC2SPacket(blind));
             }
         }
-    }*/
+    }
 }

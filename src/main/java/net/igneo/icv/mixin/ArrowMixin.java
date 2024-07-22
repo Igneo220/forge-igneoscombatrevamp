@@ -6,6 +6,7 @@ import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.ExtractUpdateS2CPacket;
 import net.igneo.icv.networking.packet.PhaseUpdateS2CPacket;
 import net.igneo.icv.networking.packet.RendS2CPacket;
+import net.igneo.icv.networking.packet.WhistlerUpdateS2CPacket;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.sound.ModSounds;
 import net.minecraft.client.Minecraft;
@@ -110,6 +111,20 @@ public class ArrowMixin extends AbstractArrow {
             }
             entity.hurt(damagesource, 1.5F);
             this.discard();
+        } else if (this.getTags().contains("whistle")) {
+            Entity entity = pResult.getEntity();
+            Entity entity1 = this.getOwner();
+            DamageSource damagesource;
+            if (entity1 == null) {
+                damagesource = this.damageSources().arrow(this, this);
+            } else {
+                damagesource = this.damageSources().arrow(this, entity1);
+                if (entity1 instanceof LivingEntity) {
+                    ((LivingEntity) entity1).setLastHurtMob(entity);
+                }
+            }
+            entity.hurt(damagesource, 12F);
+            this.discard();
         } else {
             super.onHitEntity(pResult);
             this.discard();
@@ -162,6 +177,10 @@ public class ArrowMixin extends AbstractArrow {
                 if (this.getTags().contains("phase")) {
                     for (ServerPlayer player : level.players()) {
                         ModMessages.sendToPlayer(new PhaseUpdateS2CPacket(this.getId()), player);
+                    }
+                } else if (this.getTags().contains("whistle")) {
+                    for (ServerPlayer player : level.players()) {
+                        ModMessages.sendToPlayer(new WhistlerUpdateS2CPacket(this.getId()), player);
                     }
                 }
             } else if (System.currentTimeMillis() >= arrowtime + 5000) {

@@ -19,7 +19,7 @@ public class CounterweightedEnchantment extends Enchantment {
         super(pRarity, pCategory, pApplicableSlots);
     }
 
-    public static void onClientTick() {
+    public static void onKeyInputEvent() {
         if (Minecraft.getInstance().player != null) {
             LocalPlayer player = Minecraft.getInstance().player;
             if (EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getMainHandItem()).containsKey(ModEnchantments.COUNTERWEIGHTED.get()) && !initialHit && Minecraft.getInstance().options.keyAttack.isDown()) {
