@@ -1,5 +1,6 @@
 package net.igneo.icv.enchantment;
 
+import net.igneo.icv.client.EnchantmentHudOverlay;
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.FlameC2SPacket;
@@ -12,8 +13,8 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.Vec3;
 
 public class FlamethrowerEnchantment extends Enchantment {
-    private static long flameTime;
-    private static boolean flameo;
+    public static long flameTime;
+    public static boolean flameo;
     private static int flameDelay;
     private static Vec3 look;
     public FlamethrowerEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
@@ -36,9 +37,13 @@ public class FlamethrowerEnchantment extends Enchantment {
                         flameDelay += 75;
                     }
                 } else if (flameo) {
+                    EnchantmentHudOverlay.flameFrames = 0;
                     flameTime = System.currentTimeMillis();
                     flameo = false;
                 }
+            } else {
+                EnchantmentHudOverlay.flameFrames = 0;
+                flameTime = System.currentTimeMillis();
             }
         }
     }

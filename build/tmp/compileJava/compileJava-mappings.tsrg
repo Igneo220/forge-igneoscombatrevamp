@@ -1,3 +1,20 @@
+net/igneo/icv/mixin/AnvilMenuMixin cost f_39002_
+net/igneo/icv/mixin/EnchantmentMenuMixin random f_39451_
+net/igneo/icv/mixin/EnchantmentMenuMixin enchantmentSeed f_39452_
+net/igneo/icv/mixin/EnchantmentMenuMixin enchantClue f_39447_
+net/igneo/icv/mixin/EnchantmentMenuMixin levelClue f_39448_
+net/igneo/icv/mixin/EnchantmentMenuMixin enchantSlots f_39449_
+net/igneo/icv/mixin/EnchantmentMenuMixin access f_39450_
+net/igneo/icv/mixin/EnchantmentMenuMixin costs f_39446_
+net/igneo/icv/mixin/EnchantmentScreenMixin ENCHANTING_TABLE_LOCATION f_98747_
+net/igneo/icv/mixin/EnchantmentScreenMixin ENCHANTING_BOOK_LOCATION f_98748_
+net/igneo/icv/mixin/EnchantmentScreenMixin bookModel f_169756_
+net/igneo/icv/mixin/EnchantmentScreenMixin flip f_98741_
+net/igneo/icv/mixin/EnchantmentScreenMixin oFlip f_98742_
+net/igneo/icv/mixin/EnchantmentScreenMixin flipT f_98743_
+net/igneo/icv/mixin/EnchantmentScreenMixin flipA f_98744_
+net/igneo/icv/mixin/EnchantmentScreenMixin open f_98745_
+net/igneo/icv/mixin/EnchantmentScreenMixin oOpen f_98746_
 net/igneo/icv/mixin/LivingEntityMixin DATA_LIVING_ENTITY_FLAGS f_20909_
 net/igneo/icv/mixin/LivingEntityMixin useItem f_20935_
 net/igneo/icv/mixin/LivingEntityMixin useItemRemaining f_20936_
@@ -5,11 +22,28 @@ net/igneo/icv/mixin/ThrownTridentMixin ID_LOYALTY f_37558_
 net/igneo/icv/mixin/ThrownTridentMixin ID_FOIL f_37554_
 net/igneo/icv/mixin/ThrownTridentMixin tridentItem f_37555_
 net/igneo/icv/mixin/ThrownTridentRendererMixin TRIDENT_LOCATION f_116094_
+net/igneo/icv/mixin/AnvilMenuMixin mayPickup (Lnet/minecraft/world/entity/player/Player;Z)Z m_6560_
+net/igneo/icv/mixin/AnvilMenuMixin onTake (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V m_142365_
+net/igneo/icv/mixin/AnvilMenuMixin isValidBlock (Lnet/minecraft/world/level/block/state/BlockState;)Z m_8039_
+net/igneo/icv/mixin/AnvilMenuMixin createResult ()V m_6640_
+net/igneo/icv/mixin/AnvilMenuMixin createInputSlotDefinitions ()Lnet/minecraft/world/inventory/ItemCombinerMenuSlotDefinition; m_266183_
 net/igneo/icv/mixin/BowItemMixin getUseDuration (Lnet/minecraft/world/item/ItemStack;)I m_8105_
 net/igneo/icv/mixin/BowItemMixin getPowerForTime (I)F m_40661_
 net/igneo/icv/mixin/BowItemMixin releaseUsing (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V m_5551_
 net/igneo/icv/mixin/CrossbowItemMixin shootProjectile (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;FZFFF)V m_40894_
 net/igneo/icv/mixin/EnchantmentHelperMixin getLoyalty (Lnet/minecraft/world/item/ItemStack;)I m_44928_
+net/igneo/icv/mixin/EnchantmentHelperMixin getBlockEfficiency (Lnet/minecraft/world/entity/LivingEntity;)I m_44926_
+net/igneo/icv/mixin/EnchantmentMenuMixin quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack; m_7648_
+net/igneo/icv/mixin/EnchantmentMenuMixin stillValid (Lnet/minecraft/world/entity/player/Player;)Z m_6875_
+net/igneo/icv/mixin/EnchantmentMenuMixin clickMenuButton (Lnet/minecraft/world/entity/player/Player;I)Z m_6366_
+net/igneo/icv/mixin/EnchantmentMenuMixin slotsChanged (Lnet/minecraft/world/Container;)V m_6199_
+net/igneo/icv/mixin/EnchantmentMenuMixin removed (Lnet/minecraft/world/entity/player/Player;)V m_6877_
+net/igneo/icv/mixin/EnchantmentScreenMixin renderBook (Lnet/minecraft/client/gui/GuiGraphics;IIF)V m_289602_
+net/igneo/icv/mixin/EnchantmentScreenMixin mouseClicked (DDI)Z m_6375_
+net/igneo/icv/mixin/EnchantmentScreenMixin renderBg (Lnet/minecraft/client/gui/GuiGraphics;FII)V m_7286_
+net/igneo/icv/mixin/EnchantmentScreenMixin render (Lnet/minecraft/client/gui/GuiGraphics;IIF)V m_88315_
+net/igneo/icv/mixin/ItemStackMixin isEnchantable ()Z m_41792_
+net/igneo/icv/mixin/ItemStackMixin isEnchanted ()Z m_41793_
 net/igneo/icv/mixin/LivingEntityMixin getMainHandItem ()Lnet/minecraft/world/item/ItemStack; m_21205_
 net/igneo/icv/mixin/LivingEntityMixin getItemBySlot (Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack; m_6844_
 net/igneo/icv/mixin/LivingEntityMixin hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z m_6469_

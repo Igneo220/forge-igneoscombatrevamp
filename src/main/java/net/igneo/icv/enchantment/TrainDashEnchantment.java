@@ -1,5 +1,6 @@
 package net.igneo.icv.enchantment;
 
+import net.igneo.icv.client.EnchantmentHudOverlay;
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.MomentumC2SPacket;
@@ -34,42 +35,51 @@ public class TrainDashEnchantment extends Enchantment {
     public static void onClientTick() {
         if (Minecraft.getInstance().player != null) {
             LocalPlayer pPlayer = Minecraft.getInstance().player;
-            if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(1)).containsKey(ModEnchantments.TRAIN_DASH.get()) && Keybindings.train_dash.isDown() && System.currentTimeMillis() >= trainDelay + 5000 && !dashing) {
-                look = pPlayer.getLookAngle();
-                dashing = true;
-                lookX = look.x * 0.5;
-                lookZ = look.z * 0.5;
-                pPlayer.setDeltaMovement(lookX, pPlayer.getDeltaMovement().y, lookZ);
-                trainDelay = System.currentTimeMillis();
-                ModMessages.sendToServer(new TrainDashC2SPacket(3));
-            } else if (dashing) {
-                if (dashing) {
-                    double d0 = Minecraft.getInstance().player.getDeltaMovement().x;
-                    double d1 = Minecraft.getInstance().player.getDeltaMovement().y;
-                    double d2 = Minecraft.getInstance().player.getDeltaMovement().z;
-
-                    if ((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)) <= 0.15) {
-                        System.out.println((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)));
-                        dashing = false;
-                        ModMessages.sendToServer(new TrainDashC2SPacket(0));
-                        trainDelay = System.currentTimeMillis();
-                    }
+            if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(1)).containsKey(ModEnchantments.TRAIN_DASH.get())) {
+                if (Keybindings.train_dash.isDown() && System.currentTimeMillis() >= trainDelay + 7000 && !dashing) {
+                    look = pPlayer.getLookAngle();
+                    dashing = true;
+                    lookX = look.x * 0.5;
+                    lookZ = look.z * 0.5;
                     pPlayer.setDeltaMovement(lookX, pPlayer.getDeltaMovement().y, lookZ);
-                    for (LivingEntity entity : pPlayer.level().getEntitiesOfClass(LivingEntity.class, pPlayer.getBoundingBox())) {
-                        if (entity != pPlayer) {
-                            if (dashing && System.currentTimeMillis() >= hitCooldown + 500) {
-                                hitCooldown = System.currentTimeMillis();
-                                trainDelay = System.currentTimeMillis();
-                                unluckyGirlfriend = pPlayer.level().getNearestEntity(LivingEntity.class, TargetingConditions.forCombat(), null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), pPlayer.getBoundingBox());
-                                ModMessages.sendToServer(new TrainDashC2SPacket(1));
+                    trainDelay = System.currentTimeMillis();
+                    ModMessages.sendToServer(new TrainDashC2SPacket(3));
+                } else if (dashing) {
+                    if (dashing) {
+                        double d0 = Minecraft.getInstance().player.getDeltaMovement().x;
+                        double d1 = Minecraft.getInstance().player.getDeltaMovement().y;
+                        double d2 = Minecraft.getInstance().player.getDeltaMovement().z;
+
+                        if ((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)) <= 0.15) {
+                            System.out.println((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)));
+                            EnchantmentHudOverlay.trainFrames = 0;
+                            dashing = false;
+                            ModMessages.sendToServer(new TrainDashC2SPacket(0));
+                            trainDelay = System.currentTimeMillis();
+                        }
+                        pPlayer.setDeltaMovement(lookX, pPlayer.getDeltaMovement().y, lookZ);
+                        for (LivingEntity entity : pPlayer.level().getEntitiesOfClass(LivingEntity.class, pPlayer.getBoundingBox())) {
+                            if (entity != pPlayer) {
+                                if (dashing && System.currentTimeMillis() >= hitCooldown + 500) {
+                                    EnchantmentHudOverlay.trainFrames = 0;
+                                    hitCooldown = System.currentTimeMillis();
+                                    trainDelay = System.currentTimeMillis();
+                                    unluckyGirlfriend = pPlayer.level().getNearestEntity(LivingEntity.class, TargetingConditions.forCombat(), null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), pPlayer.getBoundingBox());
+                                    ModMessages.sendToServer(new TrainDashC2SPacket(1));
+                                }
                             }
                         }
-                    }
-                    if (System.currentTimeMillis() >= trainDelay + 1500) {
-                        dashing = false;
-                        trainDelay = System.currentTimeMillis();
+                        if (System.currentTimeMillis() >= trainDelay + 1500) {
+                            EnchantmentHudOverlay.trainFrames = 0;
+                            dashing = false;
+                            trainDelay = System.currentTimeMillis();
+                        }
                     }
                 }
+            } else {
+                dashing = false;
+                trainDelay = System.currentTimeMillis();
+                EnchantmentHudOverlay.trainFrames = 0;
             }
         }
     }

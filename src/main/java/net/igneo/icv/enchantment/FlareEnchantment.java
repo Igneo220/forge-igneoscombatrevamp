@@ -1,5 +1,6 @@
 package net.igneo.icv.enchantment;
 
+import net.igneo.icv.client.EnchantmentHudOverlay;
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.FlareC2SPacket;
@@ -20,19 +21,26 @@ public class FlareEnchantment extends Enchantment {
 
     public static void onClientTick() {
         if (Minecraft.getInstance().player != null) {
-            if (EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(2)).containsKey(ModEnchantments.FLARE.get()) && Keybindings.flare.isDown() && !charging && System.currentTimeMillis() > chargeTime + 7000) {
-                charging = true;
-                chargeTime = System.currentTimeMillis();
-                ModMessages.sendToServer(new FlareSoundC2SPacket());
-            }
-            if (charging) {
-                ModMessages.sendToServer(new FlareParticleC2SPacket());
-                Minecraft.getInstance().player.setDeltaMovement(0,Minecraft.getInstance().player.getDeltaMovement().y,0);
-            }
-            if (charging && System.currentTimeMillis() >= chargeTime + 2500) {
-                ModMessages.sendToServer(new FlareC2SPacket());
+            if (EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(2)).containsKey(ModEnchantments.FLARE.get())) {
+                if (Keybindings.flare.isDown() && !charging && System.currentTimeMillis() > chargeTime + 7000) {
+                    charging = true;
+                    chargeTime = System.currentTimeMillis();
+                    ModMessages.sendToServer(new FlareSoundC2SPacket());
+                }
+                if (charging) {
+                    ModMessages.sendToServer(new FlareParticleC2SPacket());
+                    Minecraft.getInstance().player.setDeltaMovement(0, Minecraft.getInstance().player.getDeltaMovement().y, 0);
+                }
+                if (charging && System.currentTimeMillis() >= chargeTime + 2500) {
+                    EnchantmentHudOverlay.flareFrames = 0;
+                    ModMessages.sendToServer(new FlareC2SPacket());
+                    charging = false;
+                    chargeTime = System.currentTimeMillis();
+                }
+            } else {
                 charging = false;
                 chargeTime = System.currentTimeMillis();
+                EnchantmentHudOverlay.flareFrames = 0;
             }
         }
     }

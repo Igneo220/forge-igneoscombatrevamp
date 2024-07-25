@@ -33,11 +33,11 @@ public class SkyChargeEnchantment extends Enchantment {
                     }
                     charged = true;
                 } else if (charged) {
-                    chargeamount = (double) (System.currentTimeMillis() - charge) / 2000;
+                    chargeamount = (double) (charge - System.currentTimeMillis()) / 1000;
                     if (chargeamount >= 1.1) {
                         chargeamount = 1.1;
-                    } else if (chargeamount == 0) {
-                        chargeamount = 0.1;
+                    } else if (chargeamount <= 0.2) {
+                        chargeamount = 0;
                     }
                     pPlayer.addDeltaMovement(new Vec3(0, chargeamount, 0));
                     ModMessages.sendToServer(new SkyChargeC2SPacket(chargeamount));

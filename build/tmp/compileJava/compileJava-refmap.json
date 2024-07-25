@@ -6,6 +6,9 @@
     "net/igneo/icv/mixin/PlayerMixin": {
       "attack": "Lnet/minecraft/world/entity/player/Player;m_5706_(Lnet/minecraft/world/entity/Entity;)V"
     },
+    "net/igneo/icv/mixin/AnvilMenuMixin": {
+      "createResult": "Lnet/minecraft/world/inventory/AnvilMenu;m_6640_()V"
+    },
     "net/igneo/icv/mixin/ThrownTridentRendererMixin": {
       "render": "Lnet/minecraft/client/renderer/entity/ThrownTridentRenderer;m_7392_(Lnet/minecraft/world/entity/projectile/ThrownTrident;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V"
     },
@@ -18,6 +21,9 @@
     },
     "net/igneo/icv/mixin/ArrowMixin": {
       "tick": "Lnet/minecraft/world/entity/projectile/Arrow;m_8119_()V"
+    },
+    "net/igneo/icv/mixin/ItemStackMixin": {
+      "enchant": "Lnet/minecraft/world/item/ItemStack;m_41663_(Lnet/minecraft/world/item/enchantment/Enchantment;I)V"
     }
   },
   "data": {
@@ -27,6 +33,9 @@
       },
       "net/igneo/icv/mixin/PlayerMixin": {
         "attack": "Lnet/minecraft/world/entity/player/Player;m_5706_(Lnet/minecraft/world/entity/Entity;)V"
+      },
+      "net/igneo/icv/mixin/AnvilMenuMixin": {
+        "createResult": "Lnet/minecraft/world/inventory/AnvilMenu;m_6640_()V"
       },
       "net/igneo/icv/mixin/ThrownTridentRendererMixin": {
         "render": "Lnet/minecraft/client/renderer/entity/ThrownTridentRenderer;m_7392_(Lnet/minecraft/world/entity/projectile/ThrownTrident;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V"
@@ -40,6 +49,9 @@
       },
       "net/igneo/icv/mixin/ArrowMixin": {
         "tick": "Lnet/minecraft/world/entity/projectile/Arrow;m_8119_()V"
+      },
+      "net/igneo/icv/mixin/ItemStackMixin": {
+        "enchant": "Lnet/minecraft/world/item/ItemStack;m_41663_(Lnet/minecraft/world/item/enchantment/Enchantment;I)V"
       }
     }
   }

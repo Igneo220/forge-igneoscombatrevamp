@@ -1,4 +1,6 @@
 {
+    "who.made.translation": "Arsenic made like 2/3ds of this file",
+
     "key.categories.icv.enchantments": "Enchantment Keybinds",
 
     "enchantment.icv.accelerate": "Accelerate",
@@ -18,8 +20,11 @@
     "enchantment.icv.blizzard.desc": "Unleash a blizzard unto your foes, dealing 3 damage per icicle that hits, and applying a heavy slowness",
     "key.icv.blizzard": "Activate Blizzard",
 
-    "enchantment.icv.breakthrough": "breakthrough",
+    "enchantment.icv.breakthrough": "Breakthrough",
     "enchantment.icv.breakthrough.desc": "Makes this weapon able to break shields. Axes no longer have this functionality",
+
+    "enchantment.icv.brute_touch": "Brute Touch",
+    "enchantment.icv.brute_touch.desc": "Gain the vanilla equivalent of efficiency 7, but blocks don't drop items anymore",
 
     "enchantment.icv.comet_strike": "Comet Strike",
     "enchantment.icv.comet_strike.desc": "When you crouch, summon a comet from the ground. Hit it to make it explode where it lands, scaling with how much damage it takes. You can hit it multiple times. It despawns on its third chime",

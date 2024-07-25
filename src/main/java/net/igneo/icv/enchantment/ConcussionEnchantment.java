@@ -1,5 +1,6 @@
 package net.igneo.icv.enchantment;
 
+import net.igneo.icv.client.EnchantmentHudOverlay;
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.ConcussC2SPacket;
@@ -14,7 +15,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 public class ConcussionEnchantment extends Enchantment {
     //public static LocalPlayer pPlayer = Minecraft.getInstance().player;
-    private static long concussTime = -5000;
+    public static long concussTime = -5000;
     private static boolean searchTarget;
     private static int targetID;
     public ConcussionEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
@@ -28,6 +29,7 @@ public class ConcussionEnchantment extends Enchantment {
             if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(2)).containsKey(ModEnchantments.CONCUSSION.get())) {
                 if (Keybindings.concussion.isDown() && System.currentTimeMillis() >= concussTime + 5000) {
                     //lookDirection = pPlayer.getLookAngle();
+                    EnchantmentHudOverlay.concussFrames = 0;
                     searchTarget = true;
                     concussTime = System.currentTimeMillis();
                     pPlayer.setDeltaMovement(pPlayer.getLookAngle().scale(1.5).x,pPlayer.getLookAngle().scale(0.5).y,pPlayer.getLookAngle().scale(1.5).z);
@@ -52,6 +54,9 @@ public class ConcussionEnchantment extends Enchantment {
                 } else {
                     targetID = 0;
                 }
+            } else {
+                concussTime = System.currentTimeMillis();
+                EnchantmentHudOverlay.concussFrames = 0;
             }
         }
     }

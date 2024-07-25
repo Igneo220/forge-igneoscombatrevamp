@@ -1,5 +1,6 @@
 package net.igneo.icv.enchantment;
 
+import net.igneo.icv.client.EnchantmentHudOverlay;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
@@ -19,9 +20,13 @@ public class BlackHoleEnchantment extends Enchantment {
         if (Minecraft.getInstance().player != null) {
             LocalPlayer pPlayer = Minecraft.getInstance().player;
             pPlayer.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-                if (System.currentTimeMillis() > enchVar.getHoleCooldown() + 29000 && EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(3)).containsKey(ModEnchantments.BLACK_HOLE.get())) {
+                if(!EnchantmentHelper.getEnchantments(pPlayer.getInventory().armor.get(3)).containsKey(ModEnchantments.BLACK_HOLE.get())) {
+                    EnchantmentHudOverlay.holeFrames = 0;
+                    enchVar.setHoleCooldown(System.currentTimeMillis());
+                } else if (System.currentTimeMillis() > enchVar.getHoleCooldown() + 28000 && EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(3)).containsKey(ModEnchantments.BLACK_HOLE.get())) {
                     if (Keybindings.black_hole.isDown()) {
                         ModMessages.sendToServer(new BlockHoleC2SPacket());
+                        EnchantmentHudOverlay.holeFrames = 0;
                         enchVar.setHoleCooldown(System.currentTimeMillis());
                     }
                 }

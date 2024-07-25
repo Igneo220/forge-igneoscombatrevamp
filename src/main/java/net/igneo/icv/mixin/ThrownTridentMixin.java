@@ -111,7 +111,8 @@ public class ThrownTridentMixin extends AbstractArrow{
                     scale = 0.05;
                 }
                 //System.out.println(scale);
-                Vec3 vec3 = (new Vec3(d0, d1, d2)).scale(scale);
+                pEntity.setDeltaMovement(0,1,0);
+                Vec3 vec3 = (new Vec3(d0, pEntity.getDeltaMovement().y, d2)).scale(scale);
                 pEntity.setDeltaMovement(vec3);
             }
         }

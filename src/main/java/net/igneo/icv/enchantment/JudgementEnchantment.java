@@ -1,5 +1,6 @@
 package net.igneo.icv.enchantment;
 
+import net.igneo.icv.client.EnchantmentHudOverlay;
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.JudgementC2SPacket;
@@ -28,6 +29,7 @@ public class JudgementEnchantment extends Enchantment {
             LocalPlayer pPlayer = Minecraft.getInstance().player;
             if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(1)).containsKey(ModEnchantments.JUDGEMENT.get())) {
                 if (Keybindings.judgement.isDown() && System.currentTimeMillis() >= judgeTime + 5000) {
+                    EnchantmentHudOverlay.judgeFrames = 0;
                     lookDirection = pPlayer.getLookAngle();
                     searchTarget = true;
                     judgeTime = System.currentTimeMillis();
@@ -45,6 +47,9 @@ public class JudgementEnchantment extends Enchantment {
                         }
                     }
                 }
+            } else {
+                judgeTime = System.currentTimeMillis();
+                EnchantmentHudOverlay.judgeFrames = 0;
             }
         }
     }

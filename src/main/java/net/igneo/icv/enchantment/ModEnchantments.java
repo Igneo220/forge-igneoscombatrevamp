@@ -16,9 +16,17 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ModEnchantments {
     public static final DeferredRegister<Enchantment> ENCHANTMENTS =
             DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, ICV.MOD_ID);
+
+    public static RegistryObject<Enchantment> BRUTE_TOUCH =
+            ENCHANTMENTS.register("brute_touch",
+                    () -> new BlitzEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND));
 
     public static RegistryObject<Enchantment> BLITZ =
             ENCHANTMENTS.register("blitz",

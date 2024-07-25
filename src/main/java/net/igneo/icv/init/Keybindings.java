@@ -3,6 +3,7 @@ package net.igneo.icv.init;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.igneo.icv.ICV;
 import net.minecraft.client.KeyMapping;
+import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.settings.KeyConflictContext;
 import org.lwjgl.glfw.GLFW;
 
@@ -84,4 +85,10 @@ public class Keybindings {
             InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_B,
             ICV_CATEGORY
     );
+    //public static final KeyMapping scroll_up = new KeyMapping(
+    //        "key.icv.black_hole",
+    //        KeyConflictContext.GUI,
+    //        InputConstants.Type.MOUSE, InputEvent.MouseScrollingEvent,
+    //        ICV_CATEGORY
+    //);
 }

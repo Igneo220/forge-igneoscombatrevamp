@@ -1,5 +1,6 @@
 package net.igneo.icv.enchantment;
 
+import net.igneo.icv.client.EnchantmentHudOverlay;
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.ParryC2SPacket;
@@ -20,11 +21,17 @@ public class ParryEnchantment extends Enchantment {
     public static void onKeyInputEvent() {
         if (Minecraft.getInstance().player != null) {
             LocalPlayer pPlayer = Minecraft.getInstance().player;
-            if (Keybindings.parry.isDown() && EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(2)).containsKey(ModEnchantments.PARRY.get()) && System.currentTimeMillis() >= parryCooldown + 2000) {
+            if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(2)).containsKey(ModEnchantments.PARRY.get())) {
+                if (Keybindings.parry.isDown() && System.currentTimeMillis() >= parryCooldown + 3000) {
+                    EnchantmentHudOverlay.parryFrames = 0;
+                    parryCooldown = System.currentTimeMillis();
+                    parrying = true;
+                    System.out.println("parrying");
+                    ModMessages.sendToServer(new ParryC2SPacket());
+                }
+            } else {
                 parryCooldown = System.currentTimeMillis();
-                parrying = true;
-                System.out.println("parrying");
-                ModMessages.sendToServer(new ParryC2SPacket());
+                EnchantmentHudOverlay.parryFrames = 0;
             }
         }
     }

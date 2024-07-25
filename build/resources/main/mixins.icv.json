@@ -7,13 +7,17 @@
     "ThrownTridentRendererMixin"
   ],
   "mixins": [
-    "ThrownTridentMixin",
+    "AnvilMenuMixin",
     "ArrowMixin",
     "BowItemMixin",
     "CrossbowItemMixin",
     "EnchantmentHelperMixin",
+    "EnchantmentMenuMixin",
+    "EnchantmentScreenMixin",
+    "ItemStackMixin",
     "LivingEntityMixin",
     "PlayerMixin",
+    "ThrownTridentMixin",
     "TridentItemMixin"
   ]
 }

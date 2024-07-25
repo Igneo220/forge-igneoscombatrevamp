@@ -10,6 +10,8 @@ import net.igneo.icv.networking.packet.BlitzNBTUpdateS2CPacket;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.sound.ModSounds;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.MouseHandler;
+import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -30,9 +32,14 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuKeyEvent;
+import javax.swing.event.MenuKeyListener;
 
 import static java.lang.Math.abs;
 import static net.igneo.icv.enchantment.BlitzEnchantment.ATTACK_SPEED_MODIFIER_UUID;
@@ -40,7 +47,16 @@ import static net.igneo.icv.enchantment.SiphonEnchantment.consumeClick;
 
 @Mod.EventBusSubscriber(modid = ICV.MOD_ID)
 public class ModEvents {
-    private static boolean joined = false;
+    public static int enchShift = 0;
+    public static int enchLength = 0;
+    @SubscribeEvent
+    public static void blockBreakEvent(BlockEvent.BreakEvent event) {
+        if (EnchantmentHelper.getEnchantments(event.getPlayer().getMainHandItem()).containsKey(ModEnchantments.BRUTE_TOUCH.get())) {
+            event.getLevel().setBlock(event.getPos(),Blocks.AIR.defaultBlockState(),2);
+            event.getPlayer().getMainHandItem().setDamageValue(event.getPlayer().getMainHandItem().getDamageValue() + 1);
+            event.setCanceled(true);
+        }
+    }
     @SubscribeEvent
     public static void livingHurtEvent(LivingHurtEvent event) {
         if (event.getEntity() instanceof ServerPlayer) {
@@ -91,17 +107,7 @@ public class ModEvents {
                 } else {
                     consumeClick = false;
                 }
-                CometStrikeEnchantment.onKeyInputEvent();
-                BlackHoleEnchantment.onKeyInputEvent();
-                ConcussionEnchantment.onKeyInputEvent();
-                KineticEnchantment.onKeyInputEvent();
-                CounterweightedEnchantment.onKeyInputEvent();
-                IncapacitateEnchantment.onKeyInputEvent();
-                JudgementEnchantment.onKeyInputEvent();
-                RendEnchantment.onKeyInputEvent();
-                ParryEnchantment.onKeyInputEvent();
-                SmiteEnchantment.onKeyInputEvent();
-                WardenScreamEnchantment.onKeyInputEvent();
+
             }
         }
     }
@@ -211,6 +217,20 @@ public class ModEvents {
                 TempoTheftEnchantment.onClientTick();
                 TrainDashEnchantment.onClientTick();
                 WardenspineEnchantment.onClientTick();
+
+                if (Minecraft.getInstance().player != null) {
+                    CometStrikeEnchantment.onKeyInputEvent();
+                    BlackHoleEnchantment.onKeyInputEvent();
+                    ConcussionEnchantment.onKeyInputEvent();
+                    KineticEnchantment.onKeyInputEvent();
+                    CounterweightedEnchantment.onKeyInputEvent();
+                    IncapacitateEnchantment.onKeyInputEvent();
+                    JudgementEnchantment.onKeyInputEvent();
+                    RendEnchantment.onKeyInputEvent();
+                    ParryEnchantment.onKeyInputEvent();
+                    SmiteEnchantment.onKeyInputEvent();
+                    WardenScreamEnchantment.onKeyInputEvent();
+                }
             }
         });
     }

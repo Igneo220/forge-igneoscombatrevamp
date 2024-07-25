@@ -1,6 +1,7 @@
 package net.igneo.icv.mixin;
 
 import net.igneo.icv.enchantment.ModEnchantments;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -19,9 +20,21 @@ public class EnchantmentHelperMixin {
      * @author Igneo
      * @reason wont exist anymore
      */
-
     @Overwrite
     public static int getLoyalty(ItemStack pStack) {
         return 3;
+    }
+
+    /**
+     * @author Igneo220
+     * @reason removing efficiency adding brute touch
+     */
+    @Overwrite
+    public static int getBlockEfficiency(LivingEntity pEntity) {
+        if (EnchantmentHelper.getEnchantmentLevel(ModEnchantments.BRUTE_TOUCH.get(),pEntity) == 1) {
+            return 7;
+        } else {
+            return 0;
+        }
     }
 }

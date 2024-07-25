@@ -1,5 +1,6 @@
 package net.igneo.icv.enchantment;
 
+import net.igneo.icv.client.EnchantmentHudOverlay;
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.SmiteC2SPacket;
@@ -35,21 +36,26 @@ public class SmiteEnchantment extends Enchantment {
                     System.out.println("shooting bolts");
                     smiteTime = System.currentTimeMillis();
                     ++boltsShot;
-                    pPlayer.addDeltaMovement(new Vec3(pPlayer.getLookAngle().x/10,0,pPlayer.getLookAngle().z/10).reverse());
+                    pPlayer.addDeltaMovement(new Vec3(pPlayer.getLookAngle().x/10,-0.05,pPlayer.getLookAngle().z/10).reverse());
                     ModMessages.sendToServer(new SmiteC2SPacket(boltsShot));
                 } else if (boltsShot > 2 && smiting) {
+                    EnchantmentHudOverlay.smiteFrames = 0;
                     smiteTime = System.currentTimeMillis();
                     System.out.println("finished");
                     smiting = false;
                 }
-                if (smiting) {
+                if (smiting && !Keybindings.smite.isDown()) {
                     pPlayer.addDeltaMovement(new Vec3(0,0.05,0));
                 }
                 if (pPlayer.onGround() && System.currentTimeMillis() > smiteTime + 200 && smiting) {
+                    EnchantmentHudOverlay.smiteFrames = 0;
                     smiting = false;
                     smiteTime = System.currentTimeMillis();
                     System.out.println("finished");
                 }
+            } else {
+                smiteTime = System.currentTimeMillis();
+                EnchantmentHudOverlay.smiteFrames = 0;
             }
         }
     }
