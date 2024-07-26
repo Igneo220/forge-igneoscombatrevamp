@@ -124,9 +124,13 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
             ItemStack itemstack = this.enchantSlots.getItem(0);
             ItemStack itemstack1 = this.enchantSlots.getItem(1);
             //int i = pId + 1;
-            if ((itemstack1.isEmpty() || itemstack1.getCount() < 1) && !pPlayer.getAbilities().instabuild) {
+            if ((itemstack1.isEmpty() || itemstack1.getCount() < 1)) {
                 return false;
-            } else if (itemstack.isEmpty() || (pPlayer.experienceLevel < 2 || !pPlayer.getAbilities().instabuild) && !pPlayer.isCreative()) {
+            } else if (itemstack.isEmpty() || (pPlayer.experienceLevel < 2 || pPlayer.isCreative())) {
+                System.out.println(itemstack.isEmpty());
+                System.out.println(pPlayer.experienceLevel < 2);
+                System.out.println(!pPlayer.getAbilities().instabuild);
+                System.out.println(pPlayer.isCreative());
                 return false;
             } else {
                 this.access.execute((level, tablePos) -> {
@@ -182,13 +186,15 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
                     if (localEnchShift + 3 < ModEvents.enchLength) {
                         ++localEnchShift;
                     }
-                } else if (pId == -2) {
+                } else if (pId == -2 && localEnchShift > 0) {
                     --localEnchShift;
                 }
             } else {
                 localEnchShift = 0;
             }
-            ModMessages.sendToPlayer(new EnchTableUpdateS2CPacket(localEnchShift),(ServerPlayer) pPlayer);
+            if (pPlayer instanceof ServerPlayer) {
+                ModMessages.sendToPlayer(new EnchTableUpdateS2CPacket(localEnchShift), (ServerPlayer) pPlayer);
+            }
             slotsChanged(enchantSlots);
             return false;
         }
