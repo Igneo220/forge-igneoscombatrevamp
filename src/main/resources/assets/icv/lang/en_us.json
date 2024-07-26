@@ -108,6 +108,7 @@
     "enchantment.icv.smite": "Smite",
     "enchantment.icv.smite.desc": "Rise up into the air, and activate again to throw lightning bolts at your enemies",
     "key.icv.smite": "Activate Smite",
+    "entity.icv.bolt": "Lightning Bolt"
 
     "enchantment.icv.stone_caller": "Stone Caller",
     "enchantment.icv.stone_caller.desc": "Hold down crouch to be launched up into the air atop a pillar of stone. Breaks after a few seconds, and becomes usable once more",
