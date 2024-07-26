@@ -3,11 +3,16 @@ package net.igneo.icv.mixin;
 import net.igneo.icv.ICV;
 import net.igneo.icv.enchantment.ModEnchantments;
 import net.igneo.icv.event.ModEvents;
+import net.igneo.icv.networking.ModMessages;
+import net.igneo.icv.networking.packet.EnchTableUpdateS2CPacket;
 import net.minecraft.Util;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -33,6 +38,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EnchantmentTableBlock;
 import net.minecraft.world.level.block.entity.ChiseledBookShelfBlockEntity;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -72,6 +80,8 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
     public final int[] enchantClue = new int[]{-1, -1, -1};
     @Shadow
     public final int[] levelClue = new int[]{-1, -1, -1};
+
+    private static int localEnchShift = 0;
     @Shadow
     private final Container enchantSlots = new SimpleContainer(2) {
         /**
@@ -87,47 +97,11 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
     private final ContainerLevelAccess access;
     @Shadow
     public int[] costs = new int[3];
+    @OnlyIn(Dist.CLIENT)
     protected EnchantmentMenuMixin(int pContainerId, Inventory pPlayerInventory, ContainerLevelAccess pAccess) {
         super(MenuType.ENCHANTMENT, pContainerId);
-        this.access = pAccess;
-        this.addSlot(new Slot(this.enchantSlots, 0, 15, 47) {
-            /**
-             * Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
-             */
-            public boolean mayPlace(ItemStack p_39508_) {
-                return true;
-            }
-
-            /**
-             * Returns the maximum stack size for a given slot (usually the same as getInventoryStackLimit(), but 1 in the
-             * case of armor slots)
-             */
-            public int getMaxStackSize() {
-                return 1;
-            }
-        });
-        this.addSlot(new Slot(this.enchantSlots, 1, 35, 47) {
-            /**
-             * Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
-             */
-            public boolean mayPlace(ItemStack p_39517_) {
-                return p_39517_.is(net.minecraftforge.common.Tags.Items.ENCHANTING_FUELS);
-            }
-        });
-
-        for(int i = 0; i < 3; ++i) {
-            for(int j = 0; j < 9; ++j) {
-                this.addSlot(new Slot(pPlayerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
-            }
-        }
-
-        for(int k = 0; k < 9; ++k) {
-            this.addSlot(new Slot(pPlayerInventory, k, 8 + k * 18, 142));
-        }
-
-        this.addDataSlot(DataSlot.shared(this.costs, 0));
-        this.addDataSlot(DataSlot.shared(this.costs, 1));
-        this.addDataSlot(DataSlot.shared(this.costs, 2));
+        //super(MenuType.ENCHANTMENT, pContainerId);
+        access = pAccess;
     }
 
     @Override @Shadow
@@ -203,6 +177,18 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
             }
         } else {
             Util.logAndPauseIfInIde(pPlayer.getName() + " pressed invalid button id: " + pId);
+            if (ModEvents.enchLength > 3) {
+                if (pId == -1) {
+                    if (localEnchShift + 3 < ModEvents.enchLength) {
+                        ++localEnchShift;
+                    }
+                } else if (pId == -2) {
+                    --localEnchShift;
+                }
+            } else {
+                localEnchShift = 0;
+            }
+            ModMessages.sendToPlayer(new EnchTableUpdateS2CPacket(localEnchShift),(ServerPlayer) pPlayer);
             slotsChanged(enchantSlots);
             return false;
         }
@@ -227,7 +213,7 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
                         List<EnchantmentInstance> list = this.getChiselEnchantmentList(level,tablePos,itemstack);
                         if (list != null && !list.isEmpty()) {
                             if(l < list.size()) {
-                                EnchantmentInstance enchantmentinstance = list.get(l + ModEvents.enchShift);
+                                EnchantmentInstance enchantmentinstance = list.get(l + localEnchShift);
                                 this.enchantClue[l] = BuiltInRegistries.ENCHANTMENT.getId(enchantmentinstance.enchantment);
                                 this.levelClue[l] = enchantmentinstance.level;
                             } else {
@@ -256,7 +242,8 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
     @Overwrite
     public void removed(Player pPlayer) {
         super.removed(pPlayer);
-        ModEvents.enchShift = 0;
+        ModEvents.usedEnchTable = null;
+        localEnchShift = 0;
         ModEvents.enchLength = 0;
         this.access.execute((p_39469_, p_39470_) -> {
             this.clearContainer(pPlayer, this.enchantSlots);
@@ -293,7 +280,7 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
             }
         }
         if (list.size() != ModEvents.enchLength) {
-            ModEvents.enchShift = 0;
+            localEnchShift = 0;
         }
         ModEvents.enchLength = list.size();
         return list;

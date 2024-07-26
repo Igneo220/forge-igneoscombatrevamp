@@ -47,6 +47,7 @@ import static net.igneo.icv.enchantment.SiphonEnchantment.consumeClick;
 
 @Mod.EventBusSubscriber(modid = ICV.MOD_ID)
 public class ModEvents {
+    public static BlockPos usedEnchTable;
     public static int enchShift = 0;
     public static int enchLength = 0;
     @SubscribeEvent

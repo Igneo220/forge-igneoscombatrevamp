@@ -58,19 +58,10 @@ public class EnchantmentScreenMixin extends AbstractContainerScreen<EnchantmentM
 
     @Override
     public boolean mouseScrolled(double pMouseX, double pMouseY, double pDelta) {
-        if (ModEvents.enchLength > 3) {
-            if (-pDelta > 0) {
-                if (ModEvents.enchShift + 3 < ModEvents.enchLength) {
-                    ModEvents.enchShift += (int) -pDelta;
-                    this.minecraft.gameMode.handleInventoryButtonClick((this.menu).containerId, -1);
-                }
-            } else if (ModEvents.enchShift > 0) {
-                ModEvents.enchShift -= (int) pDelta;
-                this.minecraft.gameMode.handleInventoryButtonClick((this.menu).containerId, -1);
-            }
-        } else {
-            ModEvents.enchShift = 0;
+        if (-pDelta > 0) {
             this.minecraft.gameMode.handleInventoryButtonClick((this.menu).containerId, -1);
+        } else {
+            this.minecraft.gameMode.handleInventoryButtonClick((this.menu).containerId, -2);
         }
         return super.mouseScrolled(pMouseX, pMouseY, pDelta);
     }

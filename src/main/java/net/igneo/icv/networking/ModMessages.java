@@ -228,6 +228,11 @@ public class ModMessages {
                 .encoder(WhistlerUpdateS2CPacket::toBytes)
                 .consumerMainThread(WhistlerUpdateS2CPacket::handle)
                 .add();
+        net.messageBuilder(EnchTableUpdateS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(EnchTableUpdateS2CPacket::new)
+                .encoder(EnchTableUpdateS2CPacket::toBytes)
+                .consumerMainThread(EnchTableUpdateS2CPacket::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG message) {

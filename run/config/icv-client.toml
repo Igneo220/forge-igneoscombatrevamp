@@ -1,0 +1,15 @@
+
+["ICV CONFIGS"]
+	#addition to the X coordinate of your helmet cooldown indicators
+	"Helmet X offset" = 0
+	#addition to the Y coordinate of your helmet cooldown indicators
+	"Helmet Y offset" = 0
+	#addition to the X coordinate of your chestplate cooldown indicators
+	"Chestplate X offset" = 0
+	#addition to the Y coordinate of your chestplate cooldown indicators
+	"Chestplate Y offset" = 0
+	#addition to the Y coordinate of your leggings cooldown indicators
+	"Leggings X offset" = 0
+	#addition to the Y coordinate of your leggings cooldown indicators
+	"Leggings Y offset" = 0
+
