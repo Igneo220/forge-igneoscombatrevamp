@@ -1,6 +1,7 @@
 package net.igneo.icv.entity.custom;
 
 import net.igneo.icv.sound.ModSounds;
+import net.minecraft.client.resources.GrassColorReloadListener;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -13,6 +14,7 @@ import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.Level.ExplosionInteraction;
+import net.minecraft.world.level.block.GrassBlock;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -62,7 +64,6 @@ public class CometEntity extends AbstractHurtingProjectile {
         if (explosionPower > 40) {
             explosionPower = 40;
         }
-        System.out.println("power: " + this.explosionPower);
         this.markHurt();
         Entity entity = pSource.getEntity();
         if (entity != null) {

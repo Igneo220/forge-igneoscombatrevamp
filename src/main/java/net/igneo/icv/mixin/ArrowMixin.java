@@ -53,7 +53,7 @@ import java.util.List;
 import static java.lang.Math.abs;
 import static net.igneo.icv.enchantment.RendEnchantment.rendHit;
 
-@Mixin(Arrow.class)
+@Mixin(value = Arrow.class,priority = 999999999)
 public class ArrowMixin extends AbstractArrow {
     @Unique
     private List<LivingEntity> phaseList = new ArrayList<LivingEntity>();
@@ -84,7 +84,6 @@ public class ArrowMixin extends AbstractArrow {
             entity.hurt(damagesource, 0);
             if (entity instanceof LivingEntity) {
                 LivingEntity entity2 = (LivingEntity) entity;
-                System.out.println(entity2.getHealth());
                 if (this.getOwner() instanceof ServerPlayer) {
                     ModMessages.sendToPlayer(new RendS2CPacket(pResult.getEntity().getId()),(ServerPlayer) this.getOwner());
                 }
@@ -223,19 +222,16 @@ public class ArrowMixin extends AbstractArrow {
             }
         }
         if (this.getTags().contains("whistle")){
-            //System.out.println("we do be whistling");
             if (this.getOwner() != null) {
                 this.setDeltaMovement(this.getOwner().getLookAngle().scale(0.4));
             }
         }
         if (this.getTags().contains("mitosis")){
-            //System.out.println("mitosis moment");
             if (!level().isClientSide) {
                 double d0 = Math.abs(this.getDeltaMovement().x);
                 double d1 = Math.abs(this.getDeltaMovement().y);
                 double d2 = Math.abs(this.getDeltaMovement().z);
                 if (System.currentTimeMillis() >= arrowtime + 250 && !this.inGround && !this.isInWater() && (d0 + d1 + d2) >= 2) {
-                    System.out.println("splitting!!");
                     if (this.level() instanceof ServerLevel) {
                         ServerLevel level = (ServerLevel) this.level();
                         level.playSound(null,this.blockPosition(), ModSounds.MITOSIS.get(),SoundSource.PLAYERS);

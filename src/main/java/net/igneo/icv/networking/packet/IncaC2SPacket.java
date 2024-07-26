@@ -42,7 +42,6 @@ public class IncaC2SPacket {
             Thread DetectEntity = new Thread(() -> {
                 for (Entity entity : level.getAllEntities()) {
                     if (entity.distanceTo(player) <= 10 && entity != player) {
-                        System.out.println("running!!!");
                         if (entity instanceof LivingEntity) {
                             LivingEntity newEntity = (LivingEntity) entity;
                             newEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 5), player);

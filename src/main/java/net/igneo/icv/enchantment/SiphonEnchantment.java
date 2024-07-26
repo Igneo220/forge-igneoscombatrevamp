@@ -47,7 +47,6 @@ public class SiphonEnchantment extends Enchantment {
                     helmHealth = helm.getMaxDamage() - helm.getDamageValue();
                     healAmount = pPlayer.getMaxHealth() - pPlayer.getHealth();
                     if (bootsHealth > 50 && legsHealth > 50 && chestHealth > 50 && helmHealth > 50 && healAmount > 1) {
-                        System.out.println("siphoning");
                         ModMessages.sendToServer(new SiphonC2SPacket());
                         pPlayer.getInventory().getArmor(0).setDamageValue(pPlayer.getInventory().getArmor(0).getDamageValue() + 25);
                         pPlayer.getInventory().getArmor(1).setDamageValue(pPlayer.getInventory().getArmor(1).getDamageValue() + 25);

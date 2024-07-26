@@ -2,6 +2,7 @@ package net.igneo.icv.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.igneo.icv.ICV;
+import net.igneo.icv.config.ICVClientConfigs;
 import net.igneo.icv.enchantment.ModEnchantments;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.minecraft.client.Minecraft;
@@ -83,32 +84,32 @@ public class EnchantmentHudOverlay {
         //GuiGraphics graphic = new GuiGraphics(gui.getMinecraft(),gui.getMinecraft().renderBuffers().bufferSource());
         //if(Minecraft.getInstance().options.keyUp.isDown()) {
         if(!doBeIcin && System.currentTimeMillis() < iceTime + 21000 && EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(3)).containsKey(ModEnchantments.BLIZZARD.get()) && (blizzardFrames * 16) < 2384) {
-            poseStack.blit(BLIZZARD, x - 94 + (1), y - 65, 0, 16 * blizzardFrames, 16, 16, 16, 2384);
+            poseStack.blit(BLIZZARD, x - 94 + ICVClientConfigs.HELMET_X.get(), y - 65 + ICVClientConfigs.HELMET_Y.get(), 0, 16 * blizzardFrames, 16, 16, 16, 2384);
             if (System.currentTimeMillis() >= animTime + 125) {
                 ++blizzardFrames;
             }
         }
         if(!smiting && System.currentTimeMillis() < smiteTime + 21000 && EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(3)).containsKey(ModEnchantments.SMITE.get()) && (smiteFrames * 16) < 2272) {
-            poseStack.blit(SMITE, x - 94 + (1), y - 65, 0, 16 * smiteFrames, 16, 16, 16, 2272);
+            poseStack.blit(SMITE, x - 94 + ICVClientConfigs.HELMET_X.get(), y - 65 + ICVClientConfigs.HELMET_Y.get(), 0, 16 * smiteFrames, 16, 16, 16, 2272);
             if (System.currentTimeMillis() >= animTime + 125) {
                 ++smiteFrames;
             }
         }
         if(System.currentTimeMillis() < wardenTime + 20000 && EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(3)).containsKey(ModEnchantments.WARDEN_SCREAM.get()) && (screamFrames * 16) < 1920) {
-            poseStack.blit(WARDEN_SCREAM, x - 94 + (1), y - 65, 0, 16 * screamFrames, 16, 16, 16, 1920);
+            poseStack.blit(WARDEN_SCREAM, x - 94 + ICVClientConfigs.HELMET_X.get(), y - 65 + ICVClientConfigs.HELMET_Y.get(), 0, 16 * screamFrames, 16, 16, 16, 1920);
             if (System.currentTimeMillis() >= animTime + 125) {
                 ++screamFrames;
             }
         }
         if(!flameo && System.currentTimeMillis() < flameTime + 20000 && EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(3)).containsKey(ModEnchantments.FLAMETHROWER.get()) && (flameFrames * 16) < 2368) {
-            poseStack.blit(FLAMETHROWER, x - 94 + (1), y - 65, 0, 16 * flameFrames, 16, 16, 16, 2368);
+            poseStack.blit(FLAMETHROWER, x - 94 + ICVClientConfigs.HELMET_X.get(), y - 65 + ICVClientConfigs.HELMET_Y.get(), 0, 16 * flameFrames, 16, 16, 16, 2368);
             if (System.currentTimeMillis() >= animTime + 125) {
                 ++flameFrames;
             }
         }
         Minecraft.getInstance().player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
             if (System.currentTimeMillis() < enchVar.getHoleCooldown() + 32000 && EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(3)).containsKey(ModEnchantments.BLACK_HOLE.get()) && (holeFrames * 16) < 3680) {
-                poseStack.blit(BLACK_HOLE, x - 94 + (1), y - 65, 0, 16 * holeFrames, 16, 16, 16, 3680);
+                poseStack.blit(BLACK_HOLE, x - 94 + ICVClientConfigs.HELMET_X.get(), y - 65 + ICVClientConfigs.HELMET_Y.get(), 0, 16 * holeFrames, 16, 16, 16, 3680);
                 if (System.currentTimeMillis() >= animTime + 125) {
                     ++holeFrames;
                 }
@@ -118,19 +119,19 @@ public class EnchantmentHudOverlay {
 
 
         if(System.currentTimeMillis() < concussTime + 21000 && EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(2)).containsKey(ModEnchantments.CONCUSSION.get()) && (concussFrames * 16) < 960) {
-            poseStack.blit(CONCUSSION, x - 94 + (1) + 16, y - 65, 0, 16 * concussFrames, 16, 16, 16, 960);
+            poseStack.blit(CONCUSSION, x - 94 + (1) + 16 + ICVClientConfigs.CHESTPLATE_X.get(), y - 65 + ICVClientConfigs.CHESTPLATE_Y.get(), 0, 16 * concussFrames, 16, 16, 16, 960);
             if (System.currentTimeMillis() >= animTime + 125) {
                 ++concussFrames;
             }
         }
         if(System.currentTimeMillis() < parryCooldown + 6000 && EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(2)).containsKey(ModEnchantments.PARRY.get()) && (parryFrames * 16) < 672) {
-            poseStack.blit(PARRY, x - 94 + (1) + 16, y - 65, 0, 16 * parryFrames, 16, 16, 16, 672);
+            poseStack.blit(PARRY, x - 94 + (1) + 16 + ICVClientConfigs.CHESTPLATE_X.get(), y - 65 + ICVClientConfigs.CHESTPLATE_Y.get(), 0, 16 * parryFrames, 16, 16, 16, 672);
             if (System.currentTimeMillis() >= animTime + 125) {
                 ++parryFrames;
             }
         }
         if(!charging && System.currentTimeMillis() < chargeTime + 10000 && EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(2)).containsKey(ModEnchantments.FLARE.get()) && (flareFrames * 16) < 1184) {
-            poseStack.blit(FLARE, x - 94 + (1) + 16, y - 65, 0, 16 * flareFrames, 16, 16, 16, 1184);
+            poseStack.blit(FLARE, x - 94 + (1) + 16 + ICVClientConfigs.CHESTPLATE_X.get(), y - 65 + ICVClientConfigs.CHESTPLATE_Y.get(), 0, 16 * flareFrames, 16, 16, 16, 1184);
             if (System.currentTimeMillis() >= animTime + 125) {
                 ++flareFrames;
             }
@@ -139,19 +140,19 @@ public class EnchantmentHudOverlay {
 
 
         if(System.currentTimeMillis() < incaCool + 15000 && EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(1)).containsKey(ModEnchantments.INCAPACITATE.get()) && (incaFrames * 16) < 1648) {
-            poseStack.blit(INCAPACITATE, x - 94 + (1) + 32, y - 65, 0, 16 * incaFrames, 16, 16, 16, 1648);
+            poseStack.blit(INCAPACITATE, x - 94 + (1) + 32 + ICVClientConfigs.LEGGINGS_X.get(), y - 65 + ICVClientConfigs.LEGGINGS_Y.get(), 0, 16 * incaFrames, 16, 16, 16, 1648);
             if (System.currentTimeMillis() >= animTime + 125) {
                 ++incaFrames;
             }
         }
         if(!dashing && System.currentTimeMillis() < trainDelay + 10000 && EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(1)).containsKey(ModEnchantments.TRAIN_DASH.get()) && (trainFrames * 16) < 1040) {
-            poseStack.blit(TRAIN_DASH, x - 94 + (1) + 32, y - 65, 0, 16 * trainFrames, 16, 16, 16, 1040);
+            poseStack.blit(TRAIN_DASH, x - 94 + (1) + 32 + ICVClientConfigs.LEGGINGS_X.get(), y - 65 + ICVClientConfigs.LEGGINGS_Y.get(), 0, 16 * trainFrames, 16, 16, 16, 1040);
             if (System.currentTimeMillis() >= animTime + 125) {
                 ++trainFrames;
             }
         }
         if(System.currentTimeMillis() < judgeTime + 15000 && EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(1)).containsKey(ModEnchantments.JUDGEMENT.get()) && (judgeFrames * 16) < 928) {
-            poseStack.blit(JUDGEMENT, x - 94 + (1) + 32, y - 65, 0, 16 * judgeFrames, 16, 16, 16, 928);
+            poseStack.blit(JUDGEMENT, x - 94 + (1) + 32 + ICVClientConfigs.LEGGINGS_X.get(), y - 65 + ICVClientConfigs.LEGGINGS_Y.get(), 0, 16 * judgeFrames, 16, 16, 16, 928);
             if (System.currentTimeMillis() >= animTime + 125) {
                 ++judgeFrames;
             }

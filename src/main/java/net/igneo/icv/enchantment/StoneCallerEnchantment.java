@@ -39,7 +39,7 @@ public class StoneCallerEnchantment extends Enchantment {
                     if (Minecraft.getInstance().options.keyShift.isDown() && pPlayer.onGround() && enchVar.getStoneTime() == 0) {
                         if (charge == 0) {
                             charge = System.currentTimeMillis();
-                        } else if (System.currentTimeMillis() > charge + 1000) {
+                        } else if (System.currentTimeMillis() > charge + 500) {
                             stoneCalling = true;
                             charge = 0;
                         }

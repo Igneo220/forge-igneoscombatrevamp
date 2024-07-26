@@ -33,7 +33,6 @@ public class TempoTheftS2CPacket {
     public boolean handle(Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
-            System.out.println("being called?");
 
             TempoTheftEnchantment.loseTheft = System.currentTimeMillis();
 

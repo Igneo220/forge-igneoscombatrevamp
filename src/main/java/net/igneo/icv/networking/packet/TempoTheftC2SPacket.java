@@ -44,7 +44,6 @@ public class TempoTheftC2SPacket {
                 //player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).addTransientModifier(new AttributeModifier(SPEED_MODIFIER_TEMPO_THEFT_UUID, "Tempo theft speed boost", 0.015, AttributeModifier.Operation.ADDITION));
                 //player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).addTransientModifier(new AttributeModifier(SPEED_MODIFIER_TEMPO_THEFT_UUID2, "Tempo theft speed boost2", 0.010, AttributeModifier.Operation.ADDITION));
                 //player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).addTransientModifier(new AttributeModifier(SPEED_MODIFIER_TEMPO_THEFT_UUID3, "Tempo theft speed boost3", 0.005, AttributeModifier.Operation.ADDITION));
-            System.out.println("removing!");
             //player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).removeModifier(SPEED_MODIFIER_TEMPO_THEFT_UUID2);
             //player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).removeModifier(SPEED_MODIFIER_TEMPO_THEFT_UUID3);
             level.playSound(null,player.blockPosition(), ModSounds.MOMENTUM_LOSE.get(), SoundSource.PLAYERS,1,1F);
@@ -57,10 +56,6 @@ public class TempoTheftC2SPacket {
             if (player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).getModifier(SPEED_MODIFIER_TEMPO_THEFT_UUID3) != null) {
                 player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).removeModifier(SPEED_MODIFIER_TEMPO_THEFT_UUID3);
             }
-            System.out.println("speed 1:" + (player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).getModifier(SPEED_MODIFIER_TEMPO_THEFT_UUID) != null));
-            System.out.println("speed 2:" + (player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).getModifier(SPEED_MODIFIER_TEMPO_THEFT_UUID2) != null));
-            System.out.println("speed 3:" + (player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).getModifier(SPEED_MODIFIER_TEMPO_THEFT_UUID3) != null));
-
         });
         return true;
     }

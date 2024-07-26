@@ -42,7 +42,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Mixin(EnchantmentMenu.class)
+@Mixin(value = EnchantmentMenu.class,priority = 999999999)
 public class EnchantmentMenuMixin extends AbstractContainerMenu {
     @Unique
     private static List<Enchantment> HELM_ENCHANTS = new ArrayList<Enchantment>();
@@ -151,10 +151,8 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
             ItemStack itemstack1 = this.enchantSlots.getItem(1);
             //int i = pId + 1;
             if ((itemstack1.isEmpty() || itemstack1.getCount() < 1) && !pPlayer.getAbilities().instabuild) {
-                System.out.println("fail check 1");
                 return false;
             } else if (itemstack.isEmpty() || (pPlayer.experienceLevel < 2 || !pPlayer.getAbilities().instabuild) && !pPlayer.isCreative()) {
-                System.out.println("fail check 2");
                 return false;
             } else {
                 this.access.execute((level, tablePos) -> {
@@ -174,7 +172,6 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
                         }
 
                         for (int j = 0; j < list.size(); ++j) {
-                            System.out.println("right here officer: " + pId);
                             EnchantmentInstance enchantmentinstance = list.get(pId);
                             if (flag) {
                                 EnchantedBookItem.addEnchantment(itemstack2, enchantmentinstance);
@@ -218,31 +215,13 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
     public void slotsChanged(Container pInventory) {
         updateEnchantmentLists();
         if (pInventory == this.enchantSlots) {
-            System.out.println("this code is running");
             ItemStack itemstack = pInventory.getItem(0);
             if (!itemstack.isEmpty() && itemstack.isEnchantable()) {
                 this.access.execute((level, tablePos) -> {
                     float j = 0;
-                    /*
-                    for(BlockPos blockpos : EnchantmentTableBlock.BOOKSHELF_OFFSETS) {
-                        //System.out.println(level.getBlockState(tablePos));
-                        if (EnchantmentTableBlock.isValidBookShelf(level, tablePos, blockpos)) {
-                            j += level.getBlockState(tablePos.offset(blockpos)).getEnchantPowerBonus(level, tablePos.offset(blockpos));
-                        }
-                    }*/
-
-                    //this.random.setSeed((long)this.enchantmentSeed.get());
-
-
                     for(int k = 0; k < 3; ++k) {
                         this.costs[k] = 1;
-                        //this.enchantClue[k] = -1;
-                        //this.levelClue[k] = -1;
-                        //if (this.costs[k] < k + 1) {
-                            //this.costs[k] = 0;
-                        //}
-                        //this.costs[k] = net.minecraftforge.event.ForgeEventFactory.onEnchantmentLevelSet(level, tablePos, k, (int)j, itemstack, costs[k]);
-                    }
+                      }
 
                     for(int l = 0; l < 3; ++l) {
                         List<EnchantmentInstance> list = this.getChiselEnchantmentList(level,tablePos,itemstack);
@@ -289,7 +268,6 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
         //this.random.setSeed((long) (this.enchantmentSeed.get() + pEnchantSlot));
         List<EnchantmentInstance> list = new ArrayList<EnchantmentInstance>();
         for(BlockPos blockpos : EnchantmentTableBlock.BOOKSHELF_OFFSETS) {
-            //System.out.println(level.getBlockState(tablePos));
             if (level.getBlockState(tablePos.offset(blockpos)).getBlock().equals(Blocks.CHISELED_BOOKSHELF)) {
                 ChiseledBookShelfBlockEntity bookShelf = (ChiseledBookShelfBlockEntity) level.getBlockEntity(tablePos.offset(blockpos));
                 int i = 5;

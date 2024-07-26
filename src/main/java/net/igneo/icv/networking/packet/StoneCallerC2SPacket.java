@@ -49,7 +49,6 @@ public class StoneCallerC2SPacket {
             ServerPlayer player = context.getSender();
             ServerLevel level = player.serverLevel();
 
-            System.out.println(next);
             player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
                 if(enchVar.getStoneTime() == 0) {
                     enchVar.setStoneTime(System.currentTimeMillis());

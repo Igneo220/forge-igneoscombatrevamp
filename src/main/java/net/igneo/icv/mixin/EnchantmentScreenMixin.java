@@ -32,7 +32,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.List;
 
-@Mixin(EnchantmentScreen.class)
+@Mixin(value = EnchantmentScreen.class,priority = 999999999)
 public class EnchantmentScreenMixin extends AbstractContainerScreen<EnchantmentMenu> {
     @Shadow
     private static final ResourceLocation ENCHANTING_TABLE_LOCATION = new ResourceLocation(ICV.MOD_ID,"textures/gui/container/enchanting_table.png");
@@ -58,25 +58,20 @@ public class EnchantmentScreenMixin extends AbstractContainerScreen<EnchantmentM
 
     @Override
     public boolean mouseScrolled(double pMouseX, double pMouseY, double pDelta) {
-        System.out.println(-pDelta);
         if (ModEvents.enchLength > 3) {
             if (-pDelta > 0) {
                 if (ModEvents.enchShift + 3 < ModEvents.enchLength) {
-                    System.out.println("adding");
                     ModEvents.enchShift += (int) -pDelta;
                     this.minecraft.gameMode.handleInventoryButtonClick((this.menu).containerId, -1);
                 }
             } else if (ModEvents.enchShift > 0) {
-                System.out.println("subtracting");
                 ModEvents.enchShift -= (int) pDelta;
                 this.minecraft.gameMode.handleInventoryButtonClick((this.menu).containerId, -1);
             }
         } else {
-            System.out.println("resetting");
             ModEvents.enchShift = 0;
             this.minecraft.gameMode.handleInventoryButtonClick((this.menu).containerId, -1);
         }
-        System.out.println("enchant shift: " + ModEvents.enchShift);
         return super.mouseScrolled(pMouseX, pMouseY, pDelta);
     }
 

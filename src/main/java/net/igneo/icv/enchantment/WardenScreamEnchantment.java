@@ -30,9 +30,7 @@ public class WardenScreamEnchantment extends Enchantment {
                     look = Minecraft.getInstance().player.getLookAngle();
                     wardenTime = System.currentTimeMillis();
                     //wardenhit.add(raycastEntities(Minecraft.getInstance().player.getEyePosition(),Minecraft.getInstance().player.getEyePosition().add(look)));
-                    //System.out.println(wardenhit);
                     playerpos = Minecraft.getInstance().player.getEyePosition();
-                    System.out.println(playerpos);
                     Minecraft.getInstance().player.addDeltaMovement(new Vec3(Minecraft.getInstance().player.getLookAngle().reverse().scale(0.5).x,0,Minecraft.getInstance().player.getLookAngle().reverse().scale(0.5).z));
                     ModMessages.sendToServer(new WardenScreamC2SPacket());
                 }

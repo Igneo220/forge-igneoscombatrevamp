@@ -29,7 +29,6 @@ public class CounterweightedEnchantment extends Enchantment {
                         hit = true;
                     }
                 }
-                System.out.println(hit);
                 if (!hit) {
                     ModMessages.sendToServer(new CounterweightedC2SPacket());
                 }

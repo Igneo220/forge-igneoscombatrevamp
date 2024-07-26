@@ -49,14 +49,11 @@ public class DoubleJumpEnchantment extends Enchantment {
             if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.DOUBLE_JUMP.get())) {
                 if (pPlayer.onGround() && !CanDoubleJump) {
                     startY = Minecraft.getInstance().player.getY();
-                    System.out.println("on land");
                     CanDoubleJump = true;
                 }
                 if (Minecraft.getInstance().options.keyJump.isDown() && !pPlayer.onGround() && !pPlayer.isInFluidType() && !pPlayer.isPassenger() && CanDoubleJump) {
-                    System.out.println(Minecraft.getInstance().player.getDeltaMovement().y);
                     if (Minecraft.getInstance().player.getDeltaMovement().y <= 0) {
                         CanDoubleJump = false;
-                        System.out.println("SUPER hooorayyyy");
                         pPlayer.setDeltaMovement(pPlayer.getDeltaMovement().x,0.6,pPlayer.getDeltaMovement().z);
                         ModMessages.sendToServer(new DoubleJumpC2SPacket());
                     }

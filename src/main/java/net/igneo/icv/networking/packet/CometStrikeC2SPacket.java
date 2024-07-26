@@ -30,8 +30,6 @@ public class CometStrikeC2SPacket {
         context.enqueueWork(() -> {
             ServerPlayer player = context.getSender();
             ServerLevel level = player.serverLevel();
-            System.out.println(player.getLookAngle().x);
-            System.out.println(player.getLookAngle().z);
             int x = 0;
             int z = 0;
             double i = 0.4;

@@ -50,7 +50,6 @@ public class ConcussHurtC2SPacket {
                 target.setDeltaMovement(new Vec3(0, 0.8, 0));
             }
             target.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 30, 50), player);
-            System.out.println(target);
         });
         return true;
     }

@@ -85,6 +85,12 @@ public class Keybindings {
             InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_B,
             ICV_CATEGORY
     );
+    public static final KeyMapping comet_strike = new KeyMapping(
+            "key.icv.comet_strike",
+            KeyConflictContext.IN_GAME,
+            InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_LEFT_SHIFT,
+            ICV_CATEGORY
+    );
     //public static final KeyMapping scroll_up = new KeyMapping(
     //        "key.icv.black_hole",
     //        KeyConflictContext.GUI,

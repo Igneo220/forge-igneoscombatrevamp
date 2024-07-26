@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ItemStack.class)
+@Mixin(value = ItemStack.class,priority = 999999999)
 public abstract class ItemStackMixin {
 
     @Shadow public abstract boolean isEnchantable();

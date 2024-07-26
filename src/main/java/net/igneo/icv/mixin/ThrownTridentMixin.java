@@ -53,7 +53,6 @@ public class ThrownTridentMixin extends AbstractArrow{
         if (EnchantmentHelper.getEnchantments(pStack).containsKey(ModEnchantments.EXTRACT.get())) {
             extract = true;
         }
-        System.out.println("constructor runs");
         idk = pStack.getEnchantmentLevel(Enchantments.LOYALTY);
         this.entityData.set(ID_EXTRACT, EnchantmentHelper.getEnchantments(pStack).containsKey(ModEnchantments.EXTRACT.get()));
         this.entityData.set(ID_LOYALTY, (byte)EnchantmentHelper.getLoyalty(pStack));
@@ -89,7 +88,6 @@ public class ThrownTridentMixin extends AbstractArrow{
         }
     }
     protected void pullEntity(Entity pEntity) {
-        System.out.println("extract: " + this.getTags().contains("EXTRACT"));
         if (this.getTags().contains("EXTRACT")) {
             if (this.level() instanceof ServerLevel) {
                 ServerLevel level = (ServerLevel) this.level();
@@ -101,16 +99,14 @@ public class ThrownTridentMixin extends AbstractArrow{
                 double d0 = entity.getX() - this.getX();
                 double d1 = entity.getY() - this.getY();
                 double d2 = entity.getZ() - this.getZ();
-                //System.out.println("x: " + d0);
-                //System.out.println("y: " + d1);
-                //System.out.println("z: " + d2);
+
                 if ((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)) <= 20) {
                     scale = 0.25;
                 }
                 if ((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)) >= 35) {
                     scale = 0.05;
                 }
-                //System.out.println(scale);
+
                 pEntity.setDeltaMovement(0,1,0);
                 Vec3 vec3 = (new Vec3(d0, pEntity.getDeltaMovement().y, d2)).scale(scale);
                 pEntity.setDeltaMovement(vec3);

@@ -36,7 +36,7 @@ import org.spongepowered.asm.mixin.Unique;
 
 import java.util.UUID;
 
-@Mixin(CrossbowItem.class)
+@Mixin(value = CrossbowItem.class,priority = 999999999)
 public class CrossbowItemMixin {
 
     /**
@@ -66,14 +66,10 @@ public class CrossbowItemMixin {
                 Quaternionf quaternionf = (new Quaternionf()).setAngleAxis((double)(pProjectileAngle * ((float)Math.PI / 180F)), vec31.x, vec31.y, vec31.z);
                 Vec3 vec3 = pShooter.getViewVector(1.0F);
                 Vector3f vector3f = vec3.toVector3f().rotate(quaternionf);
-                System.out.println(EnchantmentHelper.getEnchantments(pCrossbowStack));
                 if (EnchantmentHelper.getEnchantments(pCrossbowStack).containsKey(ModEnchantments.SCATTER.get())) {
                     ServerLevel level = (ServerLevel) pLevel;
                     level.playSound(null,pShooter.blockPosition(),ModSounds.SCATTER.get(), SoundSource.PLAYERS);
-                    System.out.println("shootin!");
                     scatterProjectile = createArrow(pLevel,pShooter,pCrossbowStack,pAmmoStack);
-                    System.out.println(projectile);
-                    System.out.println(scatterProjectile);
                     projectile.shoot((double) vector3f.x(), (double) vector3f.y(), (double) vector3f.z(), pVelocity/4, (float) (Math.random() * 50));
                     scatterProjectile.shoot((double) vector3f.x(), (double) vector3f.y(), (double) vector3f.z(), pVelocity/4, (float) (Math.random() * 25));
                 } else if (EnchantmentHelper.getEnchantments(pCrossbowStack).containsKey(ModEnchantments.MITOSIS.get())){
@@ -81,7 +77,6 @@ public class CrossbowItemMixin {
                         ServerLevel level = (ServerLevel) pLevel;
                         level.playSound(null,pShooter.blockPosition(), ModSounds.MITOSIS.get(),SoundSource.PLAYERS);
                     }
-                    System.out.println("mitosisin'");
                     projectile = createArrow(pLevel,pShooter,pCrossbowStack,pAmmoStack);
                     projectile.shoot((double) vector3f.x(), (double) vector3f.y(), (double) vector3f.z(), pVelocity, pInaccuracy);
                     projectile.addTag("mitosis");

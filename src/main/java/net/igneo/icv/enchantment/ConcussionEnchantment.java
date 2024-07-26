@@ -25,7 +25,6 @@ public class ConcussionEnchantment extends Enchantment {
     public static void onKeyInputEvent() {
         if (Minecraft.getInstance().player != null){
             LocalPlayer pPlayer = Minecraft.getInstance().player;
-            //System.out.println(EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(2)).containsKey(ModEnchantments.concussion.get()));
             if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(2)).containsKey(ModEnchantments.CONCUSSION.get())) {
                 if (Keybindings.concussion.isDown() && System.currentTimeMillis() >= concussTime + 5000) {
                     //lookDirection = pPlayer.getLookAngle();
@@ -44,7 +43,6 @@ public class ConcussionEnchantment extends Enchantment {
                             }
                         }
                     } else {
-                        System.out.println("found");
                         concussTime = System.currentTimeMillis();
 
                         //targetFound = true;

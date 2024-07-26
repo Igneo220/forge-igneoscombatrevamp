@@ -19,6 +19,7 @@ public class ModEventBusClientEvents {
     public static void onKeyRegister(RegisterKeyMappingsEvent event) {
         event.register(Keybindings.black_hole);
         event.register(Keybindings.blizzard);
+        event.register(Keybindings.comet_strike);
         event.register(Keybindings.concussion);
         event.register(Keybindings.flamethrower);
         event.register(Keybindings.flare);

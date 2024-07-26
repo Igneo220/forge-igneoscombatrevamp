@@ -31,7 +31,6 @@ public class GustEnchantment extends Enchantment {
                 }
                 //ModMessages.sendToServer(new GustC2SPacket());
                 gustDelay = System.currentTimeMillis();
-                System.out.println(pTarget.level() instanceof ServerLevel);
                 if (pTarget.level() instanceof ServerLevel) {
                     ServerLevel level = (ServerLevel) pTarget.level();
                     level.playSound(null, pTarget.blockPosition(), ModSounds.GUST.get(), SoundSource.PLAYERS);

@@ -43,7 +43,6 @@ public class MomentumEnchantment extends Enchantment {
                 }
                 if (System.currentTimeMillis() >= delay + 3000 && loopCount <= 3) {
                     spedUp = true;
-                    System.out.println("increasing speed!!!");
                     if (loopCount != 0) {
                         ModMessages.sendToServer(new MomentumC2SPacket(loopCount));
                     }
@@ -59,7 +58,6 @@ public class MomentumEnchantment extends Enchantment {
                 double d1 = pPlayer.getDeltaMovement().y;
                 double d2 = pPlayer.getDeltaMovement().z;
                  if ((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)) <= 0.15) {
-                     System.out.println((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)));
                      spedUp = false;
                      ModMessages.sendToServer(new MomentumC2SPacket(0));
                      loopCount = 0;

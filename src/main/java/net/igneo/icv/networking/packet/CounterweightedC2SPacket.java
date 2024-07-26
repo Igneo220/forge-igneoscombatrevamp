@@ -38,7 +38,6 @@ public class CounterweightedC2SPacket {
 
             player.getAttributes().getInstance(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(ATTACK_SPEED_MODIFIER_UUID, "Attack speed boost blitz", 3, AttributeModifier.Operation.ADDITION));
             level.playSound(null, player.blockPosition(), ModSounds.COUNTERWEIGHTED_MISS.get(), SoundSource.PLAYERS, 0.5F,1);
-            System.out.println(player.getAttributes().getInstance(Attributes.ATTACK_SPEED));
         });
         return true;
     }

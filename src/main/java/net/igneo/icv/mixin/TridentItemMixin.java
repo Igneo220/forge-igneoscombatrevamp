@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(TridentItem.class)
+@Mixin(value = TridentItem.class,priority = 999999999)
 public class TridentItemMixin {
     @Shadow
     public int getUseDuration(ItemStack pStack) {

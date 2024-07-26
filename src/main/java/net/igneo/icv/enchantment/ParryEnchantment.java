@@ -26,7 +26,6 @@ public class ParryEnchantment extends Enchantment {
                     EnchantmentHudOverlay.parryFrames = 0;
                     parryCooldown = System.currentTimeMillis();
                     parrying = true;
-                    System.out.println("parrying");
                     ModMessages.sendToServer(new ParryC2SPacket());
                 }
             } else {

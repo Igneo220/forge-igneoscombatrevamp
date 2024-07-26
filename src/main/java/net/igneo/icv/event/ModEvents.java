@@ -67,7 +67,6 @@ public class ModEvents {
                         ServerLevel level = player.serverLevel();
                         level.playSound(null,player.blockPosition(),ModSounds.PARRY.get(), SoundSource.PLAYERS,30,0.9F);
                         level.sendParticles(ModParticles.PARRY_PARTICLE.get(), player.getX(),player.getEyeY(),player.getZ(),10,0,0,0,1);
-                        System.out.println("parried");
                         event.setCanceled(true);
                     }
                 }
@@ -158,7 +157,6 @@ public class ModEvents {
                         enchVar.getPhantomVictim().heal(enchVar.getPhantomHurt());
                         enchVar.resetPhantomHurt();
                         enchVar.deletePhantomVictim();
-                        System.out.println("healing previous entity");
                     }
                 }
             }

@@ -29,7 +29,7 @@ public class CrushC2SPacket {
             ServerPlayer player = context.getSender();
             ServerLevel level = player.serverLevel();
 
-            level.explode(player,player.getX(),player.getY(),player.getZ(),2F, Level.ExplosionInteraction.NONE);
+            level.explode(player,player.getX(),player.getY(),player.getZ(),3.5F, Level.ExplosionInteraction.NONE);
             });
         return true;
     }

@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-@Mixin(Player.class)
+@Mixin(value = Player.class,priority = 999999999)
 public abstract class PlayerMixin extends LivingEntity{
 
     protected PlayerMixin(EntityType<? extends LivingEntity> pEntityType, Level pLevel) {
@@ -42,7 +42,6 @@ public abstract class PlayerMixin extends LivingEntity{
     private float attack(float f1, Entity pTarget) {
         float tempf = f1;
         if (pTarget instanceof LivingEntity) {
-            System.out.println(pTarget);
             AtomicReference<Float> tempf1 = new AtomicReference<>((float) 0);
             if (EnchantmentHelper.getEnchantments(this.getMainHandItem()).containsKey(ModEnchantments.SKEWERING.get()) && !pTarget.onGround() && !pTarget.isInFluidType() && !pTarget.isPassenger()) {
                 tempf = 1.2F;

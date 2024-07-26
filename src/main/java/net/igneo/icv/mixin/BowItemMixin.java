@@ -29,7 +29,7 @@ import java.util.function.Predicate;
 
 import static java.lang.Math.abs;
 
-@Mixin(BowItem.class)
+@Mixin(value = BowItem.class,priority = 999999999)
 public class BowItemMixin{
 
     @Shadow
@@ -137,7 +137,6 @@ public class BowItemMixin{
             if (!pLevel.isClientSide) {
                 boolean flag = player.getAbilities().instabuild || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, pStack) > 0;
                 ItemStack itemstack = player.getProjectile(pStack);
-                itemstack.setCount(itemstack.getCount() - 1);
                 int i = this.getUseDuration(pStack) - pTimeLeft;
                 i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(pStack, pLevel, player, i, !itemstack.isEmpty() || flag);
                 float f = getPowerForTime(i);
@@ -152,6 +151,7 @@ public class BowItemMixin{
                         //level.sendParticles(ParticleTypes.CRIT, vec33.x, vec33.y, vec33.z, 1, (Math.random()/5) * j, (Math.random()/5) * j, (Math.random()/5) * j, 0.2D);
                         //level.sendParticles(ParticleTypes.CRIT, vec33.x, vec33.y, vec33.z, 1, (Math.random()/5) * j, (Math.random()/5) * j, (Math.random()/5) * j, 0.2D);
                     }
+                    itemstack.setCount(itemstack.getCount() - 1);
                     Thread AccelerateHurtEntities = new Thread(() -> {
                         ArrowItem arrowitem = (ArrowItem) (Items.ARROW);
                         AbstractArrow arrow = arrowitem.createArrow(level, pStack, pEntityLiving);

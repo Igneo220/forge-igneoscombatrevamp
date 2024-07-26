@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 
 import static net.minecraft.world.item.enchantment.EnchantmentHelper.getItemEnchantmentLevel;
 
-@Mixin(EnchantmentHelper.class)
+@Mixin(value = EnchantmentHelper.class,priority = 999999999)
 public class EnchantmentHelperMixin {
 
 

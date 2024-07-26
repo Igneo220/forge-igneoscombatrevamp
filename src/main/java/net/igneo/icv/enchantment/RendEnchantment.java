@@ -17,7 +17,6 @@ public class RendEnchantment extends Enchantment {
     }
 
     public static void rendHit(Entity hitEntity) {
-        System.out.println("storing");
         if (rendEntity == null) {
             rendEntity = hitEntity;
             rendCount = 0;
@@ -34,7 +33,6 @@ public class RendEnchantment extends Enchantment {
                     Minecraft.getInstance().mouseHandler.isLeftPressed() &&
                     rendEntity != null &&
                     rendCount > 0) {
-                System.out.println("hurting");
                 int i = (int) (rendCount * rendCount)/2;
                 if (i > 30) {
                     i = 30;

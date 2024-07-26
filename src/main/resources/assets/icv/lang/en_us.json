@@ -28,6 +28,7 @@
 
     "enchantment.icv.comet_strike": "Comet Strike",
     "enchantment.icv.comet_strike.desc": "When you crouch, summon a comet from the ground. Hit it to make it explode where it lands, scaling with how much damage it takes. You can hit it multiple times. It despawns on its third chime",
+    "key.icv.comet_strike": "Activate Comet Strike",
 
     "enchantment.icv.concussion": "Concussion",
     "enchantment.icv.concussion.desc": "Lunge forward and deal 5 damage to whatever you hit, launching it into the air and giving it a temporary slow falling",

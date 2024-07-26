@@ -1,5 +1,6 @@
 package net.igneo.icv.enchantment;
 
+import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.CometStrikeC2SPacket;
 import net.minecraft.client.Minecraft;
@@ -21,7 +22,7 @@ public class CometStrikeEnchantment extends Enchantment {
         if (Minecraft.getInstance().player != null) {
             LocalPlayer pPlayer = Minecraft.getInstance().player;
             if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.COMET_STRIKE.get())) {
-                if (Minecraft.getInstance().options.keyShift.isDown() && System.currentTimeMillis() >= cometCooldown + 2500 && pPlayer.onGround() && !pPlayer.isPassenger()) {
+                if (Keybindings.comet_strike.isDown() && System.currentTimeMillis() >= cometCooldown + 2500 && pPlayer.onGround() && !pPlayer.isPassenger()) {
                     cometCooldown = System.currentTimeMillis();
                     ModMessages.sendToServer(new CometStrikeC2SPacket());
                 }

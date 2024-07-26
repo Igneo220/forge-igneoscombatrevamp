@@ -26,14 +26,12 @@ public class SmiteEnchantment extends Enchantment {
             LocalPlayer pPlayer = Minecraft.getInstance().player;
             if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().armor.get(3)).containsKey(ModEnchantments.SMITE.get())) {
                 if (Keybindings.smite.isDown() && System.currentTimeMillis() >= smiteTime + 15000 && !smiting) {
-                    System.out.println("starting");
                     pPlayer.setDeltaMovement(0,1,0);
                     smiteTime = System.currentTimeMillis();
                     boltsShot = 0;
                     ModMessages.sendToServer(new SmiteC2SPacket(boltsShot));
                     smiting = true;
                 } else if (Keybindings.smite.isDown() && smiting && boltsShot <= 2 && !pPlayer.onGround() && System.currentTimeMillis() >= smiteTime + 500) {
-                    System.out.println("shooting bolts");
                     smiteTime = System.currentTimeMillis();
                     ++boltsShot;
                     pPlayer.addDeltaMovement(new Vec3(pPlayer.getLookAngle().x/10,-0.05,pPlayer.getLookAngle().z/10).reverse());
@@ -41,7 +39,6 @@ public class SmiteEnchantment extends Enchantment {
                 } else if (boltsShot > 2 && smiting) {
                     EnchantmentHudOverlay.smiteFrames = 0;
                     smiteTime = System.currentTimeMillis();
-                    System.out.println("finished");
                     smiting = false;
                 }
                 if (smiting && !Keybindings.smite.isDown()) {
@@ -51,7 +48,6 @@ public class SmiteEnchantment extends Enchantment {
                     EnchantmentHudOverlay.smiteFrames = 0;
                     smiting = false;
                     smiteTime = System.currentTimeMillis();
-                    System.out.println("finished");
                 }
             } else {
                 smiteTime = System.currentTimeMillis();

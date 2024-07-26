@@ -38,7 +38,6 @@ public class JudgementC2SPacket {
             //}
             //if (dashing && System.currentTimeMillis() >= hitCooldown + 500) {
             //    hitCooldown = System.currentTimeMillis();
-            //    System.out.println("KILL THE " + unluckyGirlfriend);
             //    level.explode(player,player.getX(),player.getY(),player.getZ(),1, Level.ExplosionInteraction.NONE);
             //} else {
             //    level.explode(null,player.getX(),player.getY(),player.getZ(),1, Level.ExplosionInteraction.NONE);

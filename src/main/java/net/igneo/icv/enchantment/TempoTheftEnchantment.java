@@ -43,7 +43,6 @@ public class TempoTheftEnchantment extends Enchantment {
                 entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 1), player);
                 ModMessages.sendToPlayer(new TempoTheftS2CPacket(),player);
                 if (player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).getModifier(SPEED_MODIFIER_TEMPO_THEFT_UUID) == null) {
-                    System.out.println("it worked??");
                     level.playSound(null,player.blockPosition(), ModSounds.MOMENTUM.get(), SoundSource.PLAYERS,1,0.5F);
                     player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).addTransientModifier(new AttributeModifier(SPEED_MODIFIER_TEMPO_THEFT_UUID, "Tempo theft speed boost", 0.015, AttributeModifier.Operation.ADDITION));
                 } else if (player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).getModifier(SPEED_MODIFIER_TEMPO_THEFT_UUID2) == null) {
@@ -53,10 +52,6 @@ public class TempoTheftEnchantment extends Enchantment {
                     level.playSound(null,player.blockPosition(), ModSounds.MOMENTUM.get(), SoundSource.PLAYERS,1,1.5F);
                     player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).addTransientModifier(new AttributeModifier(SPEED_MODIFIER_TEMPO_THEFT_UUID3, "Tempo theft speed boost3", 0.005, AttributeModifier.Operation.ADDITION));
                 }
-                System.out.println("speed 1:" + (player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).getModifier(SPEED_MODIFIER_TEMPO_THEFT_UUID) != null));
-                System.out.println("speed 2:" + (player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).getModifier(SPEED_MODIFIER_TEMPO_THEFT_UUID2) != null));
-                System.out.println("speed 3:" + (player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).getModifier(SPEED_MODIFIER_TEMPO_THEFT_UUID3) != null));
-
             }
             //ModMessages.sendToServer(new TempoTheftC2SPacket());
         }
@@ -66,7 +61,6 @@ public class TempoTheftEnchantment extends Enchantment {
     public static void onClientTick() {
         if (loseTheft != 0) {
             if (System.currentTimeMillis() >= loseTheft + 3000){
-                System.out.println("attempting to remove...");
                 ModMessages.sendToServer(new TempoTheftC2SPacket());
                 loseTheft = 0;
             }

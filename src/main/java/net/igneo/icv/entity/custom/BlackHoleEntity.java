@@ -42,7 +42,6 @@ public class BlackHoleEntity extends Fireball {
     public void tick() {
         if (level().isClientSide && FMLEnvironment.dist.isClient()) {
             if (this.getOwner() == null) {
-                System.out.println(level().getNearestPlayer(this,4));
                 this.setOwner(level().getNearestPlayer(this,4));
             }
         }
@@ -64,7 +63,6 @@ public class BlackHoleEntity extends Fireball {
             ServerLevel level = (ServerLevel) level();
             level.sendParticles(ModParticles.BLACK_HOLE_PARTICLE.get(), this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 0.01);
             for (Entity entity : level.getAllEntities()) {
-                //System.out.println(this.getOwner());
                 Vec3 pushVec = (((this.position().subtract(entity.position())).scale((10.1 - entity.distanceTo(this)) * 0.1)).scale(0.035));
                 if (entity.distanceTo(this) < 2 && entity != this && entity != this.getOwner() && !(entity instanceof BlackHoleEntity)) {
                     if (entity instanceof LivingEntity || entity instanceof ServerPlayer) {
@@ -78,12 +76,11 @@ public class BlackHoleEntity extends Fireball {
             }
         } else if (level().isClientSide){
                 LocalPlayer player = Minecraft.getInstance().player;
-                //System.out.println((this.getOwner() == Minecraft.getInstance().player));
                 Vec3 pushVec = (((this.position().subtract(player.position())).scale((10.1 - player.distanceTo(this)) * 0.1)).scale(0.04));
                 if (player.distanceTo(this) < 1 && Minecraft.getInstance().player != this.getOwner()) {
                     player.addDeltaMovement((this.position().subtract(player.position())).scale(0.14).scale(0.8));
                 } else if (player.distanceTo(this) < 10 && Minecraft.getInstance().player != this.getOwner()) {
-                    player.addDeltaMovement(pushVec.scale(0.8));
+                    player.addDeltaMovement(pushVec.scale(0.6));
                 }
                 //&& player != this.getOwner()
         }

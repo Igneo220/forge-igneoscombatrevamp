@@ -8,6 +8,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.projectile.Fireball;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
@@ -31,7 +32,7 @@ public class BoltEntity extends Fireball {
 
     @Override
     protected void onHitEntity(EntityHitResult pResult) {
-        if (System.currentTimeMillis() >= boltTime + 100) {
+        if (System.currentTimeMillis() >= boltTime + 100 && pResult.getEntity() instanceof LivingEntity) {
             pResult.getEntity().hurt(level().damageSources().lightningBolt(), 10);
             if (!level().isClientSide) {
                 ServerLevel level = (ServerLevel) level();

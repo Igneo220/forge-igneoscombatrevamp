@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(AnvilMenu.class)
+@Mixin(value = AnvilMenu.class,priority = 999999999)
 public class AnvilMenuMixin extends ItemCombinerMenu {
     @Shadow private final DataSlot cost = DataSlot.standalone();
     public AnvilMenuMixin(@Nullable MenuType<?> pType, int pContainerId, Inventory pPlayerInventory, ContainerLevelAccess pAccess) {
@@ -27,9 +27,10 @@ public class AnvilMenuMixin extends ItemCombinerMenu {
         if(this.inputSlots != null) {
             ItemStack checkItemStack = this.inputSlots.getItem(1);
             if ((checkItemStack != null && checkItemStack.isEnchanted()) || checkItemStack.getItem() == Items.ENCHANTED_BOOK) {
-                System.out.println("not today!");
                 this.resultSlots.setItem(0, ItemStack.EMPTY);
                 this.cost.set(0);
+            } else {
+                this.cost.set(2);
             }
         }
     }
