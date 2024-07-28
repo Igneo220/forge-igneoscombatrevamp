@@ -34,7 +34,7 @@ public class DoubleJumpC2SPacket {
             ServerPlayer player = context.getSender();
             ServerLevel level = context.getSender().serverLevel();
 
-            level.sendParticles(ParticleTypes.POOF,player.getX(),player.getY(),player.getZ(),10,Math.random(),Math.random(),Math.random(),0.5);
+            level.sendParticles(ParticleTypes.POOF,player.getX(),player.getY(),player.getZ(),5,Math.random(),Math.random(),Math.random(),0.5);
             level.playSound(null, player.blockPosition(), SoundEvents.SAND_BREAK, SoundSource.PLAYERS, 1, 0.1F);
             player.setDeltaMovement(player.getDeltaMovement().x,0.6,player.getDeltaMovement().z);
         });

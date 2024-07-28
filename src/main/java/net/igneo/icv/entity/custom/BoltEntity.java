@@ -19,7 +19,8 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 public class BoltEntity extends Fireball {
-    private static long boltTime;
+    private long boltTime;
+    private int boltDelay;
     public BoltEntity(EntityType<? extends Fireball> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         boltTime = System.currentTimeMillis();
@@ -62,7 +63,10 @@ public class BoltEntity extends Fireball {
     public void tick() {
         if (!this.level().isClientSide) {
             ServerLevel level = (ServerLevel) this.level();
-            level.sendParticles(ModParticles.SMITE_PARTICLE.get(),this.getX(),this.getY(),this.getZ(),18,0,0,0,1);
+            if (System.currentTimeMillis() >= boltTime + boltDelay) {
+                level.sendParticles(ModParticles.SMITE_PARTICLE.get(), this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 1);
+                boltDelay += 100;
+            }
         }
         if (System.currentTimeMillis() >= boltTime + 10000) {
             this.discard();

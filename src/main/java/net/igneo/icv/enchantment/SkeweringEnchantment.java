@@ -31,7 +31,7 @@ public class SkeweringEnchantment extends Enchantment {
                 ServerLevel level = player.serverLevel();
                 level.playSound(null, pAttacker.blockPosition(), ModSounds.SKEWERING_HIT.get(), SoundSource.PLAYERS, 1.5F, (float) abs(Math.random() + 0.5));
                 level.sendParticles(ModParticles.SKEWERING_PARTICLE.get(),
-                        pAttacker.getX(), pAttacker.getY() + 1.5, pAttacker.getZ(), 10,
+                        pAttacker.getX(), pAttacker.getY() + 1.5, pAttacker.getZ(), 5,
                         Math.random(), Math.random(), Math.random(), 0.5);
                 //pAttacker.hurt(level.damageSources().fellOutOfWorld(),4);
             }

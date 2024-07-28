@@ -39,7 +39,7 @@ public class TempoTheftEnchantment extends Enchantment {
             if (pAttacker instanceof ServerPlayer player) {
                 ServerLevel level = player.serverLevel();
                 LivingEntity entity = (LivingEntity) pTarget;
-                level.sendParticles(ModParticles.MOMENTUM_PARTICLE.get(), player.getX(),player.getEyeY(),player.getZ(),10,0,0,0,1);
+                level.sendParticles(ModParticles.MOMENTUM_PARTICLE.get(), player.getX(),player.getEyeY(),player.getZ(),5,0,0,0,1);
                 entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 1), player);
                 ModMessages.sendToPlayer(new TempoTheftS2CPacket(),player);
                 if (player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).getModifier(SPEED_MODIFIER_TEMPO_THEFT_UUID) == null) {

@@ -36,11 +36,11 @@ public class SkyChargeC2SPacket {
 
             if (chargeAmount > 0) {
                 player.setDeltaMovement(new Vec3(0, chargeAmount, 0));
-                level.sendParticles(ParticleTypes.POOF, player.getX(), player.getY(), player.getZ(), 10, Math.random() / 5, Math.random() / 5, Math.random() / 5, 0.1);
+                level.sendParticles(ParticleTypes.POOF, player.getX(), player.getY(), player.getZ(), 5, Math.random() / 5, Math.random() / 5, Math.random() / 5, 0.1);
                 level.playSound(null, player.blockPosition(), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 2, 0.1F);
             } else {
                 level.playSound(null,player.blockPosition(), ModSounds.MOMENTUM.get(), SoundSource.PLAYERS,1F,0.1F);
-                level.sendParticles(ParticleTypes.END_ROD,player.getX(),player.getY(),player.getZ(),10,0,0,0,1);
+                level.sendParticles(ParticleTypes.END_ROD,player.getX(),player.getY(),player.getZ(),5,0,0,0,1);
             }
         });
         return true;

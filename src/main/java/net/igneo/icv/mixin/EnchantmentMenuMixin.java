@@ -70,8 +70,6 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
     private static List<Enchantment> TRIDENT_ENCHANTS = new ArrayList<Enchantment>();
     @Unique
     private static List<Enchantment> TOOL_ENCHANTS = new ArrayList<Enchantment>();
-    @Unique
-    private static List<EnchantmentInstance> unlockedEnchants = new ArrayList<>();
     @Shadow
     private final RandomSource random = RandomSource.create();
     @Shadow
@@ -81,7 +79,9 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
     @Shadow
     public final int[] levelClue = new int[]{-1, -1, -1};
 
-    private static int localEnchShift = 0;
+    private int localEnchShift = 0;
+    private int localLength = 0;
+    private ServerPlayer player = null;
     @Shadow
     private final Container enchantSlots = new SimpleContainer(2) {
         /**
@@ -124,13 +124,9 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
             ItemStack itemstack = this.enchantSlots.getItem(0);
             ItemStack itemstack1 = this.enchantSlots.getItem(1);
             //int i = pId + 1;
-            if ((itemstack1.isEmpty() || itemstack1.getCount() < 1)) {
+            if ((itemstack1.isEmpty() && !pPlayer.isCreative()) || (itemstack1.getCount() < 1 && !pPlayer.isCreative())) {
                 return false;
-            } else if (itemstack.isEmpty() || (pPlayer.experienceLevel < 2 || pPlayer.isCreative())) {
-                System.out.println(itemstack.isEmpty());
-                System.out.println(pPlayer.experienceLevel < 2);
-                System.out.println(!pPlayer.getAbilities().instabuild);
-                System.out.println(pPlayer.isCreative());
+            } else if ((itemstack.isEmpty() && !pPlayer.isCreative()) || (pPlayer.experienceLevel < 1 && !pPlayer.isCreative())) {
                 return false;
             } else {
                 this.access.execute((level, tablePos) -> {
@@ -180,20 +176,20 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
                 return true;
             }
         } else {
-            Util.logAndPauseIfInIde(pPlayer.getName() + " pressed invalid button id: " + pId);
-            if (ModEvents.enchLength > 3) {
+            if (this.localLength > 3) {
                 if (pId == -1) {
-                    if (localEnchShift + 3 < ModEvents.enchLength) {
-                        ++localEnchShift;
+                    if (this.localEnchShift + 3 < this.localLength) {
+                        ++this.localEnchShift;
                     }
-                } else if (pId == -2 && localEnchShift > 0) {
-                    --localEnchShift;
+                } else if (pId == -2 && this.localEnchShift > 0) {
+                    --this.localEnchShift;
                 }
             } else {
-                localEnchShift = 0;
+                this.localEnchShift = 0;
             }
             if (pPlayer instanceof ServerPlayer) {
-                ModMessages.sendToPlayer(new EnchTableUpdateS2CPacket(localEnchShift), (ServerPlayer) pPlayer);
+                ModMessages.sendToPlayer(new EnchTableUpdateS2CPacket(this.localEnchShift), (ServerPlayer) pPlayer);
+                this.player = (ServerPlayer) pPlayer;
             }
             slotsChanged(enchantSlots);
             return false;
@@ -205,6 +201,9 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
      */
     @Overwrite
     public void slotsChanged(Container pInventory) {
+        if (this.player != null) {
+            ModMessages.sendToPlayer(new EnchTableUpdateS2CPacket(this.localEnchShift), (ServerPlayer) player);
+        }
         updateEnchantmentLists();
         if (pInventory == this.enchantSlots) {
             ItemStack itemstack = pInventory.getItem(0);
@@ -219,7 +218,7 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
                         List<EnchantmentInstance> list = this.getChiselEnchantmentList(level,tablePos,itemstack);
                         if (list != null && !list.isEmpty()) {
                             if(l < list.size()) {
-                                EnchantmentInstance enchantmentinstance = list.get(l + localEnchShift);
+                                EnchantmentInstance enchantmentinstance = list.get(l + this.localEnchShift);
                                 this.enchantClue[l] = BuiltInRegistries.ENCHANTMENT.getId(enchantmentinstance.enchantment);
                                 this.levelClue[l] = enchantmentinstance.level;
                             } else {
@@ -236,6 +235,8 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
                     this.enchantClue[i] = -1;
                     this.levelClue[i] = -1;
                 }
+                this.localEnchShift = 0;
+                this.localLength = 0;
             }
         }
 
@@ -249,7 +250,8 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
     public void removed(Player pPlayer) {
         super.removed(pPlayer);
         ModEvents.usedEnchTable = null;
-        localEnchShift = 0;
+        this.localEnchShift = 0;
+        this.localLength = 0;
         ModEvents.enchLength = 0;
         this.access.execute((p_39469_, p_39470_) -> {
             this.clearContainer(pPlayer, this.enchantSlots);
@@ -285,10 +287,10 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
                 }
             }
         }
-        if (list.size() != ModEvents.enchLength) {
-            localEnchShift = 0;
+        if (list.size() != this.localLength) {
+            this.localEnchShift = 0;
         }
-        ModEvents.enchLength = list.size();
+        this.localLength = list.size();
         return list;
     }
     private boolean checkValidEquipmentSlot(ItemStack pStack, Enchantment enchantment) {

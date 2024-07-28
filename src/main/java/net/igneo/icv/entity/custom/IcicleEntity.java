@@ -57,7 +57,7 @@ public class IcicleEntity extends Fireball {
                 if (this.level() instanceof ServerLevel) {
                     ServerLevel level = (ServerLevel) this.level();
                     level.playSound(null,this.blockPosition(), ModSounds.ICE_HIT.get(), SoundSource.PLAYERS,0.2F,1);
-                    level.sendParticles(ModParticles.ICE_HIT_PARTICLE.get(), this.getX(), this.getY(), this.getZ(), 3, 0, 0, 0, 0.1);
+                    level.sendParticles(ModParticles.ICE_HIT_PARTICLE.get(), this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 0.1);
                 }
                 LivingEntity living = (LivingEntity) pResult.getEntity();
                 living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 10));

@@ -33,7 +33,8 @@ public class SkyChargeEnchantment extends Enchantment {
                     }
                     charged = true;
                 } else if (charged) {
-                    chargeamount = (double) (charge - System.currentTimeMillis()) / 1000;
+                    chargeamount = (double) (System.currentTimeMillis() - charge) / 1500;
+                    //System.out.println(charge - System.currentTimeMillis());
                     if (chargeamount >= 1.1) {
                         chargeamount = 1.1;
                     } else if (chargeamount <= 0.2) {

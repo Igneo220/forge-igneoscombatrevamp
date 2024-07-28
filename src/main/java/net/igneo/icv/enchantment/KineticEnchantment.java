@@ -44,7 +44,7 @@ public class KineticEnchantment extends Enchantment{
             pAttacker.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
                 if (pAttacker instanceof ServerPlayer) {
                     ServerLevel level = ((ServerPlayer) pAttacker).serverLevel();
-                    level.sendParticles(ModParticles.KINETIC_HIT_PARTICLE.get(), pTarget.getX(), pTarget.getEyeY(), pTarget.getZ(), 15, 1, 1, 1, 1);
+                    level.sendParticles(ModParticles.KINETIC_HIT_PARTICLE.get(), pTarget.getX(), pTarget.getEyeY(), pTarget.getZ(), 5, 1, 1, 1, 1);
                     ServerPlayer player = (ServerPlayer) pAttacker;
                     double f = ((Math.abs(enchVar.getKinX() + (Math.abs(enchVar.getKinZ())))));
                     level.playSound(null, pAttacker.blockPosition(), ModSounds.KINETIC_HIT.get(), SoundSource.PLAYERS, 0.5F, (float) f);

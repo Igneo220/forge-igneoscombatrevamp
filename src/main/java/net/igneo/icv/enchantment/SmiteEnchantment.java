@@ -34,15 +34,12 @@ public class SmiteEnchantment extends Enchantment {
                 } else if (Keybindings.smite.isDown() && smiting && boltsShot <= 2 && !pPlayer.onGround() && System.currentTimeMillis() >= smiteTime + 500) {
                     smiteTime = System.currentTimeMillis();
                     ++boltsShot;
-                    pPlayer.addDeltaMovement(new Vec3(pPlayer.getLookAngle().x/10,-0.05,pPlayer.getLookAngle().z/10).reverse());
+                    pPlayer.addDeltaMovement(new Vec3(pPlayer.getLookAngle().x/10,-0.2,pPlayer.getLookAngle().z/10).reverse());
                     ModMessages.sendToServer(new SmiteC2SPacket(boltsShot));
                 } else if (boltsShot > 2 && smiting) {
                     EnchantmentHudOverlay.smiteFrames = 0;
                     smiteTime = System.currentTimeMillis();
                     smiting = false;
-                }
-                if (smiting && !Keybindings.smite.isDown()) {
-                    pPlayer.addDeltaMovement(new Vec3(0,0.05,0));
                 }
                 if (pPlayer.onGround() && System.currentTimeMillis() > smiteTime + 200 && smiting) {
                     EnchantmentHudOverlay.smiteFrames = 0;

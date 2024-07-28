@@ -15,6 +15,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 public class FlareEnchantment extends Enchantment {
     public static boolean charging;
     public static long chargeTime;
+    private static int flareDelay = 0;
     public FlareEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
@@ -28,12 +29,16 @@ public class FlareEnchantment extends Enchantment {
                     ModMessages.sendToServer(new FlareSoundC2SPacket());
                 }
                 if (charging) {
-                    ModMessages.sendToServer(new FlareParticleC2SPacket());
+                    if (System.currentTimeMillis() >= chargeTime + flareDelay) {
+                        ModMessages.sendToServer(new FlareParticleC2SPacket());
+                        flareDelay += 100;
+                    }
                     Minecraft.getInstance().player.setDeltaMovement(0, Minecraft.getInstance().player.getDeltaMovement().y, 0);
                 }
                 if (charging && System.currentTimeMillis() >= chargeTime + 2500) {
                     EnchantmentHudOverlay.flareFrames = 0;
                     ModMessages.sendToServer(new FlareC2SPacket());
+                    flareDelay = 0;
                     charging = false;
                     chargeTime = System.currentTimeMillis();
                 }

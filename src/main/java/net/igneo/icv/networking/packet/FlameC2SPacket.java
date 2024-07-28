@@ -61,7 +61,7 @@ public class FlameC2SPacket {
             }
             Vec3 newlook = new Vec3(look.x + (Math.random() * x), look.y,look.z + (Math.random() * z));
             ModEntities.FIRE.get().spawn(level,player.blockPosition().atY((int) player.getEyeY()), MobSpawnType.MOB_SUMMONED).setTrajectory(newlook);
-            level.sendParticles(ParticleTypes.FLAME, player.getX(),player.getEyeY(),player.getZ(),2,0,0,0,1);
+            level.sendParticles(ParticleTypes.FLAME, player.getX(),player.getEyeY(),player.getZ(),2,0,0,0,0.1);
             level.playSound(null,player.blockPosition(), SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS);
         });
         return true;

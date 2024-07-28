@@ -28,7 +28,7 @@ public class FlareParticleC2SPacket {
             ServerPlayer player = context.getSender();
             ServerLevel level = player.serverLevel();
 
-            level.sendParticles(ParticleTypes.FLAME, player.getX(),player.getEyeY(),player.getZ(),2,0,0,0,1);
+            level.sendParticles(ParticleTypes.FLAME, player.getX(),player.getEyeY(),player.getZ(),1,0,0,0,0.2);
         });
         return true;
     }

@@ -90,7 +90,7 @@ public class ArrowMixin extends AbstractArrow {
                 if (entity.level() instanceof ServerLevel) {
                     ServerLevel level = (ServerLevel) entity.level();
                     level.playSound(null,this.blockPosition(), ModSounds.REND_HIT.get(), SoundSource.PLAYERS);
-                    level.sendParticles(ModParticles.REND_HIT_PARTICLE.get(),this.getX(),this.getY(),this.getZ(),10,0,0,0,1);
+                    level.sendParticles(ModParticles.REND_HIT_PARTICLE.get(),this.getX(),this.getY(),this.getZ(),5,0,0,0,1);
                 }
             }
             this.discard();

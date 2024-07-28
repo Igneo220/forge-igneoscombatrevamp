@@ -29,7 +29,7 @@ public class JudgementHitC2SPacket {
             LivingEntity player = context.getSender();
             ServerLevel level = context.getSender().serverLevel();
 
-            level.explode(player,player.getX(),player.getY(),player.getZ(),2, Level.ExplosionInteraction.NONE);
+            level.explode(player,player.getX(),player.getY(),player.getZ(),3, Level.ExplosionInteraction.NONE);
             //else {
             //player.setDeltaMovement(player.getLookAngle().scale(2.5));
             //}

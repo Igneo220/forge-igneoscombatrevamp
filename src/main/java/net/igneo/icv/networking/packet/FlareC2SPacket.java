@@ -27,7 +27,7 @@ public class FlareC2SPacket {
             ServerPlayer player = context.getSender();
             ServerLevel level = player.serverLevel();
 
-            level.explode(player,player.getX(),player.getY(),player.getZ(),4, Level.ExplosionInteraction.NONE);
+            level.explode(player,player.getX(),player.getY(),player.getZ(),5, Level.ExplosionInteraction.NONE);
         });
         return true;
     }

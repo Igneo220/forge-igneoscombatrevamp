@@ -30,7 +30,7 @@ public class SiphonC2SPacket {
             ServerPlayer player = context.getSender();
             ServerLevel level = player.serverLevel();
 
-            level.sendParticles(ModParticles.SIPHON_PARTICLE.get(),player.getX(),player.getEyeY(),player.getZ(),10,0,0,0,1);
+            level.sendParticles(ModParticles.SIPHON_PARTICLE.get(),player.getX(),player.getEyeY(),player.getZ(),5,0,0,0,1);
             level.playSound(null,player.blockPosition(), SoundType.ANVIL.getPlaceSound(), SoundSource.PLAYERS,1,1.3F);
 
             player.heal(1);

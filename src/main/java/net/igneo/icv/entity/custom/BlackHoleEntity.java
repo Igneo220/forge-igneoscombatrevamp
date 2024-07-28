@@ -21,7 +21,8 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 
 public class BlackHoleEntity extends Fireball {
     public Vec3 trajectory;
-    private static long blackHoleTime = 0;
+    private long blackHoleTime = 0;
+    private int holeDelay = 0;
     public BlackHoleEntity(EntityType<? extends Fireball> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         blackHoleTime = 0;
@@ -61,7 +62,10 @@ public class BlackHoleEntity extends Fireball {
         }
         if (!level().isClientSide) {
             ServerLevel level = (ServerLevel) level();
-            level.sendParticles(ModParticles.BLACK_HOLE_PARTICLE.get(), this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 0.01);
+            if (System.currentTimeMillis() > blackHoleTime + holeDelay) {
+                level.sendParticles(ModParticles.BLACK_HOLE_PARTICLE.get(), this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 0.01);
+                holeDelay += 100;
+            }
             for (Entity entity : level.getAllEntities()) {
                 Vec3 pushVec = (((this.position().subtract(entity.position())).scale((10.1 - entity.distanceTo(this)) * 0.1)).scale(0.035));
                 if (entity.distanceTo(this) < 2 && entity != this && entity != this.getOwner() && !(entity instanceof BlackHoleEntity)) {

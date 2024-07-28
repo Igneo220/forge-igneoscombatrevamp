@@ -38,7 +38,7 @@ public class AcrobaticC2SPacket {
             player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
                 enchVar.setAcrobatBonus(true);
                 player.addDeltaMovement(new Vec3(0, 0.5, 0));
-                level.sendParticles(ParticleTypes.POOF, player.getX(), player.getY(), player.getZ(), 10, Math.random() / 5, Math.random() / 5, Math.random() / 5, 0.1);
+                level.sendParticles(ParticleTypes.POOF, player.getX(), player.getY(), player.getZ(), 5, Math.random() / 5, Math.random() / 5, Math.random() / 5, 0.1);
                 level.playSound(null, player.blockPosition(), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1, 0.1F);
             });
         });
