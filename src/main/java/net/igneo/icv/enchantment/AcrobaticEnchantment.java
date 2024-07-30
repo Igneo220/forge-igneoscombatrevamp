@@ -66,7 +66,7 @@ public class AcrobaticEnchantment extends Enchantment {
                     }
                 } else if (Minecraft.getInstance().options.keyLeft.isDown() && Minecraft.getInstance().options.keyRight.isDown() && pPlayer.onGround() && !flipping && !timeout) {
                     flipping = true;
-                    pPlayer.addDeltaMovement(new Vec3(pPlayer.getLookAngle().x,0.6,pPlayer.getLookAngle().z));
+                    pPlayer.addDeltaMovement(new Vec3(pPlayer.getLookAngle().x/2,0.6,pPlayer.getLookAngle().z/2));
                     ModMessages.sendToServer(new AcrobaticC2SPacket());
                 }
                 if (flipping && pPlayer.onGround() && !Minecraft.getInstance().options.keyRight.isDown() && !Minecraft.getInstance().options.keyLeft.isDown()) {

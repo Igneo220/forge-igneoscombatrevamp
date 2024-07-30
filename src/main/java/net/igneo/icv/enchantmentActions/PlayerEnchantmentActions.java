@@ -7,13 +7,6 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 
 public class PlayerEnchantmentActions {
     //config registry
-    private boolean joined;
-    public boolean getJoined() {
-        return this.joined;
-    }
-    public void setJoined(boolean bool) {
-        this.joined = bool;
-    }
 
 
     //acrobatic enchantment work
@@ -160,7 +153,6 @@ public class PlayerEnchantmentActions {
 
     //general work
     public void copyFrom(PlayerEnchantmentActions source) {
-        this.joined = source.joined;
 
         this.acrobatBonus = source.acrobatBonus;
 

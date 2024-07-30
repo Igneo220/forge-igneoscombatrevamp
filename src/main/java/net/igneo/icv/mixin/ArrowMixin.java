@@ -254,6 +254,7 @@ public class ArrowMixin extends AbstractArrow {
             }
         }
     }
+    @Shadow
     @Override
     protected ItemStack getPickupItem() {
         return null;

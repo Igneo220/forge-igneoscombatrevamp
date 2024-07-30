@@ -50,8 +50,6 @@ public class ICV
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ICVClientConfigs.SPEC,"icv-client.toml");
         //ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ICVCommonConfigs.SPEC);
 
-
-
         ModEnchantments.register(modEventBus);
 
         ModParticles.register(modEventBus);

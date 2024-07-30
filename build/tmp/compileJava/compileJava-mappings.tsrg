@@ -27,6 +27,7 @@ net/igneo/icv/mixin/AnvilMenuMixin onTake (Lnet/minecraft/world/entity/player/Pl
 net/igneo/icv/mixin/AnvilMenuMixin isValidBlock (Lnet/minecraft/world/level/block/state/BlockState;)Z m_8039_
 net/igneo/icv/mixin/AnvilMenuMixin createResult ()V m_6640_
 net/igneo/icv/mixin/AnvilMenuMixin createInputSlotDefinitions ()Lnet/minecraft/world/inventory/ItemCombinerMenuSlotDefinition; m_266183_
+net/igneo/icv/mixin/ArrowMixin getPickupItem ()Lnet/minecraft/world/item/ItemStack; m_7941_
 net/igneo/icv/mixin/BowItemMixin getUseDuration (Lnet/minecraft/world/item/ItemStack;)I m_8105_
 net/igneo/icv/mixin/BowItemMixin getPowerForTime (I)F m_40661_
 net/igneo/icv/mixin/BowItemMixin releaseUsing (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V m_5551_

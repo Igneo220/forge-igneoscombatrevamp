@@ -251,6 +251,9 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
         super.removed(pPlayer);
         ModEvents.usedEnchTable = null;
         this.localEnchShift = 0;
+        if (pPlayer instanceof ServerPlayer) {
+            ModMessages.sendToPlayer(new EnchTableUpdateS2CPacket(this.localEnchShift), (ServerPlayer) pPlayer);
+        }
         this.localLength = 0;
         ModEvents.enchLength = 0;
         this.access.execute((p_39469_, p_39470_) -> {

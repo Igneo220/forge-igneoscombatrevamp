@@ -46,8 +46,6 @@ public class BowItemMixin{
 
         return f;
     }
-
-    @Shadow
     public AbstractArrow customArrow(AbstractArrow arrow) {
         return arrow;
     }
@@ -156,8 +154,9 @@ public class BowItemMixin{
                         ArrowItem arrowitem = (ArrowItem) (Items.ARROW);
                         AbstractArrow arrow = arrowitem.createArrow(level, pStack, pEntityLiving);
                         for (Entity entity : level.getAllEntities()) {
-                            if (entity.getBoundingBox().intersects(player.getEyePosition(), player.position().add(player.getLookAngle().scale(15))) && entity != player && entity instanceof LivingEntity) {
+                            if (entity.getBoundingBox().intersects(player.getEyePosition(), player.position().add(player.getLookAngle().scale(20))) && entity != player && entity instanceof LivingEntity) {
                                 entity.hurt(player.damageSources().arrow(arrow, pEntityLiving), 3);
+                                entity.addDeltaMovement(new Vec3(player.getLookAngle().x/2,0.15,player.getLookAngle().z/2));
                             }
                         }
                     });

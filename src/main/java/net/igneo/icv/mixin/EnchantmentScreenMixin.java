@@ -15,6 +15,7 @@ import net.minecraft.client.gui.screens.inventory.EnchantmentNames;
 import net.minecraft.client.gui.screens.inventory.EnchantmentScreen;
 import net.minecraft.client.model.BookModel;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
@@ -193,17 +194,17 @@ public class EnchantmentScreenMixin extends AbstractContainerScreen<EnchantmentM
             if (this.isHovering(60, 14 + 19 * j, 108, 17, (double)pMouseX, (double)pMouseY) && k > 0) {
                 List<Component> list = Lists.newArrayList();
                 //NECESSARY FOR HOVER TEXT
-                list.add((Component.translatable("container.enchant.clue", enchantment == null ? "" : enchantment.getFullname(l))).withStyle(ChatFormatting.WHITE));
+                list.add((Component.translatable("enchantment." + BuiltInRegistries.ENCHANTMENT.getKey(enchantment).toString().replace(":",".") + ".desc", enchantment == null ? "" : enchantment.getFullname(l))).withStyle(ChatFormatting.WHITE));
                 if (enchantment == null) {
                     //ANNOYING WEIRD STUFF IT SHOWS WHEN NOTHINGS THERE
                     //list.add(Component.literal(""));
                     //list.add(Component.translatable("forge.container.enchant.limitedEnchantability").withStyle(ChatFormatting.RED));
                 } else if (!flag) {
                     //no idea what this does, try uncommenting it if things break
-                    list.add(CommonComponents.EMPTY);
+                    //list.add(CommonComponents.EMPTY);
                     if (this.minecraft.player.experienceLevel < k) {
                         //no idea what this does either
-                        list.add(Component.translatable("container.enchant.level.requirement", (this.menu).costs[j]).withStyle(ChatFormatting.RED));
+                        //list.add(Component.translatable("container.enchant.level.requirement", (this.menu).costs[j]).withStyle(ChatFormatting.RED));
                     } else {
                         MutableComponent mutablecomponent;
                         if (i1 == 1) {
@@ -226,7 +227,8 @@ public class EnchantmentScreenMixin extends AbstractContainerScreen<EnchantmentM
 
                 //hello, I am the floater thingie
                 //i say the stuff
-                //pGuiGraphics.renderComponentTooltip(this.font, list, pMouseX, pMouseY);
+                FormattedText formattedtext = (Component.translatable("%s", enchantment == null ? "" : enchantment.getFullname((this.menu).levelClue[l])).withStyle(ChatFormatting.BLACK));
+                pGuiGraphics.renderComponentTooltip(this.font, list, pMouseX, pMouseY);
                 break;
             }
         }

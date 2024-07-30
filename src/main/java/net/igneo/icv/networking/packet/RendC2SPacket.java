@@ -37,7 +37,7 @@ public class RendC2SPacket {
             ServerLevel level = player.serverLevel();
 
             LivingEntity entity = (LivingEntity) level.getEntity(rendID);
-            entity.hurt(level.damageSources().magic(),(int)(rendCount * (rendCount/2)));
+            entity.hurt(level.damageSources().magic(),rendCount);
             level.sendParticles(ModParticles.REND_HIT_PARTICLE.get(), entity.getX(),entity.getEyeY(),entity.getZ(),5,0,0,0,1);
             level.playSound(null, entity.blockPosition(), ModSounds.REND_HURT.get(), SoundSource.PLAYERS);
             level.sendParticles(ModParticles.REND_USE_PARTICLE.get(), player.getX(),player.getEyeY(),player.getZ(),5,0,0,0,1);
