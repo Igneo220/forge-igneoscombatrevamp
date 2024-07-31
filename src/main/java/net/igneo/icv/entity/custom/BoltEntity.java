@@ -33,7 +33,7 @@ public class BoltEntity extends Fireball {
 
     @Override
     protected void onHitEntity(EntityHitResult pResult) {
-        if (System.currentTimeMillis() >= boltTime + 100 && pResult.getEntity() instanceof LivingEntity) {
+        if (System.currentTimeMillis() >= boltTime + 100 && (pResult.getEntity() instanceof LivingEntity || pResult.getEntity() instanceof CometEntity)) {
             pResult.getEntity().hurt(level().damageSources().lightningBolt(), 10);
             if (!level().isClientSide) {
                 ServerLevel level = (ServerLevel) level();

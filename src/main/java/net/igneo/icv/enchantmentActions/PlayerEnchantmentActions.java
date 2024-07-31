@@ -6,9 +6,58 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
 public class PlayerEnchantmentActions {
-    //config registry
 
+    //trim variables
+    private int wayBuff;
+    public int getWayBuff() {
+        return this.wayBuff;
+    }
+    public void setWayBuff(int newBuff) {
+        this.wayBuff = newBuff;
+    }
 
+    private int wildBuff;
+    public int getWildBuff() {
+        return this.wildBuff;
+    }
+    public void setWildBuff(int newBuff) {
+        this.wildBuff = newBuff;
+    }
+    private int silenceBuff;
+    public int getSilenceBuff() {
+        return this.silenceBuff;
+    }
+    public void setSilenceBuff(int newBuff) {
+        this.silenceBuff = newBuff;
+    }
+    private int snoutBuff;
+    public int getSnoutBuff() {
+        return this.snoutBuff;
+    }
+    public void setSnoutBuff(int newBuff) {
+        this.snoutBuff = newBuff;
+    }
+    private int hostBuff;
+    public int getHostBuff() {
+        return this.hostBuff;
+    }
+    public void setHostBuff(int newBuff) {
+        this.hostBuff = newBuff;
+    }
+    private int duneBuff;
+    public int getDuneBuff() {
+        return this.duneBuff;
+    }
+    public void setDuneBuff(int newBuff) {
+        this.duneBuff = newBuff;
+    }
+    private int shaperBuff;
+    public int getShaperBuff() {
+        return this.shaperBuff;
+    }
+    public void setShaperBuff(int newBuff) {
+        this.shaperBuff = newBuff;
+    }
     //acrobatic enchantment work
     private boolean acrobatBonus;
     public boolean getAcrobatBonus() {

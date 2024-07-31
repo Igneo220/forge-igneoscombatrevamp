@@ -32,6 +32,11 @@ net/igneo/icv/mixin/BowItemMixin getUseDuration (Lnet/minecraft/world/item/ItemS
 net/igneo/icv/mixin/BowItemMixin getPowerForTime (I)F m_40661_
 net/igneo/icv/mixin/BowItemMixin releaseUsing (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V m_5551_
 net/igneo/icv/mixin/CrossbowItemMixin shootProjectile (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;FZFFF)V m_40894_
+net/igneo/icv/mixin/EnchantmentHelperMixin getFireAspect (Lnet/minecraft/world/entity/LivingEntity;)I m_44914_
+net/igneo/icv/mixin/EnchantmentHelperMixin getKnockbackBonus (Lnet/minecraft/world/entity/LivingEntity;)I m_44894_
+net/igneo/icv/mixin/EnchantmentHelperMixin getDamageProtection (Ljava/lang/Iterable;Lnet/minecraft/world/damagesource/DamageSource;)I m_44856_
+net/igneo/icv/mixin/EnchantmentHelperMixin getDepthStrider (Lnet/minecraft/world/entity/LivingEntity;)I m_44922_
+net/igneo/icv/mixin/EnchantmentHelperMixin getRespiration (Lnet/minecraft/world/entity/LivingEntity;)I m_44918_
 net/igneo/icv/mixin/EnchantmentHelperMixin getLoyalty (Lnet/minecraft/world/item/ItemStack;)I m_44928_
 net/igneo/icv/mixin/EnchantmentHelperMixin getBlockEfficiency (Lnet/minecraft/world/entity/LivingEntity;)I m_44926_
 net/igneo/icv/mixin/EnchantmentMenuMixin quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack; m_7648_

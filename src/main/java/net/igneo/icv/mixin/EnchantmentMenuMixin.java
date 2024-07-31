@@ -207,7 +207,7 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
         updateEnchantmentLists();
         if (pInventory == this.enchantSlots) {
             ItemStack itemstack = pInventory.getItem(0);
-            if (!itemstack.isEmpty() && itemstack.isEnchantable()) {
+            if (!itemstack.isEmpty() && itemstack.isEnchantable() && checkValid(itemstack)) {
                 this.access.execute((level, tablePos) -> {
                     float j = 0;
                     for(int k = 0; k < 3; ++k) {
@@ -240,6 +240,42 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
             }
         }
 
+    }
+
+    private boolean checkValid(ItemStack pStack) {
+        boolean valid = false;
+        if (LivingEntity.getEquipmentSlotForItem(pStack).equals(EquipmentSlot.MAINHAND)) {
+            if (pStack.getItem().equals(Items.BOW)) {
+                valid = true;
+            } else if (pStack.getItem().equals(Items.CROSSBOW)) {
+                valid = true;
+            } else if (pStack.getItem().equals(Items.TRIDENT)) {
+                valid = true;
+            } else if (pStack.getItem().toString().contains("sword") ||
+                    pStack.getItem().toString().contains("scythe") ||
+                    pStack.getItem().toString().contains("glaive") ||
+                    pStack.getItem().toString().contains("halberd") ||
+                    pStack.getItem().toString().contains("hammer") ||
+                    pStack.getItem().toString().contains("rapier") ||
+                    pStack.getItem().toString().contains("spear") ||
+                    pStack.getItem().toString().contains("katana") ||
+                    pStack.getItem().toString().contains("mace")) {
+                valid = true;
+            } else if (pStack.getItem().toString().contains("axe") ||
+                    pStack.getItem().toString().contains("hoe") ||
+                    pStack.getItem().toString().contains("shovel")) {
+                valid = true;
+            }
+        } else if (LivingEntity.getEquipmentSlotForItem(pStack).equals(EquipmentSlot.HEAD)) {
+            valid = true;
+        } else if (LivingEntity.getEquipmentSlotForItem(pStack).equals(EquipmentSlot.CHEST)) {
+            valid = true;
+        } else if (LivingEntity.getEquipmentSlotForItem(pStack).equals(EquipmentSlot.LEGS)) {
+            valid = true;
+        } else if (LivingEntity.getEquipmentSlotForItem(pStack).equals(EquipmentSlot.FEET)) {
+            valid = true;
+        }
+        return valid;
     }
 
     /**
@@ -297,7 +333,7 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
         return list;
     }
     private boolean checkValidEquipmentSlot(ItemStack pStack, Enchantment enchantment) {
-        if (pStack.isEnchantable()) {
+        if (pStack.isEnchantable()  && checkValid(pStack)) {
             if (LivingEntity.getEquipmentSlotForItem(pStack).equals(EquipmentSlot.MAINHAND)) {
                 if (pStack.getItem().equals(Items.BOW)) {
                     boolean add = false;

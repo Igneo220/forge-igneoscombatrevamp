@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -51,31 +52,35 @@ public class CometEntity extends AbstractHurtingProjectile {
     }
     @Override
     public boolean hurt(DamageSource pSource, float pAmount) {
-        if (this.level() instanceof  ServerLevel) {
-            ServerLevel level = (ServerLevel) this.level();
-            level.playSound(null, this.blockPosition(), ModSounds.COMET_HIT.get(), SoundSource.PLAYERS);
-        }
-        hurt = true;
-        if (pAmount > 10) {
-            explosionPower += 7;
-        } else {
-            explosionPower += pAmount/1.5;
-        }
-        if (explosionPower > 40) {
-            explosionPower = 40;
-        }
-        this.markHurt();
-        Entity entity = pSource.getEntity();
-        if (entity != null) {
-            if (!this.level().isClientSide) {
-                Vec3 vec3 = entity.getLookAngle();
-                this.xPower = vec3.x * (this.explosionPower * 0.005 + 0.1);
-                this.yPower = vec3.y * (this.explosionPower * 0.005 + 0.1);
-                this.zPower = vec3.z * (this.explosionPower * 0.005 + 0.1);
-                this.setOwner(entity);
+        if (!pSource.is(DamageTypes.LIGHTNING_BOLT)) {
+            if (this.level() instanceof ServerLevel) {
+                ServerLevel level = (ServerLevel) this.level();
+                level.playSound(null, this.blockPosition(), ModSounds.COMET_HIT.get(), SoundSource.PLAYERS);
             }
+            hurt = true;
+            if (pAmount > 10) {
+                explosionPower += 7;
+            } else {
+                explosionPower += pAmount / 1.5;
+            }
+            if (explosionPower > 40) {
+                explosionPower = 40;
+            }
+            this.markHurt();
+            Entity entity = pSource.getEntity();
+            if (entity != null) {
+                if (!this.level().isClientSide) {
+                    Vec3 vec3 = entity.getLookAngle();
+                    this.xPower = vec3.x * (this.explosionPower * 0.005 + 0.1);
+                    this.yPower = vec3.y * (this.explosionPower * 0.005 + 0.1);
+                    this.zPower = vec3.z * (this.explosionPower * 0.005 + 0.1);
+                    this.setOwner(entity);
+                }
 
-            return true;
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
