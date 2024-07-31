@@ -32,6 +32,7 @@ net/igneo/icv/mixin/BowItemMixin getUseDuration (Lnet/minecraft/world/item/ItemS
 net/igneo/icv/mixin/BowItemMixin getPowerForTime (I)F m_40661_
 net/igneo/icv/mixin/BowItemMixin releaseUsing (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V m_5551_
 net/igneo/icv/mixin/CrossbowItemMixin shootProjectile (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;FZFFF)V m_40894_
+net/igneo/icv/mixin/EnchantmentHelperMixin getSneakingSpeedBonus (Lnet/minecraft/world/entity/LivingEntity;)F m_220302_
 net/igneo/icv/mixin/EnchantmentHelperMixin getFireAspect (Lnet/minecraft/world/entity/LivingEntity;)I m_44914_
 net/igneo/icv/mixin/EnchantmentHelperMixin getKnockbackBonus (Lnet/minecraft/world/entity/LivingEntity;)I m_44894_
 net/igneo/icv/mixin/EnchantmentHelperMixin getDamageProtection (Ljava/lang/Iterable;Lnet/minecraft/world/damagesource/DamageSource;)I m_44856_
