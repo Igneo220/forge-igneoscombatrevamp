@@ -19,17 +19,17 @@ import java.util.function.Supplier;
 
 
 public class WardenspineC2SPacket {
-    private static boolean blind;
+    private static int blind = 0;
     private static final UUID SIGHT_MODIFIER_WARDENSPINE_UUID = UUID.fromString("9b3c6774-e4f3-4f36-b7c5-6ee971580f90");
-    public WardenspineC2SPacket(boolean value){
+    public WardenspineC2SPacket(int value){
         blind = value;
     }
     public WardenspineC2SPacket(FriendlyByteBuf buf) {
-        blind = buf.readBoolean();
+        blind = buf.readInt();
     }
 
     public void toBytes(FriendlyByteBuf buf) {
-        buf.writeBoolean(blind);
+        buf.writeInt(blind);
     }
 
     public boolean handle(Supplier<NetworkEvent.Context> supplier) {
@@ -40,12 +40,15 @@ public class WardenspineC2SPacket {
             ServerLevel level = context.getSender().serverLevel();
 
 
-            if (blind) {
+            if (blind == 2) {
                 level.playSound(null,player.blockPosition(), SoundEvents.WARDEN_ANGRY, SoundSource.PLAYERS);
                 player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS,99999999,99));
                 player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).addTransientModifier(new AttributeModifier(SIGHT_MODIFIER_WARDENSPINE_UUID, "Warden sight", 8, AttributeModifier.Operation.ADDITION));
-            } else {
+            } else if (blind == 1) {
                 level.playSound(null,player.blockPosition(),SoundEvents.WARDEN_DEATH,SoundSource.PLAYERS);
+                player.removeEffect(MobEffects.BLINDNESS);
+                player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).removeModifier(UUID.fromString("9b3c6774-e4f3-4f36-b7c5-6ee971580f90"));
+            } else if (blind == 0) {
                 player.removeEffect(MobEffects.BLINDNESS);
                 player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).removeModifier(UUID.fromString("9b3c6774-e4f3-4f36-b7c5-6ee971580f90"));
             }

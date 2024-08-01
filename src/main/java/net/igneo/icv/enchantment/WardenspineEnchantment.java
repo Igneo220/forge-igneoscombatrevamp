@@ -28,7 +28,7 @@ public class WardenspineEnchantment extends Enchantment {
             blind = true;
             blinding = false;
             wardenCooldown = System.currentTimeMillis();
-            ModMessages.sendToServer(new WardenspineC2SPacket(blind));
+            ModMessages.sendToServer(new WardenspineC2SPacket(2));
         }
         if (Keybindings.wardenspine.isDown() && System.currentTimeMillis() >= wardenCooldown + 1000 && blind && !blinding) {
             blinding = true;
@@ -39,7 +39,7 @@ public class WardenspineEnchantment extends Enchantment {
             blind = false;
             blinding = false;
             wardenCooldown = System.currentTimeMillis();
-            ModMessages.sendToServer(new WardenspineC2SPacket(blind));
+            ModMessages.sendToServer(new WardenspineC2SPacket(1));
         }
     }
 }

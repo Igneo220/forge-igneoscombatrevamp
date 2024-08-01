@@ -154,9 +154,16 @@ public class ModEvents {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         event.player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
             for (int j = 0; j < 4; ++j) {
-                if (!event.player.getInventory().armor.get(j).serializeNBT().toString().equals(enchVar.getPlayerArmor().get(j))) {
+                String armor;
+                if (!event.player.getInventory().armor.get(j).toString().contains("air")) {
+                    armor = event.player.getInventory().armor.get(j).serializeNBT().get("tag").toString().split(",", 2)[1];
+                } else {
+                    armor = "air";
+                }
+                if (!armor.equals(enchVar.getPlayerArmor().get(j))) {
+                    System.out.println("we are NOT the same");
                     uniPlayer = Minecraft.getInstance().player;
-                    enchVar.setPlayerArmor(event.player.getInventory().armor.get(j).serializeNBT().toString(),j);
+                    enchVar.setPlayerArmor(armor,j);
                     applyBuffs(event.player);
                     if (event.player.level().isClientSide) {
                         if (!event.player.getInventory().armor.get(j).toString().contains("air")) {
@@ -454,7 +461,7 @@ public class ModEvents {
                     WardenspineEnchantment.blind = false;
                     WardenspineEnchantment.blinding = false;
                     WardenspineEnchantment.wardenCooldown = System.currentTimeMillis();
-                    ModMessages.sendToServer(new WardenspineC2SPacket(false));
+                    ModMessages.sendToServer(new WardenspineC2SPacket(0));
 
                     ParryEnchantment.parryCooldown = System.currentTimeMillis();
                     EnchantmentHudOverlay.parryFrames = 0;
