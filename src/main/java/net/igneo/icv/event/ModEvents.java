@@ -169,11 +169,11 @@ public class ModEvents {
                 }
                 //System.out.println(armor);
                 if (!armor.equals(enchVar.getPlayerArmor().get(j))) {
-                    System.out.println("we are NOT the same");
-                    uniPlayer = Minecraft.getInstance().player;
+                    //System.out.println("we are NOT the same");
                     enchVar.setPlayerArmor(armor,j);
                     applyBuffs(event.player);
                     if (event.player.level().isClientSide) {
+                        uniPlayer = Minecraft.getInstance().player;
                         if (!event.player.getInventory().armor.get(j).toString().contains("air")) {
                             List<Enchantment> enchantlist = new ArrayList<Enchantment>(event.player.getInventory().armor.get(j).getAllEnchantments().keySet());
                             if (!enchantlist.isEmpty()) {
