@@ -155,11 +155,19 @@ public class ModEvents {
         event.player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
             for (int j = 0; j < 4; ++j) {
                 String armor;
-                if (!event.player.getInventory().armor.get(j).toString().contains("air")) {
-                    armor = event.player.getInventory().armor.get(j).serializeNBT().get("tag").toString().split(",", 2)[1];
+                if (event.player.getInventory().getArmor(j).serializeNBT().toString().contains("Enchantments")) {
+                    //System.out.println(event.player.getInventory().getArmor(j).getTag().get("Enchantments"));
+                    armor = "armor:" + event.player.getInventory().getArmor(j).getTag().get("Enchantments");
                 } else {
-                    armor = "air";
+                    armor = "armor:null";
                 }
+                if (event.player.getInventory().getArmor(j).serializeNBT().toString().contains("Trims")) {
+                    //System.out.println(event.player.getInventory().getArmor(j).getTag().get("Enchantments"));
+                    armor = armor + "," + "trim:" + event.player.getInventory().getArmor(j).getTag().get("Enchantments");
+                } else {
+                    armor = armor + "," + "trim:null";
+                }
+                //System.out.println(armor);
                 if (!armor.equals(enchVar.getPlayerArmor().get(j))) {
                     System.out.println("we are NOT the same");
                     uniPlayer = Minecraft.getInstance().player;

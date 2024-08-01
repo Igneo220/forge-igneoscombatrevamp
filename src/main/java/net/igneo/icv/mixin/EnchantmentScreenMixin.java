@@ -194,7 +194,10 @@ public class EnchantmentScreenMixin extends AbstractContainerScreen<EnchantmentM
             if (this.isHovering(60, 14 + 19 * j, 108, 17, (double)pMouseX, (double)pMouseY) && k > 0) {
                 List<Component> list = Lists.newArrayList();
                 //NECESSARY FOR HOVER TEXT
-                list.add((Component.translatable("enchantment." + BuiltInRegistries.ENCHANTMENT.getKey(enchantment).toString().replace(":",".") + ".desc", enchantment == null ? "" : enchantment.getFullname(l))).withStyle(ChatFormatting.WHITE));
+                if (enchantment != null) {
+                    //System.out.println("enchantment." + BuiltInRegistries.ENCHANTMENT.getKey(enchantment).toString().replace(":", ".") + ".desc");
+                    list.add((Component.translatable("enchantment." + BuiltInRegistries.ENCHANTMENT.getKey(enchantment).toString().replace(":", ".").replace(" ", "_") + ".desc", enchantment == null ? "" : enchantment.getFullname(l))).withStyle(ChatFormatting.WHITE));
+                }
                 if (enchantment == null) {
                     //ANNOYING WEIRD STUFF IT SHOWS WHEN NOTHINGS THERE
                     //list.add(Component.literal(""));
