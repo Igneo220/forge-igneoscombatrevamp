@@ -224,6 +224,14 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
                             } else {
                                 this.enchantClue[l] = -1;
                             }
+                        } else {
+                            for(int i = 0; i < 3; ++i) {
+                                this.costs[i] = 0;
+                                this.enchantClue[i] = -1;
+                                this.levelClue[i] = -1;
+                            }
+                            this.localEnchShift = 0;
+                            this.localLength = 0;
                         }
                     }
 

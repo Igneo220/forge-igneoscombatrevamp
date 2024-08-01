@@ -12,11 +12,13 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
+import static net.igneo.icv.event.ModEvents.uniPlayer;
+
 public class MomentumEnchantment extends Enchantment {
-    private static long delay;
-    private static int loopCount = 0;
-    private static boolean shouldCheck = true;
-    private static boolean spedUp;
+    public static long delay;
+    public static int loopCount = 0;
+    public static boolean shouldCheck = true;
+    public static boolean spedUp;
     public MomentumEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
@@ -33,37 +35,23 @@ public class MomentumEnchantment extends Enchantment {
     }
 
     public static void onClientTick() {
-        LocalPlayer pPlayer = Minecraft.getInstance().player;
-        if (pPlayer != null) {
-            if (pPlayer.isSprinting() && EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.MOMENTUM.get())) {
-                if (shouldCheck) {
-                    delay = System.currentTimeMillis();
-                    ++loopCount;
-                    shouldCheck = false;
-                }
-                if (System.currentTimeMillis() >= delay + 3000 && loopCount <= 3) {
-                    spedUp = true;
-                    if (loopCount != 0) {
-                        ModMessages.sendToServer(new MomentumC2SPacket(loopCount));
-                    }
-                    shouldCheck = true;
-                }
-            } else if (spedUp){
-                loopCount = 0;
-                spedUp = false;
-                ModMessages.sendToServer(new MomentumC2SPacket(0));
+        if (uniPlayer.isSprinting()) {
+            if (shouldCheck) {
+                delay = System.currentTimeMillis();
+                ++loopCount;
+                shouldCheck = false;
             }
-            if (spedUp) {
-                double d0 = pPlayer.getDeltaMovement().x;
-                double d1 = pPlayer.getDeltaMovement().y;
-                double d2 = pPlayer.getDeltaMovement().z;
-                 if ((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)) <= 0.15) {
-                     spedUp = false;
-                     ModMessages.sendToServer(new MomentumC2SPacket(0));
-                     loopCount = 0;
-                 }
+            if (System.currentTimeMillis() >= delay + 3000 && loopCount <= 3) {
+                spedUp = true;
+                if (loopCount != 0) {
+                    ModMessages.sendToServer(new MomentumC2SPacket(loopCount));
+                }
+                shouldCheck = true;
             }
-
+        } else if (spedUp){
+            loopCount = 0;
+            spedUp = false;
+            ModMessages.sendToServer(new MomentumC2SPacket(0));
         }
     }
 }

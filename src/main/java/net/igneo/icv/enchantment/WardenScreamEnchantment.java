@@ -23,21 +23,14 @@ public class WardenScreamEnchantment extends Enchantment {
     }
 
     public static void onKeyInputEvent() {
-        if (Minecraft.getInstance().player != null) {
-            if (EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(3)).containsKey(ModEnchantments.WARDEN_SCREAM.get())) {
-                if (Keybindings.wardenscream.isDown() && System.currentTimeMillis() >= wardenTime + 10000) {
-                    EnchantmentHudOverlay.screamFrames = 0;
-                    look = Minecraft.getInstance().player.getLookAngle();
-                    wardenTime = System.currentTimeMillis();
-                    //wardenhit.add(raycastEntities(Minecraft.getInstance().player.getEyePosition(),Minecraft.getInstance().player.getEyePosition().add(look)));
-                    playerpos = Minecraft.getInstance().player.getEyePosition();
-                    Minecraft.getInstance().player.addDeltaMovement(new Vec3(Minecraft.getInstance().player.getLookAngle().reverse().scale(0.5).x,0,Minecraft.getInstance().player.getLookAngle().reverse().scale(0.5).z));
-                    ModMessages.sendToServer(new WardenScreamC2SPacket());
-                }
-            } else {
-                wardenTime = System.currentTimeMillis();
-                EnchantmentHudOverlay.screamFrames = 0;
-            }
+        if (Keybindings.wardenscream.isDown() && System.currentTimeMillis() >= wardenTime + 10000) {
+            EnchantmentHudOverlay.screamFrames = 0;
+            look = Minecraft.getInstance().player.getLookAngle();
+            wardenTime = System.currentTimeMillis();
+            //wardenhit.add(raycastEntities(Minecraft.getInstance().uniPlayer.getEyePosition(),Minecraft.getInstance().uniPlayer.getEyePosition().add(look)));
+            playerpos = Minecraft.getInstance().player.getEyePosition();
+            Minecraft.getInstance().player.addDeltaMovement(new Vec3(Minecraft.getInstance().player.getLookAngle().reverse().scale(0.5).x,0,Minecraft.getInstance().player.getLookAngle().reverse().scale(0.5).z));
+            ModMessages.sendToServer(new WardenScreamC2SPacket());
         }
     }
 

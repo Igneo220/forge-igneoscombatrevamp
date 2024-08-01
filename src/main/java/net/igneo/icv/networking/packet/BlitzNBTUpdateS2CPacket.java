@@ -31,7 +31,7 @@ public class BlitzNBTUpdateS2CPacket {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
             Minecraft.getInstance().player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-                //event.player.sendSystemMessage(Component.literal("it do be workin"));
+                //event.uniPlayer.sendSystemMessage(Component.literal("it do be workin"));
                 enchVar.addBlitzBoostCount();
                 enchVar.setBlitzTime(System.currentTimeMillis());
             });

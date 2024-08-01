@@ -22,6 +22,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.Vec3;
 
 import static java.lang.Math.abs;
+import static net.igneo.icv.event.ModEvents.uniPlayer;
 
 public class AcrobaticEnchantment extends Enchantment {
     private static boolean flipping = false;
@@ -49,30 +50,25 @@ public class AcrobaticEnchantment extends Enchantment {
     }
 
     public static void onClientTick() {
-        if (Minecraft.getInstance().player != null) {
-            LocalPlayer pPlayer = Minecraft.getInstance().player;
-            if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(1)).containsKey(ModEnchantments.ACROBATIC.get())) {
-                if (!Minecraft.getInstance().options.keyLeft.isDown() && !Minecraft.getInstance().options.keyRight.isDown()) {
-                    startCount = false;
-                    timeout = false;
-                } else if ((Minecraft.getInstance().options.keyLeft.isDown() && !Minecraft.getInstance().options.keyRight.isDown()) || (!Minecraft.getInstance().options.keyLeft.isDown() && Minecraft.getInstance().options.keyRight.isDown())) {
-                    if (!startCount) {
-                        windowTimeout = System.currentTimeMillis();
-                        startCount = true;
-                    }
-                    if (System.currentTimeMillis() >= windowTimeout + 250) {
-                        startCount = false;
-                        timeout = true;
-                    }
-                } else if (Minecraft.getInstance().options.keyLeft.isDown() && Minecraft.getInstance().options.keyRight.isDown() && pPlayer.onGround() && !flipping && !timeout) {
-                    flipping = true;
-                    pPlayer.addDeltaMovement(new Vec3(pPlayer.getLookAngle().x/2,0.6,pPlayer.getLookAngle().z/2));
-                    ModMessages.sendToServer(new AcrobaticC2SPacket());
-                }
-                if (flipping && pPlayer.onGround() && !Minecraft.getInstance().options.keyRight.isDown() && !Minecraft.getInstance().options.keyLeft.isDown()) {
-                    flipping = false;
-                }
+        if (!Minecraft.getInstance().options.keyLeft.isDown() && !Minecraft.getInstance().options.keyRight.isDown()) {
+            startCount = false;
+            timeout = false;
+        } else if ((Minecraft.getInstance().options.keyLeft.isDown() && !Minecraft.getInstance().options.keyRight.isDown()) || (!Minecraft.getInstance().options.keyLeft.isDown() && Minecraft.getInstance().options.keyRight.isDown())) {
+            if (!startCount) {
+                windowTimeout = System.currentTimeMillis();
+                startCount = true;
             }
+            if (System.currentTimeMillis() >= windowTimeout + 250) {
+                startCount = false;
+                timeout = true;
+            }
+        } else if (Minecraft.getInstance().options.keyLeft.isDown() && Minecraft.getInstance().options.keyRight.isDown() && uniPlayer.onGround() && !flipping && !timeout) {
+            flipping = true;
+            uniPlayer.addDeltaMovement(new Vec3(uniPlayer.getLookAngle().x/2,0.6,uniPlayer.getLookAngle().z/2));
+            ModMessages.sendToServer(new AcrobaticC2SPacket());
+        }
+        if (flipping && uniPlayer.onGround() && !Minecraft.getInstance().options.keyRight.isDown() && !Minecraft.getInstance().options.keyLeft.isDown()) {
+            flipping = false;
         }
     }
 }

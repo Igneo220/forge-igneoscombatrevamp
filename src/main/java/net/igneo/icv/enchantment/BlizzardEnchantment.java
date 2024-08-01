@@ -25,28 +25,20 @@ public class BlizzardEnchantment extends Enchantment {
         //slots = pApplicableSlots;
     }
     public static void onClientTick() {
-        if (Minecraft.getInstance().player != null) {
-            LocalPlayer player = Minecraft.getInstance().player;
-            if (EnchantmentHelper.getEnchantments(player.getInventory().getArmor(3)).containsKey(ModEnchantments.BLIZZARD.get())) {
-                if (Keybindings.blizzard.isDown() && System.currentTimeMillis() >= iceTime + 17000 && !doBeIcin) {
-                    iceDelay = 0;
-                    doBeIcin = true;
-                    iceTime = System.currentTimeMillis();
-                    ModMessages.sendToServer(new BlizzardSoundC2SPacket());
-                } else if (doBeIcin && System.currentTimeMillis() <= iceTime + 3000) {
-                    if (System.currentTimeMillis() >= iceTime + iceDelay) {
-                        ModMessages.sendToServer(new BlizzardC2SPacket());
-                        iceDelay += 75;
-                    }
-                } else if (doBeIcin) {
-                    EnchantmentHudOverlay.blizzardFrames = 0;
-                    iceTime = System.currentTimeMillis();
-                    doBeIcin = false;
-                }
-            } else {
-                EnchantmentHudOverlay.blizzardFrames = 0;
-                iceTime = System.currentTimeMillis();
+        if (Keybindings.blizzard.isDown() && System.currentTimeMillis() >= iceTime + 17000 && !doBeIcin) {
+            iceDelay = 0;
+            doBeIcin = true;
+            iceTime = System.currentTimeMillis();
+            ModMessages.sendToServer(new BlizzardSoundC2SPacket());
+        } else if (doBeIcin && System.currentTimeMillis() <= iceTime + 3000) {
+            if (System.currentTimeMillis() >= iceTime + iceDelay) {
+                ModMessages.sendToServer(new BlizzardC2SPacket());
+                iceDelay += 75;
             }
+        } else if (doBeIcin) {
+            EnchantmentHudOverlay.blizzardFrames = 0;
+            iceTime = System.currentTimeMillis();
+            doBeIcin = false;
         }
     }
 }

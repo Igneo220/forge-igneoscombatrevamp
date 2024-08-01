@@ -25,28 +25,6 @@ public class EnchantmentHelperMixin {
      * @reason Enchantment no longer exists, replacing with trims
      */
     @Overwrite
-    public static float getSneakingSpeedBonus(LivingEntity pEntity) {
-        int trimCount = 0;
-        if (pEntity instanceof Player) {
-            Player player = (Player) pEntity;
-            for (int j = 0; j < 4; ++j) {
-                if (!player.getInventory().getArmor(j).toString().contains("air")) {
-                    if (player.getInventory().getArmor(j).getTag().getAllKeys().contains("Trim")) {
-                        Tag tag = player.getInventory().getArmor(j).getTag().get("Trim");
-                        if (tag.toString().contains("raiser")) {
-                            ++trimCount;
-                        }
-                    }
-                }
-            }
-        }
-        return trimCount;
-    }
-    /**
-     * @author Igneo220
-     * @reason Enchantment no longer exists, replacing with trims
-     */
-    @Overwrite
     public static int getFireAspect(LivingEntity pPlayer) {
         int trimCount = 0;
         if (pPlayer instanceof Player) {

@@ -1,11 +1,51 @@
 package net.igneo.icv.enchantmentActions;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
 public class PlayerEnchantmentActions {
+    //enchant check
+    private int helmetID = 0;
+    public int getHelmetID() {
+        return this.helmetID;
+    }
+    public void setHelmetID(int newint) {
+        this.helmetID = newint;
+    }
+    private int chestID = 0;
+    public int getChestID() {
+        return this.chestID;
+    }
+    public void setChestID(int newint) {
+        this.chestID = newint;
+    }
+    private int legID = 0;
+    public int getLegID() {
+        return this.legID;
+    }
+    public void setLegID(int newint) {
+        this.legID = newint;
+    }
+    private int bootID = 0;
+    public int getBootID() {
+        return this.bootID;
+    }
+    public void setBootID(int newint) {
+        this.bootID = newint;
+    }
+
+    //armor check
+    private NonNullList<String> playerArmor = NonNullList.withSize(4, "AIR");
+    public NonNullList<String> getPlayerArmor() {
+        return this.playerArmor;
+    }
+    public void setPlayerArmor(String string, int index) {
+        this.playerArmor.set(index,string);
+    }
 
     //trim variables
     private int wayBuff;

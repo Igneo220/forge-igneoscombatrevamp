@@ -31,13 +31,13 @@ public class JudgementHitC2SPacket {
 
             level.explode(player,player.getX(),player.getY(),player.getZ(),3, Level.ExplosionInteraction.NONE);
             //else {
-            //player.setDeltaMovement(player.getLookAngle().scale(2.5));
+            //uniPlayer.setDeltaMovement(uniPlayer.getLookAngle().scale(2.5));
             //}
             //if (dashing && System.currentTimeMillis() >= hitCooldown + 500) {
             //    hitCooldown = System.currentTimeMillis();
-            //    level.explode(player,player.getX(),player.getY(),player.getZ(),1, Level.ExplosionInteraction.NONE);
+            //    level.explode(uniPlayer,uniPlayer.getX(),uniPlayer.getY(),uniPlayer.getZ(),1, Level.ExplosionInteraction.NONE);
             //} else {
-            //    level.explode(null,player.getX(),player.getY(),player.getZ(),1, Level.ExplosionInteraction.NONE);
+            //    level.explode(null,uniPlayer.getX(),uniPlayer.getY(),uniPlayer.getZ(),1, Level.ExplosionInteraction.NONE);
             //}
 
         });

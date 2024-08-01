@@ -86,7 +86,7 @@ public class BlackHoleEntity extends Fireball {
                 } else if (player.distanceTo(this) < 10 && Minecraft.getInstance().player != this.getOwner()) {
                     player.addDeltaMovement(pushVec.scale(0.6));
                 }
-                //&& player != this.getOwner()
+                //&& uniPlayer != this.getOwner()
         }
         super.tick();
     }

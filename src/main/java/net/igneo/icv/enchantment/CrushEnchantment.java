@@ -24,6 +24,8 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
+import static net.igneo.icv.event.ModEvents.uniPlayer;
+
 public class CrushEnchantment extends Enchantment {
     private static long crushTime = 0;
     private static long floatTime = 0;
@@ -33,48 +35,40 @@ public class CrushEnchantment extends Enchantment {
     }
 
     public static void onClientTick() {
-        if (Minecraft.getInstance().player != null) {
-            LocalPlayer pPlayer = Minecraft.getInstance().player;
-            if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(1)).containsKey(ModEnchantments.CRUSH.get())) {
-                if (pPlayer.onGround()) {
-                    crushTime = System.currentTimeMillis();
-                    floatTime = 0;
+        if (uniPlayer.onGround()) {
+            if (Minecraft.getInstance().options.keyShift.isDown()) {
+                if (fallDistance > 3.3) {
+                    ModMessages.sendToServer(new CrushC2SPacket());
                 }
-                if (!pPlayer.onGround() && System.currentTimeMillis() > crushTime + 600 && Minecraft.getInstance().options.keyShift.isDown() && !pPlayer.isPassenger() && !pPlayer.isInFluidType()) {
-                    if (floatTime == 0) {
-                        floatTime = System.currentTimeMillis();
-                    }
-                    if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.STONE_CALLER.get()) || EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.SKY_CHARGE.get())) {
-                        if (pPlayer.getDeltaMovement().y < 0) {
-                            if (System.currentTimeMillis() < floatTime + 300) {
-                                pPlayer.setDeltaMovement(0, 0, 0);
-                            } else {
-                                if (fallDistance == 0) {
-                                    ModMessages.sendToServer(new CrushSoundC2SPacket());
-                                }
-                                fallDistance = pPlayer.fallDistance;
-                                pPlayer.setDeltaMovement(0, -1.5, 0);
-                            }
-                        }
+            }
+            crushTime = System.currentTimeMillis();
+            fallDistance = 0;
+            floatTime = 0;
+        } else if (System.currentTimeMillis() > crushTime + 600 && Minecraft.getInstance().options.keyShift.isDown() && !uniPlayer.isPassenger() && !uniPlayer.isInFluidType()) {
+            if (floatTime == 0) {
+                floatTime = System.currentTimeMillis();
+            }
+            if (EnchantmentHelper.getEnchantments(uniPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.STONE_CALLER.get()) || EnchantmentHelper.getEnchantments(uniPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.SKY_CHARGE.get())) {
+                if (uniPlayer.getDeltaMovement().y < 0) {
+                    if (System.currentTimeMillis() < floatTime + 300) {
+                        uniPlayer.setDeltaMovement(0, 0, 0);
                     } else {
-                        if (System.currentTimeMillis() < floatTime + 300) {
-                            pPlayer.setDeltaMovement(0, 0, 0);
-                        } else {
-                            if (fallDistance == 0) {
-                                ModMessages.sendToServer(new CrushSoundC2SPacket());
-                            }
-                            fallDistance = pPlayer.fallDistance;
-                            pPlayer.setDeltaMovement(0, -1.5, 0);
+                        if (fallDistance == 0) {
+                            ModMessages.sendToServer(new CrushSoundC2SPacket());
                         }
+                        fallDistance = uniPlayer.fallDistance;
+                        uniPlayer.setDeltaMovement(0, -1.5, 0);
                     }
+                }
+            } else {
+                if (System.currentTimeMillis() < floatTime + 300) {
+                    uniPlayer.setDeltaMovement(0, 0, 0);
                 } else {
-                    if (Minecraft.getInstance().options.keyShift.isDown()){
-                        if (fallDistance > 3) {
-                            ModMessages.sendToServer(new CrushC2SPacket());
-                        }
-                        fallDistance = 0;
-                        floatTime = 0;
+                    if (fallDistance == 0) {
+                        ModMessages.sendToServer(new CrushSoundC2SPacket());
                     }
+                    fallDistance = uniPlayer.fallDistance;
+                    uniPlayer.setDeltaMovement(0, -1.5, 0);
                 }
             }
         }

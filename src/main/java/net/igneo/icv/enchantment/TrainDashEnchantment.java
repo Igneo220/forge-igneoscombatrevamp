@@ -19,8 +19,9 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.Vec3;
 
+import static net.igneo.icv.event.ModEvents.uniPlayer;
+
 public class TrainDashEnchantment extends Enchantment {
-    //public static LocalPlayer pPlayer = Minecraft.getInstance().player;
     public static long hitCooldown;
     public static long trainDelay = -5000;
     public static boolean dashing = false;
@@ -33,52 +34,42 @@ public class TrainDashEnchantment extends Enchantment {
     }
 
     public static void onClientTick() {
-        if (Minecraft.getInstance().player != null) {
-            LocalPlayer pPlayer = Minecraft.getInstance().player;
-            if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(1)).containsKey(ModEnchantments.TRAIN_DASH.get())) {
-                if (Keybindings.train_dash.isDown() && System.currentTimeMillis() >= trainDelay + 7000 && !dashing) {
-                    look = pPlayer.getLookAngle();
-                    dashing = true;
-                    lookX = look.x * 0.5;
-                    lookZ = look.z * 0.5;
-                    pPlayer.setDeltaMovement(lookX, pPlayer.getDeltaMovement().y, lookZ);
+        if (Keybindings.train_dash.isDown() && System.currentTimeMillis() >= trainDelay + 7000 && !dashing) {
+            look = uniPlayer.getLookAngle();
+            dashing = true;
+            lookX = look.x * 0.5;
+            lookZ = look.z * 0.5;
+            uniPlayer.setDeltaMovement(lookX, uniPlayer.getDeltaMovement().y, lookZ);
+            trainDelay = System.currentTimeMillis();
+            ModMessages.sendToServer(new TrainDashC2SPacket(3));
+        } else if (dashing) {
+            if (dashing) {
+                double d0 = Minecraft.getInstance().player.getDeltaMovement().x;
+                double d1 = Minecraft.getInstance().player.getDeltaMovement().y;
+                double d2 = Minecraft.getInstance().player.getDeltaMovement().z;
+                if ((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)) <= 0.15) {
+                    EnchantmentHudOverlay.trainFrames = 0;
+                    dashing = false;
+                    ModMessages.sendToServer(new TrainDashC2SPacket(0));
                     trainDelay = System.currentTimeMillis();
-                    ModMessages.sendToServer(new TrainDashC2SPacket(3));
-                } else if (dashing) {
-                    if (dashing) {
-                        double d0 = Minecraft.getInstance().player.getDeltaMovement().x;
-                        double d1 = Minecraft.getInstance().player.getDeltaMovement().y;
-                        double d2 = Minecraft.getInstance().player.getDeltaMovement().z;
-
-                        if ((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)) <= 0.15) {
+                }
+                uniPlayer.setDeltaMovement(lookX, uniPlayer.getDeltaMovement().y, lookZ);
+                for (LivingEntity entity : uniPlayer.level().getEntitiesOfClass(LivingEntity.class, uniPlayer.getBoundingBox())) {
+                    if (entity != uniPlayer) {
+                        if (dashing && System.currentTimeMillis() >= hitCooldown + 500) {
                             EnchantmentHudOverlay.trainFrames = 0;
-                            dashing = false;
-                            ModMessages.sendToServer(new TrainDashC2SPacket(0));
+                            hitCooldown = System.currentTimeMillis();
                             trainDelay = System.currentTimeMillis();
-                        }
-                        pPlayer.setDeltaMovement(lookX, pPlayer.getDeltaMovement().y, lookZ);
-                        for (LivingEntity entity : pPlayer.level().getEntitiesOfClass(LivingEntity.class, pPlayer.getBoundingBox())) {
-                            if (entity != pPlayer) {
-                                if (dashing && System.currentTimeMillis() >= hitCooldown + 500) {
-                                    EnchantmentHudOverlay.trainFrames = 0;
-                                    hitCooldown = System.currentTimeMillis();
-                                    trainDelay = System.currentTimeMillis();
-                                    unluckyGirlfriend = pPlayer.level().getNearestEntity(LivingEntity.class, TargetingConditions.forCombat(), null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), pPlayer.getBoundingBox());
-                                    ModMessages.sendToServer(new TrainDashC2SPacket(1));
-                                }
-                            }
-                        }
-                        if (System.currentTimeMillis() >= trainDelay + 1500) {
-                            EnchantmentHudOverlay.trainFrames = 0;
-                            dashing = false;
-                            trainDelay = System.currentTimeMillis();
+                            unluckyGirlfriend = uniPlayer.level().getNearestEntity(LivingEntity.class, TargetingConditions.forCombat(), null, uniPlayer.getX(), uniPlayer.getY(), uniPlayer.getZ(), uniPlayer.getBoundingBox());
+                            ModMessages.sendToServer(new TrainDashC2SPacket(1));
                         }
                     }
                 }
-            } else {
-                dashing = false;
-                trainDelay = System.currentTimeMillis();
-                EnchantmentHudOverlay.trainFrames = 0;
+                if (System.currentTimeMillis() >= trainDelay + 1500) {
+                    EnchantmentHudOverlay.trainFrames = 0;
+                    dashing = false;
+                    trainDelay = System.currentTimeMillis();
+                }
             }
         }
     }

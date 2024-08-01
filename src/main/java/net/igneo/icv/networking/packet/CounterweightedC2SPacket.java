@@ -34,7 +34,7 @@ public class CounterweightedC2SPacket {
             ServerLevel level = context.getSender().serverLevel();
 
 
-            //    player.getAttributes().getInstance(Attributes.ATTACK_SPEED).removeModifier(ATTACK_SPEED_MODIFIER_UUID);
+            //    uniPlayer.getAttributes().getInstance(Attributes.ATTACK_SPEED).removeModifier(ATTACK_SPEED_MODIFIER_UUID);
 
             player.getAttributes().getInstance(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(ATTACK_SPEED_MODIFIER_UUID, "Attack speed boost blitz", 3, AttributeModifier.Operation.ADDITION));
             level.playSound(null, player.blockPosition(), ModSounds.COUNTERWEIGHTED_MISS.get(), SoundSource.PLAYERS, 0.5F,1);

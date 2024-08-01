@@ -17,6 +17,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
+import static net.igneo.icv.event.ModEvents.uniPlayer;
+
 public class KineticEnchantment extends Enchantment{
     private static boolean kin;
     public KineticEnchantment(Enchantment.Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
@@ -24,17 +26,8 @@ public class KineticEnchantment extends Enchantment{
     }
 
     public static void onKeyInputEvent() {
-        if (Minecraft.getInstance().player != null) {
-            LocalPlayer pPlayer = Minecraft.getInstance().player;
-            if (EnchantmentHelper.getEnchantments(pPlayer.getMainHandItem()).containsKey(ModEnchantments.KINETIC.get())) {
-                if (Minecraft.getInstance().mouseHandler.isLeftPressed()) {
-                    ModMessages.sendToServer(new KineticC2SPacket(pPlayer.getDeltaMovement().x, pPlayer.getDeltaMovement().z));
-                    kin = true;
-                } else if (kin){
-                    //ModMessages.sendToServer(new KineticC2SPacket(0,0));
-                    kin = false;
-                }
-            }
+        if (EnchantmentHelper.getEnchantments(uniPlayer.getMainHandItem()).containsKey(ModEnchantments.KINETIC.get())) {
+            ModMessages.sendToServer(new KineticC2SPacket(uniPlayer.getDeltaMovement().x, uniPlayer.getDeltaMovement().z));
         }
     }
 

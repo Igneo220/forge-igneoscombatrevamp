@@ -19,19 +19,11 @@ public class ParryEnchantment extends Enchantment {
     }
 
     public static void onKeyInputEvent() {
-        if (Minecraft.getInstance().player != null) {
-            LocalPlayer pPlayer = Minecraft.getInstance().player;
-            if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(2)).containsKey(ModEnchantments.PARRY.get())) {
-                if (Keybindings.parry.isDown() && System.currentTimeMillis() >= parryCooldown + 3000) {
-                    EnchantmentHudOverlay.parryFrames = 0;
-                    parryCooldown = System.currentTimeMillis();
-                    parrying = true;
-                    ModMessages.sendToServer(new ParryC2SPacket());
-                }
-            } else {
-                parryCooldown = System.currentTimeMillis();
-                EnchantmentHudOverlay.parryFrames = 0;
-            }
+        if (Keybindings.parry.isDown() && System.currentTimeMillis() >= parryCooldown + 3000) {
+            EnchantmentHudOverlay.parryFrames = 0;
+            parryCooldown = System.currentTimeMillis();
+            parrying = true;
+            ModMessages.sendToServer(new ParryC2SPacket());
         }
     }
 }

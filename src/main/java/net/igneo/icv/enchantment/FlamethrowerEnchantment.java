@@ -15,36 +15,25 @@ import net.minecraft.world.phys.Vec3;
 public class FlamethrowerEnchantment extends Enchantment {
     public static long flameTime;
     public static boolean flameo;
-    private static int flameDelay;
-    private static Vec3 look;
+    public static int flameDelay;
     public FlamethrowerEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
 
     public static void onClientTick() {
-        if (Minecraft.getInstance().player != null) {
-            LocalPlayer pPlayer = Minecraft.getInstance().player;
-            if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(3)).containsKey(ModEnchantments.FLAMETHROWER.get())) {
-                if (Keybindings.flamethrower.isDown() && System.currentTimeMillis() >= flameTime + 15000 && !flameo) {
-                    look = Minecraft.getInstance().player.getLookAngle();
-                    flameo = true;
-                    flameTime = System.currentTimeMillis();
-                    flameDelay = 0;
-                } else if (flameo && System.currentTimeMillis() <= flameTime + 3000) {
-                    if (System.currentTimeMillis() >= flameTime + flameDelay) {
-                        look = Minecraft.getInstance().player.getLookAngle();
-                        ModMessages.sendToServer(new FlameC2SPacket());
-                        flameDelay += 75;
-                    }
-                } else if (flameo) {
-                    EnchantmentHudOverlay.flameFrames = 0;
-                    flameTime = System.currentTimeMillis();
-                    flameo = false;
-                }
-            } else {
-                EnchantmentHudOverlay.flameFrames = 0;
-                flameTime = System.currentTimeMillis();
+        if (Keybindings.flamethrower.isDown() && System.currentTimeMillis() >= flameTime + 15000 && !flameo) {
+            flameo = true;
+            flameTime = System.currentTimeMillis();
+            flameDelay = 0;
+        } else if (flameo && System.currentTimeMillis() <= flameTime + 3000) {
+            if (System.currentTimeMillis() >= flameTime + flameDelay) {
+                ModMessages.sendToServer(new FlameC2SPacket());
+                flameDelay += 75;
             }
+        } else if (flameo) {
+            EnchantmentHudOverlay.flameFrames = 0;
+            flameTime = System.currentTimeMillis();
+            flameo = false;
         }
     }
 }

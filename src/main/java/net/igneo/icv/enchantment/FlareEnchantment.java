@@ -21,32 +21,24 @@ public class FlareEnchantment extends Enchantment {
     }
 
     public static void onClientTick() {
-        if (Minecraft.getInstance().player != null) {
-            if (EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(2)).containsKey(ModEnchantments.FLARE.get())) {
-                if (Keybindings.flare.isDown() && !charging && System.currentTimeMillis() > chargeTime + 7000) {
-                    charging = true;
-                    chargeTime = System.currentTimeMillis();
-                    ModMessages.sendToServer(new FlareSoundC2SPacket());
-                }
-                if (charging) {
-                    if (System.currentTimeMillis() >= chargeTime + flareDelay) {
-                        ModMessages.sendToServer(new FlareParticleC2SPacket());
-                        flareDelay += 100;
-                    }
-                    Minecraft.getInstance().player.setDeltaMovement(0, Minecraft.getInstance().player.getDeltaMovement().y, 0);
-                }
-                if (charging && System.currentTimeMillis() >= chargeTime + 2500) {
-                    EnchantmentHudOverlay.flareFrames = 0;
-                    ModMessages.sendToServer(new FlareC2SPacket());
-                    flareDelay = 0;
-                    charging = false;
-                    chargeTime = System.currentTimeMillis();
-                }
-            } else {
-                charging = false;
-                chargeTime = System.currentTimeMillis();
-                EnchantmentHudOverlay.flareFrames = 0;
+        if (Keybindings.flare.isDown() && !charging && System.currentTimeMillis() > chargeTime + 7000) {
+            charging = true;
+            chargeTime = System.currentTimeMillis();
+            ModMessages.sendToServer(new FlareSoundC2SPacket());
+        }
+        if (charging) {
+            if (System.currentTimeMillis() >= chargeTime + flareDelay) {
+                ModMessages.sendToServer(new FlareParticleC2SPacket());
+                flareDelay += 100;
             }
+            Minecraft.getInstance().player.setDeltaMovement(0, Minecraft.getInstance().player.getDeltaMovement().y, 0);
+        }
+        if (charging && System.currentTimeMillis() >= chargeTime + 2500) {
+            EnchantmentHudOverlay.flareFrames = 0;
+            ModMessages.sendToServer(new FlareC2SPacket());
+            flareDelay = 0;
+            charging = false;
+            chargeTime = System.currentTimeMillis();
         }
     }
 }

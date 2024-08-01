@@ -13,8 +13,9 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
+import static net.igneo.icv.event.ModEvents.uniPlayer;
+
 public class ConcussionEnchantment extends Enchantment {
-    //public static LocalPlayer pPlayer = Minecraft.getInstance().player;
     public static long concussTime = -5000;
     private static boolean searchTarget;
     private static int targetID;
@@ -23,39 +24,28 @@ public class ConcussionEnchantment extends Enchantment {
     }
 
     public static void onKeyInputEvent() {
-        if (Minecraft.getInstance().player != null){
-            LocalPlayer pPlayer = Minecraft.getInstance().player;
-            if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(2)).containsKey(ModEnchantments.CONCUSSION.get())) {
-                if (Keybindings.concussion.isDown() && System.currentTimeMillis() >= concussTime + 5000) {
-                    //lookDirection = pPlayer.getLookAngle();
-                    EnchantmentHudOverlay.concussFrames = 0;
-                    searchTarget = true;
-                    concussTime = System.currentTimeMillis();
-                    pPlayer.setDeltaMovement(pPlayer.getLookAngle().scale(1.5).x,pPlayer.getLookAngle().scale(0.5).y,pPlayer.getLookAngle().scale(1.5).z);
-                    ModMessages.sendToServer(new ConcussC2SPacket());
-                }
-                if (searchTarget && System.currentTimeMillis() <= concussTime + 1000) {
-                    if (targetID == 0) {
-                        for (LivingEntity entity : pPlayer.level().getEntitiesOfClass(LivingEntity.class, pPlayer.getBoundingBox())) {
-                            if (entity != pPlayer) {
-                                targetID = entity.getId();
-                                break;
-                            }
-                        }
-                    } else {
-                        concussTime = System.currentTimeMillis();
-
-                        //targetFound = true;
-                        searchTarget = false;
-                        ModMessages.sendToServer(new ConcussHurtC2SPacket(targetID));
+        if (Keybindings.concussion.isDown() && System.currentTimeMillis() >= concussTime + 5000) {
+            EnchantmentHudOverlay.concussFrames = 0;
+            searchTarget = true;
+            concussTime = System.currentTimeMillis();
+            uniPlayer.setDeltaMovement(uniPlayer.getLookAngle().scale(1.5).x,uniPlayer.getLookAngle().scale(0.5).y,uniPlayer.getLookAngle().scale(1.5).z);
+            ModMessages.sendToServer(new ConcussC2SPacket());
+        }
+        if (searchTarget && System.currentTimeMillis() <= concussTime + 1000) {
+            if (targetID == 0) {
+                for (LivingEntity entity : uniPlayer.level().getEntitiesOfClass(LivingEntity.class, uniPlayer.getBoundingBox())) {
+                    if (entity != uniPlayer) {
+                        targetID = entity.getId();
+                        break;
                     }
-                } else {
-                    targetID = 0;
                 }
             } else {
                 concussTime = System.currentTimeMillis();
-                EnchantmentHudOverlay.concussFrames = 0;
+                searchTarget = false;
+                ModMessages.sendToServer(new ConcussHurtC2SPacket(targetID));
             }
+        } else {
+            targetID = 0;
         }
     }
 

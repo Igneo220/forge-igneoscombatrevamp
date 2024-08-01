@@ -18,6 +18,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+import static net.igneo.icv.event.ModEvents.uniPlayer;
+
 public class StoneCallerEnchantment extends Enchantment {
     private static long charge = 0;
     private static boolean stoneCalling = false;
@@ -29,41 +31,34 @@ public class StoneCallerEnchantment extends Enchantment {
 
 
     public static void onClientTick() {
-        if (Minecraft.getInstance().player != null) {
-            LocalPlayer pPlayer = Minecraft.getInstance().player;
-            pPlayer.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-                if (stoneCalling) {
-                    callStone();
+        uniPlayer.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+            if (stoneCalling) {
+                callStone();
+            }
+            if (Minecraft.getInstance().options.keyShift.isDown() && uniPlayer.onGround() && enchVar.getStoneTime() == 0) {
+                if (charge == 0) {
+                    charge = System.currentTimeMillis();
+                } else if (System.currentTimeMillis() > charge + 500) {
+                    stoneCalling = true;
+                    charge = 0;
                 }
-                if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.STONE_CALLER.get())) {
-                    if (Minecraft.getInstance().options.keyShift.isDown() && pPlayer.onGround() && enchVar.getStoneTime() == 0) {
-                        if (charge == 0) {
-                            charge = System.currentTimeMillis();
-                        } else if (System.currentTimeMillis() > charge + 500) {
-                            stoneCalling = true;
-                            charge = 0;
-                        }
-                    } else if (charge != 0) {
-                        charge = 0;
-                    }
-                }
-            });
-        }
+            } else if (charge != 0) {
+                charge = 0;
+            }
+        });
     }
 
     private static void callStone() {
         if (System.currentTimeMillis() > stoneDelay + 150) {
-            LocalPlayer pPlayer = Minecraft.getInstance().player;
-            pPlayer.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+            uniPlayer.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
                 if(enchVar.getStoneTime() == 0) {
-                    enchVar.setStoneX(pPlayer.getBlockX());
-                    enchVar.setStoneY(pPlayer.getBlockY());
-                    enchVar.setStoneZ(pPlayer.getBlockZ());
+                    enchVar.setStoneX(uniPlayer.getBlockX());
+                    enchVar.setStoneY(uniPlayer.getBlockY());
+                    enchVar.setStoneZ(uniPlayer.getBlockZ());
                     enchVar.setStoneTime(System.currentTimeMillis());
-                    pPlayer.setDeltaMovement(0, 1, 0);
+                    uniPlayer.setDeltaMovement(0, 1, 0);
                 }
                 ModMessages.sendToServer(new StoneCallerC2SPacket(loop,enchVar.getStoneX(), enchVar.getStoneY(), enchVar.getStoneZ()));
-                //Minecraft.getInstance().level.setBlock(new BlockPos(enchVar.getStoneX(),enchVar.getStoneY() + loop,enchVar.getStoneZ()), Blocks.STONE.defaultBlockState(), 2);
             });
             ++loop;
             stoneDelay = System.currentTimeMillis();

@@ -38,8 +38,8 @@ public class PhantomPainEnchantment extends Enchantment {
                             enchVar.resetPhantomHurt();
                             enchVar.deletePhantomVictim();
                             //if (!FMLEnvironment.dist.isClient()) {
-                            //ServerPlayer player = (ServerPlayer) pTarget;
-                            //ServerLevel level = player.serverLevel();
+                            //ServerPlayer uniPlayer = (ServerPlayer) pTarget;
+                            //ServerLevel level = uniPlayer.serverLevel();
                             //}
                         } else if (!enchVar.getPhantomVictim().isAlive()) {
                             enchVar.resetPhantomHurt();

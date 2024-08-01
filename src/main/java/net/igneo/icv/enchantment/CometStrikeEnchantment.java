@@ -10,6 +10,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
+import static net.igneo.icv.event.ModEvents.uniPlayer;
+
 public class CometStrikeEnchantment extends Enchantment {
 
     private static long cometCooldown = -2500;
@@ -19,16 +21,10 @@ public class CometStrikeEnchantment extends Enchantment {
     }
 
     public static void onKeyInputEvent() {
-        if (Minecraft.getInstance().player != null) {
-            LocalPlayer pPlayer = Minecraft.getInstance().player;
-            if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.COMET_STRIKE.get())) {
-                if (Keybindings.comet_strike.isDown() && System.currentTimeMillis() >= cometCooldown + 2500 && pPlayer.onGround() && !pPlayer.isPassenger()) {
-                    cometCooldown = System.currentTimeMillis();
-                    ModMessages.sendToServer(new CometStrikeC2SPacket());
-                }
-            }
+        if (Keybindings.comet_strike.isDown() && System.currentTimeMillis() >= cometCooldown + 2500 && uniPlayer.onGround() && !uniPlayer.isPassenger()) {
+            cometCooldown = System.currentTimeMillis();
+            ModMessages.sendToServer(new CometStrikeC2SPacket());
         }
-
     }
 
 }

@@ -33,19 +33,14 @@ public class RendEnchantment extends Enchantment {
     }
 
     public static void onKeyInputEvent() {
-        if (Minecraft.getInstance().player != null) {
-            if (EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getMainHandItem()).containsKey(ModEnchantments.REND.get()) &&
-                    Minecraft.getInstance().mouseHandler.isLeftPressed() &&
-                    rendEntity != null &&
-                    rendCount > 0) {
-                int i = (int) (((rendCount * rendCount)*2) + 6);
-                if (i > 45) {
-                    i = 45;
-                }
-                ModMessages.sendToServer(new RendC2SPacket(rendEntity.getId(),i));
-                System.out.println(i);
-                rendEntity = null;
+        if (EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getMainHandItem()).containsKey(ModEnchantments.REND.get()) && rendEntity != null && rendCount > 0) {
+            int i = (int) (((rendCount * rendCount)*2) + 6);
+            if (i > 45) {
+                i = 45;
             }
+            ModMessages.sendToServer(new RendC2SPacket(rendEntity.getId(),i));
+            System.out.println(i);
+            rendEntity = null;
         }
     }
 }

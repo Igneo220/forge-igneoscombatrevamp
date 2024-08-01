@@ -32,6 +32,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import javax.annotation.Nullable;
 
+import static net.igneo.icv.event.ModEvents.uniPlayer;
+
 public class DoubleJumpEnchantment extends Enchantment {
 
     public static boolean CanDoubleJump = false;
@@ -44,50 +46,16 @@ public class DoubleJumpEnchantment extends Enchantment {
 
     @SubscribeEvent
     public static void onClientTick() {
-        if (Minecraft.getInstance().player != null) {
-            LocalPlayer pPlayer = Minecraft.getInstance().player;
-            if (EnchantmentHelper.getEnchantments(pPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.DOUBLE_JUMP.get())) {
-                if (pPlayer.onGround() && !CanDoubleJump) {
-                    startY = Minecraft.getInstance().player.getY();
-                    CanDoubleJump = true;
-                }
-                if (Minecraft.getInstance().options.keyJump.isDown() && !pPlayer.onGround() && !pPlayer.isInFluidType() && !pPlayer.isPassenger() && CanDoubleJump) {
-                    if (Minecraft.getInstance().player.getDeltaMovement().y <= 0) {
-                        CanDoubleJump = false;
-                        pPlayer.setDeltaMovement(pPlayer.getDeltaMovement().x,0.6,pPlayer.getDeltaMovement().z);
-                        ModMessages.sendToServer(new DoubleJumpC2SPacket());
-                    }
-                }
+        if (uniPlayer.onGround() && !CanDoubleJump) {
+            startY = Minecraft.getInstance().player.getY();
+            CanDoubleJump = true;
+        }
+        if (Minecraft.getInstance().options.keyJump.isDown() && !uniPlayer.onGround() && !uniPlayer.isInFluidType() && !uniPlayer.isPassenger() && CanDoubleJump) {
+            if (Minecraft.getInstance().player.getDeltaMovement().y <= 0) {
+                CanDoubleJump = false;
+                uniPlayer.setDeltaMovement(uniPlayer.getDeltaMovement().x, 0.6, uniPlayer.getDeltaMovement().z);
+                ModMessages.sendToServer(new DoubleJumpC2SPacket());
             }
         }
     }
-    /*
-    public static void onDoubleJumped()
-    {
-            pPlayer = Minecraft.getInstance().player;
-
-            pPlayer.setDeltaMovement(pPlayer.getDeltaMovement().x, 0.6, pPlayer.getDeltaMovement().z);
-            pPlayer.hurtMarked = true;
-
-            pPlayer.level().playSound(pPlayer, pPlayer.blockPosition(), SoundType.SAND.getPlaceSound(), SoundSource.PLAYERS, 2F, 5.0F);
-
-        if (pPlayer.level() instanceof ServerLevel sl)
-        {
-            for (int i = 0; i < 20; ++i)
-            {
-                double d0 = sl.random.nextGaussian() * 0.02D;
-                double d1 = sl.random.nextGaussian() * 0.02D;
-                double d2 = sl.random.nextGaussian() * 0.02D;
-                //this.level().addParticle(ParticleTypes.SMOKE, d8 + this.random.nextGaussian() * (double)0.3F, d10 + this.random.nextGaussian() * (double)0.3F, d2 + this.random.nextGaussian() * (double)0.3F, 0.0D, 0.0D, 0.0D);
-                sl.addParticle(ParticleTypes.POOF,pPlayer.getX(),pPlayer.getY(),pPlayer.getZ(),0,0,10);
-                sl.sendParticles(ParticleTypes.POOF,pPlayer.getX(),pPlayer.getY(),pPlayer.getZ(),10,0,0,0,10);
-                sl.addAlwaysVisibleParticle(ParticleTypes.POOF,pPlayer.getX(),pPlayer.getY(),pPlayer.getZ(),0,0,10);
-            }
-        }
-
-
-    }*/
-
-
-
 }
