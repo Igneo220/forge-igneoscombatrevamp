@@ -2,15 +2,13 @@ package net.igneo.icv.event;
 
 import net.igneo.icv.ICV;
 import net.igneo.icv.client.EnchantmentHudOverlay;
+import net.igneo.icv.config.ICVCommonConfigs;
 import net.igneo.icv.enchantment.*;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActions;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
-import net.igneo.icv.networking.packet.BlitzNBTUpdateS2CPacket;
-import net.igneo.icv.networking.packet.MomentumC2SPacket;
-import net.igneo.icv.networking.packet.WardenspineC2SPacket;
-import net.igneo.icv.networking.packet.WeightedC2SPacket;
+import net.igneo.icv.networking.packet.*;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.sound.ModSounds;
 import net.minecraft.client.Minecraft;
@@ -27,7 +25,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
@@ -45,9 +42,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import static java.lang.Math.abs;
@@ -153,184 +147,52 @@ public class ModEvents {
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         event.player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-            for (int j = 0; j < 4; ++j) {
-                String armor;
-                if (event.player.getInventory().getArmor(j).serializeNBT().toString().contains("Enchantments")) {
-                    //System.out.println(event.player.getInventory().getArmor(j).getTag().get("Enchantments"));
-                    armor = "armor:" + event.player.getInventory().getArmor(j).getTag().get("Enchantments");
-                } else {
-                    armor = "armor:null";
+            if (event.player.level() instanceof ServerLevel) {
+                ServerPlayer player = (ServerPlayer) event.player;
+                ServerLevel level = player.serverLevel();
+                for (int j = 0; j < 4; ++j) {
+                    String enchantments;
+                    if (player.getInventory().getArmor(j).serializeNBT().toString().contains("Enchantments")) {
+                        //System.out.println(player.getInventory().getArmor(j).getTag().get("Enchantments"));
+                        enchantments = player.getInventory().getArmor(j).getTag().get("Enchantments").toString();
+                    } else {
+                        enchantments = "null";
+                    }
+                    if (!enchantments.equals(enchVar.getPlayerEnchantments().get(j))) {
+                        enchVar.setPlayerEnchantments(enchantments, j);
+                        ModMessages.sendToPlayer(new ArmorS2CPacket(j),player);
+                    }
+                    String trims;
+                    if (player.getInventory().getArmor(j).serializeNBT().toString().contains("Trim")) {
+                        //System.out.println(player.getInventory().getArmor(j).getTag().get("Enchantments"));
+                        //System.out.println("omg!!! a trim!!!");
+                        trims = "trim:" + player.getInventory().getArmor(j).getTag().get("Trim");
+                    } else {
+                        //System.out.println("lebruh");
+                        trims = "trim:null";
+                    }
+                    if (!enchantments.equals(enchVar.getPlayerTrims().get(j))) {
+                        enchVar.setPlayerTrims(trims, j);
+                        applyBuffs(player);
+                    }
                 }
-                if (event.player.getInventory().getArmor(j).serializeNBT().toString().contains("Trim")) {
-                    //System.out.println(event.player.getInventory().getArmor(j).getTag().get("Enchantments"));
-                    //System.out.println("omg!!! a trim!!!");
-                    armor = armor + "," + "trim:" + event.player.getInventory().getArmor(j).getTag().get("Trim");
-                } else {
-                    //System.out.println("lebruh");
-                    armor = armor + "," + "trim:null";
-                }
-                //System.out.println(armor);
-                if (!armor.equals(enchVar.getPlayerArmor().get(j))) {
-                    System.out.println("we are NOT the same");
-                    enchVar.setPlayerArmor(armor,j);
-                    if (event.player.level().isClientSide) {
-                        if (event.player == Minecraft.getInstance().player) {
-                            uniPlayer = Minecraft.getInstance().player;
-                            if (!event.player.getInventory().armor.get(j).toString().contains("air")) {
-                                List<Enchantment> enchantlist = new ArrayList<Enchantment>(event.player.getInventory().armor.get(j).getAllEnchantments().keySet());
-                                if (!enchantlist.isEmpty()) {
-                                    String enchID = enchantlist.get(0).getFullname(1).toString();
-                                    enchID = enchID.replace("', args=[]}[style={color=gray}]", "");
-                                    enchID = enchID.replace("translation{key='enchantment.icv.", "");
-                                    switch (j) {
-                                        case 0:
-                                            switch (enchID) {
-                                                case "comet_strike":
-                                                    //System.out.println(enchID);
-                                                    enchVar.setBootID(1);
-                                                    break;
-                                                case "double_jump":
-                                                    enchVar.setBootID(2);
-                                                    break;
-                                                case "momentum":
-                                                    enchVar.setBootID(3);
-                                                    break;
-                                                case "sky_charge":
-                                                    enchVar.setBootID(4);
-                                                    break;
-                                                case "stone_caller":
-                                                    enchVar.setBootID(5);
-                                                    break;
-                                            }
-                                            break;
-                                        case 1:
-                                            refreshLegs = true;
-                                            switch (enchID) {
-                                                case "acrobatic":
-                                                    enchVar.setLegID(1);
-                                                    break;
-                                                case "crush":
-                                                    enchVar.setLegID(2);
-                                                    break;
-                                                case "incapacitate":
-                                                    enchVar.setLegID(3);
-                                                    break;
-                                                case "judgement":
-                                                    enchVar.setLegID(4);
-                                                    break;
-                                                case "train_dash":
-                                                    enchVar.setLegID(5);
-                                                    break;
-                                            }
-                                            break;
-                                        case 2:
-                                            refreshChest = true;
-                                            switch (enchID) {
-                                                case "concussion":
-                                                    enchVar.setChestID(1);
-                                                    break;
-                                                case "flare":
-                                                    enchVar.setChestID(2);
-                                                    break;
-                                                case "parry":
-                                                    enchVar.setChestID(3);
-                                                    break;
-                                                case "siphon":
-                                                    enchVar.setChestID(4);
-                                                    break;
-                                                case "wardenspine":
-                                                    enchVar.setChestID(5);
-                                                    break;
-                                            }
-                                            break;
-                                        case 3:
-                                            refreshHelmet = true;
-                                            switch (enchID) {
-                                                case "black_hole":
-                                                    enchVar.setHelmetID(1);
-                                                    break;
-                                                case "blizzard":
-                                                    enchVar.setHelmetID(2);
-                                                    break;
-                                                case "flamethrower":
-                                                    enchVar.setHelmetID(3);
-                                                    break;
-                                                case "smite":
-                                                    enchVar.setHelmetID(4);
-                                                    break;
-                                                case "warden_scream":
-                                                    enchVar.setHelmetID(5);
-                                                    break;
-                                            }
-                                            break;
-                                    }
-                                }
-                            } else {
-                                switch (j) {
-                                    case 0:
-                                        System.out.println("ohhh");
-                                        enchVar.setBootID(0);
-                                        break;
-                                    case 1:
-                                        enchVar.setLegID(0);
-                                        break;
-                                    case 2:
-                                        enchVar.setChestID(0);
-                                        break;
-                                    case 3:
-                                        enchVar.setHelmetID(0);
-                                        break;
-                                }
-                            }
+
+                //Phantom pain check
+                if (enchVar.getPhantomVictim() != null) {
+                    if (enchVar.getPhantomVictim().isAlive()) {
+                        if (System.currentTimeMillis() >= enchVar.getPhantomDelay() + 4000) {
+                            level.sendParticles(ModParticles.PHANTOM_HEAL_PARTICLE.get(), enchVar.getPhantomVictim().getX(), enchVar.getPhantomVictim().getY() + 1.5, enchVar.getPhantomVictim().getZ(), 5, Math.random(), Math.random(), Math.random(), 0.5);
+                            level.playSound(null, enchVar.getPhantomVictim().blockPosition(), ModSounds.PHANTOM_HEAL.get(), SoundSource.PLAYERS, 0.25F, (float) 0.3 + (float) abs(Math.random() + 0.5));
+                            enchVar.getPhantomVictim().heal(enchVar.getPhantomHurt());
+                            enchVar.resetPhantomHurt();
+                            enchVar.deletePhantomVictim();
                         }
-                    } else {
-                        applyBuffs(event.player);
                     }
                 }
-            }
-            if (enchVar.getAcrobatBonus() && (event.player.onGround() || event.player.isInFluidType() || event.player.isPassenger())) {
-                enchVar.setAcrobatBonus(false);
-            }
 
-            //Blitz check
-            if (enchVar.getBlitzBoostCount() > 0) {
-                if (System.currentTimeMillis() >= enchVar.getBlitzTime() + 1000) {
-                    if (!(event.player instanceof ServerPlayer)) {
-                        enchVar.resetBoostCount();
-                        enchVar.setBlitzTime(System.currentTimeMillis());
-                    } else {
-                        ServerPlayer player = (ServerPlayer) event.player;
-                        ServerLevel level = player.serverLevel();
-                        enchVar.resetBoostCount();
-                        enchVar.setBlitzTime(System.currentTimeMillis());
-                        player.getAttributes().getInstance(Attributes.ATTACK_SPEED).removeModifier(ATTACK_SPEED_MODIFIER_UUID);
-                        level.playSound(null,player.blockPosition(), SoundEvents.CREEPER_DEATH, SoundSource.PLAYERS,4F, 0.2F);
-                        ModMessages.sendToPlayer(new BlitzNBTUpdateS2CPacket(enchVar.getBlitzBoostCount(),enchVar.getBlitzTime()),player);
-                    }
-                }
-            }
-
-            //Phantom pain check
-            if (enchVar.getPhantomVictim() != null) {
-                if (enchVar.getPhantomVictim().isAlive()) {
-                    if (System.currentTimeMillis() >= enchVar.getPhantomDelay() + 4000) {
-                        ServerPlayer player = (ServerPlayer) event.player;
-                        ServerLevel level = player.serverLevel();
-                        level.sendParticles(ModParticles.PHANTOM_HEAL_PARTICLE.get(), enchVar.getPhantomVictim().getX(), enchVar.getPhantomVictim().getY() + 1.5, enchVar.getPhantomVictim().getZ(), 5, Math.random(), Math.random(), Math.random(), 0.5);
-                        level.playSound(null, enchVar.getPhantomVictim().blockPosition(), ModSounds.PHANTOM_HEAL.get(), SoundSource.PLAYERS, 0.25F, (float) 0.3 + (float) abs(Math.random() + 0.5));
-                        enchVar.getPhantomVictim().heal(enchVar.getPhantomHurt());
-                        enchVar.resetPhantomHurt();
-                        enchVar.deletePhantomVictim();
-                    }
-                }
-            }
-
-            //stone caller check
-            if (enchVar.getStoneTime() != 0) {
-                if (System.currentTimeMillis() >= enchVar.getStoneTime() + 6000) {
-                    if (event.player instanceof ServerPlayer) {
-                        ServerPlayer player = (ServerPlayer) event.player;
-                        ServerLevel level = player.serverLevel();
+                //stone caller check
+                if (enchVar.getStoneTime() != 0) {
+                    if (System.currentTimeMillis() >= enchVar.getStoneTime() + 6000) {
                         level.playSound(null, new BlockPos(enchVar.getStoneX(), enchVar.getStoneY() + 1, enchVar.getStoneZ()), SoundEvents.WITHER_BREAK_BLOCK, SoundSource.PLAYERS, 2F, 5.0F);
                         level.setBlock(new BlockPos(enchVar.getStoneX(), enchVar.getStoneY(), enchVar.getStoneZ()), Blocks.AIR.defaultBlockState(), 2);
                         level.setBlock(new BlockPos(enchVar.getStoneX(), enchVar.getStoneY() + 1, enchVar.getStoneZ()), Blocks.AIR.defaultBlockState(), 2);
@@ -361,93 +223,34 @@ public class ModEvents {
                                 enchVar.getStoneY() + 3.5,
                                 enchVar.getStoneZ() + (double) (level.random.nextFloat()),
                                 10, d0, d1, d2, 0.0F);
+                        enchVar.setStoneTime(0);
                     }
-                    enchVar.setStoneTime(0);
                 }
             }
 
+            if (enchVar.getBlitzBoostCount() > 0) {
+                if (System.currentTimeMillis() >= enchVar.getBlitzTime() + 1000) {
+                    if (!(event.player instanceof ServerPlayer)) {
+                        enchVar.resetBoostCount();
+                        enchVar.setBlitzTime(System.currentTimeMillis());
+                    } else {
+                        ServerPlayer player = (ServerPlayer) event.player;
+                        ServerLevel level = player.serverLevel();
+                        enchVar.resetBoostCount();
+                        enchVar.setBlitzTime(System.currentTimeMillis());
+                        player.getAttributes().getInstance(Attributes.ATTACK_SPEED).removeModifier(ATTACK_SPEED_MODIFIER_UUID);
+                        level.playSound(null, player.blockPosition(), SoundEvents.CREEPER_DEATH, SoundSource.PLAYERS, 4F, 0.2F);
+                        ModMessages.sendToPlayer(new BlitzNBTUpdateS2CPacket(enchVar.getBlitzBoostCount(), enchVar.getBlitzTime()), player);
+                    }
+                }
+            }
+
+            if (enchVar.getAcrobatBonus() && (event.player.onGround() || event.player.isInFluidType() || event.player.isPassenger())) {
+                enchVar.setAcrobatBonus(false);
+            }
+
             if (FMLEnvironment.dist.isClient() && event.player == Minecraft.getInstance().player) {
-                //System.out.println(enchVar.getBootID());
-                //if (enchVar.getBootID() > 0) {
-                    switch (enchVar.getBootID()) {
-                        case 1:
-                            CometStrikeEnchantment.onKeyInputEvent();
-                            break;
-                        case 2:
-                            DoubleJumpEnchantment.onClientTick();
-                            break;
-                        case 3:
-                            MomentumEnchantment.onClientTick();
-                            break;
-                        case 4:
-                            SkyChargeEnchantment.onClientTick();
-                            break;
-                        case 5:
-                            StoneCallerEnchantment.onClientTick();
-                            break;
-                    }
-                //}
-                if (enchVar.getLegID() > 0) {
-                    switch (enchVar.getLegID()) {
-                        case 1:
-                            AcrobaticEnchantment.onClientTick();
-                            break;
-                        case 2:
-                            CrushEnchantment.onClientTick();
-                            break;
-                        case 3:
-                            IncapacitateEnchantment.onKeyInputEvent();
-                            break;
-                        case 4:
-                            JudgementEnchantment.onKeyInputEvent();
-                            break;
-                        case 5:
-                            TrainDashEnchantment.onClientTick();
-                            break;
-                    }
-                }
-                if (enchVar.getChestID() > 0) {
-                    switch (enchVar.getChestID()) {
-                        case 1:
-                            ConcussionEnchantment.onKeyInputEvent();
-                            break;
-                        case 2:
-                            FlareEnchantment.onClientTick();
-                            break;
-                        case 3:
-                            ParryEnchantment.onKeyInputEvent();
-                            break;
-                        case 4:
-                            if (Keybindings.siphon.isDown()) {
-                                SiphonEnchantment.onKeyInputEvent();
-                            } else {
-                                consumeClick = false;
-                            }
-                            break;
-                        case 5:
-                            WardenspineEnchantment.onClientTick();
-                            break;
-                    }
-                }
-                if (enchVar.getHelmetID() > 0) {
-                    switch (enchVar.getHelmetID()) {
-                        case 1:
-                            BlackHoleEnchantment.onKeyInputEvent();
-                            break;
-                        case 2:
-                            BlizzardEnchantment.onClientTick();
-                            break;
-                        case 3:
-                            FlamethrowerEnchantment.onClientTick();
-                            break;
-                        case 4:
-                            SmiteEnchantment.onKeyInputEvent();
-                            break;
-                        case 5:
-                            WardenScreamEnchantment.onKeyInputEvent();
-                            break;
-                    }
-                }
+                enchantmentTick();
 
                 if (Minecraft.getInstance().mouseHandler.isLeftPressed()) {
                     KineticEnchantment.onKeyInputEvent();
@@ -533,6 +336,84 @@ public class ModEvents {
             }
         });
     }
+
+    private static void enchantmentTick() {
+        uniPlayer.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+            switch (enchVar.getBootID()) {
+                case 1:
+                    CometStrikeEnchantment.onKeyInputEvent();
+                    break;
+                case 2:
+                    DoubleJumpEnchantment.onClientTick();
+                    break;
+                case 3:
+                    MomentumEnchantment.onClientTick();
+                    break;
+                case 4:
+                    SkyChargeEnchantment.onClientTick();
+                    break;
+                case 5:
+                    StoneCallerEnchantment.onClientTick();
+                    break;
+            }
+            switch (enchVar.getLegID()) {
+                case 1:
+                    AcrobaticEnchantment.onClientTick();
+                    break;
+                case 2:
+                    CrushEnchantment.onClientTick();
+                    break;
+                case 3:
+                    IncapacitateEnchantment.onKeyInputEvent();
+                    break;
+                case 4:
+                    JudgementEnchantment.onKeyInputEvent();
+                    break;
+                case 5:
+                    TrainDashEnchantment.onClientTick();
+                    break;
+            }
+            switch (enchVar.getChestID()) {
+                case 1:
+                    ConcussionEnchantment.onKeyInputEvent();
+                    break;
+                case 2:
+                    FlareEnchantment.onClientTick();
+                    break;
+                case 3:
+                    ParryEnchantment.onKeyInputEvent();
+                    break;
+                case 4:
+                    if (Keybindings.siphon.isDown()) {
+                        SiphonEnchantment.onKeyInputEvent();
+                    } else {
+                        consumeClick = false;
+                    }
+                    break;
+                case 5:
+                    WardenspineEnchantment.onClientTick();
+                    break;
+            }
+            switch (enchVar.getHelmetID()) {
+                case 1:
+                    BlackHoleEnchantment.onKeyInputEvent();
+                    break;
+                case 2:
+                    BlizzardEnchantment.onClientTick();
+                    break;
+                case 3:
+                    FlamethrowerEnchantment.onClientTick();
+                    break;
+                case 4:
+                    SmiteEnchantment.onKeyInputEvent();
+                    break;
+                case 5:
+                    WardenScreamEnchantment.onKeyInputEvent();
+                    break;
+            }
+        });
+    }
+
     private static void applyBuffs(Player player) {
         player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
             int wayTrim = 0;
@@ -598,7 +479,7 @@ public class ModEvents {
             }
             if (duneTrim > 0 || duneTrim != enchVar.getDuneBuff()) {
                 player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).removeModifier(DUNE_ATTACK_MODIFIER_UUID);
-                player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).addTransientModifier(new AttributeModifier(DUNE_ATTACK_MODIFIER_UUID, "Dune attack debuff", (double) -duneTrim / 1.5, AttributeModifier.Operation.ADDITION));
+                player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).addTransientModifier(new AttributeModifier(DUNE_ATTACK_MODIFIER_UUID, "Dune attack debuff", (double) -duneTrim, AttributeModifier.Operation.ADDITION));
                 enchVar.setDuneBuff(duneTrim);
             }
             if (silenceTrim > 0 || silenceTrim != enchVar.getSilenceBuff()) {

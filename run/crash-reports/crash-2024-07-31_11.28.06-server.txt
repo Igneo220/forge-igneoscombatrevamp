@@ -4,7 +4,7 @@
 Time: 2024-07-31 11:28:06
 Description: Ticking player
 
-java.lang.NullPointerException: Cannot invoke "Object.equals(Object)" because the return value of "net.igneo.icv.enchantmentActions.PlayerEnchantmentActions.getPlayerArmor()" is null
+java.lang.NullPointerException: Cannot invoke "Object.equals(Object)" because the return value of "getPlayerTrims()" is null
 	at net.igneo.icv.event.ModEvents.lambda$onPlayerTick$3(ModEvents.java:134) ~[%23196!/:?] {re:mixin,re:classloading}
 	at net.minecraftforge.common.util.LazyOptional.ifPresent(LazyOptional.java:137) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23190%23197!/:?] {re:mixin,re:classloading}
 	at net.igneo.icv.event.ModEvents.onPlayerTick(ModEvents.java:133) ~[%23196!/:?] {re:mixin,re:classloading}

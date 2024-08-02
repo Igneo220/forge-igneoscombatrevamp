@@ -126,5 +126,9 @@
     "key.icv.wardenspine": "Activate Wardenspine",
 
     "enchantment.icv.whistler": "Whistler",
-    "enchantment.icv.whistler.desc": "Make your arrow now controlled by the direction you look, at a slower velocity. Deals more damage than a normal arrow"
+    "enchantment.icv.whistler.desc": "Make your arrow now controlled by the direction you look, at a slower velocity. Deals more damage than a normal arrow",
+
+    "entity.icv.black_hole": "Black Hole",
+    "entity.icv.comet": "Comet",
+    "entity.icv.bolt": "Lightning Bolt"
 }

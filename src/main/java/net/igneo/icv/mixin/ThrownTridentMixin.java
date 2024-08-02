@@ -1,6 +1,7 @@
 package net.igneo.icv.mixin;
 
 import net.igneo.icv.enchantment.ModEnchantments;
+import net.igneo.icv.entity.custom.BlackHoleEntity;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.ExtractUpdateS2CPacket;
 import net.igneo.icv.sound.ModSounds;
@@ -97,7 +98,7 @@ public class ThrownTridentMixin extends AbstractArrow{
             if (entity != null) {
                 double scale = 0.1;
                 double d0 = entity.getX() - this.getX();
-                double d1 = entity.getY() - this.getY();
+                double d1 = entity.getEyeY() - this.getY();
                 double d2 = entity.getZ() - this.getZ();
 
                 if ((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)) <= 20) {
@@ -106,9 +107,13 @@ public class ThrownTridentMixin extends AbstractArrow{
                 if ((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)) >= 35) {
                     scale = 0.05;
                 }
-
-                pEntity.setDeltaMovement(0,1,0);
-                Vec3 vec3 = (new Vec3(d0, pEntity.getDeltaMovement().y, d2)).scale(scale);
+                Vec3 vec3;
+                if (pEntity instanceof LivingEntity) {
+                    pEntity.setDeltaMovement(0, 1, 0);
+                    vec3 = (new Vec3(d0, pEntity.getDeltaMovement().y, d2)).scale(scale);
+                } else {
+                    vec3 = (new Vec3(d0/2, d1/4, d2/2)).scale(scale);
+                }
                 pEntity.setDeltaMovement(vec3);
             }
         }

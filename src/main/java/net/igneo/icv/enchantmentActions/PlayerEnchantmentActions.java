@@ -1,11 +1,8 @@
 package net.igneo.icv.enchantmentActions;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fml.loading.FMLEnvironment;
 
 public class PlayerEnchantmentActions {
     //enchant check
@@ -39,12 +36,19 @@ public class PlayerEnchantmentActions {
     }
 
     //armor check
-    private NonNullList<String> playerArmor = NonNullList.withSize(4, "AIR");
-    public NonNullList<String> getPlayerArmor() {
-        return this.playerArmor;
+    private NonNullList<String> playerTrims = NonNullList.withSize(4, "NONE");
+    public NonNullList<String> getPlayerTrims() {
+        return this.playerTrims;
     }
-    public void setPlayerArmor(String string, int index) {
-        this.playerArmor.set(index,string);
+    public void setPlayerTrims(String string, int index) {
+        this.playerTrims.set(index,string);
+    }
+    private NonNullList<String> playerEnchantments = NonNullList.withSize(4, "NONE");
+    public NonNullList<String> getPlayerEnchantments() {
+        return this.playerEnchantments;
+    }
+    public void setPlayerEnchantments(String string, int index) {
+        this.playerEnchantments.set(index,string);
     }
 
     //trim variables

@@ -1,0 +1,5 @@
+
+["ICV CONFIGS"]
+	#Do you want trim effects to be applied?(Highly recommended, it re-adds most vanilla enchantments. If you wanted them to simply be cosmetic I recommend using cosmetic armor)
+	"Trim effects:" = true
+

@@ -1,5 +1,6 @@
 package net.igneo.icv.mixin;
 
+import net.igneo.icv.config.ICVCommonConfigs;
 import net.igneo.icv.enchantment.ModEnchantments;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.damagesource.DamageSource;
@@ -27,14 +28,25 @@ public class EnchantmentHelperMixin {
     @Overwrite
     public static int getFireAspect(LivingEntity pPlayer) {
         int trimCount = 0;
-        if (pPlayer instanceof Player) {
+        if (pPlayer instanceof Player && ICVCommonConfigs.TRIM_EFFECTS.get()) {
             Player player = (Player) pPlayer;
-            for (int j = 0; j < 4; ++j) {
-                if (!player.getInventory().getArmor(j).toString().contains("air")) {
-                    if (player.getInventory().getArmor(j).getTag().getAllKeys().contains("Trim")) {
-                        Tag tag = player.getInventory().getArmor(j).getTag().get("Trim");
-                        if (tag.toString().contains("dune")) {
-                            ++trimCount;
+            ItemStack pStack = player.getMainHandItem();
+            if (pStack.getItem().toString().contains("sword") ||
+                    pStack.getItem().toString().contains("scythe") ||
+                    pStack.getItem().toString().contains("glaive") ||
+                    pStack.getItem().toString().contains("halberd") ||
+                    pStack.getItem().toString().contains("hammer") ||
+                    pStack.getItem().toString().contains("rapier") ||
+                    pStack.getItem().toString().contains("spear") ||
+                    pStack.getItem().toString().contains("katana") ||
+                    pStack.getItem().toString().contains("mace")) {
+                for (int j = 0; j < 4; ++j) {
+                    if (!player.getInventory().getArmor(j).toString().contains("air")) {
+                        if (player.getInventory().getArmor(j).getTag().getAllKeys().contains("Trim")) {
+                            Tag tag = player.getInventory().getArmor(j).getTag().get("Trim");
+                            if (tag.toString().contains("dune")) {
+                                ++trimCount;
+                            }
                         }
                     }
                 }
@@ -49,7 +61,7 @@ public class EnchantmentHelperMixin {
     @Overwrite
     public static int getKnockbackBonus(LivingEntity pPlayer) {
         int trimCount = 0;
-        if (pPlayer instanceof Player) {
+        if (pPlayer instanceof Player && ICVCommonConfigs.TRIM_EFFECTS.get()) {
             Player player = (Player) pPlayer;
             for (int j = 0; j < 4; ++j) {
                 if (!player.getInventory().getArmor(j).toString().contains("air")) {
@@ -71,83 +83,85 @@ public class EnchantmentHelperMixin {
     @Overwrite
     public static int getDamageProtection(Iterable<ItemStack> pStacks, DamageSource pSource) {
         int protInt = 0;
-        if (pSource.is(DamageTypes.IN_FIRE) || pSource.is(DamageTypes.ON_FIRE) || pSource.is(DamageTypes.LAVA)) {
-            for (ItemStack pStack : pStacks) {
-                if (!pStack.toString().contains("air")) {
-                    if (pStack.getTag().getAllKeys().contains("Trim")) {
-                        Tag tag = pStack.getTag().get("Trim");
-                        if (tag.toString().contains("rib")) {
-                            protInt += 2;
+        if (ICVCommonConfigs.TRIM_EFFECTS.get()) {
+            if (pSource.is(DamageTypes.IN_FIRE) || pSource.is(DamageTypes.ON_FIRE) || pSource.is(DamageTypes.LAVA)) {
+                for (ItemStack pStack : pStacks) {
+                    if (!pStack.toString().contains("air")) {
+                        if (pStack.getTag().getAllKeys().contains("Trim")) {
+                            Tag tag = pStack.getTag().get("Trim");
+                            if (tag.toString().contains("rib")) {
+                                protInt += 2;
+                            }
                         }
                     }
                 }
             }
-        }
-        if (pSource.is(DamageTypes.MAGIC) || pSource.is(DamageTypes.INDIRECT_MAGIC) || pSource.is(DamageTypes.DRAGON_BREATH)
-         || pSource.is(DamageTypes.SONIC_BOOM) || pSource.is(DamageTypes.LIGHTNING_BOLT) || pSource.is(DamageTypes.WITHER)) {
-            for (ItemStack pStack : pStacks) {
-                if (!pStack.toString().contains("air")) {
-                    if (pStack.getTag().getAllKeys().contains("Trim")) {
-                        Tag tag = pStack.getTag().get("Trim");
-                        if (tag.toString().contains("eye")) {
-                            protInt += 2;
+            if (pSource.is(DamageTypes.MAGIC) || pSource.is(DamageTypes.INDIRECT_MAGIC) || pSource.is(DamageTypes.DRAGON_BREATH)
+                    || pSource.is(DamageTypes.SONIC_BOOM) || pSource.is(DamageTypes.LIGHTNING_BOLT) || pSource.is(DamageTypes.WITHER)) {
+                for (ItemStack pStack : pStacks) {
+                    if (!pStack.toString().contains("air")) {
+                        if (pStack.getTag().getAllKeys().contains("Trim")) {
+                            Tag tag = pStack.getTag().get("Trim");
+                            if (tag.toString().contains("eye")) {
+                                protInt += 2;
+                            }
                         }
                     }
                 }
             }
-        }
-        if (pSource.is(DamageTypes.FALL)) {
-            for (ItemStack pStack : pStacks) {
-                if (!pStack.toString().contains("air")) {
-                    if (pStack.getTag().getAllKeys().contains("Trim")) {
-                        Tag tag = pStack.getTag().get("Trim");
-                        if (tag.toString().contains("spire")) {
-                            protInt += 2;
+            if (pSource.is(DamageTypes.FALL)) {
+                for (ItemStack pStack : pStacks) {
+                    if (!pStack.toString().contains("air")) {
+                        if (pStack.getTag().getAllKeys().contains("Trim")) {
+                            Tag tag = pStack.getTag().get("Trim");
+                            if (tag.toString().contains("spire")) {
+                                protInt += 2;
+                            }
                         }
                     }
                 }
             }
-        }
-        if (pSource.is(DamageTypes.EXPLOSION) || pSource.is(DamageTypes.PLAYER_EXPLOSION) || pSource.is(DamageTypes.BAD_RESPAWN_POINT)) {
-            for (ItemStack pStack : pStacks) {
-                if (!pStack.toString().contains("air")) {
-                    if (pStack.getTag().getAllKeys().contains("Trim")) {
-                        Tag tag = pStack.getTag().get("Trim");
-                        if (tag.toString().contains("ward")) {
-                            protInt += 2;
+            if (pSource.is(DamageTypes.EXPLOSION) || pSource.is(DamageTypes.PLAYER_EXPLOSION) || pSource.is(DamageTypes.BAD_RESPAWN_POINT)) {
+                for (ItemStack pStack : pStacks) {
+                    if (!pStack.toString().contains("air")) {
+                        if (pStack.getTag().getAllKeys().contains("Trim")) {
+                            Tag tag = pStack.getTag().get("Trim");
+                            if (tag.toString().contains("ward")) {
+                                protInt += 2;
+                            }
                         }
                     }
                 }
             }
-        }
-        if (pSource.is(DamageTypes.ARROW) || pSource.is(DamageTypes.MOB_PROJECTILE) || pSource.is(DamageTypes.UNATTRIBUTED_FIREBALL)) {
-            for (ItemStack pStack : pStacks) {
-                if (!pStack.toString().contains("air")) {
-                    if (pStack.getTag().getAllKeys().contains("Trim")) {
-                        Tag tag = pStack.getTag().get("Trim");
-                        if (tag.toString().contains("vex")) {
-                            protInt += 2;
+            if (pSource.is(DamageTypes.ARROW) || pSource.is(DamageTypes.MOB_PROJECTILE) || pSource.is(DamageTypes.UNATTRIBUTED_FIREBALL)) {
+                for (ItemStack pStack : pStacks) {
+                    if (!pStack.toString().contains("air")) {
+                        if (pStack.getTag().getAllKeys().contains("Trim")) {
+                            Tag tag = pStack.getTag().get("Trim");
+                            if (tag.toString().contains("vex")) {
+                                protInt += 2;
+                            }
                         }
                     }
                 }
             }
-        }
-        for (ItemStack pStack : pStacks) {
-            if (!pStack.toString().contains("air")) {
-                if (pStack.getTag().getAllKeys().contains("Trim")) {
-                    Tag tag = pStack.getTag().get("Trim");
-                    if (tag.toString().contains("sentry")) {
-                        protInt -= 2;
+            for (ItemStack pStack : pStacks) {
+                if (!pStack.toString().contains("air")) {
+                    if (pStack.getTag().getAllKeys().contains("Trim")) {
+                        Tag tag = pStack.getTag().get("Trim");
+                        if (tag.toString().contains("sentry")) {
+                            protInt -= 2;
+                        }
                     }
                 }
             }
-        }
-        for (ItemStack pStack : pStacks) {
-            if (!pStack.toString().contains("air")) {
-                if (pStack.getTag().getAllKeys().contains("Trim")) {
-                    Tag tag = pStack.getTag().get("Trim");
-                    if (tag.toString().contains("host")) {
-                        protInt += 2;
+            for (ItemStack pStack : pStacks) {
+                if (!pStack.toString().contains("air")) {
+                    if (pStack.getTag().getAllKeys().contains("Trim")) {
+                        Tag tag = pStack.getTag().get("Trim");
+                        if (tag.toString().contains("host")) {
+                            protInt += 2;
+                        }
                     }
                 }
             }
@@ -162,7 +176,7 @@ public class EnchantmentHelperMixin {
     @Overwrite
     public static int getDepthStrider(LivingEntity pEntity) {
         int trimCount = 0;
-        if (pEntity instanceof Player) {
+        if (pEntity instanceof Player && ICVCommonConfigs.TRIM_EFFECTS.get()) {
             Player player = (Player) pEntity;
             for (int j = 0; j < 4; ++j) {
                 if (!player.getInventory().getArmor(j).toString().contains("air")) {
@@ -184,7 +198,7 @@ public class EnchantmentHelperMixin {
     @Overwrite
     public static int getRespiration(LivingEntity pEntity) {
         int trimCount = 0;
-        if (pEntity instanceof Player) {
+        if (pEntity instanceof Player && ICVCommonConfigs.TRIM_EFFECTS.get()) {
             Player player = (Player) pEntity;
             for (int j = 0; j < 4; ++j) {
                 if (!player.getInventory().getArmor(j).toString().contains("air")) {
