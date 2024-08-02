@@ -120,6 +120,7 @@ key_key.hotbar.8:key.keyboard.8
 key_key.hotbar.9:key.keyboard.9
 key_key.icv.black_hole:key.keyboard.b
 key_key.icv.blizzard:key.keyboard.b
+key_key.icv.comet_strike:key.keyboard.left.shift
 key_key.icv.concussion:key.keyboard.z
 key_key.icv.flamethrower:key.keyboard.b
 key_key.icv.flare:key.keyboard.h
@@ -127,7 +128,7 @@ key_key.icv.incapacitate:key.keyboard.v
 key_key.icv.judgement:key.keyboard.z
 key_key.icv.parry:key.keyboard.r
 key_key.icv.siphon:key.keyboard.h
-key_key.icv.smite:key.keyboard.z
+key_key.icv.smite:key.keyboard.b
 key_key.icv.train_dash:key.keyboard.z
 key_key.icv.wardenscream:key.keyboard.b
 key_key.icv.wardenspine:key.keyboard.b
