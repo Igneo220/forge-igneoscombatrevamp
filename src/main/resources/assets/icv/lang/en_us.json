@@ -12,6 +12,7 @@
     "enchantment.icv.black_hole": "Black Hole",
     "enchantment.icv.black_hole.desc": "Shoot out a black hole that draws nearby entities in, dealing constant cramming damage if touched",
     "key.icv.black_hole": "Activate Black Hole",
+    "entity.icv.black_hole": "Black Hole",
 
     "enchantment.icv.blitz": "Blitz",
     "enchantment.icv.blitz.desc": "Upon attacking, gain an attack speed boost that increases for every hit. Resets if you take too long to hit again, or you take damage yourself",
@@ -29,6 +30,7 @@
     "enchantment.icv.comet_strike": "Comet Strike",
     "enchantment.icv.comet_strike.desc": "When you crouch, summon a comet from the ground. Hit it to make it explode where it lands, scaling with how much damage it takes. You can hit it multiple times. It despawns on its third chime",
     "key.icv.comet_strike": "Activate Comet Strike",
+    "entity.icv.comet": "Comet",
 
     "enchantment.icv.concussion": "Concussion",
     "enchantment.icv.concussion.desc": "Lunge forward and deal 5 damage to whatever you hit, launching it into the air and giving it a temporary slow falling",
@@ -106,6 +108,7 @@
     "enchantment.icv.smite": "Smite",
     "enchantment.icv.smite.desc": "Rise up into the air, and activate again to throw lightning bolts at your enemies",
     "key.icv.smite": "Activate Smite",
+    "entity.icv.bolt": "Lightning Bolt"
 
     "enchantment.icv.stone_caller": "Stone Caller",
     "enchantment.icv.stone_caller.desc": "Hold down crouch to be launched up into the air atop a pillar of stone. Breaks after a few seconds, and becomes usable once more",
