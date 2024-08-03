@@ -5,6 +5,6 @@ Specification-Version: 1
 Implementation-Title: forge-igneoscombatrevamp
 Implementation-Version: 1.2.8
 Implementation-Vendor: Igneo
-Implementation-Timestamp: 2024-08-02T19:25:22-0400
+Implementation-Timestamp: 2024-08-02T22:31:12-0400
 MixinConfigs: mixins.icv.json
 

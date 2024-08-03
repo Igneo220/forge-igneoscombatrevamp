@@ -2,7 +2,6 @@ package net.igneo.icv.event;
 
 import net.igneo.icv.ICV;
 import net.igneo.icv.client.EnchantmentHudOverlay;
-import net.igneo.icv.config.ICVCommonConfigs;
 import net.igneo.icv.enchantment.*;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActions;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
@@ -31,6 +30,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
@@ -73,7 +73,7 @@ public class ModEvents {
     public static final UUID SILENCE_SPEED_MODIFIER_UUID = UUID.fromString("e01fe99d-7575-4820-8b0d-7b3b89ec2452");
     public static final UUID SNOUT_ATTACK_SPEED_MODIFIER_UUID = UUID.fromString("b937f1d6-2575-4e54-a86a-8f69f48bfd52");
     public static final UUID HOST_ATTACK_SPEED_MODIFIER_UUID = UUID.fromString("ba269bfe-1c9b-409e-a12d-0186eea83413");
-    public static final UUID DUNE_ATTACK_MODIFIER_UUID = UUID.fromString("472a0f42-5303-460e-943c-fb1ad6e48a69");
+    public static final UUID DUNE_GRAVITY_MODIFIER_UUID = UUID.fromString("472a0f42-5303-460e-943c-fb1ad6e48a69");
     public static final UUID SHAPER_TOUGH_MODIFIER_UUID = UUID.fromString("472a0f42-5303-460e-943c-fb1ad6e48a69");
     public static BlockPos usedEnchTable;
     public static int enchShift = 0;
@@ -249,7 +249,7 @@ public class ModEvents {
                 enchVar.setAcrobatBonus(false);
             }
 
-            if (FMLEnvironment.dist.isClient() && event.player == Minecraft.getInstance().player) {
+            if (FMLEnvironment.dist.isClient() && uniPlayer != null) {
                 enchantmentTick();
 
                 if (Minecraft.getInstance().mouseHandler.isLeftPressed()) {
@@ -478,8 +478,8 @@ public class ModEvents {
                 enchVar.setHostBuff(hostTrim);
             }
             if (duneTrim > 0 || duneTrim != enchVar.getDuneBuff()) {
-                player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).removeModifier(DUNE_ATTACK_MODIFIER_UUID);
-                player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).addTransientModifier(new AttributeModifier(DUNE_ATTACK_MODIFIER_UUID, "Dune attack debuff", (double) -duneTrim, AttributeModifier.Operation.ADDITION));
+                player.getAttributes().getInstance(ForgeMod.ENTITY_GRAVITY.get()).removeModifier(DUNE_GRAVITY_MODIFIER_UUID);
+                player.getAttributes().getInstance(ForgeMod.ENTITY_GRAVITY.get()).addTransientModifier(new AttributeModifier(DUNE_GRAVITY_MODIFIER_UUID, "Dune gravity increase", (double) duneTrim/120, AttributeModifier.Operation.ADDITION));
                 enchVar.setDuneBuff(duneTrim);
             }
             if (silenceTrim > 0 || silenceTrim != enchVar.getSilenceBuff()) {

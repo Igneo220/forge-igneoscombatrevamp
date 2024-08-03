@@ -26,39 +26,6 @@ public class EnchantmentHelperMixin {
      * @reason Enchantment no longer exists, replacing with trims
      */
     @Overwrite
-    public static int getFireAspect(LivingEntity pPlayer) {
-        int trimCount = 0;
-        if (pPlayer instanceof Player && ICVCommonConfigs.TRIM_EFFECTS.get()) {
-            Player player = (Player) pPlayer;
-            ItemStack pStack = player.getMainHandItem();
-            if (pStack.getItem().toString().contains("sword") ||
-                    pStack.getItem().toString().contains("scythe") ||
-                    pStack.getItem().toString().contains("glaive") ||
-                    pStack.getItem().toString().contains("halberd") ||
-                    pStack.getItem().toString().contains("hammer") ||
-                    pStack.getItem().toString().contains("rapier") ||
-                    pStack.getItem().toString().contains("spear") ||
-                    pStack.getItem().toString().contains("katana") ||
-                    pStack.getItem().toString().contains("mace")) {
-                for (int j = 0; j < 4; ++j) {
-                    if (!player.getInventory().getArmor(j).toString().contains("air")) {
-                        if (player.getInventory().getArmor(j).getTag().getAllKeys().contains("Trim")) {
-                            Tag tag = player.getInventory().getArmor(j).getTag().get("Trim");
-                            if (tag.toString().contains("dune")) {
-                                ++trimCount;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return trimCount;
-    }
-    /**
-     * @author Igneo220
-     * @reason Enchantment no longer exists, replacing with trims
-     */
-    @Overwrite
     public static int getKnockbackBonus(LivingEntity pPlayer) {
         int trimCount = 0;
         if (pPlayer instanceof Player && ICVCommonConfigs.TRIM_EFFECTS.get()) {
@@ -90,7 +57,7 @@ public class EnchantmentHelperMixin {
                         if (pStack.getTag().getAllKeys().contains("Trim")) {
                             Tag tag = pStack.getTag().get("Trim");
                             if (tag.toString().contains("rib")) {
-                                protInt += 2;
+                                protInt += 3;
                             }
                         }
                     }
@@ -103,7 +70,7 @@ public class EnchantmentHelperMixin {
                         if (pStack.getTag().getAllKeys().contains("Trim")) {
                             Tag tag = pStack.getTag().get("Trim");
                             if (tag.toString().contains("eye")) {
-                                protInt += 2;
+                                protInt += 3;
                             }
                         }
                     }
@@ -115,7 +82,7 @@ public class EnchantmentHelperMixin {
                         if (pStack.getTag().getAllKeys().contains("Trim")) {
                             Tag tag = pStack.getTag().get("Trim");
                             if (tag.toString().contains("spire")) {
-                                protInt += 2;
+                                protInt += 3;
                             }
                         }
                     }
@@ -127,7 +94,7 @@ public class EnchantmentHelperMixin {
                         if (pStack.getTag().getAllKeys().contains("Trim")) {
                             Tag tag = pStack.getTag().get("Trim");
                             if (tag.toString().contains("ward")) {
-                                protInt += 2;
+                                protInt += 3;
                             }
                         }
                     }
@@ -139,7 +106,7 @@ public class EnchantmentHelperMixin {
                         if (pStack.getTag().getAllKeys().contains("Trim")) {
                             Tag tag = pStack.getTag().get("Trim");
                             if (tag.toString().contains("vex")) {
-                                protInt += 2;
+                                protInt += 3;
                             }
                         }
                     }
@@ -150,7 +117,7 @@ public class EnchantmentHelperMixin {
                     if (pStack.getTag().getAllKeys().contains("Trim")) {
                         Tag tag = pStack.getTag().get("Trim");
                         if (tag.toString().contains("sentry")) {
-                            protInt -= 2;
+                            protInt -= 3;
                         }
                     }
                 }
@@ -160,7 +127,7 @@ public class EnchantmentHelperMixin {
                     if (pStack.getTag().getAllKeys().contains("Trim")) {
                         Tag tag = pStack.getTag().get("Trim");
                         if (tag.toString().contains("host")) {
-                            protInt += 2;
+                            protInt += 3;
                         }
                     }
                 }
