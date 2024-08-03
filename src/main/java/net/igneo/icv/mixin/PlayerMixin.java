@@ -48,10 +48,10 @@ public abstract class PlayerMixin extends LivingEntity{
             } else if (EnchantmentHelper.getEnchantments(this.getMainHandItem()).containsKey(ModEnchantments.KINETIC.get())) {
                 this.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
                     float speedDamage = (float) (((Math.abs(enchVar.getKinX()) + Math.abs(enchVar.getKinZ()))));
-                    if (speedDamage >= 10) {
-                        speedDamage = 10;
+                    if (speedDamage >= 0.5F) {
+                        speedDamage = 0.5F;
                     }
-                    tempf1.set(speedDamage / 3);
+                    tempf1.set(speedDamage/2);
                     //enchVar.setKinX(0);
                     //enchVar.setKinZ(0);
                 });
