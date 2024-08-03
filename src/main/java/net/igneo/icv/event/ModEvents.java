@@ -485,7 +485,7 @@ public class ModEvents {
             if (silenceTrim > 0 || silenceTrim != enchVar.getSilenceBuff()) {
                 player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).removeModifier(SILENCE_DAMAGE_MODIFIER_UUID);
                 player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).removeModifier(SILENCE_SPEED_MODIFIER_UUID);
-                player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).addTransientModifier(new AttributeModifier(SILENCE_DAMAGE_MODIFIER_UUID, "silence damage boost", (double) silenceTrim, AttributeModifier.Operation.ADDITION));
+                player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).addTransientModifier(new AttributeModifier(SILENCE_DAMAGE_MODIFIER_UUID, "silence damage boost", (double) silenceTrim/2, AttributeModifier.Operation.ADDITION));
                 player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).addTransientModifier(new AttributeModifier(SILENCE_SPEED_MODIFIER_UUID, "silence speed debuff", (double) -silenceTrim / 120, AttributeModifier.Operation.ADDITION));
                 enchVar.setSilenceBuff(silenceTrim);
             }
