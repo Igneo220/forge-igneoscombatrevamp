@@ -342,9 +342,9 @@ public class ModEvents {
 
                 if (Minecraft.getInstance().mouseHandler.isLeftPressed()) {
                     KineticEnchantment.onKeyInputEvent();
-                    CounterweightedEnchantment.onKeyInputEvent();
                     RendEnchantment.onKeyInputEvent();
                 }
+                CounterweightedEnchantment.onKeyInputEvent();
 
                 //refreshing time based variables
                 if (refreshLegs) {
