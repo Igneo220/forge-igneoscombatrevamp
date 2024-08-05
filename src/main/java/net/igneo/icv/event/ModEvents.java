@@ -340,8 +340,10 @@ public class ModEvents {
             if (FMLEnvironment.dist.isClient() && uniPlayer != null) {
                 enchantmentTick();
 
-                KineticEnchantment.onKeyInputEvent();
-                RendEnchantment.onKeyInputEvent();
+                if (Minecraft.getInstance().mouseHandler.isLeftPressed()) {
+                    KineticEnchantment.onKeyInputEvent();
+                    RendEnchantment.onKeyInputEvent();
+                }
                 CounterweightedEnchantment.onKeyInputEvent();
 
                 //refreshing time based variables
@@ -417,11 +419,6 @@ public class ModEvents {
                         ModMessages.sendToServer(new MomentumC2SPacket(0));
                         loopCount = 0;
                     }
-                }
-                if (initialHit) {
-                    hit = false;
-                    initialHit = false;
-                    ModMessages.sendToServer(new WeightedC2SPacket());
                 }
                 if (hit) {
                     ModMessages.sendToServer(new WeightedC2SPacket());

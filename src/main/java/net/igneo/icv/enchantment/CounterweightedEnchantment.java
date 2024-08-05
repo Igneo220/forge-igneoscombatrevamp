@@ -29,14 +29,22 @@ public class CounterweightedEnchantment extends Enchantment {
                     hit = true;
                 }
             }
+            System.out.println(hit);
             if (!hit) {
                 ModMessages.sendToServer(new CounterweightedC2SPacket());
             }
-        } else if (!hit) {
+        } else if ((!Minecraft.getInstance().options.keyAttack.isDown() && initialHit)) {
+            hit = false;
+            initialHit = false;
+            ModMessages.sendToServer(new WeightedC2SPacket());
+        } else if (Minecraft.getInstance().options.keyAttack.isDown() && !hit) {
             for (Entity entity : Minecraft.getInstance().level.entitiesForRendering()) {
                 if (entity.getBoundingBox().intersects(uniPlayer.getEyePosition(), uniPlayer.position().add(uniPlayer.getLookAngle().scale(7))) && entity != uniPlayer && entity instanceof LivingEntity) {
                     hit = true;
                 }
+            }
+            if (hit) {
+                ModMessages.sendToServer(new WeightedC2SPacket());
             }
         }
     }
