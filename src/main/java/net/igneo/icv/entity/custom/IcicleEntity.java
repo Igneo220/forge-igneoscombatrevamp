@@ -52,7 +52,7 @@ public class IcicleEntity extends Fireball {
     @Override
     protected void onHitEntity(EntityHitResult pResult) {
         if (System.currentTimeMillis() >= iceTime + 50) {
-            pResult.getEntity().hurt(damageSources().magic(), 2);
+            pResult.getEntity().hurt(damageSources().magic(), 1);
             if (pResult.getEntity() instanceof LivingEntity) {
                 if (this.level() instanceof ServerLevel) {
                     ServerLevel level = (ServerLevel) this.level();
