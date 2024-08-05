@@ -55,7 +55,7 @@
     "key.icv.flamethrower":"Activate Flamethrower",
 
     "enchantment.icv.gust": "Gust",
-    "enchantment.icv.gust.desc": "When you crit, launch your enemy high up into the air",
+    "enchantment.icv.gust.desc": "When you crit, launch your enemy high up into the air. Has a 2 second cooldown",
 
     "enchantment.icv.incapacitate": "Incapacitate",
     "enchantment.icv.incapacitate.desc": "Perform a large sweeping attack, immobilizing nearby enemies for a short time",
@@ -130,5 +130,23 @@
 
     "entity.icv.black_hole": "Black Hole",
     "entity.icv.comet": "Comet",
-    "entity.icv.bolt": "Lightning Bolt"
+    "entity.icv.bolt": "Lightning Bolt",
+
+    "icv.effects": "Effects:",
+    "icv.coast.desc": "Decrease the speed you run out of air underwater",
+    "icv.dune.desc": "Become heavy, and increase gravity",
+    "icv.eye.desc": "Magic and magic adjacent protection",
+    "icv.host.desc": "Overall protection at the cost of speed",
+    "icv.raiser.desc": "Jump boost. Does not decrease fall damage",
+    "icv.rib.desc": "Fire protection",
+    "icv.sentry.desc": "Increased knockback, less protection",
+    "icv.shaper.desc": "Increase your armor toughness",
+    "icv.silence.desc": "Increase damage, at the cost of attack speed",
+    "icv.snout.desc": "Increase attack speed",
+    "icv.spire.desc": "Fall damage protection",
+    "icv.tide.desc": "Increase movement speed in water",
+    "icv.vex.desc": "Projectile protection",
+    "icv.ward.desc": "Explosion protection",
+    "icv.wayfinder.desc": "Speed increase",
+    "icv.wild.desc": "Health increase"
 }

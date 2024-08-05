@@ -23,7 +23,7 @@ public class GustEnchantment extends Enchantment {
     @Override
     public void doPostAttack(LivingEntity pTarget, Entity pAttacker, int pLevel) {
         if (pTarget.level() instanceof ServerLevel) {
-            if (pTarget.fallDistance > 0 && System.currentTimeMillis() >= gustDelay + 1000) {
+            if (pTarget.fallDistance > 0 && System.currentTimeMillis() >= gustDelay + 2000) {
                 if (pAttacker instanceof ServerPlayer) {
                     ModMessages.sendToPlayer(new GustS2CPacket(),(ServerPlayer) pAttacker);
                 } else {

@@ -1,5 +1,6 @@
 package net.igneo.icv.networking.packet;
 
+import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.igneo.icv.particle.ModParticles;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
@@ -42,6 +43,7 @@ public class ConcussC2SPacket {
             level.sendParticles(ModParticles.CONCUSS_USE_PARTICLE.get(),player.getX(),player.getY() + 1.5,player.getZ(),5,Math.random(),Math.random(),Math.random(),0.5);
             level.playSound(null, player.blockPosition(), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1, 0.1F);
             player.setDeltaMovement(player.getLookAngle().scale(1.5).x,player.getLookAngle().scale(0.5).y,player.getLookAngle().scale(1.5).z);
+
 
         });
         return true;

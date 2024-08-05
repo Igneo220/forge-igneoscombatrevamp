@@ -2,6 +2,7 @@ package net.igneo.icv.event;
 
 import net.igneo.icv.ICV;
 import net.igneo.icv.client.EnchantmentHudOverlay;
+import net.igneo.icv.config.ICVCommonConfigs;
 import net.igneo.icv.enchantment.*;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActions;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
@@ -10,11 +11,13 @@ import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.*;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.sound.ModSounds;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.*;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -36,12 +39,14 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
+import java.util.List;
 import java.util.UUID;
 
 import static java.lang.Math.abs;
@@ -54,13 +59,6 @@ import static net.igneo.icv.enchantment.SiphonEnchantment.consumeClick;
 
 @Mod.EventBusSubscriber(modid = ICV.MOD_ID)
 public class ModEvents {
-    @SubscribeEvent
-    public static void onKeyInputEvent(InputEvent.Key event){
-        if (!Minecraft.getInstance().options.keyJump.isDown()) {
-            boosted = false;
-        }
-    }
-
     public static boolean boosted = false;
     @OnlyIn(Dist.CLIENT)
     public static LocalPlayer uniPlayer;
@@ -70,14 +68,99 @@ public class ModEvents {
     public static final UUID WAYFINDER_SPEED_MODIFIER_UUID = UUID.fromString("8a23719c-852d-47fc-bb41-8527955288d4");
     public static final UUID WILD_HEALTH_MODIFIER_UUID = UUID.fromString("c4e2d23f-4051-4d7d-a8d2-fd0e01a667e7");
     public static final UUID SILENCE_DAMAGE_MODIFIER_UUID = UUID.fromString("e01fe99d-7575-4820-8b0d-7b3b89ec2452");
-    public static final UUID SILENCE_SPEED_MODIFIER_UUID = UUID.fromString("e01fe99d-7575-4820-8b0d-7b3b89ec2452");
+    public static final UUID SILENCE_ATTACK_SPEED_MODIFIER_UUID = UUID.fromString("e01fe99d-7575-4820-8b0d-7b3b89ec2452");
     public static final UUID SNOUT_ATTACK_SPEED_MODIFIER_UUID = UUID.fromString("b937f1d6-2575-4e54-a86a-8f69f48bfd52");
     public static final UUID HOST_ATTACK_SPEED_MODIFIER_UUID = UUID.fromString("ba269bfe-1c9b-409e-a12d-0186eea83413");
     public static final UUID DUNE_GRAVITY_MODIFIER_UUID = UUID.fromString("472a0f42-5303-460e-943c-fb1ad6e48a69");
     public static final UUID SHAPER_TOUGH_MODIFIER_UUID = UUID.fromString("472a0f42-5303-460e-943c-fb1ad6e48a69");
+    public static final UUID CONCUSSION_GRAVITY_MODIFIER_UUID = UUID.fromString("472a0f42-5303-460e-943c-fb1ad6e48a69");
     public static BlockPos usedEnchTable;
     public static int enchShift = 0;
     public static int enchLength = 0;
+
+    @SubscribeEvent
+    public static void renderTooltips(ItemTooltipEvent event) {
+        if(ICVCommonConfigs.TRIM_EFFECTS.get() && event.getToolTip().toString().contains("trim")) {
+            String trim = "null";
+            int index = 0;
+            if (event.getItemStack().isDamageableItem()) {
+                index = findArmorTip(event.getToolTip());
+            } else {
+                index = findTrimTip(event.getToolTip());
+            }
+            if (event.getItemStack().serializeNBT().toString().contains("coast")) {
+                trim = "coast";
+            } else if (event.getItemStack().serializeNBT().toString().contains("dune")) {
+                trim = "dune";
+            } else if (event.getItemStack().serializeNBT().toString().contains("eye")) {
+                trim = "eye";
+            } else if (event.getItemStack().serializeNBT().toString().contains("host")) {
+                trim = "host";
+            } else if (event.getItemStack().serializeNBT().toString().contains("raiser")) {
+                trim = "raiser";
+            } else if (event.getItemStack().serializeNBT().toString().contains("rib")) {
+                trim = "rib";
+            } else if (event.getItemStack().serializeNBT().toString().contains("sentry")) {
+                trim = "sentry";
+            } else if (event.getItemStack().serializeNBT().toString().contains("shaper")) {
+                trim = "shaper";
+            } else if (event.getItemStack().serializeNBT().toString().contains("silence")) {
+                trim = "silence";
+            } else if (event.getItemStack().serializeNBT().toString().contains("snout")) {
+                trim = "snout";
+            } else if (event.getItemStack().serializeNBT().toString().contains("spire")) {
+                trim = "spire";
+            } else if (event.getItemStack().serializeNBT().toString().contains("tide")) {
+                trim = "tide";
+            } else if (event.getItemStack().serializeNBT().toString().contains("vex")) {
+                trim = "vex";
+            } else if (event.getItemStack().serializeNBT().toString().contains("ward")) {
+                trim = "ward";
+            } else if (event.getItemStack().serializeNBT().toString().contains("wayfinder")) {
+                trim = "wayfinder";
+            } else if (event.getItemStack().serializeNBT().toString().contains("wild")) {
+                trim = "wild";
+            }
+            if (!trim.contains("null") && index != 0) {
+                event.getToolTip().add(index, Component.translatable("icv.effects").withStyle(ChatFormatting.GRAY));
+                event.getToolTip().add(index + 1, Component.translatable("icv." + trim + ".desc").withStyle(ChatFormatting.YELLOW));
+            }
+        }
+    }
+
+    private static int findTrimTip(List<Component> toolTip) {
+        int f = 0;
+        for (Component item : toolTip) {
+            int j = 0;
+            if (item.toString().contains("trim")) {
+                f = j + 2;
+                break;
+            } else {
+                ++j;
+            }
+        }
+        return f;
+    }
+    private static int findArmorTip(List<Component> toolTip) {
+        int f = 0;
+        for (Component item : toolTip) {
+            int j = 0;
+            if (item.toString().contains("trim")) {
+                f = j + 4;
+                break;
+            } else {
+                ++j;
+            }
+        }
+        return f;
+    }
+    @SubscribeEvent
+    public static void onKeyInputEvent(InputEvent.Key event){
+        if (!Minecraft.getInstance().options.keyJump.isDown()) {
+            boosted = false;
+        }
+    }
+
     @SubscribeEvent
     public static void blockBreakEvent(BlockEvent.BreakEvent event) {
         if (EnchantmentHelper.getEnchantments(event.getPlayer().getMainHandItem()).containsKey(ModEnchantments.BRUTE_TOUCH.get())) {
@@ -150,6 +233,11 @@ public class ModEvents {
             if (event.player.level() instanceof ServerLevel) {
                 ServerPlayer player = (ServerPlayer) event.player;
                 ServerLevel level = player.serverLevel();
+
+                if (enchVar.getConcussed() && player.onGround()) {
+                    player.getAttributes().getInstance(ForgeMod.ENTITY_GRAVITY.get()).removeModifier(CONCUSSION_GRAVITY_MODIFIER_UUID);
+                }
+
                 for (int j = 0; j < 4; ++j) {
                     String enchantments;
                     if (player.getInventory().getArmor(j).serializeNBT().toString().contains("Enchantments")) {
@@ -277,7 +365,9 @@ public class ModEvents {
                     WardenspineEnchantment.blind = false;
                     WardenspineEnchantment.blinding = false;
                     WardenspineEnchantment.wardenCooldown = System.currentTimeMillis();
+                    if (Minecraft.getInstance().getConnection() != null) {
                     ModMessages.sendToServer(new WardenspineC2SPacket(0));
+                    }
 
                     ParryEnchantment.parryCooldown = System.currentTimeMillis();
                     EnchantmentHudOverlay.parryFrames = 0;
@@ -314,6 +404,11 @@ public class ModEvents {
                 }
 
                 //enchant persistent logic
+                if (enchVar.getStoneTime() != 0) {
+                    if (System.currentTimeMillis() >= enchVar.getStoneTime() + 6000) {
+                        enchVar.setStoneTime(0);
+                    }
+                }
                 TempoTheftEnchantment.onClientTick();
                 if (spedUp) {
                     double d0 = uniPlayer.getDeltaMovement().x;
@@ -473,8 +568,8 @@ public class ModEvents {
                 enchVar.setSnoutBuff(snoutTrim);
             }
             if (hostTrim > 0 || hostTrim != enchVar.getHostBuff()) {
-                player.getAttributes().getInstance(Attributes.ATTACK_SPEED).removeModifier(HOST_ATTACK_SPEED_MODIFIER_UUID);
-                player.getAttributes().getInstance(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(HOST_ATTACK_SPEED_MODIFIER_UUID, "Host attack speed debuff", (double) -hostTrim / 5, AttributeModifier.Operation.ADDITION));
+                player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).removeModifier(HOST_ATTACK_SPEED_MODIFIER_UUID);
+                player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).addTransientModifier(new AttributeModifier(HOST_ATTACK_SPEED_MODIFIER_UUID, "Host speed debuff", (double) -hostTrim / 120, AttributeModifier.Operation.ADDITION));
                 enchVar.setHostBuff(hostTrim);
             }
             if (duneTrim > 0 || duneTrim != enchVar.getDuneBuff()) {
@@ -484,9 +579,9 @@ public class ModEvents {
             }
             if (silenceTrim > 0 || silenceTrim != enchVar.getSilenceBuff()) {
                 player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).removeModifier(SILENCE_DAMAGE_MODIFIER_UUID);
-                player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).removeModifier(SILENCE_SPEED_MODIFIER_UUID);
+                player.getAttributes().getInstance(Attributes.ATTACK_SPEED).removeModifier(SILENCE_ATTACK_SPEED_MODIFIER_UUID);
                 player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).addTransientModifier(new AttributeModifier(SILENCE_DAMAGE_MODIFIER_UUID, "silence damage boost", (double) silenceTrim/2, AttributeModifier.Operation.ADDITION));
-                player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).addTransientModifier(new AttributeModifier(SILENCE_SPEED_MODIFIER_UUID, "silence speed debuff", (double) -silenceTrim / 120, AttributeModifier.Operation.ADDITION));
+                player.getAttributes().getInstance(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(SILENCE_ATTACK_SPEED_MODIFIER_UUID, "silence attack speed debuff", (double) -silenceTrim/4, AttributeModifier.Operation.ADDITION));
                 enchVar.setSilenceBuff(silenceTrim);
             }
         });

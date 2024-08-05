@@ -1,5 +1,6 @@
 package net.igneo.icv.networking.packet;
 
+import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.particle.ModParticles;
 import net.minecraft.network.FriendlyByteBuf;
@@ -10,12 +11,16 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
+
+import static net.igneo.icv.event.ModEvents.CONCUSSION_GRAVITY_MODIFIER_UUID;
 
 
 public class ConcussHurtC2SPacket {
@@ -45,7 +50,12 @@ public class ConcussHurtC2SPacket {
             level.playSound(null, target.blockPosition(), SoundEvents.PLAYER_ATTACK_CRIT, SoundSource.PLAYERS, 1, 0.1F);
             target.hurt(player.damageSources().playerAttack(player),5);
             if (target instanceof ServerPlayer) {
-                ModMessages.sendToPlayer(new GustS2CPacket(),(ServerPlayer) target);
+                ServerPlayer playerTarget = (ServerPlayer) target;
+                ModMessages.sendToPlayer(new GustS2CPacket(),playerTarget);
+                playerTarget.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+                    enchVar.setConcussed(true);
+                });
+                playerTarget.getAttributes().getInstance(ForgeMod.ENTITY_GRAVITY.get()).addTransientModifier(new AttributeModifier(CONCUSSION_GRAVITY_MODIFIER_UUID, "Concussion gravity decrease", (double) 0.2, AttributeModifier.Operation.ADDITION));
             } else {
                 target.setDeltaMovement(new Vec3(0, 0.8, 0));
             }

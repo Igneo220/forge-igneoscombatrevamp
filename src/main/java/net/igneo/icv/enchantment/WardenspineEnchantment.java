@@ -4,6 +4,7 @@ import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.WardenspineC2SPacket;
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -40,6 +41,9 @@ public class WardenspineEnchantment extends Enchantment {
             blinding = false;
             wardenCooldown = System.currentTimeMillis();
             ModMessages.sendToServer(new WardenspineC2SPacket(1));
+        }
+        if (blind && System.currentTimeMillis() >= wardenCooldown + 1000 && uniPlayer.getEffect(MobEffects.BLINDNESS) == null) {
+            ModMessages.sendToServer(new WardenspineC2SPacket(-1));
         }
     }
 }

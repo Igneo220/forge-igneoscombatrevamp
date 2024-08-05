@@ -5,6 +5,13 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
 
 public class PlayerEnchantmentActions {
+    private boolean concussed = false;
+    public boolean getConcussed() {
+        return this.concussed;
+    }
+    public void setConcussed(boolean value) {
+        this.concussed = value;
+    }
     //enchant check
     private int helmetID = 0;
     public int getHelmetID() {
