@@ -340,10 +340,8 @@ public class ModEvents {
             if (FMLEnvironment.dist.isClient() && uniPlayer != null) {
                 enchantmentTick();
 
-                if (Minecraft.getInstance().mouseHandler.isLeftPressed()) {
-                    KineticEnchantment.onKeyInputEvent();
-                    RendEnchantment.onKeyInputEvent();
-                }
+                KineticEnchantment.onKeyInputEvent();
+                RendEnchantment.onKeyInputEvent();
                 CounterweightedEnchantment.onKeyInputEvent();
 
                 //refreshing time based variables
