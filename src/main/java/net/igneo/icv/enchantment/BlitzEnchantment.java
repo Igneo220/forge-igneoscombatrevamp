@@ -19,7 +19,7 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import java.util.UUID;
 
 public class BlitzEnchantment extends Enchantment {
-    public static final UUID ATTACK_SPEED_MODIFIER_UUID = UUID.fromString("9b3c6774-e4f3-4f36-b7c5-6ee971580f90");
+    public static final UUID ATTACK_SPEED_MODIFIER_UUID = UUID.fromString("3e176df4-23ac-4811-8dea-d461bb401352");
     public BlitzEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
@@ -36,7 +36,8 @@ public class BlitzEnchantment extends Enchantment {
                     level.sendParticles(ModParticles.ATTACK_SPEED_PARTICLE.get(), player.getX(), player.getY() + 1.5, player.getZ(), 5, Math.random(), Math.random(), Math.random(), 0.5);
                     level.playSound(null, player.blockPosition(), SoundEvents.ARROW_HIT_PLAYER, SoundSource.PLAYERS, 0.5F, (float) 0.3 + ((float) enchVar.getBlitzBoostCount() / 10));
                     player.getAttributes().getInstance(Attributes.ATTACK_SPEED).removeModifier(ATTACK_SPEED_MODIFIER_UUID);
-                    player.getAttributes().getInstance(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(ATTACK_SPEED_MODIFIER_UUID, "Attack speed boost blitz", (float) (enchVar.getBlitzBoostCount() / 10), AttributeModifier.Operation.ADDITION));
+                    System.out.println(enchVar.getBlitzBoostCount());
+                    player.getAttributes().getInstance(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(ATTACK_SPEED_MODIFIER_UUID, "Attack speed boost blitz", enchVar.getBlitzBoostCount()/10F, AttributeModifier.Operation.ADDITION));
                 }
                 ModMessages.sendToPlayer(new BlitzNBTUpdateS2CPacket(enchVar.getBlitzBoostCount(), enchVar.getBlitzTime()), player);
             });

@@ -61,6 +61,6 @@ public class PhantomPainEnchantment extends Enchantment {
 
     @Override
     public float getDamageBonus(int level, MobType mobType, ItemStack enchantedItem) {
-        return 2;
+        return 3;
     }
 }

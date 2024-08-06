@@ -326,6 +326,7 @@ public class ModEvents {
                         ServerLevel level = player.serverLevel();
                         enchVar.resetBoostCount();
                         enchVar.setBlitzTime(System.currentTimeMillis());
+                        System.out.println("resetting");
                         player.getAttributes().getInstance(Attributes.ATTACK_SPEED).removeModifier(ATTACK_SPEED_MODIFIER_UUID);
                         level.playSound(null, player.blockPosition(), SoundEvents.CREEPER_DEATH, SoundSource.PLAYERS, 4F, 0.2F);
                         ModMessages.sendToPlayer(new BlitzNBTUpdateS2CPacket(enchVar.getBlitzBoostCount(), enchVar.getBlitzTime()), player);
