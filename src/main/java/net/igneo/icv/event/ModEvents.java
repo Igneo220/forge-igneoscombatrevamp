@@ -515,7 +515,7 @@ public class ModEvents {
             int duneTrim = 0;
             int shaperTrim = 0;
             for (int j = 0; j < 4; ++j) {
-                if (!player.getInventory().getArmor(j).toString().contains("air")) {
+                if (!player.getInventory().getArmor(j).toString().contains("air") && player.getInventory().getArmor(j).serializeNBT().toString().contains("tag")) {
                     if (player.getInventory().getArmor(j).getTag().getAllKeys().contains("Trim")) {
                         Tag tag = player.getInventory().getArmor(j).getTag().get("Trim");
                         //System.out.println(tag.toString().split());

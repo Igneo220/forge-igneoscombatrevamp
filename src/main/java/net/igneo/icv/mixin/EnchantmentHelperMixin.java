@@ -31,7 +31,7 @@ public class EnchantmentHelperMixin {
         if (pPlayer instanceof Player && ICVCommonConfigs.TRIM_EFFECTS.get()) {
             Player player = (Player) pPlayer;
             for (int j = 0; j < 4; ++j) {
-                if (!player.getInventory().getArmor(j).toString().contains("air")) {
+                if (!player.getInventory().getArmor(j).toString().contains("air") && player.getInventory().getArmor(j).serializeNBT().toString().contains("tag")) {
                     if (player.getInventory().getArmor(j).getTag().getAllKeys().contains("Trim")) {
                         Tag tag = player.getInventory().getArmor(j).getTag().get("Trim");
                         if (tag.toString().contains("sentry")) {
@@ -53,7 +53,7 @@ public class EnchantmentHelperMixin {
         if (ICVCommonConfigs.TRIM_EFFECTS.get()) {
             if (pSource.is(DamageTypes.IN_FIRE) || pSource.is(DamageTypes.ON_FIRE) || pSource.is(DamageTypes.LAVA)) {
                 for (ItemStack pStack : pStacks) {
-                    if (!pStack.toString().contains("air")) {
+                    if (!pStack.toString().contains("air") && pStack.serializeNBT().toString().contains("tag")) {
                         if (pStack.getTag().getAllKeys().contains("Trim")) {
                             Tag tag = pStack.getTag().get("Trim");
                             if (tag.toString().contains("rib")) {
@@ -66,7 +66,7 @@ public class EnchantmentHelperMixin {
             if (pSource.is(DamageTypes.MAGIC) || pSource.is(DamageTypes.INDIRECT_MAGIC) || pSource.is(DamageTypes.DRAGON_BREATH)
                     || pSource.is(DamageTypes.SONIC_BOOM) || pSource.is(DamageTypes.LIGHTNING_BOLT) || pSource.is(DamageTypes.WITHER)) {
                 for (ItemStack pStack : pStacks) {
-                    if (!pStack.toString().contains("air")) {
+                    if (!pStack.toString().contains("air") && pStack.serializeNBT().toString().contains("tag")) {
                         if (pStack.getTag().getAllKeys().contains("Trim")) {
                             Tag tag = pStack.getTag().get("Trim");
                             if (tag.toString().contains("eye")) {
@@ -78,7 +78,7 @@ public class EnchantmentHelperMixin {
             }
             if (pSource.is(DamageTypes.FALL)) {
                 for (ItemStack pStack : pStacks) {
-                    if (!pStack.toString().contains("air")) {
+                    if (!pStack.toString().contains("air") && pStack.serializeNBT().toString().contains("tag")) {
                         if (pStack.getTag().getAllKeys().contains("Trim")) {
                             Tag tag = pStack.getTag().get("Trim");
                             if (tag.toString().contains("spire")) {
@@ -90,7 +90,7 @@ public class EnchantmentHelperMixin {
             }
             if (pSource.is(DamageTypes.EXPLOSION) || pSource.is(DamageTypes.PLAYER_EXPLOSION) || pSource.is(DamageTypes.BAD_RESPAWN_POINT)) {
                 for (ItemStack pStack : pStacks) {
-                    if (!pStack.toString().contains("air")) {
+                    if (!pStack.toString().contains("air") && pStack.serializeNBT().toString().contains("tag")) {
                         if (pStack.getTag().getAllKeys().contains("Trim")) {
                             Tag tag = pStack.getTag().get("Trim");
                             if (tag.toString().contains("ward")) {
@@ -102,7 +102,7 @@ public class EnchantmentHelperMixin {
             }
             if (pSource.is(DamageTypes.ARROW) || pSource.is(DamageTypes.MOB_PROJECTILE) || pSource.is(DamageTypes.UNATTRIBUTED_FIREBALL)) {
                 for (ItemStack pStack : pStacks) {
-                    if (!pStack.toString().contains("air")) {
+                    if (!pStack.toString().contains("air") && pStack.serializeNBT().toString().contains("tag")) {
                         if (pStack.getTag().getAllKeys().contains("Trim")) {
                             Tag tag = pStack.getTag().get("Trim");
                             if (tag.toString().contains("vex")) {
@@ -113,7 +113,7 @@ public class EnchantmentHelperMixin {
                 }
             }
             for (ItemStack pStack : pStacks) {
-                if (!pStack.toString().contains("air")) {
+                if (!pStack.toString().contains("air") && pStack.serializeNBT().toString().contains("tag")) {
                     if (pStack.getTag().getAllKeys().contains("Trim")) {
                         Tag tag = pStack.getTag().get("Trim");
                         if (tag.toString().contains("sentry")) {
@@ -123,7 +123,7 @@ public class EnchantmentHelperMixin {
                 }
             }
             for (ItemStack pStack : pStacks) {
-                if (!pStack.toString().contains("air")) {
+                if (!pStack.toString().contains("air") && pStack.serializeNBT().toString().contains("tag")) {
                     if (pStack.getTag().getAllKeys().contains("Trim")) {
                         Tag tag = pStack.getTag().get("Trim");
                         if (tag.toString().contains("host")) {
@@ -146,7 +146,7 @@ public class EnchantmentHelperMixin {
         if (pEntity instanceof Player && ICVCommonConfigs.TRIM_EFFECTS.get()) {
             Player player = (Player) pEntity;
             for (int j = 0; j < 4; ++j) {
-                if (!player.getInventory().getArmor(j).toString().contains("air")) {
+                if (!player.getInventory().getArmor(j).toString().contains("air") && player.getInventory().getArmor(j).serializeNBT().toString().contains("tag")) {
                     if (player.getInventory().getArmor(j).getTag().getAllKeys().contains("Trim")) {
                         Tag tag = player.getInventory().getArmor(j).getTag().get("Trim");
                         if (tag.toString().contains("tide")) {
@@ -168,7 +168,7 @@ public class EnchantmentHelperMixin {
         if (pEntity instanceof Player && ICVCommonConfigs.TRIM_EFFECTS.get()) {
             Player player = (Player) pEntity;
             for (int j = 0; j < 4; ++j) {
-                if (!player.getInventory().getArmor(j).toString().contains("air")) {
+                if (!player.getInventory().getArmor(j).toString().contains("air") && player.getInventory().getArmor(j).serializeNBT().toString().contains("tag")) {
                     if (player.getInventory().getArmor(j).getTag().getAllKeys().contains("Trim")) {
                         Tag tag = player.getInventory().getArmor(j).getTag().get("Trim");
                         if (tag.toString().contains("coast")) {
