@@ -65,13 +65,15 @@ public class ModEvents {
     public static boolean refreshChest = false;
     public static boolean refreshHelmet = false;
     public static final UUID WAYFINDER_SPEED_MODIFIER_UUID = UUID.fromString("8a23719c-852d-47fc-bb41-8527955288d4");
+    public static final UUID WAYFINDER_DAMAGE_MODIFIER_UUID = UUID.fromString("fce1270c-fecb-4543-964e-2b47e5161b00");
     public static final UUID WILD_HEALTH_MODIFIER_UUID = UUID.fromString("c4e2d23f-4051-4d7d-a8d2-fd0e01a667e7");
-    public static final UUID SILENCE_DAMAGE_MODIFIER_UUID = UUID.fromString("e01fe99d-7575-4820-8b0d-7b3b89ec2452");
+    public static final UUID SILENCE_DAMAGE_MODIFIER_UUID = UUID.fromString("2599b386-78e9-4bb0-adb2-6fb93ade2d09");
     public static final UUID SILENCE_ATTACK_SPEED_MODIFIER_UUID = UUID.fromString("e01fe99d-7575-4820-8b0d-7b3b89ec2452");
     public static final UUID SNOUT_ATTACK_SPEED_MODIFIER_UUID = UUID.fromString("b937f1d6-2575-4e54-a86a-8f69f48bfd52");
+    public static final UUID SNOUT_HEALTH_MODIFIER_UUID = UUID.fromString("d342d129-7ebb-44c2-b6d3-72cee0342a21");
     public static final UUID HOST_ATTACK_SPEED_MODIFIER_UUID = UUID.fromString("ba269bfe-1c9b-409e-a12d-0186eea83413");
-    public static final UUID DUNE_GRAVITY_MODIFIER_UUID = UUID.fromString("472a0f42-5303-460e-943c-fb1ad6e48a69");
-    public static final UUID SHAPER_TOUGH_MODIFIER_UUID = UUID.fromString("472a0f42-5303-460e-943c-fb1ad6e48a69");
+    public static final UUID DUNE_GRAVITY_MODIFIER_UUID = UUID.fromString("ccef707f-414b-4c01-bbad-788791883af0");
+    public static final UUID SHAPER_TOUGH_MODIFIER_UUID = UUID.fromString("da6f0a6f-c28a-4f59-af83-3191e643a828");
     public static final UUID CONCUSSION_GRAVITY_MODIFIER_UUID = UUID.fromString("472a0f42-5303-460e-943c-fb1ad6e48a69");
     public static BlockPos usedEnchTable;
     public static int enchShift = 0;
@@ -113,12 +115,12 @@ public class ModEvents {
                 trim = "tide";
             } else if (event.getItemStack().serializeNBT().toString().contains("vex")) {
                 trim = "vex";
-            } else if (event.getItemStack().serializeNBT().toString().contains("ward")) {
-                trim = "ward";
             } else if (event.getItemStack().serializeNBT().toString().contains("wayfinder")) {
                 trim = "wayfinder";
             } else if (event.getItemStack().serializeNBT().toString().contains("wild")) {
                 trim = "wild";
+            } else if (event.getItemStack().serializeNBT().toString().contains("ward")) {
+                trim = "ward";
             }
             if (!trim.contains("null") && index != 0) {
                 event.getToolTip().add(index, Component.translatable("icv.effects").withStyle(ChatFormatting.GRAY));
@@ -212,7 +214,7 @@ public class ModEvents {
         if (event.getEntity().equals(uniPlayer) && !boosted && uniPlayer.onGround()) {
             int trimCount = 0;
                 for (int j = 0; j < 4; ++j) {
-                    if (!uniPlayer.getInventory().getArmor(j).toString().contains("air")) {
+                    if (!uniPlayer.getInventory().getArmor(j).toString().contains("air") && uniPlayer.getInventory().getArmor(j).serializeNBT().toString().contains("Trim")) {
                         if (uniPlayer.getInventory().getArmor(j).getTag().getAllKeys().contains("Trim")) {
                             Tag tag = uniPlayer.getInventory().getArmor(j).getTag().get("Trim");
                             if (tag.toString().contains("raiser")) {
@@ -546,17 +548,21 @@ public class ModEvents {
             }
             if (wayTrim > 0 || wayTrim != enchVar.getWayBuff()) {
                 player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).removeModifier(WAYFINDER_SPEED_MODIFIER_UUID);
+                player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).removeModifier(WAYFINDER_DAMAGE_MODIFIER_UUID);
+                player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).addTransientModifier(new AttributeModifier(WAYFINDER_DAMAGE_MODIFIER_UUID, "Wayfinder damage debuff", (double) -wayTrim / 2, AttributeModifier.Operation.ADDITION));
                 player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).addTransientModifier(new AttributeModifier(WAYFINDER_SPEED_MODIFIER_UUID, "Wayfinder speed boost", (double) wayTrim / 150, AttributeModifier.Operation.ADDITION));
                 enchVar.setWayBuff(wayTrim);
             }
             if (wildTrim > 0 || wildTrim != enchVar.getWildBuff()) {
                 player.getAttributes().getInstance(Attributes.MAX_HEALTH).removeModifier(WILD_HEALTH_MODIFIER_UUID);
-                player.getAttributes().getInstance(Attributes.MAX_HEALTH).addTransientModifier(new AttributeModifier(WILD_HEALTH_MODIFIER_UUID, "Wild health boost", (double) wildTrim * 2, AttributeModifier.Operation.ADDITION));
+                player.getAttributes().getInstance(Attributes.MAX_HEALTH).addTransientModifier(new AttributeModifier(WILD_HEALTH_MODIFIER_UUID, "Wild health boost", (double) wildTrim * 3, AttributeModifier.Operation.ADDITION));
                 enchVar.setWildBuff(wildTrim);
             }
             if (snoutTrim > 0 || snoutTrim != enchVar.getSnoutBuff()) {
                 player.getAttributes().getInstance(Attributes.ATTACK_SPEED).removeModifier(SNOUT_ATTACK_SPEED_MODIFIER_UUID);
+                player.getAttributes().getInstance(Attributes.MAX_HEALTH).removeModifier(SNOUT_HEALTH_MODIFIER_UUID);
                 player.getAttributes().getInstance(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(SNOUT_ATTACK_SPEED_MODIFIER_UUID, "Snout attack speed boost", (double) snoutTrim / 5, AttributeModifier.Operation.ADDITION));
+                player.getAttributes().getInstance(Attributes.MAX_HEALTH).addTransientModifier(new AttributeModifier(SNOUT_HEALTH_MODIFIER_UUID, "Snout health debuff", (double) -snoutTrim * 2, AttributeModifier.Operation.ADDITION));
                 enchVar.setSnoutBuff(snoutTrim);
             }
             if (hostTrim > 0 || hostTrim != enchVar.getHostBuff()) {

@@ -4,7 +4,7 @@
     "key.categories.icv.enchantments": "Enchantment Keybinds",
 
     "enchantment.icv.accelerate": "Accelerate",
-    "enchantment.icv.accelerate.desc": "Accelerate your arrow to ludicrous speeds, piercing everything roughly 20 blocks in front of you. It deals 3 damage",
+    "enchantment.icv.accelerate.desc": "Accelerate your arrow to ludicrous speeds, piercing everything roughly 20 blocks in front of you. It deals 3 damage, and a lot of knockback",
 
     "enchantment.icv.acrobatic": "Acrobatic",
     "enchantment.icv.acrobatic.desc": "Gain a small boost when flipping by simultaneously pressing A & D at the same time. Also gain a damage boost before hitting the ground after flipping",
@@ -28,7 +28,7 @@
     "enchantment.icv.breakthrough.desc": "Makes this weapon able to break shields. Axes no longer have this functionality",
 
     "enchantment.icv.brute_touch": "Brute Touch",
-    "enchantment.icv.brute_touch.desc": "Gain the vanilla equivalent of efficiency 7, but blocks don't drop items anymore",
+    "enchantment.icv.brute_touch.desc": "Gain the vanilla equivalent of efficiency 5, but blocks don't drop items anymore",
 
     "enchantment.icv.comet_strike": "Comet Strike",
     "enchantment.icv.comet_strike.desc": "When you crouch, summon a comet from the ground. Hit it to make it explode where it lands, scaling with how much damage it takes. You can hit it multiple times. It despawns on its third chime",
@@ -42,7 +42,7 @@
     "enchantment.icv.crush.desc": "Crouch in air to send yourself hurtling towards the ground. If you fall more than 3 blocks, you'll create an explosion damaging nearby enemies. Does not negate fall damage",
 
     "enchantment.icv.double_jump": "Double Jump",
-    "enchantment.icv.double_jump.desc": "Jump while in air to get a second jump, launching you an extra 2 blocks in the air from where you used it",
+    "enchantment.icv.double_jump.desc": "Jump while in air to get a second jump, gently pushing you in the direction you're looking",
 
     "enchantment.icv.extract": "Extract",
     "enchantment.icv.extract.desc": "Pull whatever entity you hit towards you",
@@ -83,7 +83,7 @@
     "enchantment.icv.phantom_pain.desc": "Deal extra damage each hit, but the target will heal if you take to long to strike again, or you attack a different target",
 
     "enchantment.icv.phasing": "Phasing",
-    "enchantment.icv.phasing.desc": "Your arrow now phases through blocks and entities, dealing less damage than a normal arrow, but more than accelerate",
+    "enchantment.icv.phasing.desc": "Your arrow now phases through blocks and entities, dealing less damage than a normal arrow, but more than accelerate. Applies glowing on hit",
 
     "enchantment.icv.recoil": "Recoil",
     "enchantment.icv.recoil.desc": "Be sent the opposite direction you throw your trident",
@@ -95,14 +95,14 @@
     "enchantment.icv.scatter.desc": "Turn your crossbow into a shotgun, shooting out 10 low damage arrows at short range",
 
     "enchantment.icv.siphon": "Siphon",
-    "enchantment.icv.siphon.desc": "Heal one heart by taking away durability from your armor",
+    "enchantment.icv.siphon.desc": "Heal one heart by taking away 10 durability from your armor",
     "key.icv.siphon": "Activate Siphon",
 
     "enchantment.icv.skewering": "Skewering",
     "enchantment.icv.skewering.desc": "Deal bonus damage to enemies in the air",
 
     "enchantment.icv.sky_charge": "Sky Charge",
-    "enchantment.icv.sky_charge.desc": "Charge up a jump by crouching. You get launched higher the longer you wait, with a maximum of 7 blocks",
+    "enchantment.icv.sky_charge.desc": "Charge up a jump by crouching. You get launched both farther and higher the longer you wait. Incredible range, if you can avoid fall damage",
 
     "enchantment.icv.smite": "Smite",
     "enchantment.icv.smite.desc": "Rise up into the air, and activate again to throw lightning bolts at your enemies",
@@ -119,7 +119,7 @@
     "key.icv.train_dash": "Activate Train Dash",
 
     "enchantment.icv.warden_scream": "Warden Scream",
-    "enchantment.icv.warden_scream.desc": "Unleash a sonic shriek from your skull, dealing 15 damage",
+    "enchantment.icv.warden_scream.desc": "Unleash a sonic shriek from your skull, dealing 15 damage, and launching you backwards",
     "key.icv.wardenscream": "Activate Warden Scream",
 
     "enchantment.icv.wardenspine": "Wardenspine",
@@ -127,7 +127,7 @@
     "key.icv.wardenspine": "Activate Wardenspine",
 
     "enchantment.icv.whistler": "Whistler",
-    "enchantment.icv.whistler.desc": "Make your arrow now controlled by the direction you look, at a slower velocity. Deals more damage than a normal arrow",
+    "enchantment.icv.whistler.desc": "Make your arrow now controlled by the direction you look. Deals more damage than a normal arrow",
 
     "entity.icv.black_hole": "Black Hole",
     "entity.icv.comet": "Comet",
@@ -135,7 +135,7 @@
 
     "icv.effects": "Effects:",
     "icv.coast.desc": "Decrease the speed you run out of air underwater",
-    "icv.dune.desc": "Become heavy, and increase gravity",
+    "icv.dune.desc": "Become heavy, and increase your gravity",
     "icv.eye.desc": "Magic and magic adjacent protection",
     "icv.host.desc": "Overall protection at the cost of speed",
     "icv.raiser.desc": "Jump boost. Does not decrease fall damage",
@@ -143,11 +143,11 @@
     "icv.sentry.desc": "Increased knockback, less protection",
     "icv.shaper.desc": "Increase your armor toughness",
     "icv.silence.desc": "Increase damage, at the cost of attack speed",
-    "icv.snout.desc": "Increase attack speed",
+    "icv.snout.desc": "Increase attack speed at the cost of health",
     "icv.spire.desc": "Fall damage protection",
     "icv.tide.desc": "Increase movement speed in water",
     "icv.vex.desc": "Projectile protection",
     "icv.ward.desc": "Explosion protection",
-    "icv.wayfinder.desc": "Speed increase",
+    "icv.wayfinder.desc": "Speed increase, at the cost of",
     "icv.wild.desc": "Health increase"
 }

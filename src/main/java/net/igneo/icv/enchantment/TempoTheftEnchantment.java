@@ -60,7 +60,7 @@ public class TempoTheftEnchantment extends Enchantment {
 
     public static void onClientTick() {
         if (loseTheft != 0) {
-            if (System.currentTimeMillis() >= loseTheft + 3000){
+            if (System.currentTimeMillis() >= loseTheft + 6000){
                 ModMessages.sendToServer(new TempoTheftC2SPacket());
                 loseTheft = 0;
             }

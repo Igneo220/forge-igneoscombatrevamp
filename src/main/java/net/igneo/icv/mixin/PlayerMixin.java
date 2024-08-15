@@ -64,8 +64,8 @@ public abstract class PlayerMixin extends LivingEntity{
                 }
             });
             tempf += tempf1.get() + tempf2.get();
-            if (tempf > 1.6) {
-                tempf = 1.6F;
+            if (tempf > 1.4) {
+                tempf = 1.4F;
             }
         }
         return tempf;
