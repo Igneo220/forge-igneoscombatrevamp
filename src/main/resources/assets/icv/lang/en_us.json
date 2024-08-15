@@ -109,7 +109,7 @@
     "key.icv.smite": "Activate Smite",
 
     "enchantment.icv.stone_caller": "Stone Caller",
-    "enchantment.icv.stone_caller.desc": "Hold down crouch to be launched up into the air atop a pillar of stone. Breaks after a few seconds, and becomes usable once more",
+    "enchantment.icv.stone_caller.desc": "Hold down crouch to be launched up into the air atop a huge wall of stone. Breaks after 10 seconds, and becomes usable once more",
 
     "enchantment.icv.tempo_theft": "Tempo Theft",
     "enchantment.icv.tempo_theft.desc": "Steal your enemies speed, inflicting slowness on them, and up to 3 speed boosts on yourself",
