@@ -51,8 +51,7 @@ import java.util.UUID;
 
 import static java.lang.Math.abs;
 import static net.igneo.icv.enchantment.BlitzEnchantment.ATTACK_SPEED_MODIFIER_UUID;
-import static net.igneo.icv.enchantment.CounterweightedEnchantment.hit;
-import static net.igneo.icv.enchantment.CounterweightedEnchantment.initialHit;
+import static net.igneo.icv.enchantment.BackPedalEnchantment.hit;
 import static net.igneo.icv.enchantment.MomentumEnchantment.loopCount;
 import static net.igneo.icv.enchantment.MomentumEnchantment.spedUp;
 import static net.igneo.icv.enchantment.SiphonEnchantment.consumeClick;
@@ -280,38 +279,36 @@ public class ModEvents {
 
                 //stone caller check
                 if (enchVar.getStoneTime() != 0) {
-                    if (System.currentTimeMillis() >= enchVar.getStoneTime() + 6000) {
-                        level.playSound(null, new BlockPos(enchVar.getStoneX(), enchVar.getStoneY() + 1, enchVar.getStoneZ()), SoundEvents.WITHER_BREAK_BLOCK, SoundSource.PLAYERS, 2F, 5.0F);
-                        level.setBlock(new BlockPos(enchVar.getStoneX(), enchVar.getStoneY(), enchVar.getStoneZ()), Blocks.AIR.defaultBlockState(), 2);
-                        level.setBlock(new BlockPos(enchVar.getStoneX(), enchVar.getStoneY() + 1, enchVar.getStoneZ()), Blocks.AIR.defaultBlockState(), 2);
-                        level.setBlock(new BlockPos(enchVar.getStoneX(), enchVar.getStoneY() + 2, enchVar.getStoneZ()), Blocks.AIR.defaultBlockState(), 2);
-                        level.setBlock(new BlockPos(enchVar.getStoneX(), enchVar.getStoneY() + 3, enchVar.getStoneZ()), Blocks.AIR.defaultBlockState(), 2);
-
-                        double d0 = level.random.nextGaussian() * 0.02D;
-                        double d1 = level.random.nextGaussian() * 0.02D;
-                        double d2 = level.random.nextGaussian() * 0.02D;
-
-                        level.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE,
-                                enchVar.getStoneX() + (double) (level.random.nextFloat()),
-                                enchVar.getStoneY() + 0.5,
-                                enchVar.getStoneZ() + (double) (level.random.nextFloat()),
-                                10, d0, d1, d2, 0.0F);
-                        level.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE,
-                                enchVar.getStoneX() + (double) (level.random.nextFloat()),
-                                enchVar.getStoneY() + 1.5,
-                                enchVar.getStoneZ() + (double) (level.random.nextFloat()),
-                                10, d0, d1, d2, 0.0F);
-                        level.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE,
-                                enchVar.getStoneX() + (double) (level.random.nextFloat()),
-                                enchVar.getStoneY() + 2.5,
-                                enchVar.getStoneZ() + (double) (level.random.nextFloat()),
-                                10, d0, d1, d2, 0.0F);
-                        level.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE,
-                                enchVar.getStoneX() + (double) (level.random.nextFloat()),
-                                enchVar.getStoneY() + 3.5,
-                                enchVar.getStoneZ() + (double) (level.random.nextFloat()),
-                                10, d0, d1, d2, 0.0F);
+                    if (System.currentTimeMillis() >= enchVar.getStoneTime() + 10000) {
+                        int i = Math.abs(enchVar.getStoneLookX());
+                        if (Math.abs(enchVar.getStoneLookZ()) > Math.abs(enchVar.getStoneLookX())) {
+                            i = Math.abs(enchVar.getStoneLookZ());
+                        }
+                        int m0 = 1;
+                        int m1 = 1;
+                        if (enchVar.getStoneLookX() < 0) {
+                            m0 = -1;
+                        } else if (enchVar.getStoneLookX() == 0) {
+                            m0 = 0;
+                        }
+                        if (enchVar.getStoneLookZ() < 0) {
+                            m1 = -1;
+                        } else if (enchVar.getStoneLookZ() == 0) {
+                            m1 = 0;
+                        }
+                        for (int j = 0; j <= i; ++j) {
+                            for (int p = 0; p < enchVar.getStoneCeiling();++p) {
+                                if (level.getBlockState(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p, enchVar.getStoneZ() + (j * m1))).getBlock().equals(Blocks.DRIPSTONE_BLOCK) || level.getBlockState(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p, enchVar.getStoneZ() + (j * m1))).getBlock().equals(Blocks.POINTED_DRIPSTONE)) {
+                                    level.setBlock(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p, enchVar.getStoneZ() + (j * m1)), Blocks.AIR.defaultBlockState(), 2);
+                                    level.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE,(double)enchVar.getStoneX() + (j * m0),(double)enchVar.getStoneY() + p,(double)enchVar.getStoneZ() + (j * m1),1,0,0,0,0.01);
+                                    if(p==0) {
+                                        level.playSound(null, new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p, enchVar.getStoneZ() + (j * m1)), SoundEvents.WITHER_BREAK_BLOCK, SoundSource.PLAYERS, 2F, 5.0F);
+                                    }
+                                }
+                            }
+                        }
                         enchVar.setStoneTime(0);
+                        enchVar.setStoneCeiling(0);
                     }
                 }
             }
@@ -345,7 +342,6 @@ public class ModEvents {
                     KineticEnchantment.onKeyInputEvent();
                     RendEnchantment.onKeyInputEvent();
                 }
-                CounterweightedEnchantment.onKeyInputEvent();
 
                 //refreshing time based variables
                 if (refreshLegs) {
@@ -406,7 +402,7 @@ public class ModEvents {
 
                 //enchant persistent logic
                 if (enchVar.getStoneTime() != 0) {
-                    if (System.currentTimeMillis() >= enchVar.getStoneTime() + 6000) {
+                    if (System.currentTimeMillis() >= enchVar.getStoneTime() + 10000) {
                         enchVar.setStoneTime(0);
                     }
                 }

@@ -51,7 +51,7 @@ public class IcicleEntity extends Fireball {
 
     @Override
     protected void onHitEntity(EntityHitResult pResult) {
-        if (System.currentTimeMillis() >= iceTime + 50) {
+        if (System.currentTimeMillis() >= iceTime + 65) {
             pResult.getEntity().hurt(damageSources().magic(), 1);
             if (pResult.getEntity() instanceof LivingEntity) {
                 if (this.level() instanceof ServerLevel) {
@@ -60,7 +60,7 @@ public class IcicleEntity extends Fireball {
                     level.sendParticles(ModParticles.ICE_HIT_PARTICLE.get(), this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 0.1);
                 }
                 LivingEntity living = (LivingEntity) pResult.getEntity();
-                living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 10));
+                living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 5));
             }
         }
     }

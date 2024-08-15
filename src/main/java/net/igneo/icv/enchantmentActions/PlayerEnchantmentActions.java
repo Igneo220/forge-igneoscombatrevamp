@@ -224,6 +224,9 @@ public class PlayerEnchantmentActions {
     private int stoneX;
     private int stoneY;
     private int stoneZ;
+    private int stoneLookX;
+    private int stoneLookZ;
+    private int stoneCeiling;
     public long getStoneTime() {
         return this.stoneTime;
     }
@@ -248,6 +251,24 @@ public class PlayerEnchantmentActions {
     public void setStoneZ(int newint) {
         this.stoneZ = newint;
     }
+    public int getStoneLookX() {
+        return this.stoneLookX;
+    }
+    public void setStoneLookX(int newint) {
+        this.stoneLookX = newint;
+    }
+    public int getStoneLookZ() {
+        return this.stoneLookZ;
+    }
+    public void setStoneLookZ(int newint) {
+        this.stoneLookZ = newint;
+    }
+    public int getStoneCeiling() {
+        return this.stoneCeiling;
+    }
+    public void setStoneCeiling(int newInt) {
+        this.stoneCeiling = newInt;
+    }
 
 
 
@@ -271,6 +292,9 @@ public class PlayerEnchantmentActions {
         this.stoneX = source.stoneX;
         this.stoneY = source.stoneY;
         this.stoneZ = source.stoneZ;
+        this.stoneLookX = source.stoneLookX;
+        this.stoneLookZ = source.stoneLookZ;
+        this.stoneCeiling = source.stoneCeiling;
     }
     public void saveNBTData(CompoundTag nbt) {
 
@@ -293,6 +317,9 @@ public class PlayerEnchantmentActions {
         nbt.putInt("stoneX",stoneX);
         nbt.putInt("stoneY",stoneY);
         nbt.putInt("stoneZ",stoneZ);
+        nbt.putInt("stoneLookX",stoneLookX);
+        nbt.putInt("stoneLookZ",stoneLookZ);
+        nbt.putInt("stoneCeiling",stoneCeiling);
     }
 
     public void loadNBTData(CompoundTag nbt) {
@@ -316,5 +343,8 @@ public class PlayerEnchantmentActions {
         stoneX = nbt.getInt("stoneX");
         stoneY = nbt.getInt("stoneY");
         stoneZ = nbt.getInt("stoneZ");
+        stoneLookX = nbt.getInt("stoneLookX");
+        stoneLookZ = nbt.getInt("stoneLookZ");
+        stoneCeiling = nbt.getInt("stoneCeiling");
     }
 }

@@ -40,11 +40,13 @@ public class FireEntity extends SmallFireball {
 
     @Override
     protected void onHitEntity(EntityHitResult pResult) {
-        if (!this.level().isClientSide()) {
-            Entity entity = pResult.getEntity();
-            Entity entity1 = this.getOwner();
-            entity.hurt(this.damageSources().fireball(this, entity1), 10.0F);
+        if (System.currentTimeMillis() >= despawnTimer + 65) {
+            if (!this.level().isClientSide()) {
+                Entity entity = pResult.getEntity();
+                Entity entity1 = this.getOwner();
+                entity.hurt(this.damageSources().fireball(this, entity1), 15.0F);
+            }
+            super.onHitEntity(pResult);
         }
-        super.onHitEntity(pResult);
     }
 }

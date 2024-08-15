@@ -33,6 +33,7 @@ public class CometEntity extends AbstractHurtingProjectile {
     public final AnimationState idleAnimationState = new AnimationState();
     private int cometAnimationTimeout = 0;
     private int cometSoundTimeout;
+    private long cometInvTime = 0;
 
     private void setupAnimationStates() {
         if (this.cometAnimationTimeout <= 0) {
@@ -52,32 +53,37 @@ public class CometEntity extends AbstractHurtingProjectile {
     }
     @Override
     public boolean hurt(DamageSource pSource, float pAmount) {
-        if (!pSource.is(DamageTypes.LIGHTNING_BOLT)) {
-            if (this.level() instanceof ServerLevel) {
-                ServerLevel level = (ServerLevel) this.level();
-                level.playSound(null, this.blockPosition(), ModSounds.COMET_HIT.get(), SoundSource.PLAYERS);
-            }
-            hurt = true;
-            if (pAmount > 10) {
-                explosionPower += 7;
-            } else {
-                explosionPower += pAmount / 1.5;
-            }
-            if (explosionPower > 40) {
-                explosionPower = 40;
-            }
-            this.markHurt();
-            Entity entity = pSource.getEntity();
-            if (entity != null) {
-                if (!this.level().isClientSide) {
-                    Vec3 vec3 = entity.getLookAngle();
-                    this.xPower = vec3.x * (this.explosionPower * 0.005 + 0.1);
-                    this.yPower = vec3.y * (this.explosionPower * 0.005 + 0.1);
-                    this.zPower = vec3.z * (this.explosionPower * 0.005 + 0.1);
-                    this.setOwner(entity);
+        if (System.currentTimeMillis() > cometInvTime + 200) {
+            cometInvTime = System.currentTimeMillis();
+            if (!pSource.is(DamageTypes.LIGHTNING_BOLT)) {
+                if (this.level() instanceof ServerLevel) {
+                    ServerLevel level = (ServerLevel) this.level();
+                    level.playSound(null, this.blockPosition(), ModSounds.COMET_HIT.get(), SoundSource.PLAYERS);
                 }
+                hurt = true;
+                if (pAmount > 10) {
+                    explosionPower += 7;
+                } else {
+                    explosionPower += pAmount / 1.5;
+                }
+                if (explosionPower > 40) {
+                    explosionPower = 40;
+                }
+                this.markHurt();
+                Entity entity = pSource.getEntity();
+                if (entity != null) {
+                    if (!this.level().isClientSide) {
+                        Vec3 vec3 = entity.getLookAngle();
+                        this.xPower = vec3.x * (this.explosionPower * 0.005 + 0.1);
+                        this.yPower = vec3.y * (this.explosionPower * 0.005 + 0.1);
+                        this.zPower = vec3.z * (this.explosionPower * 0.005 + 0.1);
+                        this.setOwner(entity);
+                    }
 
-                return true;
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
                 return false;
             }

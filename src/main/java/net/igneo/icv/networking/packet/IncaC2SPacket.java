@@ -13,6 +13,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.AABB;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.List;
@@ -38,7 +39,6 @@ public class IncaC2SPacket {
             //SERVER WORK
             ServerPlayer player = context.getSender();
             ServerLevel level = player.serverLevel();
-
             Thread DetectEntity = new Thread(() -> {
                 for (Entity entity : level.getAllEntities()) {
                     if (entity.distanceTo(player) <= 10 && entity != player) {

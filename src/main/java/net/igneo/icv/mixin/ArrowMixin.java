@@ -19,6 +19,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -207,6 +209,7 @@ public class ArrowMixin extends AbstractArrow {
                                 ((LivingEntity) entity1).setLastHurtMob(entity);
                             }
                         }
+                        entity.addEffect(new MobEffectInstance(MobEffects.GLOWING,200,1));
                         entity.hurt(damagesource, 6);
                         phaseList.add(entity);
                     }
@@ -223,7 +226,7 @@ public class ArrowMixin extends AbstractArrow {
         }
         if (this.getTags().contains("whistle")){
             if (this.getOwner() != null) {
-                this.setDeltaMovement(this.getOwner().getLookAngle().scale(0.4));
+                this.setDeltaMovement(this.getOwner().getLookAngle().scale(0.6));
             }
         }
         if (this.getTags().contains("mitosis")){

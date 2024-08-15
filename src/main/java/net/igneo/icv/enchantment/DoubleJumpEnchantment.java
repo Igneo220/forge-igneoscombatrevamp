@@ -37,8 +37,7 @@ import static net.igneo.icv.event.ModEvents.uniPlayer;
 public class DoubleJumpEnchantment extends Enchantment {
 
     public static boolean CanDoubleJump = false;
-
-    public static double startY;
+    public static boolean hasJumped = false;
 
     public DoubleJumpEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
@@ -46,14 +45,19 @@ public class DoubleJumpEnchantment extends Enchantment {
 
     @SubscribeEvent
     public static void onClientTick() {
-        if (uniPlayer.onGround() && !CanDoubleJump) {
-            startY = Minecraft.getInstance().player.getY();
-            CanDoubleJump = true;
+        if (!uniPlayer.onGround()) {
+            if (!hasJumped && !Minecraft.getInstance().options.keyJump.isDown()) {
+                CanDoubleJump = true;
+            }
+        } else {
+            hasJumped = false;
         }
         if (Minecraft.getInstance().options.keyJump.isDown() && !uniPlayer.onGround() && !uniPlayer.isInFluidType() && !uniPlayer.isPassenger() && CanDoubleJump) {
             if (Minecraft.getInstance().player.getDeltaMovement().y <= 0) {
                 CanDoubleJump = false;
-                uniPlayer.setDeltaMovement(uniPlayer.getDeltaMovement().x, 0.6, uniPlayer.getDeltaMovement().z);
+                hasJumped = true;
+                double f = 0.5;
+                uniPlayer.setDeltaMovement(uniPlayer.getLookAngle().scale(f).x, uniPlayer.getLookAngle().scale(f).y + 0.1, uniPlayer.getLookAngle().scale(f).z);
                 ModMessages.sendToServer(new DoubleJumpC2SPacket());
             }
         }

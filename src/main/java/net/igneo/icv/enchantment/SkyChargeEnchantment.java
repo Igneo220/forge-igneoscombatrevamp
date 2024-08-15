@@ -15,7 +15,9 @@ import static net.igneo.icv.event.ModEvents.uniPlayer;
 
 public class SkyChargeEnchantment extends Enchantment {
     //public static LocalPlayer pPlayer = Minecraft.getInstance().uniPlayer;
+    public static boolean startCharge = true;
     public static long charge;
+    public static long chargeDelay;
     public static boolean charged = false;
     public static double chargeamount;
 
@@ -26,21 +28,30 @@ public class SkyChargeEnchantment extends Enchantment {
     @SubscribeEvent
     public static void onClientTick() {
         if (Minecraft.getInstance().options.keyShift.isDown() && uniPlayer.onGround() && !uniPlayer.isPassenger()) {
-            if (!charged) {
-                ModMessages.sendToServer(new SkyChargeC2SPacket(0));
-                charge = System.currentTimeMillis();
+            if (startCharge) {
+                chargeDelay = System.currentTimeMillis();
+                startCharge = false;
             }
-            charged = true;
+            if (System.currentTimeMillis() > chargeDelay + 500) {
+                if (!charged) {
+                    ModMessages.sendToServer(new SkyChargeC2SPacket(0));
+                    charge = System.currentTimeMillis();
+                }
+                charged = true;
+            }
         } else if (charged) {
-            chargeamount = (double) (System.currentTimeMillis() - charge) / 1500;
-            if (chargeamount >= 1.1) {
-                chargeamount = 1.1;
-            } else if (chargeamount <= 0.2) {
-                chargeamount = 0;
+            chargeamount = (double) (System.currentTimeMillis() - charge) / 1100;
+            if (chargeamount >= 1) {
+                chargeamount = 1;
+            } else if (chargeamount <= 0.4) {
+                chargeamount = 0.4;
             }
-            uniPlayer.addDeltaMovement(new Vec3(0, chargeamount, 0));
+
+            uniPlayer.addDeltaMovement(new Vec3(uniPlayer.getLookAngle().scale(chargeamount*2.5).x, chargeamount*1.5,uniPlayer.getLookAngle().scale(chargeamount*2.5).z));
             ModMessages.sendToServer(new SkyChargeC2SPacket(chargeamount));
             charged = false;
+        } else {
+            startCharge = true;
         }
     }
 }

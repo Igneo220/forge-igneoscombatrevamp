@@ -1,23 +1,17 @@
 package net.igneo.icv.mixin;
 
-import net.igneo.icv.ICV;
 import net.igneo.icv.enchantment.ModEnchantments;
 import net.igneo.icv.event.ModEvents;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.EnchTableUpdateS2CPacket;
-import net.minecraft.Util;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -29,7 +23,6 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
@@ -40,14 +33,12 @@ import net.minecraft.world.level.block.EnchantmentTableBlock;
 import net.minecraft.world.level.block.entity.ChiseledBookShelfBlockEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Mixin(value = EnchantmentMenu.class,priority = 999999999)
@@ -463,7 +454,7 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
         if (WEAPON_ENCHANTS.isEmpty()) {
             WEAPON_ENCHANTS.add(ModEnchantments.BLITZ.get());
             WEAPON_ENCHANTS.add(ModEnchantments.BREAKTHROUGH.get());
-            WEAPON_ENCHANTS.add(ModEnchantments.COUNTERWEIGHTED.get());
+            WEAPON_ENCHANTS.add(ModEnchantments.BACKPEDAL.get());
             WEAPON_ENCHANTS.add(ModEnchantments.GUST.get());
             WEAPON_ENCHANTS.add(ModEnchantments.KINETIC.get());
             WEAPON_ENCHANTS.add(ModEnchantments.PHANTOM_PAIN.get());

@@ -2,6 +2,8 @@ package net.igneo.icv.mixin;
 
 import net.igneo.icv.enchantment.ModEnchantments;
 //import net.igneo.icv.enchantment.WardenScreamEnchantment;
+import net.igneo.icv.networking.ModMessages;
+import net.igneo.icv.networking.packet.BackpedalS2CPacket;
 import net.igneo.icv.sound.ModSounds;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
@@ -157,6 +159,10 @@ public class BowItemMixin{
                             if (entity.getBoundingBox().intersects(player.getEyePosition(), player.position().add(player.getLookAngle().scale(20))) && entity != player && entity instanceof LivingEntity) {
                                 entity.hurt(player.damageSources().arrow(arrow, pEntityLiving), 3);
                                 entity.addDeltaMovement(new Vec3(player.getLookAngle().x/2,0.15,player.getLookAngle().z/2));
+                                if (entity instanceof ServerPlayer) {
+                                    ServerPlayer badPlayer = (ServerPlayer) entity;
+                                    ModMessages.sendToPlayer(new BackpedalS2CPacket(),badPlayer);
+                                }
                             }
                         }
                     });

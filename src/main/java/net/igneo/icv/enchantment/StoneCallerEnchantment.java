@@ -56,13 +56,14 @@ public class StoneCallerEnchantment extends Enchantment {
                     enchVar.setStoneY(uniPlayer.getBlockY());
                     enchVar.setStoneZ(uniPlayer.getBlockZ());
                     enchVar.setStoneTime(System.currentTimeMillis());
-                    uniPlayer.setDeltaMovement(0, 1, 0);
+                    uniPlayer.setDeltaMovement(0, 0.95, 0);
+                } else {
+                    ModMessages.sendToServer(new StoneCallerC2SPacket(loop-1, enchVar.getStoneX(), enchVar.getStoneY(), enchVar.getStoneZ()));
                 }
-                ModMessages.sendToServer(new StoneCallerC2SPacket(loop,enchVar.getStoneX(), enchVar.getStoneY(), enchVar.getStoneZ()));
             });
             ++loop;
             stoneDelay = System.currentTimeMillis();
-        } else if (loop > 3) {
+        } else if (loop > 5) {
             loop = 0;
             stoneCalling = false;
         }

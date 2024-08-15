@@ -36,10 +36,10 @@ public class SiphonC2SPacket {
             player.heal(1);
             player.setHealth(player.getHealth() + 1);
 
-            player.getInventory().getArmor(0).setDamageValue(player.getInventory().getArmor(0).getDamageValue() + 25);
-            player.getInventory().getArmor(1).setDamageValue(player.getInventory().getArmor(1).getDamageValue() + 25);
-            player.getInventory().getArmor(2).setDamageValue(player.getInventory().getArmor(2).getDamageValue() + 25);
-            player.getInventory().getArmor(3).setDamageValue(player.getInventory().getArmor(3).getDamageValue() + 25);
+            player.getInventory().getArmor(0).setDamageValue(player.getInventory().getArmor(0).getDamageValue() + 10);
+            player.getInventory().getArmor(1).setDamageValue(player.getInventory().getArmor(1).getDamageValue() + 10);
+            player.getInventory().getArmor(2).setDamageValue(player.getInventory().getArmor(2).getDamageValue() + 10);
+            player.getInventory().getArmor(3).setDamageValue(player.getInventory().getArmor(3).getDamageValue() + 10);
         });
         return true;
     }

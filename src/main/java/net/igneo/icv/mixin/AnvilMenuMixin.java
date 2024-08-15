@@ -30,6 +30,8 @@ public class AnvilMenuMixin extends ItemCombinerMenu {
                 this.resultSlots.setItem(0, ItemStack.EMPTY);
                 this.cost.set(0);
             } else {
+                this.inputSlots.getItem(0).setRepairCost(0);
+                this.inputSlots.getItem(1).setRepairCost(0);
                 this.cost.set(2);
             }
         }

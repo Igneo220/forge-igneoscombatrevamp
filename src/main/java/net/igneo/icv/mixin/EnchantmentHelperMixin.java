@@ -197,7 +197,7 @@ public class EnchantmentHelperMixin {
     @Overwrite
     public static int getBlockEfficiency(LivingEntity pEntity) {
         if (EnchantmentHelper.getEnchantmentLevel(ModEnchantments.BRUTE_TOUCH.get(),pEntity) == 1) {
-            return 7;
+            return 5;
         } else {
             return 0;
         }

@@ -13,6 +13,8 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
+import static net.igneo.icv.event.ModEvents.uniPlayer;
+
 
 public class SkyChargeC2SPacket {
     private static double chargeAmount;
@@ -35,7 +37,7 @@ public class SkyChargeC2SPacket {
             ServerLevel level = player.serverLevel();
 
             if (chargeAmount > 0) {
-                player.setDeltaMovement(new Vec3(0, chargeAmount, 0));
+                player.setDeltaMovement(player.getLookAngle().scale(chargeAmount*2.5).x, chargeAmount*1.5,player.getLookAngle().scale(chargeAmount*2.5).z);
                 level.sendParticles(ParticleTypes.POOF, player.getX(), player.getY(), player.getZ(), 5, Math.random() / 5, Math.random() / 5, Math.random() / 5, 0.1);
                 level.playSound(null, player.blockPosition(), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 2, 0.1F);
             } else {

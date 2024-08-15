@@ -56,9 +56,65 @@ public class StoneCallerC2SPacket {
                     enchVar.setStoneY(y);
                     enchVar.setStoneZ(z);
                     player.setDeltaMovement(0, 1, 0);
+                    if (enchVar.getStoneCeiling() == 0) {
+                        for (int j = 0; j <= 4; ++j) {
+                            if (level.getBlockState(new BlockPos(enchVar.getStoneX(), enchVar.getStoneY() + j, enchVar.getStoneZ())).getBlock().equals(Blocks.AIR)) {
+                                enchVar.setStoneCeiling(j+1);
+                            } else {
+                                break;
+                            }
+                        }
+                    }
+                    int d0 = 0;
+                    int d1 = 0;
+                    if (player.getLookAngle().x < -0.4) {
+                        d0 = -1;
+                    } else if (player.getLookAngle().x > 0.4) {
+                        d0 = 1;
+                    }
+                    if (player.getLookAngle().z < -0.4) {
+                        d1 = -1;
+                    } else if (player.getLookAngle().z > 0.4) {
+                        d1 = 1;
+                    }
+                    enchVar.setStoneLookX(0);
+                    enchVar.setStoneLookZ(0);
+                    for (int j = 0; j < 20; ++j) {
+                        if (level.getBlockState(new BlockPos(enchVar.getStoneX() + (j*d0),enchVar.getStoneY(),enchVar.getStoneZ() + (j*d1))).getBlock().equals(Blocks.AIR)) {
+                            enchVar.setStoneLookX(j*d0);
+                            enchVar.setStoneLookZ(j*d1);
+                        } else {
+                            break;
+                        }
+                    }
                 }
-                level.playSound(null, new BlockPos(enchVar.getStoneX(),enchVar.getStoneY() + next,enchVar.getStoneZ()), SoundType.DEEPSLATE_BRICKS.getBreakSound(), SoundSource.PLAYERS, 10F, 0.1F);
-                level.setBlock(new BlockPos(enchVar.getStoneX(),enchVar.getStoneY() + next,enchVar.getStoneZ()), Blocks.STONE.defaultBlockState(), 2);
+                int i = Math.abs(enchVar.getStoneLookX());
+                if (Math.abs(enchVar.getStoneLookZ()) > Math.abs(enchVar.getStoneLookX())) {
+                    i = Math.abs(enchVar.getStoneLookZ());
+                }
+                int m0 = 1;
+                int m1 = 1;
+                if (enchVar.getStoneLookX() < 0) {
+                    m0 = -1;
+                } else if (enchVar.getStoneLookX() == 0) {
+                    m0 = 0;
+                }
+                if (enchVar.getStoneLookZ() < 0) {
+                    m1 = -1;
+                } else if (enchVar.getStoneLookZ() == 0) {
+                    m1 = 0;
+                }
+                for (int j = 0; j <= i; ++j) {
+                    if (level.getBlockState(new BlockPos(enchVar.getStoneX() + (j*m0), enchVar.getStoneY() + next, enchVar.getStoneZ() + (j*m1))).getBlock().equals(Blocks.AIR)) {
+                        if (next < enchVar.getStoneCeiling() - 2) {
+                            level.playSound(null, new BlockPos(enchVar.getStoneX(), enchVar.getStoneY() + next, enchVar.getStoneZ()), SoundType.DEEPSLATE_BRICKS.getBreakSound(), SoundSource.PLAYERS, 10F, 0.1F);
+                            level.setBlock(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + next, enchVar.getStoneZ() + (j * m1)), Blocks.DRIPSTONE_BLOCK.defaultBlockState(), 2);
+                        } else if (next < enchVar.getStoneCeiling()){
+                            level.playSound(null, new BlockPos(enchVar.getStoneX(), enchVar.getStoneY() + next, enchVar.getStoneZ()), SoundType.DEEPSLATE_BRICKS.getBreakSound(), SoundSource.PLAYERS, 10F, 1.1F);
+                            level.setBlock(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + next, enchVar.getStoneZ() + (j * m1)), Blocks.POINTED_DRIPSTONE.defaultBlockState(), 2);
+                        }
+                    }
+                }
             });
         });
         return true;

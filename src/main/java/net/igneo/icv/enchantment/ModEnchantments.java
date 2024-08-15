@@ -1,23 +1,13 @@
 package net.igneo.icv.enchantment;
 
 import net.igneo.icv.ICV;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.entity.FishingHookRenderer;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.MobType;
-import net.minecraft.world.item.FishingRodItem;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ModEnchantments {
     public static final DeferredRegister<Enchantment> ENCHANTMENTS =
@@ -36,9 +26,9 @@ public class ModEnchantments {
             ENCHANTMENTS.register("breakthrough",
                     () -> new BreakthroughEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
-    public static RegistryObject<Enchantment> COUNTERWEIGHTED =
-            ENCHANTMENTS.register("counterweighted",
-                    () -> new CounterweightedEnchantment(Enchantment.Rarity.UNCOMMON,
+    public static RegistryObject<Enchantment> BACKPEDAL =
+            ENCHANTMENTS.register("backpedal",
+                    () -> new BackPedalEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
     public static RegistryObject<Enchantment> GUST =
             ENCHANTMENTS.register("gust",

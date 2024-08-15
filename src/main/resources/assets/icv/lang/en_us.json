@@ -9,6 +9,10 @@
     "enchantment.icv.acrobatic": "Acrobatic",
     "enchantment.icv.acrobatic.desc": "Gain a small boost when flipping by simultaneously pressing A & D at the same time. Also gain a damage boost before hitting the ground after flipping",
 
+    "enchantment.icv.backpedal": "Backpedal",
+    "enchantment.icv.backpedal.desc": "Upon critting your opponent, get launched in the opposite direction, taking yourself out of danger",
+
+
     "enchantment.icv.black_hole": "Black Hole",
     "enchantment.icv.black_hole.desc": "Shoot out a black hole that draws nearby entities in, dealing constant cramming damage if touched",
     "key.icv.black_hole": "Activate Black Hole",
@@ -33,9 +37,6 @@
     "enchantment.icv.concussion": "Concussion",
     "enchantment.icv.concussion.desc": "Lunge forward and deal 5 damage to whatever you hit, launching it into the air and giving it a temporary slow falling",
     "key.icv.concussion": "Activate Concussion",
-
-    "enchantment.icv.counterweighted": "Counterweighted",
-    "enchantment.icv.counterweighted.desc": "If you miss a swing, you gain a large attack speed boost allowing you to recover. Will do nothing if you're looking at or near a target",
 
     "enchantment.icv.crush": "Crush",
     "enchantment.icv.crush.desc": "Crouch in air to send yourself hurtling towards the ground. If you fall more than 3 blocks, you'll create an explosion damaging nearby enemies. Does not negate fall damage",

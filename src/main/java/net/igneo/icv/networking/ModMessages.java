@@ -98,10 +98,10 @@ public class ModMessages {
                 .encoder(TrainDashC2SPacket::toBytes)
                 .consumerMainThread(TrainDashC2SPacket::handle)
                 .add();
-        net.messageBuilder(CounterweightedC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(CounterweightedC2SPacket::new)
-                .encoder(CounterweightedC2SPacket::toBytes)
-                .consumerMainThread(CounterweightedC2SPacket::handle)
+        net.messageBuilder(BackpedalS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(BackpedalS2CPacket::new)
+                .encoder(BackpedalS2CPacket::toBytes)
+                .consumerMainThread(BackpedalS2CPacket::handle)
                 .add();
         net.messageBuilder(WeightedC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(WeightedC2SPacket::new)

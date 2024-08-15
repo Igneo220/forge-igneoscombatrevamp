@@ -14,6 +14,8 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
+import static net.igneo.icv.event.ModEvents.uniPlayer;
+
 
 public class DoubleJumpC2SPacket {
 
@@ -36,7 +38,8 @@ public class DoubleJumpC2SPacket {
 
             level.sendParticles(ParticleTypes.POOF,player.getX(),player.getY(),player.getZ(),5,Math.random(),Math.random(),Math.random(),0.5);
             level.playSound(null, player.blockPosition(), SoundEvents.SAND_BREAK, SoundSource.PLAYERS, 1, 0.1F);
-            player.setDeltaMovement(player.getDeltaMovement().x,0.6,player.getDeltaMovement().z);
+            double f = 0.5;
+            player.setDeltaMovement(player.getLookAngle().scale(f).x, player.getLookAngle().scale(f).y + 0.1, player.getLookAngle().scale(f).z);
         });
         return true;
     }
