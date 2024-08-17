@@ -11,6 +11,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.phys.Vec3;
 
 public class RendEnchantment extends Enchantment {
     private static Entity rendEntity = null;
@@ -35,6 +36,14 @@ public class RendEnchantment extends Enchantment {
     public static void onKeyInputEvent() {
         if (EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getMainHandItem()).containsKey(ModEnchantments.REND.get()) && rendEntity != null && rendCount > 0) {
             int i = (int) (((rendCount * rendCount)*2) + 6);
+            i = i/10;
+            Vec3 distVec = Minecraft.getInstance().player.position().subtract(rendEntity.position());
+            double dist = Math.abs(distVec.x) + Math.abs(distVec.z);
+            if (dist > 30) {
+                dist = 30;
+            }
+            System.out.println(dist);
+            i = (int) (i*(dist/2));
             if (i > 45) {
                 i = 45;
             }

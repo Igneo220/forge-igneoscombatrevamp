@@ -192,12 +192,12 @@ public class ArrowMixin extends AbstractArrow {
                     boolean cancel = false;
                     if (!phaseList.isEmpty()) {
                         for (LivingEntity phaseEntity : phaseList) {
-                            if (entity == phaseEntity) {
+                            if (entity == phaseEntity || entity == this.getOwner()) {
                                 cancel = true;
                             }
                         }
                     }
-                    if (!cancel) {
+                    if (!cancel && entity == this.getOwner()) {
                         level.playSound(null, this.blockPosition(), ModSounds.PHASE.get(), SoundSource.PLAYERS, 2, (float) 0.3 + (float) abs(Math.random() + 0.5));
                         Entity entity1 = this.getOwner();
                         DamageSource damagesource;
@@ -209,9 +209,11 @@ public class ArrowMixin extends AbstractArrow {
                                 ((LivingEntity) entity1).setLastHurtMob(entity);
                             }
                         }
-                        entity.addEffect(new MobEffectInstance(MobEffects.GLOWING,200,1));
-                        entity.hurt(damagesource, 6);
-                        phaseList.add(entity);
+                        if (entity != entity1) {
+                            entity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 200, 1));
+                            entity.hurt(damagesource, 6);
+                            phaseList.add(entity);
+                        }
                     }
                 }
                 //level.playSound(null,this.blockPosition(),ModSounds.PHASE.get(),SoundSource.PLAYERS);
@@ -234,7 +236,7 @@ public class ArrowMixin extends AbstractArrow {
                 double d0 = Math.abs(this.getDeltaMovement().x);
                 double d1 = Math.abs(this.getDeltaMovement().y);
                 double d2 = Math.abs(this.getDeltaMovement().z);
-                if (System.currentTimeMillis() >= arrowtime + 250 && !this.inGround && !this.isInWater() && (d0 + d1 + d2) >= 2) {
+                if (System.currentTimeMillis() >= arrowtime + 100 && !this.inGround && !this.isInWater() && (d0 + d1 + d2) >= 2) {
                     if (this.level() instanceof ServerLevel) {
                         ServerLevel level = (ServerLevel) this.level();
                         level.playSound(null,this.blockPosition(), ModSounds.MITOSIS.get(),SoundSource.PLAYERS);

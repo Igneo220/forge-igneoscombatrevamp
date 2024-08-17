@@ -56,7 +56,7 @@ public class DoubleJumpEnchantment extends Enchantment {
             if (Minecraft.getInstance().player.getDeltaMovement().y <= 0) {
                 CanDoubleJump = false;
                 hasJumped = true;
-                double f = 0.5;
+                double f = 0.6;
                 uniPlayer.setDeltaMovement(uniPlayer.getLookAngle().scale(f).x, uniPlayer.getLookAngle().scale(f).y + 0.1, uniPlayer.getLookAngle().scale(f).z);
                 ModMessages.sendToServer(new DoubleJumpC2SPacket());
             }

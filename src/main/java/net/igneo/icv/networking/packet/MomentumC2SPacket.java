@@ -55,11 +55,11 @@ public class MomentumC2SPacket {
                 level.playSound(null,player.blockPosition(), ModSounds.MOMENTUM.get(), SoundSource.PLAYERS,1,0.5F);
             }
             if (loopCount == 2) {
-                player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).addTransientModifier(new AttributeModifier(SPEED_MODIFIER_MOMENTUM_UUID2, "Momentum speed boost2", 0.020, AttributeModifier.Operation.ADDITION));
+                player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).addTransientModifier(new AttributeModifier(SPEED_MODIFIER_MOMENTUM_UUID2, "Momentum speed boost2", 0.025, AttributeModifier.Operation.ADDITION));
                 level.playSound(null,player.blockPosition(), ModSounds.MOMENTUM.get(), SoundSource.PLAYERS,1,1F);
             }
             if (loopCount == 3) {
-                player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).addTransientModifier(new AttributeModifier(SPEED_MODIFIER_MOMENTUM_UUID3, "Momentum speed boost3", 0.015, AttributeModifier.Operation.ADDITION));
+                player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).addTransientModifier(new AttributeModifier(SPEED_MODIFIER_MOMENTUM_UUID3, "Momentum speed boost3", 0.03, AttributeModifier.Operation.ADDITION));
                 level.playSound(null,player.blockPosition(), ModSounds.MOMENTUM.get(), SoundSource.PLAYERS,1,1.5F);
             }
 

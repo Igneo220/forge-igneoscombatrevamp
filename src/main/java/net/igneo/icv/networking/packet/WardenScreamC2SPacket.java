@@ -57,7 +57,7 @@ public class WardenScreamC2SPacket {
             Thread HurtEntities = new Thread(() -> {
                 for (Entity entity : level.getAllEntities()) {
                     if (entity.getBoundingBox().intersects(player.getEyePosition(),player.getEyePosition().add(player.getLookAngle().scale(10))) && entity != pPlayer && entity instanceof LivingEntity) {
-                        entity.hurt(player.damageSources().sonicBoom(player),15);
+                        entity.hurt(player.damageSources().sonicBoom(player),10);
                     }
                 }
             });

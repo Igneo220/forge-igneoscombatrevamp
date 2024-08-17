@@ -112,6 +112,10 @@ public class BowItemMixin{
                         }
                         if (abstractarrow.getTags().contains("whistle")) {
                             if (f == 1) {
+                                itemstack.shrink(1);
+                                if (itemstack.isEmpty()) {
+                                    player.getInventory().removeItem(itemstack);
+                                }
                                 pLevel.addFreshEntity(abstractarrow);
                             } else {
                                 ServerLevel level = (ServerLevel) pLevel;
@@ -122,8 +126,8 @@ public class BowItemMixin{
                         }
                     }
 
-                    pLevel.playSound((Player)null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
-                    if (!flag1 && !player.getAbilities().instabuild) {
+                    pLevel.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                    if (!flag1 && !player.getAbilities().instabuild && !abstractarrow.getTags().contains("whistle")) {
                         itemstack.shrink(1);
                         if (itemstack.isEmpty()) {
                             player.getInventory().removeItem(itemstack);

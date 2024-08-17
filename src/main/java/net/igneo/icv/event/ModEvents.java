@@ -23,6 +23,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -46,6 +47,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
+import java.awt.*;
 import java.util.List;
 import java.util.UUID;
 
@@ -197,13 +199,54 @@ public class ModEvents {
 
     @SubscribeEvent
     public static void onPlayerCloned(PlayerEvent.Clone event) {
-        if(event.isWasDeath()) {
-            event.getOriginal().getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(oldStore -> {
-                event.getOriginal().getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(newStore -> {
-                    newStore.copyFrom(oldStore);
-                });
+        event.getOriginal().reviveCaps();
+        event.getOriginal().getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(oldStore -> {
+            if (oldStore.getStoneTime() != 0 && event.getOriginal() instanceof ServerPlayer) {
+                breakStone((ServerLevel) event.getOriginal().level(), (ServerPlayer) event.getOriginal());
+            }
+            event.getEntity().getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(newStore -> {
+                newStore.copyFrom(oldStore);
+                if (event.getEntity() instanceof ServerPlayer) {
+                    ModMessages.sendToPlayer(new ArmorS2CPacket(0), (ServerPlayer) event.getEntity());
+                }
+            });
+        });
+        event.getOriginal().invalidateCaps();
+    }
+    @SubscribeEvent @OnlyIn(Dist.DEDICATED_SERVER)
+    public static void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
+        if (event.getEntity().level() instanceof ServerLevel) {
+            event.getEntity().getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+                breakStone((ServerLevel)event.getEntity().level(), (ServerPlayer) event.getEntity());
             });
         }
+    }
+    @SubscribeEvent
+    public static void onPlayerChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+        event.getEntity().reviveCaps();
+        event.getEntity().getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+            System.out.println(enchVar.getHelmetID());
+            if (event.getEntity() instanceof ServerPlayer) {
+                ModMessages.sendToPlayer(new ArmorS2CPacket(0), (ServerPlayer) event.getEntity());
+                ModMessages.sendToPlayer(new ArmorS2CPacket(1), (ServerPlayer) event.getEntity());
+                ModMessages.sendToPlayer(new ArmorS2CPacket(2), (ServerPlayer) event.getEntity());
+                ModMessages.sendToPlayer(new ArmorS2CPacket(3), (ServerPlayer) event.getEntity());
+                if (enchVar.getStoneTime() != 0) {
+                    ServerLevel level = null;
+                    for (ServerLevel level1 : event.getEntity().level().getServer().getAllLevels()) {
+                        if (level1.dimension().equals(event.getFrom())) {
+                            level = level1;
+                            break;
+                        }
+                    }
+                    if (level != null) {
+                        breakStone(level, (ServerPlayer) event.getEntity());
+                        enchVar.setStoneTime(0);
+                        enchVar.setStoneCeiling(0);
+                    }
+                }
+            }
+        });
     }
     @SubscribeEvent
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
@@ -226,6 +269,51 @@ public class ModEvents {
             uniPlayer.addDeltaMovement(new Vec3(0, (double) trimCount /15,0));
             boosted = true;
         }
+    }
+    public static void breakStone(ServerLevel level, ServerPlayer player) {
+        player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+            int i = Math.abs(enchVar.getStoneLookX());
+            if (Math.abs(enchVar.getStoneLookZ()) > Math.abs(enchVar.getStoneLookX())) {
+                i = Math.abs(enchVar.getStoneLookZ());
+            }
+            int m0 = 1;
+            int m1 = 1;
+            if (enchVar.getStoneLookX() < 0) {
+                m0 = -1;
+            } else if (enchVar.getStoneLookX() == 0) {
+                m0 = 0;
+            }
+            if (enchVar.getStoneLookZ() < 0) {
+                m1 = -1;
+            } else if (enchVar.getStoneLookZ() == 0) {
+                m1 = 0;
+            }
+            int climb = 0;
+            for (int j = 0; j <= i; ++j) {
+                for (int p = 0; p < enchVar.getStoneCeiling(); ++p) {
+                    if (!(level.getBlockState(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p + climb, enchVar.getStoneZ() + (j * m1))).getBlock().equals(Blocks.DRIPSTONE_BLOCK) || level.getBlockState(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p + climb, enchVar.getStoneZ() + (j * m1))).getBlock().equals(Blocks.POINTED_DRIPSTONE))) {
+                        ++climb;
+                    }
+                    boolean findFloor = true;
+                    while (findFloor) {
+                        if (!(level.getBlockState(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p + climb - 1, enchVar.getStoneZ() + (j * m1))).getBlock().equals(Blocks.DRIPSTONE_BLOCK) || level.getBlockState(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p + climb - 1, enchVar.getStoneZ() + (j * m1))).getBlock().equals(Blocks.POINTED_DRIPSTONE))) {
+                            findFloor = false;
+                        } else {
+                            --climb;
+                        }
+                    }
+                    if (level.getBlockState(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p + climb, enchVar.getStoneZ() + (j * m1))).getBlock().equals(Blocks.DRIPSTONE_BLOCK) || level.getBlockState(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p + climb, enchVar.getStoneZ() + (j * m1))).getBlock().equals(Blocks.POINTED_DRIPSTONE)) {
+                        level.setBlock(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p + climb, enchVar.getStoneZ() + (j * m1)), Blocks.AIR.defaultBlockState(), 2);
+                        level.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, (double) enchVar.getStoneX() + (j * m0), (double) enchVar.getStoneY() + p + climb, (double) enchVar.getStoneZ() + (j * m1), 1, 0, 0, 0, 0.01);
+                        if (p == 0) {
+                            level.playSound(null, new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p + climb, enchVar.getStoneZ() + (j * m1)), SoundEvents.WITHER_BREAK_BLOCK, SoundSource.PLAYERS, 2F, 5.0F);
+                        }
+                    }
+                }
+            }
+            enchVar.setStoneTime(0);
+            enchVar.setStoneCeiling(0);
+        });
     }
 
     @SubscribeEvent
@@ -282,35 +370,7 @@ public class ModEvents {
                 //stone caller check
                 if (enchVar.getStoneTime() != 0) {
                     if (System.currentTimeMillis() >= enchVar.getStoneTime() + 10000) {
-                        int i = Math.abs(enchVar.getStoneLookX());
-                        if (Math.abs(enchVar.getStoneLookZ()) > Math.abs(enchVar.getStoneLookX())) {
-                            i = Math.abs(enchVar.getStoneLookZ());
-                        }
-                        int m0 = 1;
-                        int m1 = 1;
-                        if (enchVar.getStoneLookX() < 0) {
-                            m0 = -1;
-                        } else if (enchVar.getStoneLookX() == 0) {
-                            m0 = 0;
-                        }
-                        if (enchVar.getStoneLookZ() < 0) {
-                            m1 = -1;
-                        } else if (enchVar.getStoneLookZ() == 0) {
-                            m1 = 0;
-                        }
-                        for (int j = 0; j <= i; ++j) {
-                            for (int p = 0; p < enchVar.getStoneCeiling();++p) {
-                                if (level.getBlockState(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p, enchVar.getStoneZ() + (j * m1))).getBlock().equals(Blocks.DRIPSTONE_BLOCK) || level.getBlockState(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p, enchVar.getStoneZ() + (j * m1))).getBlock().equals(Blocks.POINTED_DRIPSTONE)) {
-                                    level.setBlock(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p, enchVar.getStoneZ() + (j * m1)), Blocks.AIR.defaultBlockState(), 2);
-                                    level.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE,(double)enchVar.getStoneX() + (j * m0),(double)enchVar.getStoneY() + p,(double)enchVar.getStoneZ() + (j * m1),1,0,0,0,0.01);
-                                    if(p==0) {
-                                        level.playSound(null, new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p, enchVar.getStoneZ() + (j * m1)), SoundEvents.WITHER_BREAK_BLOCK, SoundSource.PLAYERS, 2F, 5.0F);
-                                    }
-                                }
-                            }
-                        }
-                        enchVar.setStoneTime(0);
-                        enchVar.setStoneCeiling(0);
+                        breakStone(level,player);
                     }
                 }
             }
@@ -561,8 +621,8 @@ public class ModEvents {
             if (snoutTrim > 0 || snoutTrim != enchVar.getSnoutBuff()) {
                 player.getAttributes().getInstance(Attributes.ATTACK_SPEED).removeModifier(SNOUT_ATTACK_SPEED_MODIFIER_UUID);
                 player.getAttributes().getInstance(Attributes.MAX_HEALTH).removeModifier(SNOUT_HEALTH_MODIFIER_UUID);
-                player.getAttributes().getInstance(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(SNOUT_ATTACK_SPEED_MODIFIER_UUID, "Snout attack speed boost", (double) snoutTrim / 5, AttributeModifier.Operation.ADDITION));
-                player.getAttributes().getInstance(Attributes.MAX_HEALTH).addTransientModifier(new AttributeModifier(SNOUT_HEALTH_MODIFIER_UUID, "Snout health debuff", (double) -snoutTrim * 2, AttributeModifier.Operation.ADDITION));
+                player.getAttributes().getInstance(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(SNOUT_ATTACK_SPEED_MODIFIER_UUID, "Snout attack speed boost", (double) snoutTrim / 10, AttributeModifier.Operation.ADDITION));
+                player.getAttributes().getInstance(Attributes.MAX_HEALTH).addTransientModifier(new AttributeModifier(SNOUT_HEALTH_MODIFIER_UUID, "Snout health debuff", (double) -snoutTrim * 4, AttributeModifier.Operation.ADDITION));
                 enchVar.setSnoutBuff(snoutTrim);
             }
             if (hostTrim > 0 || hostTrim != enchVar.getHostBuff()) {
@@ -579,7 +639,7 @@ public class ModEvents {
                 player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).removeModifier(SILENCE_DAMAGE_MODIFIER_UUID);
                 player.getAttributes().getInstance(Attributes.ATTACK_SPEED).removeModifier(SILENCE_ATTACK_SPEED_MODIFIER_UUID);
                 player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).addTransientModifier(new AttributeModifier(SILENCE_DAMAGE_MODIFIER_UUID, "silence damage boost", (double) silenceTrim/2, AttributeModifier.Operation.ADDITION));
-                player.getAttributes().getInstance(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(SILENCE_ATTACK_SPEED_MODIFIER_UUID, "silence attack speed debuff", (double) -silenceTrim/4, AttributeModifier.Operation.ADDITION));
+                player.getAttributes().getInstance(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(SILENCE_ATTACK_SPEED_MODIFIER_UUID, "silence attack speed debuff", (double) -silenceTrim/5, AttributeModifier.Operation.ADDITION));
                 enchVar.setSilenceBuff(silenceTrim);
             }
         });

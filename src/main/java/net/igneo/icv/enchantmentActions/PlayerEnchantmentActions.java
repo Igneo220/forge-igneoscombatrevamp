@@ -4,6 +4,8 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
 
+import java.awt.*;
+
 public class PlayerEnchantmentActions {
     private boolean concussed = false;
     public boolean getConcussed() {
