@@ -29,7 +29,7 @@ public class BackpedalS2CPacket {
     public boolean handle(Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
-            Minecraft.getInstance().player.addDeltaMovement(new Vec3(Minecraft.getInstance().player.getLookAngle().reverse().x, 0.2, Minecraft.getInstance().player.getLookAngle().reverse().z));
+            Minecraft.getInstance().player.addDeltaMovement(new Vec3(Minecraft.getInstance().player.getLookAngle().scale(1.5).reverse().x, 0.4, Minecraft.getInstance().player.getLookAngle().scale(1.5).reverse().z));
         });
         return true;
     }

@@ -124,7 +124,7 @@ public class ArrowMixin extends AbstractArrow {
                     ((LivingEntity) entity1).setLastHurtMob(entity);
                 }
             }
-            entity.hurt(damagesource, 12F);
+            entity.hurt(damagesource, 15F);
             this.discard();
         } else {
             super.onHitEntity(pResult);
@@ -197,7 +197,8 @@ public class ArrowMixin extends AbstractArrow {
                             }
                         }
                     }
-                    if (!cancel && entity == this.getOwner()) {
+                    System.out.println(this.getOwner());
+                    if (!cancel && entity != this.getOwner()) {
                         level.playSound(null, this.blockPosition(), ModSounds.PHASE.get(), SoundSource.PLAYERS, 2, (float) 0.3 + (float) abs(Math.random() + 0.5));
                         Entity entity1 = this.getOwner();
                         DamageSource damagesource;
@@ -211,7 +212,7 @@ public class ArrowMixin extends AbstractArrow {
                         }
                         if (entity != entity1) {
                             entity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 200, 1));
-                            entity.hurt(damagesource, 6);
+                            entity.hurt(damagesource, 8);
                             phaseList.add(entity);
                         }
                     }

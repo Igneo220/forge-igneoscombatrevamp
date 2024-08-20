@@ -44,7 +44,7 @@ public abstract class PlayerMixin extends LivingEntity{
         if (pTarget instanceof LivingEntity) {
             AtomicReference<Float> tempf1 = new AtomicReference<>((float) 0);
             if (EnchantmentHelper.getEnchantments(this.getMainHandItem()).containsKey(ModEnchantments.SKEWERING.get()) && !pTarget.onGround() && !pTarget.isInFluidType() && !pTarget.isPassenger()) {
-                tempf = 1.2F;
+                tempf = 1.3F;
             } else if (EnchantmentHelper.getEnchantments(this.getMainHandItem()).containsKey(ModEnchantments.KINETIC.get())) {
                 this.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
                     float speedDamage = (float) (((Math.abs(enchVar.getKinX()) + Math.abs(enchVar.getKinZ()))));
