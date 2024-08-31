@@ -4,7 +4,7 @@
     "key.categories.icv.enchantments": "Enchantment Keybinds",
 
     "enchantment.icv.accelerate": "Accelerate",
-    "enchantment.icv.accelerate.desc": "Accelerate your arrow to ludicrous speeds, piercing everything roughly 20 blocks in front of you. It deals 3 damage, and a lot of knockback",
+    "enchantment.icv.accelerate.desc": "Accelerate your arrow to ludicrous speeds, piercing everything roughly 20 blocks in front of you. It deals 3 damage, and a lot of knockback. The arrow shards are so hot, that your opponent will glow",
 
     "enchantment.icv.acrobatic": "Acrobatic",
     "enchantment.icv.acrobatic.desc": "Gain a small boost when flipping by simultaneously pressing A & D at the same time. Also gain a damage boost before hitting the ground after flipping",
@@ -39,7 +39,7 @@
     "key.icv.concussion": "Activate Concussion",
 
     "enchantment.icv.crush": "Crush",
-    "enchantment.icv.crush.desc": "Crouch in air to send yourself hurtling towards the ground. If you fall more than 3 blocks, you'll create an explosion damaging nearby enemies. Does not negate fall damage",
+    "enchantment.icv.crush.desc": "Crouch in air to send yourself hurtling towards the ground. If you fall more than 3 blocks, you'll create an explosion damaging nearby enemies, and launching them into the air. Does not negate fall damage",
 
     "enchantment.icv.double_jump": "Double Jump",
     "enchantment.icv.double_jump.desc": "Jump while in air to get a second jump, gently pushing you in the direction you're looking",
@@ -83,13 +83,13 @@
     "enchantment.icv.phantom_pain.desc": "Deal extra damage each hit, but the target will heal if you take to long to strike again, or you attack a different target",
 
     "enchantment.icv.phasing": "Phasing",
-    "enchantment.icv.phasing.desc": "Your arrow now phases through blocks and entities, dealing less damage than a normal arrow, but more than accelerate. Applies glowing on hit",
+    "enchantment.icv.phasing.desc": "Your arrow now phases through blocks and entities, dealing less damage than a normal arrow, but more than accelerate",
 
     "enchantment.icv.recoil": "Recoil",
     "enchantment.icv.recoil.desc": "Be sent the opposite direction you throw your trident",
 
     "enchantment.icv.rend": "Rend",
-    "enchantment.icv.rend.desc": "Deal zero damage on hit, but after left clicking explode all arrows you shot the target with, dealing exponential damage. Can only affect one target",
+    "enchantment.icv.rend.desc": "Deal zero damage on hit, but after left clicking explode all arrows you shot the target with, dealing more damage the farther away you are from the target, capped by your own HP. Can only affect one target",
 
     "enchantment.icv.scatter": "Scatter",
     "enchantment.icv.scatter.desc": "Turn your crossbow into a shotgun, shooting out 10 low damage arrows at short range",
@@ -115,7 +115,7 @@
     "enchantment.icv.tempo_theft.desc": "Steal your enemies speed, inflicting slowness on them, and up to 3 speed boosts on yourself",
 
     "enchantment.icv.train_dash": "Train Dash",
-    "enchantment.icv.train_dash.desc": "Dash forward in a straight line, exploding every enemy you hit on the way. Cause a self damaging explosion on impact with a block",
+    "enchantment.icv.train_dash.desc": "Dash forward in a straight line, exploding every enemy you hit on the way, and gaining resistance for the duration. Cause a self damaging explosion on impact with a block",
     "key.icv.train_dash": "Activate Train Dash",
 
     "enchantment.icv.warden_scream": "Warden Scream",
@@ -123,7 +123,7 @@
     "key.icv.wardenscream": "Activate Warden Scream",
 
     "enchantment.icv.wardenspine": "Wardenspine",
-    "enchantment.icv.wardenspine.desc": "Go blind in exchange for a damage boost. Use again to remove the effect with a delay on both ends",
+    "enchantment.icv.wardenspine.desc": "Go blind in exchange for a damage boost, and a very short lived speed boost. Use again to remove the effect with a delay on both ends",
     "key.icv.wardenspine": "Activate Wardenspine",
 
     "enchantment.icv.whistler": "Whistler",
@@ -146,8 +146,8 @@
     "icv.snout.desc": "Increase attack speed, but less health",
     "icv.spire.desc": "Fall damage protection",
     "icv.tide.desc": "Increase movement speed in water",
-    "icv.vex.desc": "Projectile protection",
-    "icv.ward.desc": "Explosion protection",
+    "icv.vex.desc": "Faster regeneration on a delay",
+    "icv.ward.desc": "Explosion and projectile protection",
     "icv.wayfinder.desc": "Speed increase, but less damage",
     "icv.wild.desc": "Health increase"
 }

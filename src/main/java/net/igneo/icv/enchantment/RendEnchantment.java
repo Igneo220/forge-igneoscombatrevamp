@@ -13,6 +13,8 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.Vec3;
 
+import static net.igneo.icv.event.ModEvents.uniPlayer;
+
 public class RendEnchantment extends Enchantment {
     private static Entity rendEntity = null;
     private static float rendCount;
@@ -44,8 +46,8 @@ public class RendEnchantment extends Enchantment {
             }
             System.out.println(dist);
             i = (int) (i*(dist/2));
-            if (i > 45) {
-                i = 45;
+            if (i > uniPlayer.getHealth()) {
+                i = (int) uniPlayer.getHealth();
             }
             ModMessages.sendToServer(new RendC2SPacket(rendEntity.getId(),i));
             System.out.println(i);

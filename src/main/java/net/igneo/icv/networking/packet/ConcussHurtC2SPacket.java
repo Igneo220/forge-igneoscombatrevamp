@@ -51,13 +51,13 @@ public class ConcussHurtC2SPacket {
             target.hurt(player.damageSources().playerAttack(player),5);
             if (target instanceof ServerPlayer) {
                 ServerPlayer playerTarget = (ServerPlayer) target;
-                ModMessages.sendToPlayer(new GustS2CPacket(),playerTarget);
+                ModMessages.sendToPlayer(new AccelerateS2CPacket(new Vec3(0,1,0)),playerTarget);
                 playerTarget.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
                     enchVar.setConcussed(true);
                 });
                 playerTarget.getAttributes().getInstance(ForgeMod.ENTITY_GRAVITY.get()).addTransientModifier(new AttributeModifier(CONCUSSION_GRAVITY_MODIFIER_UUID, "Concussion gravity decrease", (double) -0.02, AttributeModifier.Operation.ADDITION));
             } else {
-                target.setDeltaMovement(new Vec3(0, 0.8, 0));
+                target.setDeltaMovement(new Vec3(0, 1, 0));
             }
             target.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 30, 50), player);
         });

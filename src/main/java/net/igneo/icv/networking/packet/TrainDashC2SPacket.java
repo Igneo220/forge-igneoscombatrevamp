@@ -48,6 +48,7 @@ public class TrainDashC2SPacket {
                 level.explode(null,player.getX(),player.getY(),player.getZ(),2, Level.ExplosionInteraction.NONE);
             } else if (j == 3) {
                 level.playSound(null,player.blockPosition(), ModSounds.TRAINDASH.get(), SoundSource.PLAYERS);
+                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,140,1));
             }
 
         });

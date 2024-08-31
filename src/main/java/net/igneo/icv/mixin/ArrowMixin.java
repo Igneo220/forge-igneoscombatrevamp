@@ -147,10 +147,8 @@ public class ArrowMixin extends AbstractArrow {
 
     @Override
     public boolean isNoPhysics() {
-        if (this.getTags().contains("phase") && this.inGround) {
-            return false;
-        } else if (this.getTags().contains("phase")) {
-            return false;
+        if (this.getTags().contains("phase")) {
+            return true;
         } else {
             return super.isNoPhysics();
         }
@@ -211,8 +209,8 @@ public class ArrowMixin extends AbstractArrow {
                             }
                         }
                         if (entity != entity1) {
-                            entity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 200, 1));
-                            entity.hurt(damagesource, 8);
+
+                            entity.hurt(damagesource, 10);
                             phaseList.add(entity);
                         }
                     }

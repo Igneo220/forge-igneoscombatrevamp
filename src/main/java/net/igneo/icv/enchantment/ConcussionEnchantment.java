@@ -28,7 +28,7 @@ public class ConcussionEnchantment extends Enchantment {
             EnchantmentHudOverlay.concussFrames = 0;
             searchTarget = true;
             concussTime = System.currentTimeMillis();
-            uniPlayer.setDeltaMovement(uniPlayer.getLookAngle().scale(1.5).x,uniPlayer.getLookAngle().scale(0.5).y,uniPlayer.getLookAngle().scale(1.5).z);
+            uniPlayer.setDeltaMovement(uniPlayer.getLookAngle().scale(1).x,uniPlayer.getLookAngle().scale(0.5).y,uniPlayer.getLookAngle().scale(1).z);
             ModMessages.sendToServer(new ConcussC2SPacket());
         }
         if (searchTarget && System.currentTimeMillis() <= concussTime + 1000) {

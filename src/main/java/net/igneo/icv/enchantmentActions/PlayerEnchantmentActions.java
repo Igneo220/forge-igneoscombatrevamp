@@ -61,6 +61,13 @@ public class PlayerEnchantmentActions {
     }
 
     //trim variables
+    private long vexTimer;
+    public long getVexTimer() {
+        return this.vexTimer;
+    }
+    public void setVexTimer(long inLong) {
+        this.vexTimer = inLong;
+    }
     private int wayBuff;
     public int getWayBuff() {
         return this.wayBuff;

@@ -1,8 +1,10 @@
 package net.igneo.icv.mixin;
 
+import com.sun.jna.platform.unix.LibC;
 import net.igneo.icv.enchantment.ModEnchantments;
 //import net.igneo.icv.enchantment.WardenScreamEnchantment;
 import net.igneo.icv.networking.ModMessages;
+import net.igneo.icv.networking.packet.AccelerateS2CPacket;
 import net.igneo.icv.networking.packet.BackpedalS2CPacket;
 import net.igneo.icv.sound.ModSounds;
 import net.minecraft.core.particles.ParticleType;
@@ -13,6 +15,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -111,7 +115,7 @@ public class BowItemMixin{
                             abstractarrow.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                         }
                         if (abstractarrow.getTags().contains("whistle")) {
-                            if (f == 1) {
+                            if (f >= 0.5) {
                                 itemstack.shrink(1);
                                 if (itemstack.isEmpty()) {
                                     player.getInventory().removeItem(itemstack);
@@ -163,9 +167,13 @@ public class BowItemMixin{
                             if (entity.getBoundingBox().intersects(player.getEyePosition(), player.position().add(player.getLookAngle().scale(20))) && entity != player && entity instanceof LivingEntity) {
                                 entity.hurt(player.damageSources().arrow(arrow, pEntityLiving), 3);
                                 entity.addDeltaMovement(new Vec3(player.getLookAngle().x/2,0.15,player.getLookAngle().z/2));
+                                if (entity instanceof LivingEntity) {
+                                    ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.GLOWING, 200, 1));
+                                    ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 1));
+                                }
                                 if (entity instanceof ServerPlayer) {
                                     ServerPlayer badPlayer = (ServerPlayer) entity;
-                                    ModMessages.sendToPlayer(new BackpedalS2CPacket(),badPlayer);
+                                    ModMessages.sendToPlayer(new AccelerateS2CPacket(player.getLookAngle()),badPlayer);
                                 }
                             }
                         }

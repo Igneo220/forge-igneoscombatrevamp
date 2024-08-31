@@ -558,6 +558,7 @@
       "armor_trimmed_minecraft:wayfinder_armor_trim_smithing_template_smithing_trim": "2024-07-30 13:34:20 -0400",
       "armor_trimmed_minecraft:silence_armor_trim_smithing_template_smithing_trim": "2024-07-30 15:44:13 -0400",
       "armor_trimmed_minecraft:tide_armor_trim_smithing_template_smithing_trim": "2024-07-30 13:16:48 -0400",
+      "armor_trimmed_minecraft:vex_armor_trim_smithing_template_smithing_trim": "2024-08-30 23:35:50 -0400",
       "armor_trimmed_minecraft:ward_armor_trim_smithing_template_smithing_trim": "2024-08-15 01:20:16 -0400",
       "armor_trimmed_minecraft:snout_armor_trim_smithing_template_smithing_trim": "2024-07-30 02:13:55 -0400",
       "armor_trimmed_minecraft:rib_armor_trim_smithing_template_smithing_trim": "2024-07-30 14:58:15 -0400"
@@ -873,6 +874,18 @@
   "minecraft:story/enter_the_end": {
     "criteria": {
       "entered_end": "2024-08-15 04:16:34 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/vex_armor_trim_smithing_template_smithing_trim": {
+    "criteria": {
+      "has_smithing_trim_template": "2024-08-30 23:35:26 -0400"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/vex_armor_trim_smithing_template": {
+    "criteria": {
+      "has_vex_armor_trim_smithing_template": "2024-08-30 23:35:26 -0400"
     },
     "done": true
   },

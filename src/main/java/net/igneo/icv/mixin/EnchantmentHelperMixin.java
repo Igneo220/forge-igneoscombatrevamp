@@ -105,7 +105,7 @@ public class EnchantmentHelperMixin {
                     if (!pStack.toString().contains("air") && pStack.serializeNBT().toString().contains("tag")) {
                         if (pStack.getTag().getAllKeys().contains("Trim")) {
                             Tag tag = pStack.getTag().get("Trim");
-                            if (tag.toString().contains("vex")) {
+                            if (tag.toString().contains("ward")) {
                                 protInt += 3;
                             }
                         }

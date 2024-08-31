@@ -84,8 +84,20 @@ public class StoneCallerC2SPacket {
                     int step = 0;
                     for (int j = 0; j < 25; ++j) {
                         if (level.getBlockState(new BlockPos(enchVar.getStoneX() + (j*d0),enchVar.getStoneY() + step,enchVar.getStoneZ() + (j*d1))).is(BlockTags.REPLACEABLE)) {
-                            enchVar.setStoneLookX(j*d0);
-                            enchVar.setStoneLookZ(j*d1);
+                            boolean findingFloor = true;
+                            while (findingFloor) {
+                                if (level.getBlockState(new BlockPos(enchVar.getStoneX() + (j * d0), enchVar.getStoneY() + step - 1, enchVar.getStoneZ() + (j * d1))).is(BlockTags.REPLACEABLE)) {
+                                    --step;
+                                } else {
+                                    findingFloor = false;
+                                }
+                            }
+                            if (step > -20) {
+                                enchVar.setStoneLookX(j * d0);
+                                enchVar.setStoneLookZ(j * d1);
+                            } else {
+                                break;
+                            }
                         } else {
                             if (level.getBlockState(new BlockPos(enchVar.getStoneX() + (j*d0),enchVar.getStoneY() + step + 1,enchVar.getStoneZ() + (j*d1))).is(BlockTags.REPLACEABLE)){
                                 enchVar.setStoneLookX(j*d0);

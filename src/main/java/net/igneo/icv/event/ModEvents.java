@@ -24,6 +24,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -185,6 +187,21 @@ public class ModEvents {
                         event.setCanceled(true);
                     }
                 }
+                int trimCount = 0;
+                for (int j = 0; j < 4; ++j) {
+                    if (!player.getInventory().getArmor(j).toString().contains("air") && uniPlayer.getInventory().getArmor(j).serializeNBT().toString().contains("Trim")) {
+                        if (player.getInventory().getArmor(j).getTag().getAllKeys().contains("Trim")) {
+                            Tag tag = player.getInventory().getArmor(j).getTag().get("Trim");
+                            if (tag.toString().contains("vex")) {
+                                ++trimCount;
+                            }
+                        }
+                    }
+                }
+                if (trimCount > 0) {
+                    player.removeEffect(MobEffects.REGENERATION);
+                    enchVar.setVexTimer(System.currentTimeMillis() + (10000 - (trimCount * 1500L)));
+                }
             });
         }
     }
@@ -296,7 +313,7 @@ public class ModEvents {
                     }
                     boolean findFloor = true;
                     while (findFloor) {
-                        if (!(level.getBlockState(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p + climb - 1, enchVar.getStoneZ() + (j * m1))).getBlock().equals(Blocks.DRIPSTONE_BLOCK) || level.getBlockState(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p + climb - 1, enchVar.getStoneZ() + (j * m1))).getBlock().equals(Blocks.POINTED_DRIPSTONE))) {
+                        if (!(level.getBlockState(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p + climb - 1, enchVar.getStoneZ() + (j * m1))).getBlock().equals(Blocks.DRIPSTONE_BLOCK) || level.getBlockState(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p + climb - 1, enchVar.getStoneZ() + (j * m1))).getBlock().equals(Blocks.POINTED_DRIPSTONE)) && !level.getBlockState(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + p + climb, enchVar.getStoneZ() + (j * m1))).is(BlockTags.REPLACEABLE)) {
                             findFloor = false;
                         } else {
                             --climb;
@@ -322,6 +339,11 @@ public class ModEvents {
             if (event.player.level() instanceof ServerLevel) {
                 ServerPlayer player = (ServerPlayer) event.player;
                 ServerLevel level = player.serverLevel();
+
+                if (enchVar.getVexTimer() != 0 && enchVar.getVexTimer() < System.currentTimeMillis()) {
+                    player.addEffect(new MobEffectInstance(MobEffects.REGENERATION,150,1));
+                    enchVar.setVexTimer(0);
+                }
 
                 if (enchVar.getConcussed() && player.onGround()) {
                     player.getAttributes().getInstance(ForgeMod.ENTITY_GRAVITY.get()).removeModifier(CONCUSSION_GRAVITY_MODIFIER_UUID);
@@ -621,7 +643,7 @@ public class ModEvents {
             if (snoutTrim > 0 || snoutTrim != enchVar.getSnoutBuff()) {
                 player.getAttributes().getInstance(Attributes.ATTACK_SPEED).removeModifier(SNOUT_ATTACK_SPEED_MODIFIER_UUID);
                 player.getAttributes().getInstance(Attributes.MAX_HEALTH).removeModifier(SNOUT_HEALTH_MODIFIER_UUID);
-                player.getAttributes().getInstance(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(SNOUT_ATTACK_SPEED_MODIFIER_UUID, "Snout attack speed boost", (double) snoutTrim / 10, AttributeModifier.Operation.ADDITION));
+                player.getAttributes().getInstance(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(SNOUT_ATTACK_SPEED_MODIFIER_UUID, "Snout attack speed boost", (double) snoutTrim / 6, AttributeModifier.Operation.ADDITION));
                 player.getAttributes().getInstance(Attributes.MAX_HEALTH).addTransientModifier(new AttributeModifier(SNOUT_HEALTH_MODIFIER_UUID, "Snout health debuff", (double) -snoutTrim * 4, AttributeModifier.Operation.ADDITION));
                 enchVar.setSnoutBuff(snoutTrim);
             }
@@ -638,7 +660,7 @@ public class ModEvents {
             if (silenceTrim > 0 || silenceTrim != enchVar.getSilenceBuff()) {
                 player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).removeModifier(SILENCE_DAMAGE_MODIFIER_UUID);
                 player.getAttributes().getInstance(Attributes.ATTACK_SPEED).removeModifier(SILENCE_ATTACK_SPEED_MODIFIER_UUID);
-                player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).addTransientModifier(new AttributeModifier(SILENCE_DAMAGE_MODIFIER_UUID, "silence damage boost", (double) silenceTrim/2, AttributeModifier.Operation.ADDITION));
+                player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).addTransientModifier(new AttributeModifier(SILENCE_DAMAGE_MODIFIER_UUID, "silence damage boost", (double) silenceTrim/1.5, AttributeModifier.Operation.ADDITION));
                 player.getAttributes().getInstance(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(SILENCE_ATTACK_SPEED_MODIFIER_UUID, "silence attack speed debuff", (double) -silenceTrim/5, AttributeModifier.Operation.ADDITION));
                 enchVar.setSilenceBuff(silenceTrim);
             }
