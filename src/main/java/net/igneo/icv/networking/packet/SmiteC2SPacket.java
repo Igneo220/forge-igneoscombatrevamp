@@ -47,7 +47,7 @@ public class SmiteC2SPacket {
                 level.sendParticles(ModParticles.SMITE_PARTICLE.get(),player.getX(),player.getEyeY(),player.getZ(),5,0,0,0,1);
                 player.addDeltaMovement(new Vec3(player.getLookAngle().x/10,-0.2,player.getLookAngle().z/10).reverse());
                 level.playSound(null,player.blockPosition(),SoundEvents.PLAYER_ATTACK_SWEEP,SoundSource.PLAYERS,1F,0.5F);
-                ModEntities.BOLT.get().spawn(level,player.blockPosition(), MobSpawnType.TRIGGERED).setDeltaMovement(player.getLookAngle().scale(2));
+                ModEntities.BOLT.get().spawn(level,player.blockPosition(), MobSpawnType.TRIGGERED).setDeltaMovement(player.getLookAngle().scale(2.5));
             }
 
         });

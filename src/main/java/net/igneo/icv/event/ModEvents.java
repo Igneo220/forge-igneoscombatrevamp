@@ -189,7 +189,7 @@ public class ModEvents {
                 }
                 int trimCount = 0;
                 for (int j = 0; j < 4; ++j) {
-                    if (!player.getInventory().getArmor(j).toString().contains("air") && uniPlayer.getInventory().getArmor(j).serializeNBT().toString().contains("Trim")) {
+                    if (!player.getInventory().getArmor(j).toString().contains("air") && player.getInventory().getArmor(j).serializeNBT().toString().contains("Trim")) {
                         if (player.getInventory().getArmor(j).getTag().getAllKeys().contains("Trim")) {
                             Tag tag = player.getInventory().getArmor(j).getTag().get("Trim");
                             if (tag.toString().contains("vex")) {
