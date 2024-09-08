@@ -40,6 +40,7 @@ public class SmiteC2SPacket {
 
             if (boltsShot == 0) {
                 player.setDeltaMovement(0,1,0);
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,100,2));
                 player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING,75,99));
                 level.sendParticles(ModParticles.SMITE_PARTICLE.get(),player.getX(),player.getY() + 0.5,player.getZ(),5,0,0,0,1);
                 level.playSound(null,player.blockPosition(), SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.PLAYERS,1,2);

@@ -43,7 +43,7 @@ public class WardenspineC2SPacket {
             if (blind == 2) {
                 level.playSound(null,player.blockPosition(), SoundEvents.WARDEN_ANGRY, SoundSource.PLAYERS);
                 player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS,99999999,99));
-                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,50,2));
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,100,2));
                 player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).addTransientModifier(new AttributeModifier(SIGHT_MODIFIER_WARDENSPINE_UUID, "Warden sight", 6, AttributeModifier.Operation.ADDITION));
             } else if (blind == 1) {
                 level.playSound(null,player.blockPosition(),SoundEvents.WARDEN_DEATH,SoundSource.PLAYERS);

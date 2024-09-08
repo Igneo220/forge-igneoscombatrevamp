@@ -33,7 +33,7 @@ public class BlizzardEnchantment extends Enchantment {
         } else if (doBeIcin && System.currentTimeMillis() <= iceTime + 3000) {
             if (System.currentTimeMillis() >= iceTime + iceDelay) {
                 ModMessages.sendToServer(new BlizzardC2SPacket());
-                iceDelay += 75;
+                iceDelay += 55;
             }
         } else if (doBeIcin) {
             EnchantmentHudOverlay.blizzardFrames = 0;

@@ -52,7 +52,7 @@ public class BlizzardC2SPacket {
             for (ServerPlayer player1 : level.players()) {
                 level.sendParticles(ModParticles.ICE_SPAWN_PARTICLE.get(), player.getX(), player.getEyeY(), player.getZ(), 1, 0, 0, 0, 0.1);
             }
-            ModEntities.ICICLE.get().spawn(level,player.blockPosition().atY((int) player.getEyeY()), MobSpawnType.MOB_SUMMONED).setTrajectory(new Vec3(player.getLookAngle().x + (Math.random() * x), player.getLookAngle().y + (Math.random() * y),player.getLookAngle().z + (Math.random() * z)));
+            ModEntities.ICICLE.get().spawn(level,player.blockPosition().atY((int) player.getEyeY()), MobSpawnType.MOB_SUMMONED).setTrajectory(new Vec3(player.getLookAngle().scale(1.5).x + (Math.random() * x), player.getLookAngle().scale(1.5).y + (Math.random() * y),player.getLookAngle().scale(1.5).z + (Math.random() * z)));
         });
         return true;
     }

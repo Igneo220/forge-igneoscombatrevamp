@@ -1,5 +1,6 @@
 package net.igneo.icv.networking.packet;
 
+import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.phys.Vec3;
@@ -33,7 +34,12 @@ public class AccelerateS2CPacket {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
             Vec3 enemyLook = new Vec3(x,y,z);;
-            Minecraft.getInstance().player.addDeltaMovement(enemyLook);
+            Minecraft.getInstance().player.setDeltaMovement(enemyLook);
+            if (y == 1) {
+                Minecraft.getInstance().player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+                    enchVar.setConcussed(true);
+                });
+            }
         });
         return true;
     }

@@ -52,10 +52,7 @@ public class ConcussHurtC2SPacket {
             if (target instanceof ServerPlayer) {
                 ServerPlayer playerTarget = (ServerPlayer) target;
                 ModMessages.sendToPlayer(new AccelerateS2CPacket(new Vec3(0,1,0)),playerTarget);
-                playerTarget.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-                    enchVar.setConcussed(true);
-                });
-                playerTarget.getAttributes().getInstance(ForgeMod.ENTITY_GRAVITY.get()).addTransientModifier(new AttributeModifier(CONCUSSION_GRAVITY_MODIFIER_UUID, "Concussion gravity decrease", (double) -0.02, AttributeModifier.Operation.ADDITION));
+                playerTarget.getAttributes().getInstance(ForgeMod.ENTITY_GRAVITY.get()).addTransientModifier(new AttributeModifier(CONCUSSION_GRAVITY_MODIFIER_UUID, "Concussion gravity decrease", (double) -0.03, AttributeModifier.Operation.ADDITION));
             } else {
                 target.setDeltaMovement(new Vec3(0, 1, 0));
             }
