@@ -8,6 +8,8 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
+import static net.igneo.icv.event.ModEvents.uniPlayer;
+
 public class AccelerateS2CPacket {
 
     private final double x;
@@ -34,12 +36,10 @@ public class AccelerateS2CPacket {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
             Vec3 enemyLook = new Vec3(x,y,z);;
-            Minecraft.getInstance().player.setDeltaMovement(enemyLook);
-            if (y == 1) {
-                Minecraft.getInstance().player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-                    enchVar.setConcussed(true);
-                });
-            }
+            uniPlayer.setDeltaMovement(enemyLook);
+            uniPlayer.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+                enchVar.setConcussed(true);
+            });
         });
         return true;
     }

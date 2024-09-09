@@ -125,30 +125,58 @@ public class StoneCallerC2SPacket {
                 } else if (enchVar.getStoneLookZ() == 0) {
                     m1 = 0;
                 }
+                int ceilingOffset = 0;
                 int offset = 0;
                 for (int j = 0; j <= i; ++j) {
                     if (level.getBlockState(new BlockPos(enchVar.getStoneX() + (j*m0), enchVar.getStoneY() + next + offset, enchVar.getStoneZ() + (j*m1))).is(BlockTags.REPLACEABLE)) {
                         boolean findFloor = true;
                         while (findFloor) {
-                            if (!level.getBlockState(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + next + offset - 1, enchVar.getStoneZ() + (j * m1))).is(BlockTags.REPLACEABLE)) {
-                                findFloor = false;
+                            if (!level.getBlockState(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + offset - 1, enchVar.getStoneZ() + (j * m1))).is(BlockTags.REPLACEABLE)) {
+                                if (!level.getBlockState(new BlockPos(enchVar.getStoneX() + (j*m0), enchVar.getStoneY() + offset -1, enchVar.getStoneZ() + (j*m1))).getBlock().equals(Blocks.DRIPSTONE_BLOCK) && !level.getBlockState(new BlockPos(enchVar.getStoneX() + (j*m0), enchVar.getStoneY() + offset - 1, enchVar.getStoneZ() + (j*m1))).getBlock().equals(Blocks.POINTED_DRIPSTONE)) {
+                                    findFloor = false;
+                                } else {
+                                    --offset;
+                                }
                             } else {
                                 --offset;
                             }
                         }
-                        if (next < enchVar.getStoneCeiling() - 2) {
+                        for (int p = 0; p <= enchVar.getStoneCeiling(); ++p) {
+                            if (!level.getBlockState(new BlockPos(enchVar.getStoneX() + (j*m0), enchVar.getStoneY() + offset + p, enchVar.getStoneZ() + (j*m1))).is(BlockTags.REPLACEABLE)) {
+                                if (!level.getBlockState(new BlockPos(enchVar.getStoneX() + (j*m0), enchVar.getStoneY() + offset + p, enchVar.getStoneZ() + (j*m1))).getBlock().equals(Blocks.DRIPSTONE_BLOCK) && !level.getBlockState(new BlockPos(enchVar.getStoneX() + (j*m0), enchVar.getStoneY() + offset + p, enchVar.getStoneZ() + (j*m1))).getBlock().equals(Blocks.POINTED_DRIPSTONE)) {
+                                    ceilingOffset = enchVar.getStoneCeiling() - p;
+                                    break;
+                                }
+                            }
+                            if (p == enchVar.getStoneCeiling()) {
+                                ceilingOffset = 0;
+                            }
+                        }
+                        System.out.println("step: " + next + " ceiling: " + (enchVar.getStoneCeiling() - ceilingOffset));
+                        if (next < enchVar.getStoneCeiling() - 2 - ceilingOffset) {
                             level.playSound(null, new BlockPos(enchVar.getStoneX(), enchVar.getStoneY() + next + offset, enchVar.getStoneZ()), SoundType.DEEPSLATE_BRICKS.getBreakSound(), SoundSource.PLAYERS, 10F, 0.1F);
                             level.setBlock(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + next+ offset, enchVar.getStoneZ() + (j * m1)), Blocks.DRIPSTONE_BLOCK.defaultBlockState(), 2);
-                        } else if (next < enchVar.getStoneCeiling()){
+                        } else if (next < enchVar.getStoneCeiling() - ceilingOffset){
                             level.playSound(null, new BlockPos(enchVar.getStoneX(), enchVar.getStoneY() + next + offset, enchVar.getStoneZ()), SoundType.DEEPSLATE_BRICKS.getBreakSound(), SoundSource.PLAYERS, 10F, 1.1F);
                             level.setBlock(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + next+ offset, enchVar.getStoneZ() + (j * m1)), Blocks.POINTED_DRIPSTONE.defaultBlockState(), 2);
                         }
                     } else if (level.getBlockState(new BlockPos(enchVar.getStoneX() + (j*m0), enchVar.getStoneY() + next + offset + 1, enchVar.getStoneZ() + (j*m1))).is(BlockTags.REPLACEABLE)) {
                         ++offset;
-                        if (next < enchVar.getStoneCeiling() - 2) {
+                        for (int p = 0; p <= enchVar.getStoneCeiling(); ++p) {
+                            if (!level.getBlockState(new BlockPos(enchVar.getStoneX() + (j*m0), enchVar.getStoneY() + offset + p, enchVar.getStoneZ() + (j*m1))).is(BlockTags.REPLACEABLE)) {
+                                if (!level.getBlockState(new BlockPos(enchVar.getStoneX() + (j*m0), enchVar.getStoneY() + offset + p, enchVar.getStoneZ() + (j*m1))).getBlock().equals(Blocks.DRIPSTONE_BLOCK) && !level.getBlockState(new BlockPos(enchVar.getStoneX() + (j*m0), enchVar.getStoneY() + offset + p, enchVar.getStoneZ() + (j*m1))).getBlock().equals(Blocks.POINTED_DRIPSTONE)) {
+                                    ceilingOffset = enchVar.getStoneCeiling() - p;
+                                    break;
+                                }
+                            }
+                            if (p == enchVar.getStoneCeiling()) {
+                                ceilingOffset = 0;
+                            }
+                        }
+                        if (next < enchVar.getStoneCeiling() - 2 - ceilingOffset) {
                             level.playSound(null, new BlockPos(enchVar.getStoneX(), enchVar.getStoneY() + next + offset, enchVar.getStoneZ()), SoundType.DEEPSLATE_BRICKS.getBreakSound(), SoundSource.PLAYERS, 10F, 0.1F);
                             level.setBlock(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + next+ offset, enchVar.getStoneZ() + (j * m1)), Blocks.DRIPSTONE_BLOCK.defaultBlockState(), 2);
-                        } else if (next < enchVar.getStoneCeiling()){
+                        } else if (next < enchVar.getStoneCeiling() - ceilingOffset){
                             level.playSound(null, new BlockPos(enchVar.getStoneX(), enchVar.getStoneY() + next + offset, enchVar.getStoneZ()), SoundType.DEEPSLATE_BRICKS.getBreakSound(), SoundSource.PLAYERS, 10F, 1.1F);
                             level.setBlock(new BlockPos(enchVar.getStoneX() + (j * m0), enchVar.getStoneY() + next+ offset, enchVar.getStoneZ() + (j * m1)), Blocks.POINTED_DRIPSTONE.defaultBlockState(), 2);
                         }

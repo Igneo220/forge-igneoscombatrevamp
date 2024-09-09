@@ -238,6 +238,11 @@ public class ModMessages {
                 .encoder(ArmorS2CPacket::toBytes)
                 .consumerMainThread(ArmorS2CPacket::handle)
                 .add();
+        net.messageBuilder(AccelerateS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(AccelerateS2CPacket::new)
+                .encoder(AccelerateS2CPacket::toBytes)
+                .consumerMainThread(AccelerateS2CPacket::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG message) {

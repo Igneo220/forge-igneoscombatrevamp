@@ -171,10 +171,6 @@ public class BowItemMixin{
                                     ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.GLOWING, 200, 1));
                                     ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 10, 1));
                                 }
-                                if (entity instanceof ServerPlayer) {
-                                    ServerPlayer badPlayer = (ServerPlayer) entity;
-                                    ModMessages.sendToPlayer(new AccelerateS2CPacket(player.getLookAngle()),badPlayer);
-                                }
                             }
                         }
                     });
