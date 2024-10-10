@@ -41,18 +41,19 @@ public class WardenspineC2SPacket {
 
 
             if (blind == 2) {
+                //player.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
                 level.playSound(null,player.blockPosition(), SoundEvents.WARDEN_ANGRY, SoundSource.PLAYERS);
                 player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS,99999999,99));
-                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,100,2));
+                //player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,100,2));
                 player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).addTransientModifier(new AttributeModifier(SIGHT_MODIFIER_WARDENSPINE_UUID, "Warden sight", 6, AttributeModifier.Operation.ADDITION));
             } else if (blind == 1) {
                 level.playSound(null,player.blockPosition(),SoundEvents.WARDEN_DEATH,SoundSource.PLAYERS);
                 player.removeEffect(MobEffects.BLINDNESS);
-                player.removeEffect(MobEffects.MOVEMENT_SPEED);
+                //player.removeEffect(MobEffects.MOVEMENT_SPEED);
                 player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).removeModifier(UUID.fromString("9b3c6774-e4f3-4f36-b7c5-6ee971580f90"));
             } else if (blind == 0) {
                 player.removeEffect(MobEffects.BLINDNESS);
-                player.removeEffect(MobEffects.MOVEMENT_SPEED);
+                //player.removeEffect(MobEffects.MOVEMENT_SPEED);
                 player.getAttributes().getInstance(Attributes.ATTACK_DAMAGE).removeModifier(UUID.fromString("9b3c6774-e4f3-4f36-b7c5-6ee971580f90"));
             } else if (blind == -1) {
                 player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS,99999999,99));

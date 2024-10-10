@@ -43,10 +43,12 @@ public class MomentumC2SPacket {
             ServerLevel level = player.serverLevel();
 
             if (loopCount == 0) {
+                if (player.getAttributes().hasModifier(Attributes.MOVEMENT_SPEED,SPEED_MODIFIER_MOMENTUM_UUID2) || player.getAttributes().hasModifier(Attributes.MOVEMENT_SPEED,SPEED_MODIFIER_MOMENTUM_UUID3)) {
+                    level.playSound(null,player.blockPosition(), ModSounds.MOMENTUM_LOSE.get(), SoundSource.PLAYERS,1,1F);
+                }
                 player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).removeModifier(SPEED_MODIFIER_MOMENTUM_UUID);
                 player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).removeModifier(SPEED_MODIFIER_MOMENTUM_UUID2);
                 player.getAttributes().getInstance(Attributes.MOVEMENT_SPEED).removeModifier(SPEED_MODIFIER_MOMENTUM_UUID3);
-                level.playSound(null,player.blockPosition(), ModSounds.MOMENTUM_LOSE.get(), SoundSource.PLAYERS,1,1F);
             } else {
                 level.sendParticles(ModParticles.MOMENTUM_PARTICLE.get(), player.getX(),player.getEyeY(),player.getZ(),5,0,0,0,1);
             }

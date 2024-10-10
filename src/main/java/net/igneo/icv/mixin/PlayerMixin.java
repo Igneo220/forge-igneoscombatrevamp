@@ -2,6 +2,7 @@ package net.igneo.icv.mixin;
 
 import net.igneo.icv.enchantment.ModEnchantments;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;

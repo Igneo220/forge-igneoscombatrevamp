@@ -3,8 +3,8 @@ Specification-Title: icv
 Specification-Vendor: Igneo
 Specification-Version: 1
 Implementation-Title: forge-igneoscombatrevamp
-Implementation-Version: 1.4.5
+Implementation-Version: 1.5.0
 Implementation-Vendor: Igneo
-Implementation-Timestamp: 2024-09-08T20:24:41-0400
+Implementation-Timestamp: 2024-10-10T19:10:09-0400
 MixinConfigs: mixins.icv.json
 

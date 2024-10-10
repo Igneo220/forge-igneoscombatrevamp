@@ -30,13 +30,18 @@ public class BlitzEnchantment extends Enchantment {
             pAttacker.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
                 ServerPlayer player = (ServerPlayer) pAttacker;
                 ServerLevel level = player.serverLevel();
-                enchVar.addBlitzBoostCount();
+                if (player.fallDistance <= 0) {
+                    enchVar.addBlitzBoostCount();
+                } else {
+                    enchVar.addBlitzBoostCount();
+                    enchVar.addBlitzBoostCount();
+                    enchVar.addBlitzBoostCount();
+                }
                 enchVar.setBlitzTime(System.currentTimeMillis());
                 if (enchVar.getBlitzBoostCount() > 0) {
                     level.sendParticles(ModParticles.ATTACK_SPEED_PARTICLE.get(), player.getX(), player.getY() + 1.5, player.getZ(), 5, Math.random(), Math.random(), Math.random(), 0.5);
                     level.playSound(null, player.blockPosition(), SoundEvents.ARROW_HIT_PLAYER, SoundSource.PLAYERS, 0.5F, (float) 0.3 + ((float) enchVar.getBlitzBoostCount() / 10));
                     player.getAttributes().getInstance(Attributes.ATTACK_SPEED).removeModifier(ATTACK_SPEED_MODIFIER_UUID);
-                    System.out.println(enchVar.getBlitzBoostCount());
                     player.getAttributes().getInstance(Attributes.ATTACK_SPEED).addTransientModifier(new AttributeModifier(ATTACK_SPEED_MODIFIER_UUID, "Attack speed boost blitz", enchVar.getBlitzBoostCount()/10F, AttributeModifier.Operation.ADDITION));
                 }
                 ModMessages.sendToPlayer(new BlitzNBTUpdateS2CPacket(enchVar.getBlitzBoostCount(), enchVar.getBlitzTime()), player);

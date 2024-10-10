@@ -15,6 +15,9 @@
     "net/igneo/icv/mixin/LivingEntityMixin": {
       "hurt": "Lnet/minecraft/world/entity/LivingEntity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
     },
+    "net/igneo/icv/mixin/LocalPlayerMixin": {
+      "aiStep": "Lnet/minecraft/client/player/LocalPlayer;m_8107_()V"
+    },
     "net/igneo/icv/mixin/ThrownTridentMixin": {
       "tick": "Lnet/minecraft/world/entity/projectile/ThrownTrident;m_8119_()V",
       "onHitEntity": "Lnet/minecraft/world/entity/projectile/ThrownTrident;m_5790_(Lnet/minecraft/world/phys/EntityHitResult;)V"
@@ -42,6 +45,9 @@
       },
       "net/igneo/icv/mixin/LivingEntityMixin": {
         "hurt": "Lnet/minecraft/world/entity/LivingEntity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
+      },
+      "net/igneo/icv/mixin/LocalPlayerMixin": {
+        "aiStep": "Lnet/minecraft/client/player/LocalPlayer;m_8107_()V"
       },
       "net/igneo/icv/mixin/ThrownTridentMixin": {
         "tick": "Lnet/minecraft/world/entity/projectile/ThrownTrident;m_8119_()V",

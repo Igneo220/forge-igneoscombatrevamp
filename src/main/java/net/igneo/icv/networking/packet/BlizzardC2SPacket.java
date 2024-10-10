@@ -13,15 +13,16 @@ import java.util.function.Supplier;
 
 
 public class BlizzardC2SPacket {
-    public BlizzardC2SPacket(){
-
+    private final boolean shoot;
+    public BlizzardC2SPacket(boolean doshoot){
+        shoot = doshoot;
     }
     public BlizzardC2SPacket(FriendlyByteBuf buf) {
-
+        shoot = buf.readBoolean();
     }
 
     public void toBytes(FriendlyByteBuf buf) {
-
+        buf.writeBoolean(shoot);
     }
 
     public boolean handle(Supplier<NetworkEvent.Context> supplier) {
@@ -52,7 +53,9 @@ public class BlizzardC2SPacket {
             for (ServerPlayer player1 : level.players()) {
                 level.sendParticles(ModParticles.ICE_SPAWN_PARTICLE.get(), player.getX(), player.getEyeY(), player.getZ(), 1, 0, 0, 0, 0.1);
             }
-            ModEntities.ICICLE.get().spawn(level,player.blockPosition().atY((int) player.getEyeY()), MobSpawnType.MOB_SUMMONED).setTrajectory(new Vec3(player.getLookAngle().scale(1.5).x + (Math.random() * x), player.getLookAngle().scale(1.5).y + (Math.random() * y),player.getLookAngle().scale(1.5).z + (Math.random() * z)));
+            if (shoot) {
+                ModEntities.ICICLE.get().spawn(level, player.blockPosition().atY((int) player.getEyeY()), MobSpawnType.MOB_SUMMONED).setTrajectory(new Vec3(player.getLookAngle().scale(1.5).x + (Math.random() * x), player.getLookAngle().scale(1.5).y + (Math.random() * y), player.getLookAngle().scale(1.5).z + (Math.random() * z)));
+            }
         });
         return true;
     }

@@ -186,5 +186,11 @@
     "sounds": [
       "icv:traindash"
     ]
+  },
+  "ws_charge": {
+    "subtitles": "sounds.icv.wscharge",
+    "sounds": [
+      "icv:ws_charge"
+    ]
   }
 }

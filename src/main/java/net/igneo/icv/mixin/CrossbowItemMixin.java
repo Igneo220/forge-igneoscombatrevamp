@@ -70,8 +70,8 @@ public class CrossbowItemMixin {
                     ServerLevel level = (ServerLevel) pLevel;
                     level.playSound(null,pShooter.blockPosition(),ModSounds.SCATTER.get(), SoundSource.PLAYERS);
                     scatterProjectile = createArrow(pLevel,pShooter,pCrossbowStack,pAmmoStack);
-                    projectile.shoot((double) vector3f.x(), (double) vector3f.y(), (double) vector3f.z(), pVelocity/4, (float) (Math.random() * 50));
-                    scatterProjectile.shoot((double) vector3f.x(), (double) vector3f.y(), (double) vector3f.z(), pVelocity/4, (float) (Math.random() * 25));
+                    projectile.shoot((double) vector3f.x(), (double) vector3f.y(), (double) vector3f.z(), pVelocity/3, (float) (Math.random() * 50));
+                    scatterProjectile.shoot((double) vector3f.x(), (double) vector3f.y(), (double) vector3f.z(), pVelocity/3, (float) (Math.random() * 25));
                 } else if (EnchantmentHelper.getEnchantments(pCrossbowStack).containsKey(ModEnchantments.MITOSIS.get())){
                     if (pLevel instanceof ServerLevel) {
                         ServerLevel level = (ServerLevel) pLevel;

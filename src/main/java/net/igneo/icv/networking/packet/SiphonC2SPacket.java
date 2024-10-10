@@ -5,6 +5,8 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraftforge.network.NetworkEvent;
 
@@ -33,8 +35,9 @@ public class SiphonC2SPacket {
             level.sendParticles(ModParticles.SIPHON_PARTICLE.get(),player.getX(),player.getEyeY(),player.getZ(),5,0,0,0,1);
             level.playSound(null,player.blockPosition(), SoundType.ANVIL.getPlaceSound(), SoundSource.PLAYERS,1,1.3F);
 
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,40,2));
             player.heal(1);
-            player.setHealth(player.getHealth() + 1);
+            player.setHealth(player.getHealth() + 2);
 
             player.getInventory().getArmor(0).setDamageValue(player.getInventory().getArmor(0).getDamageValue() + 10);
             player.getInventory().getArmor(1).setDamageValue(player.getInventory().getArmor(1).getDamageValue() + 10);

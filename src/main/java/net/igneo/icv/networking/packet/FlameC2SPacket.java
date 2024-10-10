@@ -21,15 +21,16 @@ import java.util.function.Supplier;
 
 
 public class FlameC2SPacket {
-    public FlameC2SPacket(){
-
+    private final boolean shoot;
+    public FlameC2SPacket(boolean doshoot){
+        shoot = doshoot;
     }
     public FlameC2SPacket(FriendlyByteBuf buf) {
-
+        shoot = buf.readBoolean();
     }
 
     public void toBytes(FriendlyByteBuf buf) {
-
+        buf.writeBoolean(shoot);
     }
 
     public boolean handle(Supplier<NetworkEvent.Context> supplier) {
@@ -59,10 +60,13 @@ public class FlameC2SPacket {
             } else {
                 z = -i;
             }
-            Vec3 newlook = new Vec3(look.x + (Math.random() * x), look.y,look.z + (Math.random() * z));
-            ModEntities.FIRE.get().spawn(level,player.blockPosition().atY((int) player.getEyeY()), MobSpawnType.MOB_SUMMONED).setTrajectory(newlook);
+            Vec3 newlook = new Vec3(look.x + (Math.random() * x)/2, look.y,look.z + (Math.random() * z)/2);
+            if (shoot) {
+                level.playSound(null,player.blockPosition(), SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS);
+                ModEntities.FIRE.get().spawn(level, player.blockPosition().atY((int) player.getEyeY()), MobSpawnType.MOB_SUMMONED).setTrajectory(newlook);
+            }
             level.sendParticles(ParticleTypes.FLAME, player.getX(),player.getEyeY(),player.getZ(),2,0,0,0,0.1);
-            level.playSound(null,player.blockPosition(), SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS);
+
         });
         return true;
     }

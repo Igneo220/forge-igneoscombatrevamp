@@ -37,9 +37,6 @@ public class AccelerateS2CPacket {
         context.enqueueWork(() -> {
             Vec3 enemyLook = new Vec3(x,y,z);;
             uniPlayer.setDeltaMovement(enemyLook);
-            uniPlayer.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-                enchVar.setConcussed(true);
-            });
         });
         return true;
     }

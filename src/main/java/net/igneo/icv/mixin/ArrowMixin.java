@@ -110,7 +110,7 @@ public class ArrowMixin extends AbstractArrow {
                     ((LivingEntity) entity1).setLastHurtMob(entity);
                 }
             }
-            entity.hurt(damagesource, 1.5F);
+            entity.hurt(damagesource, 2.5F);
             this.discard();
         } else if (this.getTags().contains("whistle")) {
             Entity entity = pResult.getEntity();

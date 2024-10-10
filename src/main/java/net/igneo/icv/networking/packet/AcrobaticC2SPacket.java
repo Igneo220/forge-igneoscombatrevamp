@@ -8,6 +8,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.phys.Vec3;
@@ -38,6 +40,7 @@ public class AcrobaticC2SPacket {
             player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
                 enchVar.setAcrobatBonus(true);
                 player.addDeltaMovement(new Vec3(0, 0.5, 0));
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,80,1));
                 level.sendParticles(ParticleTypes.POOF, player.getX(), player.getY(), player.getZ(), 5, Math.random() / 5, Math.random() / 5, Math.random() / 5, 0.1);
                 level.playSound(null, player.blockPosition(), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1, 0.1F);
             });

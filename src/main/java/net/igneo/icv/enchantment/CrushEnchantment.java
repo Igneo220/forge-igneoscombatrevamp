@@ -19,6 +19,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -30,14 +31,24 @@ public class CrushEnchantment extends Enchantment {
     private static long crushTime = 0;
     private static long floatTime = 0;
     private static double fallDistance;
+
+    private static boolean pressed = false;
     public CrushEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
 
     public static void onClientTick() {
+        if (Minecraft.getInstance().options.keyShift.isDown()) {
+            pressed = true;
+        } else if (!uniPlayer.onGround() && pressed) {
+            uniPlayer.addDeltaMovement(new Vec3(0, -3, 0));
+            pressed = false;
+        } else {
+            pressed = false;
+        }
         if (uniPlayer.onGround()) {
             if (Minecraft.getInstance().options.keyShift.isDown()) {
-                if (fallDistance > 3.3) {
+                if (fallDistance > 3) {
                     ModMessages.sendToServer(new CrushC2SPacket());
                 }
             }
@@ -50,25 +61,25 @@ public class CrushEnchantment extends Enchantment {
             }
             if (EnchantmentHelper.getEnchantments(uniPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.STONE_CALLER.get()) || EnchantmentHelper.getEnchantments(uniPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.SKY_CHARGE.get())) {
                 if (uniPlayer.getDeltaMovement().y < 0) {
-                    if (System.currentTimeMillis() < floatTime + 300) {
+                    if (System.currentTimeMillis() < floatTime + 150) {
                         uniPlayer.setDeltaMovement(0, 0, 0);
                     } else {
                         if (fallDistance == 0) {
                             ModMessages.sendToServer(new CrushSoundC2SPacket());
                         }
                         fallDistance = uniPlayer.fallDistance;
-                        uniPlayer.setDeltaMovement(0, -1.5, 0);
+                        uniPlayer.addDeltaMovement(new Vec3(0, -1.5, 0));
                     }
                 }
             } else {
-                if (System.currentTimeMillis() < floatTime + 300) {
+                if (System.currentTimeMillis() < floatTime + 150) {
                     uniPlayer.setDeltaMovement(0, 0, 0);
                 } else {
                     if (fallDistance == 0) {
                         ModMessages.sendToServer(new CrushSoundC2SPacket());
                     }
                     fallDistance = uniPlayer.fallDistance;
-                    uniPlayer.setDeltaMovement(0, -1.5, 0);
+                    uniPlayer.addDeltaMovement(new Vec3(0, -1.5, 0));
                 }
             }
         }

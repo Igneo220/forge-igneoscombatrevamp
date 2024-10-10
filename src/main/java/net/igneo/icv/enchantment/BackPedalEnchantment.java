@@ -21,10 +21,8 @@ public class BackPedalEnchantment extends Enchantment {
     @Override
     public void doPostAttack(LivingEntity pAttacker, Entity pTarget, int pLevel) {
         if (pAttacker.level() instanceof ServerLevel) {
-            if (pAttacker.fallDistance > 0) {
-                ModMessages.sendToPlayer(new BackpedalS2CPacket(),(ServerPlayer) pAttacker);
-                pAttacker.addDeltaMovement(new Vec3(pAttacker.getLookAngle().reverse().x,0.2,pAttacker.getLookAngle().reverse().z));
-            }
+            ModMessages.sendToPlayer(new BackpedalS2CPacket(),(ServerPlayer) pAttacker);
+            pAttacker.addDeltaMovement(new Vec3(pAttacker.getLookAngle().reverse().x,0.2,pAttacker.getLookAngle().reverse().z));
         }
         super.doPostHurt(pAttacker, pTarget, pLevel);
     }

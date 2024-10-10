@@ -16,6 +16,7 @@
     "EnchantmentScreenMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
+    "LocalPlayerMixin",
     "PlayerMixin",
     "ThrownTridentMixin",
     "TridentItemMixin"

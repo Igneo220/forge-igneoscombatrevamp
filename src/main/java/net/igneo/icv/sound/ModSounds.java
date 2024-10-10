@@ -43,6 +43,7 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> PHASE = registerSoundEvents("phase");
     public static final RegistryObject<SoundEvent> SCATTER = registerSoundEvents("scatter");
     public static final RegistryObject<SoundEvent> TRAINDASH = registerSoundEvents("traindash");
+    public static final RegistryObject<SoundEvent> WS_CHARGE = registerSoundEvents("ws_charge");
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ICV.MOD_ID,name)));

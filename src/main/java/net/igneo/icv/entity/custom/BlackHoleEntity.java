@@ -1,9 +1,15 @@
 package net.igneo.icv.entity.custom;
 
+import net.igneo.icv.init.Keybindings;
+import net.igneo.icv.networking.ModMessages;
+import net.igneo.icv.networking.packet.BlockHoleMoveC2SPacket;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.sound.ModSounds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -45,6 +51,11 @@ public class BlackHoleEntity extends Fireball {
             if (this.getOwner() == null) {
                 this.setOwner(level().getNearestPlayer(this,4));
             }
+            if (this.getOwner() == Minecraft.getInstance().player) {
+                if (Keybindings.black_hole.isDown()) {
+                    ModMessages.sendToServer(new BlockHoleMoveC2SPacket(this.getId(), (this.getOwner().getX() - this.getX()), ((this.getOwner().getEyeY()-0.5) - this.getY()), (this.getOwner().getZ() - this.getZ())));
+                }
+            }
         }
         if (trajectory == null && !level().isClientSide && this.getOwner() != null) {
             trajectory = this.getOwner().getLookAngle().scale(0.15);
@@ -71,7 +82,7 @@ public class BlackHoleEntity extends Fireball {
                 if (entity.distanceTo(this) < 2 && entity != this && entity != this.getOwner() && !(entity instanceof BlackHoleEntity)) {
                     if (entity instanceof LivingEntity || entity instanceof ServerPlayer) {
                         LivingEntity entity1 = (LivingEntity) entity;
-                        entity1.hurt(this.damageSources().cramming(), 1);
+                        entity1.hurt(this.damageSources().cramming(), 3);
                     }
                     entity.addDeltaMovement((this.position().subtract(entity.position())).scale(0.14));
                 } else if (entity.distanceTo(this) < 10 && entity != this && entity != this.getOwner() && !(entity instanceof BlackHoleEntity)) {
@@ -84,7 +95,7 @@ public class BlackHoleEntity extends Fireball {
                 if (player.distanceTo(this) < 1 && Minecraft.getInstance().player != this.getOwner()) {
                     player.addDeltaMovement((this.position().subtract(player.position())).scale(0.14).scale(0.8));
                 } else if (player.distanceTo(this) < 10 && Minecraft.getInstance().player != this.getOwner()) {
-                    player.addDeltaMovement(pushVec.scale(0.6));
+                    player.addDeltaMovement(pushVec.scale(0.7));
                 }
                 //&& uniPlayer != this.getOwner()
         }

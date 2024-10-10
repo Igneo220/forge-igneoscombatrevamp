@@ -2,6 +2,7 @@ package net.igneo.icv.networking.packet;
 
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActions;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
+import net.igneo.icv.sound.ModSounds;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
@@ -34,6 +35,7 @@ public class ParryC2SPacket {
             ServerLevel level = player.serverLevel();
 
             player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(PlayerEnchantmentActions::setParryTime);
+            level.playSound(null, player.blockPosition(), ModSounds.COUNTERWEIGHTED_MISS.get(), SoundSource.PLAYERS);
         });
         return true;
     }

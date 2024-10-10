@@ -3,6 +3,9 @@ package net.igneo.icv.enchantment;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.sound.ModSounds;
+import net.minecraft.nbt.NbtUtils;
+import net.minecraft.nbt.Tag;
+import net.minecraft.nbt.TagParser;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
@@ -34,7 +37,7 @@ public class PhantomPainEnchantment extends Enchantment {
                         if (enchVar.getPhantomVictim() != pAttacker && enchVar.getPhantomVictim().isAlive()) {
                             level.sendParticles(ModParticles.PHANTOM_HEAL_PARTICLE.get(), enchVar.getPhantomVictim().getX(), enchVar.getPhantomVictim().getY() + 1.5, enchVar.getPhantomVictim().getZ(), 5, Math.random(), Math.random(), Math.random(), 0.5);
                             level.playSound(null, enchVar.getPhantomVictim().blockPosition(), ModSounds.PHANTOM_HEAL.get(), SoundSource.PLAYERS, 0.25F, (float) 0.3 + (float) abs(Math.random() + 0.5));
-                            enchVar.getPhantomVictim().heal(enchVar.getPhantomHurt());
+                            enchVar.getPhantomVictim().heal(8);
                             enchVar.resetPhantomHurt();
                             enchVar.deletePhantomVictim();
                             //if (!FMLEnvironment.dist.isClient()) {
@@ -46,10 +49,10 @@ public class PhantomPainEnchantment extends Enchantment {
                             enchVar.deletePhantomVictim();
                         }
                     }
+
                     enchVar.setPhantomVictim((LivingEntity) pAttacker);
                     enchVar.addPhantomHurt(2);
                     enchVar.setPhantomDelay(System.currentTimeMillis());
-
 
                     level.sendParticles(ModParticles.PHANTOM_HURT_PARTICLE.get(), pAttacker.getX(), pAttacker.getY() + 1.5, pAttacker.getZ(), 5, Math.random(), Math.random(), Math.random(), 0.5);
                     level.playSound(null, pAttacker.blockPosition(), ModSounds.PHANTOM_HURT.get(), SoundSource.PLAYERS, 0.5F, (float) 0.3 + (float) abs(Math.random() + 0.5));

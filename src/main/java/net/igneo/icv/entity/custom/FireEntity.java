@@ -44,7 +44,7 @@ public class FireEntity extends SmallFireball {
             if (!this.level().isClientSide()) {
                 Entity entity = pResult.getEntity();
                 Entity entity1 = this.getOwner();
-                entity.hurt(this.damageSources().fireball(this, entity1), 12.0F);
+                entity.hurt(this.damageSources().fireball(this, entity1), 6.0F);
             }
             super.onHitEntity(pResult);
         }

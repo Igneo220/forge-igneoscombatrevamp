@@ -45,10 +45,10 @@ public class TrainDashC2SPacket {
             if (j == 1) {
                 level.explode(player,player.getX(),player.getY(),player.getZ(),2, Level.ExplosionInteraction.NONE);
             } else  if (j == 0){
-                level.explode(null,player.getX(),player.getY(),player.getZ(),2, Level.ExplosionInteraction.NONE);
+                level.explode(player,player.getX(),player.getY(),player.getZ(),2, Level.ExplosionInteraction.NONE);
             } else if (j == 3) {
                 level.playSound(null,player.blockPosition(), ModSounds.TRAINDASH.get(), SoundSource.PLAYERS);
-                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,140,1));
+                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,200,3));
             }
 
         });

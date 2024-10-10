@@ -56,7 +56,7 @@ public class StoneCallerEnchantment extends Enchantment {
                     enchVar.setStoneY(uniPlayer.getBlockY());
                     enchVar.setStoneZ(uniPlayer.getBlockZ());
                     enchVar.setStoneTime(System.currentTimeMillis());
-                    uniPlayer.setDeltaMovement(0, 0.95, 0);
+                    uniPlayer.setDeltaMovement(uniPlayer.getLookAngle().reverse());
                 } else {
                     ModMessages.sendToServer(new StoneCallerC2SPacket(loop-1, enchVar.getStoneX(), enchVar.getStoneY(), enchVar.getStoneZ()));
                 }

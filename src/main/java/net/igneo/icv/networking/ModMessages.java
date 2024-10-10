@@ -28,10 +28,20 @@ public class ModMessages {
             return true;
         }).simpleChannel();
         INSTANCE = net;
+        net.messageBuilder(MakeMeGlowC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(MakeMeGlowC2SPacket::new)
+                .encoder(MakeMeGlowC2SPacket::toBytes)
+                .consumerMainThread(MakeMeGlowC2SPacket::handle)
+                .add();
         net.messageBuilder(DoubleJumpC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(DoubleJumpC2SPacket::new)
                 .encoder(DoubleJumpC2SPacket::toBytes)
                 .consumerMainThread(DoubleJumpC2SPacket::handle)
+                .add();
+        net.messageBuilder(BlockHoleMoveC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(BlockHoleMoveC2SPacket::new)
+                .encoder(BlockHoleMoveC2SPacket::toBytes)
+                .consumerMainThread(BlockHoleMoveC2SPacket::handle)
                 .add();
         net.messageBuilder(SkyChargeC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(SkyChargeC2SPacket::new)

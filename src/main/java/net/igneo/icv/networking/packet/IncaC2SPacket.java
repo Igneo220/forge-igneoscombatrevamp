@@ -44,7 +44,7 @@ public class IncaC2SPacket {
                     if (entity.distanceTo(player) <= 10 && entity != player) {
                         if (entity instanceof LivingEntity) {
                             LivingEntity newEntity = (LivingEntity) entity;
-                            newEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 5), player);
+                            newEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 5), player);
                         }
                     }
                 }

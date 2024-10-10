@@ -9,6 +9,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
@@ -50,6 +52,15 @@ public class StoneCallerC2SPacket {
             //SERVER WORK
             ServerPlayer player = context.getSender();
             ServerLevel level = player.serverLevel();
+
+            Thread HurtEntities = new Thread(() -> {
+                for (Entity entity : level.getAllEntities()) {
+                    if (entity.getBoundingBox().intersects(player.getEyePosition(),player.getEyePosition().add(player.getLookAngle().scale(20))) && entity != player && entity instanceof LivingEntity) {
+                        entity.hurt(player.damageSources().fallingStalactite(player),5);
+                    }
+                }
+            });
+            HurtEntities.start();
 
             player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
                 if(enchVar.getStoneTime() == 0) {

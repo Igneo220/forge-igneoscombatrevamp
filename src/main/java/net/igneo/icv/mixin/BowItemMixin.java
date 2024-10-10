@@ -149,7 +149,7 @@ public class BowItemMixin{
                 i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(pStack, pLevel, player, i, !itemstack.isEmpty() || flag);
                 float f = getPowerForTime(i);
                 ServerLevel level = (ServerLevel) pLevel;
-                if (f == 1.0F) {
+                if (f >= 0.5F) {
                     Vec3 vec3 = pEntityLiving.getEyePosition();
                     Vec3 vec31 = pEntityLiving.getLookAngle().scale(25);//p_217704_.getEyePosition().subtract(vec3);
                     Vec3 vec32 = vec31.normalize();

@@ -18,6 +18,7 @@ net/igneo/icv/mixin/EnchantmentScreenMixin oOpen f_98746_
 net/igneo/icv/mixin/LivingEntityMixin DATA_LIVING_ENTITY_FLAGS f_20909_
 net/igneo/icv/mixin/LivingEntityMixin useItem f_20935_
 net/igneo/icv/mixin/LivingEntityMixin useItemRemaining f_20936_
+net/igneo/icv/mixin/LocalPlayerMixin input f_108618_
 net/igneo/icv/mixin/ThrownTridentMixin ID_LOYALTY f_37558_
 net/igneo/icv/mixin/ThrownTridentMixin ID_FOIL f_37554_
 net/igneo/icv/mixin/ThrownTridentMixin tridentItem f_37555_
@@ -55,6 +56,7 @@ net/igneo/icv/mixin/LivingEntityMixin hurt (Lnet/minecraft/world/damagesource/Da
 net/igneo/icv/mixin/LivingEntityMixin isUsingItem ()Z m_6117_
 net/igneo/icv/mixin/LivingEntityMixin isBlocking ()Z m_21254_
 net/igneo/icv/mixin/LivingEntityMixin canDisableShield ()Z m_213824_
+net/igneo/icv/mixin/LocalPlayerMixin canStartSprinting ()Z m_264082_
 net/igneo/icv/mixin/PlayerMixin disableShield (Z)V m_36384_
 net/igneo/icv/mixin/PlayerMixin resetAttackStrengthTicker ()V m_36334_
 net/igneo/icv/mixin/PlayerMixin blockUsingShield (Lnet/minecraft/world/entity/LivingEntity;)V m_6728_

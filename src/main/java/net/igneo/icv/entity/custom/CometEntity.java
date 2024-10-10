@@ -153,7 +153,7 @@ public class CometEntity extends AbstractHurtingProjectile {
 
     @Override
     protected void onHitEntity(EntityHitResult pResult) {
-        this.level().explode(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower / 3.0F, ExplosionInteraction.NONE);
+        this.level().explode(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower / 2.7F, ExplosionInteraction.NONE);
         //this.level().m_7106_(ParticleTypes.f_123813_, this.m_20185_(), this.m_20186_(), this.m_20189_(), 0.0, 0.0, 0.0);
         this.discard();
     }

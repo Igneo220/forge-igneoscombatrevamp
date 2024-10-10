@@ -60,7 +60,7 @@ public class IcicleEntity extends Fireball {
                     level.sendParticles(ModParticles.ICE_HIT_PARTICLE.get(), this.getX(), this.getY(), this.getZ(), 1, 0, 0, 0, 0.1);
                 }
                 LivingEntity living = (LivingEntity) pResult.getEntity();
-                living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 5));
+                living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 30, 5));
             }
         }
     }

@@ -47,7 +47,7 @@ public class TrainDashEnchantment extends Enchantment {
                 double d0 = Minecraft.getInstance().player.getDeltaMovement().x;
                 double d1 = Minecraft.getInstance().player.getDeltaMovement().y;
                 double d2 = Minecraft.getInstance().player.getDeltaMovement().z;
-                if ((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)) <= 0.15) {
+                if ((Math.abs(d0) + Math.abs(d1) + Math.abs(d2)) <= 0.1) {
                     EnchantmentHudOverlay.trainFrames = 0;
                     dashing = false;
                     ModMessages.sendToServer(new TrainDashC2SPacket(0));

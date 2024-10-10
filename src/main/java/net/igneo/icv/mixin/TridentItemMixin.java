@@ -28,7 +28,7 @@ public class TridentItemMixin {
     public void releaseUsing(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving, int pTimeLeft, CallbackInfo ci) {
         if (pEntityLiving instanceof Player player) {
             int i = this.getUseDuration(pStack) - pTimeLeft;
-            if (i >= 10 && EnchantmentHelper.getEnchantments(pStack).containsKey(ModEnchantments.RECOIL.get())) {
+            if (i >= 7 && EnchantmentHelper.getEnchantments(pStack).containsKey(ModEnchantments.RECOIL.get())) {
                 if (pLevel instanceof ServerLevel) {
                     ServerLevel level = (ServerLevel) pLevel;
                     level.playSound(null, player.blockPosition(), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1, 0.1F);

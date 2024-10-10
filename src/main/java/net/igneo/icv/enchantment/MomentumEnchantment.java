@@ -41,7 +41,7 @@ public class MomentumEnchantment extends Enchantment {
                 ++loopCount;
                 shouldCheck = false;
             }
-            if (System.currentTimeMillis() >= delay + (loopCount * 1150L) && loopCount <= 3) {
+            if (System.currentTimeMillis() >= delay + (loopCount * 900L) && loopCount <= 3) {
                 spedUp = true;
                 if (loopCount != 0) {
                     ModMessages.sendToServer(new MomentumC2SPacket(loopCount));

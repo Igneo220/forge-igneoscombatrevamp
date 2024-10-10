@@ -332,7 +332,7 @@ public class ModEvents {
             enchVar.setStoneCeiling(0);
         });
     }
-
+    
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         event.player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
@@ -382,8 +382,9 @@ public class ModEvents {
                         if (System.currentTimeMillis() >= enchVar.getPhantomDelay() + 4000) {
                             level.sendParticles(ModParticles.PHANTOM_HEAL_PARTICLE.get(), enchVar.getPhantomVictim().getX(), enchVar.getPhantomVictim().getY() + 1.5, enchVar.getPhantomVictim().getZ(), 5, Math.random(), Math.random(), Math.random(), 0.5);
                             level.playSound(null, enchVar.getPhantomVictim().blockPosition(), ModSounds.PHANTOM_HEAL.get(), SoundSource.PLAYERS, 0.25F, (float) 0.3 + (float) abs(Math.random() + 0.5));
-                            enchVar.getPhantomVictim().heal(enchVar.getPhantomHurt());
+                            enchVar.getPhantomVictim().heal(8);
                             enchVar.resetPhantomHurt();
+                            player.getMainHandItem().serializeNBT().putInt("phurt",enchVar.getPhantomHurt());
                             enchVar.deletePhantomVictim();
                         }
                     }

@@ -25,7 +25,7 @@ public class WardenspineEnchantment extends Enchantment {
             blinding = true;
             wardenCooldown = System.currentTimeMillis();
         }
-        if (blinding && !blind && System.currentTimeMillis() >= wardenCooldown + 500) {
+        if (blinding && !blind && System.currentTimeMillis() >= wardenCooldown + 1000) {
             blind = true;
             blinding = false;
             wardenCooldown = System.currentTimeMillis();
@@ -36,7 +36,7 @@ public class WardenspineEnchantment extends Enchantment {
             blind = true;
             wardenCooldown = System.currentTimeMillis();
         }
-        if (blinding && blind && System.currentTimeMillis() >= wardenCooldown + 1000) {
+        if (blinding && blind && System.currentTimeMillis() >= wardenCooldown) {
             blind = false;
             blinding = false;
             wardenCooldown = System.currentTimeMillis();
