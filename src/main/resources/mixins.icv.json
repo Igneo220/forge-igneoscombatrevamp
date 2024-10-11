@@ -18,6 +18,7 @@
     "LivingEntityMixin",
     "LocalPlayerMixin",
     "PlayerMixin",
+    "ThrownPotionMixin",
     "ThrownTridentMixin",
     "TridentItemMixin"
   ]
