@@ -345,10 +345,6 @@ public class ModEvents {
                     enchVar.setVexTimer(0);
                 }
 
-                if (enchVar.getConcussed() && player.onGround()) {
-                    player.getAttributes().getInstance(ForgeMod.ENTITY_GRAVITY.get()).removeModifier(CONCUSSION_GRAVITY_MODIFIER_UUID);
-                }
-
                 for (int j = 0; j < 4; ++j) {
                     String enchantments;
                     if (player.getInventory().getArmor(j).serializeNBT().toString().contains("Enchantments")) {

@@ -17,9 +17,11 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = LocalPlayer.class,priority = 999999999)
+@Mixin(value = LocalPlayer.class,priority = 0)
 public class LocalPlayerMixin extends AbstractClientPlayer {
 
     @Shadow
@@ -30,21 +32,12 @@ public class LocalPlayerMixin extends AbstractClientPlayer {
     }
 
 
-    /**
-     * @author Igneo220
-     * @reason Making it so you can sprint while blind
-     */
-    @Overwrite
-    private boolean canStartSprinting() {
-        return !this.isSprinting() && this.hasEnoughImpulseToStartSprinting() && this.hasEnoughFoodToStartSprinting() && !this.isUsingItem() && (!this.isPassenger() || this.vehicleCanSprint(this.getVehicle())) && !this.isFallFlying();
+    private boolean canStartSprintingmine() {
+        return !this.isSprinting() && this.hasEnoughImpulseToStartSprinting() && !this.isUsingItem() && (!this.isPassenger() || this.vehicleCanSprint(this.getVehicle())) && !this.isFallFlying();
     }
 
     private boolean vehicleCanSprint(Entity pVehicle) {
         return pVehicle.canSprint() && pVehicle.isControlledByLocalInstance();
-    }
-
-    private boolean hasEnoughFoodToStartSprinting() {
-        return this.isPassenger() || (float)this.getFoodData().getFoodLevel() > 6.0F || this.getAbilities().mayfly;
     }
 
     public FoodData getFoodData() {
@@ -58,7 +51,7 @@ public class LocalPlayerMixin extends AbstractClientPlayer {
 
     @Inject(method = "aiStep" , at= @At("TAIL"))
     public void aiStep(CallbackInfo ci) {
-        if (!this.isSprinting() && (!(this.isInWater() || this.isInFluidType((fluidType, height) -> this.canSwimInFluidType(fluidType))) || (this.isUnderWater() || this.canStartSwimming())) && this.hasEnoughImpulseToStartSprinting() && this.canStartSprinting() && !this.isUsingItem() && Minecraft.getInstance().options.keySprint.isDown()) {
+        if (!this.isSprinting() && (!(this.isInWater() || this.isInFluidType((fluidType, height) -> this.canSwimInFluidType(fluidType))) || (this.isUnderWater() || this.canStartSwimming())) && this.hasEnoughImpulseToStartSprinting() && this.canStartSprintingmine() && !this.isUsingItem() && Minecraft.getInstance().options.keySprint.isDown()) {
             this.setSprinting(true);
         }
     }
