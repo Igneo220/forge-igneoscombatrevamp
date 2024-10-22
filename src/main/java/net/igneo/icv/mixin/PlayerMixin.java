@@ -2,7 +2,11 @@ package net.igneo.icv.mixin;
 
 import net.igneo.icv.enchantment.ModEnchantments;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
-import net.minecraft.client.player.LocalPlayer;
+import net.igneo.icv.particle.ModParticles;
+import net.igneo.icv.sound.ModSounds;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -11,7 +15,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -70,5 +76,14 @@ public abstract class PlayerMixin extends LivingEntity{
             }
         }
         return tempf;
+    }
+
+    @Inject(at = @At("HEAD"), method = "hurt", cancellable = true)
+    public void hurt(DamageSource pSource, float pAmount, CallbackInfoReturnable<Boolean> cir) {
+        this.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+            if (System.currentTimeMillis() <= enchVar.getParryTime() + 100) {
+                cir.setReturnValue(false);
+            }
+        });
     }
 }

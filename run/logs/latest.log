@@ -1,84 +1,93 @@
-[11Oct2024 03:40:10.444] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, MOD_DEV, --assetIndex, 5, --assetsDir, C:\Users\Igneo\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.2.30, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mixin.config, mixins.icv.json]
-[11Oct2024 03:40:10.449] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.8 by Eclipse Adoptium; OS Windows 10 arch amd64 version 10.0
-[11Oct2024 03:40:10.560] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: Loading ImmediateWindowProvider fmlearlywindow
-[11Oct2024 03:40:10.628] [main/INFO] [EARLYDISPLAY/]: Trying GL version 4.6
-[11Oct2024 03:40:10.694] [main/INFO] [EARLYDISPLAY/]: Requested GL version 4.6 got version 4.6
-[11Oct2024 03:40:10.783] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Igneo/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
-[11Oct2024 03:40:10.797] [pool-2-thread-1/INFO] [EARLYDISPLAY/]: GL info: Intel(R) UHD Graphics GL version 4.6.0 - Build 27.20.100.9365, Intel
-[11Oct2024 03:40:11.170] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Igneo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.2.30\306080746b55301f533d17a1f75c0416bfa6425d\javafmllanguage-1.20.1-47.2.30.jar is missing mods.toml file
-[11Oct2024 03:40:11.173] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Igneo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.2.30\ed4251688f57da24ffceb91f85693e28171bc4de\lowcodelanguage-1.20.1-47.2.30.jar is missing mods.toml file
-[11Oct2024 03:40:11.176] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Igneo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.2.30\66fae321e7c1e488bb0a63661153f415efa06665\mclanguage-1.20.1-47.2.30.jar is missing mods.toml file
-[11Oct2024 03:40:11.178] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Igneo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.2.30\34b7d69dcc2b769d597be488ba457877f9d57cd9\fmlcore-1.20.1-47.2.30.jar is missing mods.toml file
-[11Oct2024 03:40:11.239] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
-[11Oct2024 03:40:12.399] [main/INFO] [mixin/]: Compatibility level JAVA_8 specified by mixins.icv.json is lower than the default level supported by the current mixin service (JAVA_16).
-[11Oct2024 03:40:12.404] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientuserdev' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\Igneo\.gradle\caches\forge_gradle\assets, --assetIndex, 5]
-[11Oct2024 03:40:12.453] [main/INFO] [mixin/]: Attempting to load Fernflower decompiler (Threaded mode)
-[11Oct2024 03:40:12.455] [main/INFO] [mixin/]: Fernflower could not be loaded, exported classes will not be decompiled. NoClassDefFoundError: org/jetbrains/java/decompiler/main/extern/IResultSaver
-[11Oct2024 03:40:12.467] [main/INFO] [mixin/]: Preparing mixins for MixinEnvironment[DEFAULT]
-[11Oct2024 03:40:12.467] [main/INFO] [mixin/]: Selecting config mixins.icv.json
-[11Oct2024 03:40:12.471] [main/WARN] [mixin/]: Reference map 'mixins.icv.refmap.json' for mixins.icv.json could not be read. If this is a development environment you can ignore this message
-[11Oct2024 03:40:12.472] [main/INFO] [mixin/]: Preparing mixins.icv.json (15)
-[11Oct2024 03:40:13.569] [pool-4-thread-1/INFO] [mixin/]: Mixing LivingEntityMixin from mixins.icv.json into net.minecraft.world.entity.LivingEntity
-[11Oct2024 03:40:13.579] [pool-4-thread-1/WARN] [mixin/]: mixins.icv.json:LivingEntityMixin: Class version 61 required is higher than the class version supported by the current version of Mixin (JAVA_8 supports class version 52)
-[11Oct2024 03:40:13.582] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:LivingEntityMixin::DATA_LIVING_ENTITY_FLAGS is final but shadow is not decorated with @Final
-[11Oct2024 03:40:13.808] [pool-4-thread-1/INFO] [mixin/]: Mixing PlayerMixin from mixins.icv.json into net.minecraft.world.entity.player.Player
-[11Oct2024 03:40:13.812] [pool-4-thread-1/INFO] [mixin/]: Renaming synthetic method lambda$attack$1(Ljava/util/concurrent/atomic/AtomicReference;Lnet/igneo/icv/enchantmentActions/PlayerEnchantmentActions;)V to md651afd$lambda$attack$1$0 in mixins.icv.json:PlayerMixin
-[11Oct2024 03:40:13.813] [pool-4-thread-1/INFO] [mixin/]: Renaming synthetic method lambda$attack$0(Ljava/util/concurrent/atomic/AtomicReference;Lnet/igneo/icv/enchantmentActions/PlayerEnchantmentActions;)V to md651afd$lambda$attack$0$1 in mixins.icv.json:PlayerMixin
-[11Oct2024 03:40:14.758] [pool-4-thread-1/INFO] [mixin/]: Mixing EnchantmentMenuMixin from mixins.icv.json into net.minecraft.world.inventory.EnchantmentMenu
-[11Oct2024 03:40:14.762] [pool-4-thread-1/INFO] [mixin/]: Renaming synthetic method lambda$removed$2(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V to md651afd$lambda$removed$2$0 in mixins.icv.json:EnchantmentMenuMixin
-[11Oct2024 03:40:14.762] [pool-4-thread-1/INFO] [mixin/]: Renaming synthetic method lambda$slotsChanged$1(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V to md651afd$lambda$slotsChanged$1$1 in mixins.icv.json:EnchantmentMenuMixin
-[11Oct2024 03:40:14.763] [pool-4-thread-1/INFO] [mixin/]: Renaming synthetic method lambda$clickMenuButton$0(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V to md651afd$lambda$clickMenuButton$0$2 in mixins.icv.json:EnchantmentMenuMixin
-[11Oct2024 03:40:14.764] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:EnchantmentMenuMixin::random is final but shadow is not decorated with @Final
-[11Oct2024 03:40:14.764] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:EnchantmentMenuMixin::enchantmentSeed is final but shadow is not decorated with @Final
-[11Oct2024 03:40:14.764] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:EnchantmentMenuMixin::enchantClue is final but shadow is not decorated with @Final
-[11Oct2024 03:40:14.764] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:EnchantmentMenuMixin::levelClue is final but shadow is not decorated with @Final
-[11Oct2024 03:40:14.765] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:EnchantmentMenuMixin::enchantSlots is final but shadow is not decorated with @Final
-[11Oct2024 03:40:14.765] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:EnchantmentMenuMixin::access is final but shadow is not decorated with @Final
-[11Oct2024 03:40:14.765] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:EnchantmentMenuMixin::costs is final but shadow is not decorated with @Final
-[11Oct2024 03:40:14.880] [pool-4-thread-1/WARN] [MixinProcessor/]: /***********************************************************************************************************************************************************************/
-[11Oct2024 03:40:14.881] [pool-4-thread-1/WARN] [MixinProcessor/]: /*                                                                            Invalid Mixin                                                                            */
-[11Oct2024 03:40:14.881] [pool-4-thread-1/WARN] [MixinProcessor/]: /*---------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-[11Oct2024 03:40:14.881] [pool-4-thread-1/WARN] [MixinProcessor/]: /*     Action : APPLY                                                                                                                                                  */
-[11Oct2024 03:40:14.881] [pool-4-thread-1/WARN] [MixinProcessor/]: /*      Mixin : net.igneo.icv.mixin.EnchantmentMenuMixin                                                                                                               */
-[11Oct2024 03:40:14.881] [pool-4-thread-1/WARN] [MixinProcessor/]: /*     Config : mixins.icv.json                                                                                                                                        */
-[11Oct2024 03:40:14.881] [pool-4-thread-1/WARN] [MixinProcessor/]: /*      Phase : DEFAULT                                                                                                                                                */
-[11Oct2024 03:40:14.881] [pool-4-thread-1/WARN] [MixinProcessor/]: /*---------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-[11Oct2024 03:40:14.881] [pool-4-thread-1/WARN] [MixinProcessor/]: /*     org.spongepowered.asm.mixin.transformer.throwables.InvalidMixinException                                                                                        */
-[11Oct2024 03:40:14.881] [pool-4-thread-1/WARN] [MixinProcessor/]: /*---------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-[11Oct2024 03:40:14.881] [pool-4-thread-1/WARN] [MixinProcessor/]: /*     Cannot handle IASTORE opcode (0x4F) in class initialiser                                                                                                        */
-[11Oct2024 03:40:14.881] [pool-4-thread-1/WARN] [MixinProcessor/]: /*---------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-[11Oct2024 03:40:14.881] [pool-4-thread-1/WARN] [MixinProcessor/]: /*     org.spongepowered.asm.mixin.transformer.throwables.InvalidMixinException: Cannot handle IASTORE opcode (0x4F) in class initialiser                              */
-[11Oct2024 03:40:14.881] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.getInitialiser(MixinApplicatorStandard.java:926)       */
-[11Oct2024 03:40:14.881] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.applyInitialisers(MixinApplicatorStandard.java:783)    */
-[11Oct2024 03:40:14.881] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.applyMixin(MixinApplicatorStandard.java:388)           */
-[11Oct2024 03:40:14.882] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.apply(MixinApplicatorStandard.java:325)                */
-[11Oct2024 03:40:14.882] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.mixin.transformer.TargetClassContext.apply(TargetClassContext.java:383)                          */
-[11Oct2024 03:40:14.882] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.mixin.transformer.TargetClassContext.applyMixins(TargetClassContext.java:365)                    */
-[11Oct2024 03:40:14.882] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:363)                            */
-[11Oct2024 03:40:14.882] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClass(MixinTransformer.java:250)                     */
-[11Oct2024 03:40:14.882] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.service.modlauncher.MixinTransformationHandler.processClass(MixinTransformationHandler.java:131) */
-[11Oct2024 03:40:14.882] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.launch.MixinLaunchPluginLegacy.processClass(MixinLaunchPluginLegacy.java:131)                    */
-[11Oct2024 03:40:14.882] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/cpw.mods.modlauncher@10.0.9/cpw.mods.modlauncher.serviceapi.ILaunchPluginService.processClassWithFlags(ILaunchPluginService.java:156)          */
-[11Oct2024 03:40:14.882] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/cpw.mods.modlauncher@10.0.9/cpw.mods.modlauncher.LaunchPluginHandler.offerClassNodeToPlugins(LaunchPluginHandler.java:88)                      */
-[11Oct2024 03:40:14.882] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/cpw.mods.modlauncher@10.0.9/cpw.mods.modlauncher.ClassTransformer.transform(ClassTransformer.java:120)                                         */
-[11Oct2024 03:40:14.883] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/cpw.mods.modlauncher@10.0.9/cpw.mods.modlauncher.TransformingClassLoader.maybeTransformClassBytes(TransformingClassLoader.java:50)             */
-[11Oct2024 03:40:14.883] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         cpw.mods.securejarhandler/cpw.mods.cl.ModuleClassLoader.readerToClass(ModuleClassLoader.java:113)                                                           */
-[11Oct2024 03:40:14.883] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         cpw.mods.securejarhandler/cpw.mods.cl.ModuleClassLoader.lambda$findClass$15(ModuleClassLoader.java:219)                                                     */
-[11Oct2024 03:40:14.883] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         cpw.mods.securejarhandler/cpw.mods.cl.ModuleClassLoader.loadFromModule(ModuleClassLoader.java:229)                                                          */
-[11Oct2024 03:40:14.883] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         cpw.mods.securejarhandler/cpw.mods.cl.ModuleClassLoader.findClass(ModuleClassLoader.java:219)                                                               */
-[11Oct2024 03:40:14.883] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         cpw.mods.securejarhandler/cpw.mods.cl.ModuleClassLoader.loadClass(ModuleClassLoader.java:135)                                                               */
-[11Oct2024 03:40:14.883] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)                                                                                             */
-[11Oct2024 03:40:14.883] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         TRANSFORMER/minecraft@1.20.1/net.minecraft.world.level.block.Blocks.<clinit>(Blocks.java:410)                                                               */
-[11Oct2024 03:40:14.883] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         TRANSFORMER/minecraft@1.20.1/net.minecraft.world.level.block.FireBlock.bootStrap(FireBlock.java:310)                                                        */
-[11Oct2024 03:40:14.883] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         TRANSFORMER/minecraft@1.20.1/net.minecraft.server.Bootstrap.bootStrap(Bootstrap.java:50)                                                                    */
-[11Oct2024 03:40:14.883] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         TRANSFORMER/minecraft@1.20.1/net.minecraft.client.main.Main.lambda$main$0(Main.java:151)                                                                    */
-[11Oct2024 03:40:14.883] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)                                                                           */
-[11Oct2024 03:40:14.883] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)                                                                                          */
-[11Oct2024 03:40:14.883] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)                                                                   */
-[11Oct2024 03:40:14.883] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)                                                                   */
-[11Oct2024 03:40:14.883] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         java.base/java.lang.Thread.run(Thread.java:833)                                                                                                             */
-[11Oct2024 03:40:14.883] [pool-4-thread-1/WARN] [MixinProcessor/]: /***********************************************************************************************************************************************************************/
-[11Oct2024 03:40:14.884] [pool-4-thread-1/WARN] [mixin/]: Mixin apply failed mixins.icv.json:EnchantmentMenuMixin -> net.minecraft.world.inventory.EnchantmentMenu: org.spongepowered.asm.mixin.transformer.throwables.InvalidMixinException Cannot handle IASTORE opcode (0x4F) in class initialiser
+[22Oct2024 08:38:57.976] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, MOD_DEV, --assetIndex, 5, --assetsDir, C:\Users\Igneo\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.2.30, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mixin.config, mixins.icv.json]
+[22Oct2024 08:38:57.980] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.8 by Eclipse Adoptium; OS Windows 10 arch amd64 version 10.0
+[22Oct2024 08:38:58.096] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: Loading ImmediateWindowProvider fmlearlywindow
+[22Oct2024 08:38:58.174] [main/INFO] [EARLYDISPLAY/]: Trying GL version 4.6
+[22Oct2024 08:38:58.283] [main/INFO] [EARLYDISPLAY/]: Requested GL version 4.6 got version 4.6
+[22Oct2024 08:38:58.439] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Igneo/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
+[22Oct2024 08:38:58.443] [pool-2-thread-1/INFO] [EARLYDISPLAY/]: GL info: Intel(R) UHD Graphics GL version 4.6.0 - Build 27.20.100.9365, Intel
+[22Oct2024 08:38:58.960] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Igneo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.2.30\306080746b55301f533d17a1f75c0416bfa6425d\javafmllanguage-1.20.1-47.2.30.jar is missing mods.toml file
+[22Oct2024 08:38:58.964] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Igneo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.2.30\ed4251688f57da24ffceb91f85693e28171bc4de\lowcodelanguage-1.20.1-47.2.30.jar is missing mods.toml file
+[22Oct2024 08:38:58.967] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Igneo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.2.30\66fae321e7c1e488bb0a63661153f415efa06665\mclanguage-1.20.1-47.2.30.jar is missing mods.toml file
+[22Oct2024 08:38:58.970] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Igneo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.2.30\34b7d69dcc2b769d597be488ba457877f9d57cd9\fmlcore-1.20.1-47.2.30.jar is missing mods.toml file
+[22Oct2024 08:38:59.056] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
+[22Oct2024 08:39:00.377] [main/INFO] [mixin/]: Compatibility level JAVA_8 specified by mixins.icv.json is lower than the default level supported by the current mixin service (JAVA_16).
+[22Oct2024 08:39:00.382] [main/INFO] [mixin/]: Compatibility level JAVA_8 specified by parcool.mixins.json is lower than the default level supported by the current mixin service (JAVA_16).
+[22Oct2024 08:39:00.383] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientuserdev' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\Igneo\.gradle\caches\forge_gradle\assets, --assetIndex, 5]
+[22Oct2024 08:39:00.440] [main/INFO] [mixin/]: Attempting to load Fernflower decompiler (Threaded mode)
+[22Oct2024 08:39:00.442] [main/INFO] [mixin/]: Fernflower could not be loaded, exported classes will not be decompiled. NoClassDefFoundError: org/jetbrains/java/decompiler/main/extern/IResultSaver
+[22Oct2024 08:39:00.455] [main/INFO] [mixin/]: Preparing mixins for MixinEnvironment[DEFAULT]
+[22Oct2024 08:39:00.456] [main/INFO] [mixin/]: Selecting config mixins.icv.json
+[22Oct2024 08:39:00.460] [main/WARN] [mixin/]: Reference map 'mixins.icv.refmap.json' for mixins.icv.json could not be read. If this is a development environment you can ignore this message
+[22Oct2024 08:39:00.461] [main/INFO] [mixin/]: Selecting config parcool.mixins.json
+[22Oct2024 08:39:00.749] [main/INFO] [mixin/]: Remapping refMap parcool.refmap.json using C:\Users\Igneo\OneDrive\Desktop\mods\forge-igneoscombatrevamp\build\createSrgToMcp\output.srg
+[22Oct2024 08:39:00.749] [main/INFO] [mixin/]: Preparing mixins.icv.json (15)
+[22Oct2024 08:39:00.860] [main/INFO] [mixin/]: Preparing parcool.mixins.json (6)
+[22Oct2024 08:39:00.910] [main/INFO] [mixin/]: Prepared 21 mixins in 0.454 sec (21.6ms avg) (0ms load, 0ms transform, 0ms plugin)
+[22Oct2024 08:39:02.138] [pool-4-thread-1/INFO] [mixin/]: Mixing common.LivingEntityMixin from parcool.mixins.json into net.minecraft.world.entity.LivingEntity
+[22Oct2024 08:39:02.165] [pool-4-thread-1/WARN] [mixin/]: parcool.mixins.json:common.LivingEntityMixin: Class version 61 required is higher than the class version supported by the current version of Mixin (JAVA_8 supports class version 52)
+[22Oct2024 08:39:02.232] [pool-4-thread-1/INFO] [mixin/]: Mixing LivingEntityMixin from mixins.icv.json into net.minecraft.world.entity.LivingEntity
+[22Oct2024 08:39:02.233] [pool-4-thread-1/WARN] [mixin/]: mixins.icv.json:LivingEntityMixin: Class version 61 required is higher than the class version supported by the current version of Mixin (JAVA_8 supports class version 52)
+[22Oct2024 08:39:02.235] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:LivingEntityMixin::DATA_LIVING_ENTITY_FLAGS is final but shadow is not decorated with @Final
+[22Oct2024 08:39:02.642] [pool-4-thread-1/INFO] [mixin/]: Mixing common.PlayerMixin from parcool.mixins.json into net.minecraft.world.entity.player.Player
+[22Oct2024 08:39:02.653] [pool-4-thread-1/INFO] [mixin/]: Mixing PlayerMixin from mixins.icv.json into net.minecraft.world.entity.player.Player
+[22Oct2024 08:39:02.655] [pool-4-thread-1/INFO] [mixin/]: Renaming synthetic method lambda$hurt$2(Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;Lnet/igneo/icv/enchantmentActions/PlayerEnchantmentActions;)V to mde98e9a$lambda$hurt$2$0 in mixins.icv.json:PlayerMixin
+[22Oct2024 08:39:02.657] [pool-4-thread-1/INFO] [mixin/]: Renaming synthetic method lambda$attack$1(Ljava/util/concurrent/atomic/AtomicReference;Lnet/igneo/icv/enchantmentActions/PlayerEnchantmentActions;)V to mde98e9a$lambda$attack$1$1 in mixins.icv.json:PlayerMixin
+[22Oct2024 08:39:02.658] [pool-4-thread-1/INFO] [mixin/]: Renaming synthetic method lambda$attack$0(Ljava/util/concurrent/atomic/AtomicReference;Lnet/igneo/icv/enchantmentActions/PlayerEnchantmentActions;)V to mde98e9a$lambda$attack$0$2 in mixins.icv.json:PlayerMixin
+[22Oct2024 08:39:03.999] [pool-4-thread-1/INFO] [mixin/]: Mixing EnchantmentMenuMixin from mixins.icv.json into net.minecraft.world.inventory.EnchantmentMenu
+[22Oct2024 08:39:04.003] [pool-4-thread-1/INFO] [mixin/]: Renaming synthetic method lambda$removed$2(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V to mde98e9a$lambda$removed$2$0 in mixins.icv.json:EnchantmentMenuMixin
+[22Oct2024 08:39:04.003] [pool-4-thread-1/INFO] [mixin/]: Renaming synthetic method lambda$slotsChanged$1(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V to mde98e9a$lambda$slotsChanged$1$1 in mixins.icv.json:EnchantmentMenuMixin
+[22Oct2024 08:39:04.003] [pool-4-thread-1/INFO] [mixin/]: Renaming synthetic method lambda$clickMenuButton$0(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V to mde98e9a$lambda$clickMenuButton$0$2 in mixins.icv.json:EnchantmentMenuMixin
+[22Oct2024 08:39:04.005] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:EnchantmentMenuMixin::random is final but shadow is not decorated with @Final
+[22Oct2024 08:39:04.005] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:EnchantmentMenuMixin::enchantmentSeed is final but shadow is not decorated with @Final
+[22Oct2024 08:39:04.005] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:EnchantmentMenuMixin::enchantClue is final but shadow is not decorated with @Final
+[22Oct2024 08:39:04.006] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:EnchantmentMenuMixin::levelClue is final but shadow is not decorated with @Final
+[22Oct2024 08:39:04.006] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:EnchantmentMenuMixin::enchantSlots is final but shadow is not decorated with @Final
+[22Oct2024 08:39:04.007] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:EnchantmentMenuMixin::access is final but shadow is not decorated with @Final
+[22Oct2024 08:39:04.007] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:EnchantmentMenuMixin::costs is final but shadow is not decorated with @Final
+[22Oct2024 08:39:04.093] [pool-4-thread-1/WARN] [MixinProcessor/]: /***********************************************************************************************************************************************************************/
+[22Oct2024 08:39:04.093] [pool-4-thread-1/WARN] [MixinProcessor/]: /*                                                                            Invalid Mixin                                                                            */
+[22Oct2024 08:39:04.093] [pool-4-thread-1/WARN] [MixinProcessor/]: /*---------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+[22Oct2024 08:39:04.093] [pool-4-thread-1/WARN] [MixinProcessor/]: /*     Action : APPLY                                                                                                                                                  */
+[22Oct2024 08:39:04.093] [pool-4-thread-1/WARN] [MixinProcessor/]: /*      Mixin : net.igneo.icv.mixin.EnchantmentMenuMixin                                                                                                               */
+[22Oct2024 08:39:04.093] [pool-4-thread-1/WARN] [MixinProcessor/]: /*     Config : mixins.icv.json                                                                                                                                        */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*      Phase : DEFAULT                                                                                                                                                */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*---------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*     org.spongepowered.asm.mixin.transformer.throwables.InvalidMixinException                                                                                        */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*---------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*     Cannot handle IASTORE opcode (0x4F) in class initialiser                                                                                                        */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*---------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*     org.spongepowered.asm.mixin.transformer.throwables.InvalidMixinException: Cannot handle IASTORE opcode (0x4F) in class initialiser                              */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.getInitialiser(MixinApplicatorStandard.java:926)       */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.applyInitialisers(MixinApplicatorStandard.java:783)    */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.applyMixin(MixinApplicatorStandard.java:388)           */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.apply(MixinApplicatorStandard.java:325)                */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.mixin.transformer.TargetClassContext.apply(TargetClassContext.java:383)                          */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.mixin.transformer.TargetClassContext.applyMixins(TargetClassContext.java:365)                    */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:363)                            */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClass(MixinTransformer.java:250)                     */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.service.modlauncher.MixinTransformationHandler.processClass(MixinTransformationHandler.java:131) */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/org.spongepowered.mixin/org.spongepowered.asm.launch.MixinLaunchPluginLegacy.processClass(MixinLaunchPluginLegacy.java:131)                    */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/cpw.mods.modlauncher@10.0.9/cpw.mods.modlauncher.serviceapi.ILaunchPluginService.processClassWithFlags(ILaunchPluginService.java:156)          */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/cpw.mods.modlauncher@10.0.9/cpw.mods.modlauncher.LaunchPluginHandler.offerClassNodeToPlugins(LaunchPluginHandler.java:88)                      */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/cpw.mods.modlauncher@10.0.9/cpw.mods.modlauncher.ClassTransformer.transform(ClassTransformer.java:120)                                         */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         MC-BOOTSTRAP/cpw.mods.modlauncher@10.0.9/cpw.mods.modlauncher.TransformingClassLoader.maybeTransformClassBytes(TransformingClassLoader.java:50)             */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         cpw.mods.securejarhandler/cpw.mods.cl.ModuleClassLoader.readerToClass(ModuleClassLoader.java:113)                                                           */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         cpw.mods.securejarhandler/cpw.mods.cl.ModuleClassLoader.lambda$findClass$15(ModuleClassLoader.java:219)                                                     */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         cpw.mods.securejarhandler/cpw.mods.cl.ModuleClassLoader.loadFromModule(ModuleClassLoader.java:229)                                                          */
+[22Oct2024 08:39:04.094] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         cpw.mods.securejarhandler/cpw.mods.cl.ModuleClassLoader.findClass(ModuleClassLoader.java:219)                                                               */
+[22Oct2024 08:39:04.095] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         cpw.mods.securejarhandler/cpw.mods.cl.ModuleClassLoader.loadClass(ModuleClassLoader.java:135)                                                               */
+[22Oct2024 08:39:04.095] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)                                                                                             */
+[22Oct2024 08:39:04.095] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         TRANSFORMER/minecraft@1.20.1/net.minecraft.world.level.block.Blocks.<clinit>(Blocks.java:410)                                                               */
+[22Oct2024 08:39:04.095] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         TRANSFORMER/minecraft@1.20.1/net.minecraft.world.level.block.FireBlock.bootStrap(FireBlock.java:310)                                                        */
+[22Oct2024 08:39:04.095] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         TRANSFORMER/minecraft@1.20.1/net.minecraft.server.Bootstrap.bootStrap(Bootstrap.java:50)                                                                    */
+[22Oct2024 08:39:04.095] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         TRANSFORMER/minecraft@1.20.1/net.minecraft.client.main.Main.lambda$main$0(Main.java:151)                                                                    */
+[22Oct2024 08:39:04.095] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)                                                                           */
+[22Oct2024 08:39:04.095] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)                                                                                          */
+[22Oct2024 08:39:04.095] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)                                                                   */
+[22Oct2024 08:39:04.095] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)                                                                   */
+[22Oct2024 08:39:04.095] [pool-4-thread-1/WARN] [MixinProcessor/]: /*         java.base/java.lang.Thread.run(Thread.java:833)                                                                                                             */
+[22Oct2024 08:39:04.095] [pool-4-thread-1/WARN] [MixinProcessor/]: /***********************************************************************************************************************************************************************/
+[22Oct2024 08:39:04.095] [pool-4-thread-1/WARN] [mixin/]: Mixin apply failed mixins.icv.json:EnchantmentMenuMixin -> net.minecraft.world.inventory.EnchantmentMenu: org.spongepowered.asm.mixin.transformer.throwables.InvalidMixinException Cannot handle IASTORE opcode (0x4F) in class initialiser
 org.spongepowered.asm.mixin.transformer.throwables.InvalidMixinException: Cannot handle IASTORE opcode (0x4F) in class initialiser
 	at org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.getInitialiser(MixinApplicatorStandard.java:926) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4]
 	at org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.applyInitialisers(MixinApplicatorStandard.java:783) ~[mixin-0.8.5.jar:0.8.5+Jenkins-b310.git-155314e6e91465dad727e621a569906a410cd6f4]
@@ -109,99 +118,212 @@ org.spongepowered.asm.mixin.transformer.throwables.InvalidMixinException: Cannot
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[?:?]
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[?:?]
 	at java.lang.Thread.run(Thread.java:833) ~[?:?]
-[11Oct2024 03:40:14.912] [pool-4-thread-1/INFO] [mixin/]: Mixing ItemStackMixin from mixins.icv.json into net.minecraft.world.item.ItemStack
-[11Oct2024 03:40:14.976] [pool-4-thread-1/INFO] [mixin/]: Mixing AnvilMenuMixin from mixins.icv.json into net.minecraft.world.inventory.AnvilMenu
-[11Oct2024 03:40:14.977] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:AnvilMenuMixin::cost is final but shadow is not decorated with @Final
-[11Oct2024 03:40:15.359] [pool-4-thread-1/INFO] [mixin/]: Mixing BowItemMixin from mixins.icv.json into net.minecraft.world.item.BowItem
-[11Oct2024 03:40:15.360] [pool-4-thread-1/INFO] [mixin/]: Renaming synthetic method lambda$releaseUsing$1(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/player/Player;)V to md651afd$lambda$releaseUsing$1$0 in mixins.icv.json:BowItemMixin
-[11Oct2024 03:40:15.360] [pool-4-thread-1/INFO] [mixin/]: Renaming synthetic method lambda$releaseUsing$0(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/player/Player;)V to md651afd$lambda$releaseUsing$0$1 in mixins.icv.json:BowItemMixin
-[11Oct2024 03:40:15.431] [pool-4-thread-1/INFO] [mixin/]: Mixing TridentItemMixin from mixins.icv.json into net.minecraft.world.item.TridentItem
-[11Oct2024 03:40:15.437] [pool-4-thread-1/INFO] [mixin/]: Mixing CrossbowItemMixin from mixins.icv.json into net.minecraft.world.item.CrossbowItem
-[11Oct2024 03:40:15.438] [pool-4-thread-1/INFO] [mixin/]: Renaming synthetic method lambda$shootProjectile$0(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/entity/LivingEntity;)V to md651afd$lambda$shootProjectile$0$0 in mixins.icv.json:CrossbowItemMixin
-[11Oct2024 03:40:16.038] [pool-4-thread-1/INFO] [mixin/]: Mixing ArrowMixin from mixins.icv.json into net.minecraft.world.entity.projectile.Arrow
-[11Oct2024 03:40:16.144] [Datafixer Bootstrap/INFO] [com.mojang.datafixers.DataFixerBuilder/]: 188 Datafixer optimizations took 121 milliseconds
-[11Oct2024 03:40:16.225] [pool-4-thread-1/INFO] [mixin/]: Mixing ThrownTridentMixin from mixins.icv.json into net.minecraft.world.entity.projectile.ThrownTrident
-[11Oct2024 03:40:16.226] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:ThrownTridentMixin::ID_LOYALTY is final but shadow is not decorated with @Final
-[11Oct2024 03:40:16.226] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:ThrownTridentMixin::ID_FOIL is final but shadow is not decorated with @Final
-[11Oct2024 03:40:16.390] [pool-4-thread-1/INFO] [mixin/]: Mixing ThrownPotionMixin from mixins.icv.json into net.minecraft.world.entity.projectile.ThrownPotion
-[11Oct2024 03:40:17.535] [Render thread/INFO] [mixin/]: Mixing LocalPlayerMixin from mixins.icv.json into net.minecraft.client.player.LocalPlayer
-[11Oct2024 03:40:17.538] [Render thread/INFO] [mixin/]: Renaming synthetic method lambda$aiStep$0(Lnet/minecraftforge/fluids/FluidType;Ljava/lang/Double;)Z to md651afd$lambda$aiStep$0$0 in mixins.icv.json:LocalPlayerMixin
-[11Oct2024 03:40:17.659] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Igneo/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/assets/.mcassetsroot' uses unexpected schema
-[11Oct2024 03:40:17.659] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Igneo/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/data/.mcassetsroot' uses unexpected schema
-[11Oct2024 03:40:17.677] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
-[11Oct2024 03:40:17.681] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
-[11Oct2024 03:40:17.777] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.3.1 build 7
-[11Oct2024 03:40:18.274] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.2.30, for MC 1.20.1 with MCP 20230612.114412
-[11Oct2024 03:40:18.274] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.2.30 Initialized
-[11Oct2024 03:40:19.246] [Render thread/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [icv]
-[11Oct2024 03:40:19.500] [Render thread/INFO] [net.minecraft.server.packs.resources.ReloadableResourceManager/]: Reloading ResourceManager: vanilla, mod_resources
-[11Oct2024 03:40:19.645] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
-[11Oct2024 03:40:19.651] [Worker-Main-2/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_all_no_pua-15.0.06.hex, loading
-[11Oct2024 03:40:20.024] [Worker-Main-7/INFO] [mixin/]: Mixing ThrownTridentRendererMixin from mixins.icv.json into net.minecraft.client.renderer.entity.ThrownTridentRenderer
-[11Oct2024 03:40:20.026] [Worker-Main-7/WARN] [mixin/]: @Shadow target mixins.icv.json:ThrownTridentRendererMixin::TRIDENT_LOCATION is final but shadow is not decorated with @Final
-[11Oct2024 03:40:20.115] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: OUTDATED Current: 47.2.30 Target: 47.3.0
-[11Oct2024 03:40:22.070] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:item.goat_horn.play
-[11Oct2024 03:40:22.070] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:entity.goat.screaming.horn_break
-[11Oct2024 03:40:22.121] [Render thread/INFO] [com.mojang.blaze3d.audio.Library/]: OpenAL initialized on device OpenAL Soft on SteelSeries Sonar - Gaming (SteelSeries Sonar Virtual Audio Device)
-[11Oct2024 03:40:22.121] [Render thread/INFO] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Sound engine started
-[11Oct2024 03:40:22.237] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x512x4 minecraft:textures/atlas/blocks.png-atlas
-[11Oct2024 03:40:22.324] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
-[11Oct2024 03:40:22.325] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
-[11Oct2024 03:40:22.329] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
-[11Oct2024 03:40:22.335] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
-[11Oct2024 03:40:22.362] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
-[11Oct2024 03:40:22.363] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
-[11Oct2024 03:40:22.364] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
-[11Oct2024 03:40:22.366] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
-[11Oct2024 03:40:22.926] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
-[11Oct2024 03:40:23.685] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
-[11Oct2024 03:40:23.698] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/paintings.png-atlas
-[11Oct2024 03:40:23.700] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x128x0 minecraft:textures/atlas/mob_effects.png-atlas
-[11Oct2024 03:40:23.877] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient/]: Could not authorize you against Realms server: Invalid session id
-[11Oct2024 03:40:28.134] [Render thread/INFO] [net.minecraftforge.registries.GameData/REGISTRIES]: Injecting existing registry data into this CLIENT instance
-[11Oct2024 03:40:29.852] [Render thread/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 7 recipes
-[11Oct2024 03:40:29.942] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 1271 advancements
-[11Oct2024 03:40:30.334] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Starting integrated minecraft server version 1.20.1
-[11Oct2024 03:40:30.334] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
-[11Oct2024 03:40:30.636] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
-[11Oct2024 03:40:32.254] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[11Oct2024 03:40:32.255] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[11Oct2024 03:40:32.255] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[11Oct2024 03:40:32.255] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[11Oct2024 03:40:32.659] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 31%
-[11Oct2024 03:40:32.900] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
-[11Oct2024 03:40:32.912] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 2262 ms
-[11Oct2024 03:40:33.011] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing view distance to 12, from 10
-[11Oct2024 03:40:33.013] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing simulation distance to 12, from 0
-[11Oct2024 03:40:33.098] [Render thread/WARN] [io.netty.util.internal.SystemPropertyUtil/]: Unable to parse the boolean system property 'java.net.preferIPv6Addresses':system - using the default value: false
-[11Oct2024 03:40:33.509] [Netty Local Client IO #0/INFO] [net.minecraftforge.network.NetworkHooks/]: Connected to a modded server.
-[11Oct2024 03:40:33.590] [Server thread/INFO] [net.minecraft.server.players.PlayerList/]: Dev[local:E:ceb0b5c6] logged in with entity id 1 at (528.048108387766, -60.0, 239.6052088987593)
-[11Oct2024 03:40:33.673] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev joined the game
-[11Oct2024 03:40:33.809] [Server thread/INFO] [mixin/]: Mixing EnchantmentHelperMixin from mixins.icv.json into net.minecraft.world.item.enchantment.EnchantmentHelper
-[11Oct2024 03:40:34.220] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 224 advancements
-[11Oct2024 03:40:34.701] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
-[11Oct2024 03:40:34.723] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:overworld
-[11Oct2024 03:40:35.089] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:the_nether
-[11Oct2024 03:40:35.092] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:the_end
-[11Oct2024 03:41:02.100] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
-[11Oct2024 03:41:02.113] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:overworld
-[11Oct2024 03:41:02.116] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:the_nether
-[11Oct2024 03:41:02.117] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:the_end
-[11Oct2024 03:42:03.251] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
-[11Oct2024 03:42:03.263] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:overworld
-[11Oct2024 03:42:03.267] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:the_nether
-[11Oct2024 03:42:03.268] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:the_end
-[11Oct2024 03:42:03.753] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Dev lost connection: Disconnected
-[11Oct2024 03:42:03.753] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev left the game
-[11Oct2024 03:42:03.769] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Stopping singleplayer server as player logged out
-[11Oct2024 03:42:03.807] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
-[11Oct2024 03:42:03.808] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
-[11Oct2024 03:42:03.808] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
-[11Oct2024 03:42:04.079] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:overworld
-[11Oct2024 03:42:04.172] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:the_nether
-[11Oct2024 03:42:04.172] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:the_end
-[11Oct2024 03:42:04.186] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (testingworld): All chunks are saved
-[11Oct2024 03:42:04.186] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
-[11Oct2024 03:42:04.186] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
-[11Oct2024 03:42:04.187] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved
-[11Oct2024 03:42:05.033] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!
+[22Oct2024 08:39:04.131] [pool-4-thread-1/INFO] [mixin/]: Mixing ItemStackMixin from mixins.icv.json into net.minecraft.world.item.ItemStack
+[22Oct2024 08:39:04.212] [pool-4-thread-1/INFO] [mixin/]: Mixing AnvilMenuMixin from mixins.icv.json into net.minecraft.world.inventory.AnvilMenu
+[22Oct2024 08:39:04.214] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:AnvilMenuMixin::cost is final but shadow is not decorated with @Final
+[22Oct2024 08:39:04.772] [pool-4-thread-1/INFO] [mixin/]: Mixing BowItemMixin from mixins.icv.json into net.minecraft.world.item.BowItem
+[22Oct2024 08:39:04.774] [pool-4-thread-1/INFO] [mixin/]: Renaming synthetic method lambda$releaseUsing$1(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/player/Player;)V to mde98e9a$lambda$releaseUsing$1$0 in mixins.icv.json:BowItemMixin
+[22Oct2024 08:39:04.774] [pool-4-thread-1/INFO] [mixin/]: Renaming synthetic method lambda$releaseUsing$0(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/player/Player;)V to mde98e9a$lambda$releaseUsing$0$1 in mixins.icv.json:BowItemMixin
+[22Oct2024 08:39:04.868] [pool-4-thread-1/INFO] [mixin/]: Mixing TridentItemMixin from mixins.icv.json into net.minecraft.world.item.TridentItem
+[22Oct2024 08:39:04.878] [pool-4-thread-1/INFO] [mixin/]: Mixing CrossbowItemMixin from mixins.icv.json into net.minecraft.world.item.CrossbowItem
+[22Oct2024 08:39:04.878] [pool-4-thread-1/INFO] [mixin/]: Renaming synthetic method lambda$shootProjectile$0(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/entity/LivingEntity;)V to mde98e9a$lambda$shootProjectile$0$0 in mixins.icv.json:CrossbowItemMixin
+[22Oct2024 08:39:05.553] [pool-4-thread-1/INFO] [mixin/]: Mixing ArrowMixin from mixins.icv.json into net.minecraft.world.entity.projectile.Arrow
+[22Oct2024 08:39:05.696] [Datafixer Bootstrap/INFO] [com.mojang.datafixers.DataFixerBuilder/]: 188 Datafixer optimizations took 160 milliseconds
+[22Oct2024 08:39:05.779] [pool-4-thread-1/INFO] [mixin/]: Mixing ThrownTridentMixin from mixins.icv.json into net.minecraft.world.entity.projectile.ThrownTrident
+[22Oct2024 08:39:05.779] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:ThrownTridentMixin::ID_LOYALTY is final but shadow is not decorated with @Final
+[22Oct2024 08:39:05.779] [pool-4-thread-1/WARN] [mixin/]: @Shadow target mixins.icv.json:ThrownTridentMixin::ID_FOIL is final but shadow is not decorated with @Final
+[22Oct2024 08:39:05.969] [pool-4-thread-1/INFO] [mixin/]: Mixing ThrownPotionMixin from mixins.icv.json into net.minecraft.world.entity.projectile.ThrownPotion
+[22Oct2024 08:39:06.089] [pool-4-thread-1/INFO] [mixin/]: Mixing common.PoseMixin from parcool.mixins.json into net.minecraft.world.entity.Pose
+[22Oct2024 08:39:06.089] [pool-4-thread-1/INFO] [mixin/]: Renaming @Invoker method newPose(Ljava/lang/String;I)Lnet/minecraft/world/entity/Pose; to newPose_$md$e98e9a$0 in parcool.mixins.json:common.PoseMixin
+[22Oct2024 08:39:06.104] [pool-4-thread-1/WARN] [mixin/]: Write access to @Mutable @Final field $VALUES:[Lnet/minecraft/world/entity/Pose; in parcool.mixins.json:common.PoseMixin::handler$zzl000$US$addCustomPose
+[22Oct2024 08:39:07.320] [Render thread/INFO] [mixin/]: Mixing client.LocalPlayerMixin from parcool.mixins.json into net.minecraft.client.player.LocalPlayer
+[22Oct2024 08:39:07.322] [Render thread/INFO] [mixin/]: Mixing LocalPlayerMixin from mixins.icv.json into net.minecraft.client.player.LocalPlayer
+[22Oct2024 08:39:07.325] [Render thread/INFO] [mixin/]: Renaming synthetic method lambda$aiStep$0(Lnet/minecraftforge/fluids/FluidType;Ljava/lang/Double;)Z to mde98e9a$lambda$aiStep$0$0 in mixins.icv.json:LocalPlayerMixin
+[22Oct2024 08:39:07.441] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Igneo/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/assets/.mcassetsroot' uses unexpected schema
+[22Oct2024 08:39:07.442] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Igneo/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/data/.mcassetsroot' uses unexpected schema
+[22Oct2024 08:39:07.469] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[22Oct2024 08:39:07.477] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
+[22Oct2024 08:39:07.580] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.3.1 build 7
+[22Oct2024 08:39:08.105] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.2.30, for MC 1.20.1 with MCP 20230612.114412
+[22Oct2024 08:39:08.105] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.2.30 Initialized
+[22Oct2024 08:39:09.085] [Render thread/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [icv]
+[22Oct2024 08:39:09.357] [Render thread/INFO] [net.minecraft.server.packs.resources.ReloadableResourceManager/]: Reloading ResourceManager: vanilla, mod_resources
+[22Oct2024 08:39:09.495] [Worker-Main-10/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_all_no_pua-15.0.06.hex, loading
+[22Oct2024 08:39:09.499] [Worker-Main-8/ERROR] [net.minecraft.Util/]: Invalid path in pack: parcool:sounds/Sliding_3.ogg, ignoring
+[22Oct2024 08:39:09.510] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
+[22Oct2024 08:39:09.603] [Worker-Main-8/WARN] [net.minecraft.client.sounds.SoundManager/]: File parcool:sounds/sliding_3.ogg does not exist, cannot add it to event parcool:action.slide
+[22Oct2024 08:39:09.748] [Worker-Main-2/INFO] [mixin/]: Mixing client.PlayerRendererMixin from parcool.mixins.json into net.minecraft.client.renderer.entity.player.PlayerRenderer
+[22Oct2024 08:39:10.090] [Worker-Main-2/INFO] [mixin/]: Mixing ThrownTridentRendererMixin from mixins.icv.json into net.minecraft.client.renderer.entity.ThrownTridentRenderer
+[22Oct2024 08:39:10.091] [Worker-Main-2/WARN] [mixin/]: @Shadow target mixins.icv.json:ThrownTridentRendererMixin::TRIDENT_LOCATION is final but shadow is not decorated with @Final
+[22Oct2024 08:39:10.108] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: OUTDATED Current: 47.2.30 Target: 47.3.0
+[22Oct2024 08:39:12.105] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:item.goat_horn.play
+[22Oct2024 08:39:12.105] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:entity.goat.screaming.horn_break
+[22Oct2024 08:39:12.164] [Render thread/INFO] [com.mojang.blaze3d.audio.Library/]: OpenAL initialized on device OpenAL Soft on SteelSeries Sonar - Gaming (SteelSeries Sonar Virtual Audio Device)
+[22Oct2024 08:39:12.164] [Render thread/INFO] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Sound engine started
+[22Oct2024 08:39:12.295] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x512x4 minecraft:textures/atlas/blocks.png-atlas
+[22Oct2024 08:39:12.368] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
+[22Oct2024 08:39:12.369] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
+[22Oct2024 08:39:12.373] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
+[22Oct2024 08:39:12.376] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
+[22Oct2024 08:39:12.403] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
+[22Oct2024 08:39:12.404] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
+[22Oct2024 08:39:12.406] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
+[22Oct2024 08:39:12.407] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
+[22Oct2024 08:39:12.417] [Render thread/INFO] [mixin/]: Mixing client.PlayerModelMixin from parcool.mixins.json into net.minecraft.client.model.PlayerModel
+[22Oct2024 08:39:13.008] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
+[22Oct2024 08:39:13.782] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
+[22Oct2024 08:39:13.797] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/paintings.png-atlas
+[22Oct2024 08:39:13.799] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x128x0 minecraft:textures/atlas/mob_effects.png-atlas
+[22Oct2024 08:39:14.000] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient/]: Could not authorize you against Realms server: Invalid session id
+[22Oct2024 08:39:56.351] [Render thread/INFO] [net.minecraftforge.registries.GameData/REGISTRIES]: Injecting existing registry data into this CLIENT instance
+[22Oct2024 08:39:57.920] [Worker-Main-3/ERROR] [net.minecraftforge.common.ForgeHooks/]: Couldn't parse element loot_tables:parcool:grant_parcool_guide
+com.google.gson.JsonSyntaxException: Expected name to be an item, was unknown string 'patchouli:guide_book'
+	at net.minecraft.util.GsonHelper.lambda$convertToItem$0(GsonHelper.java:143) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at java.util.Optional.orElseThrow(Optional.java:403) ~[?:?]
+	at net.minecraft.util.GsonHelper.convertToItem(GsonHelper.java:142) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at net.minecraft.util.GsonHelper.getAsItem(GsonHelper.java:152) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at net.minecraft.world.level.storage.loot.entries.LootItem$Serializer.deserialize(LootItem.java:59) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at net.minecraft.world.level.storage.loot.entries.LootItem$Serializer.deserialize(LootItem.java:47) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer$Serializer.deserializeCustom(LootPoolSingletonContainer.java:165) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer$Serializer.deserializeCustom(LootPoolSingletonContainer.java:145) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer$Serializer.deserialize(LootPoolEntryContainer.java:94) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer$Serializer.deserialize(LootPoolEntryContainer.java:77) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at net.minecraft.world.level.storage.loot.GsonAdapterFactory$JsonAdapter.deserialize(GsonAdapterFactory.java:113) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter.read(TreeTypeAdapter.java:76) ~[gson-2.10.jar%23130!/:?]
+	at com.google.gson.internal.bind.TypeAdapterRuntimeTypeWrapper.read(TypeAdapterRuntimeTypeWrapper.java:40) ~[gson-2.10.jar%23130!/:?]
+	at com.google.gson.internal.bind.ArrayTypeAdapter.read(ArrayTypeAdapter.java:72) ~[gson-2.10.jar%23130!/:?]
+	at com.google.gson.Gson.fromJson(Gson.java:1214) ~[gson-2.10.jar%23130!/:?]
+	at com.google.gson.Gson.fromJson(Gson.java:1319) ~[gson-2.10.jar%23130!/:?]
+	at com.google.gson.Gson.fromJson(Gson.java:1290) ~[gson-2.10.jar%23130!/:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter$GsonContextImpl.deserialize(TreeTypeAdapter.java:179) ~[gson-2.10.jar%23130!/:?]
+	at net.minecraft.util.GsonHelper.convertToObject(GsonHelper.java:468) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at net.minecraft.util.GsonHelper.getAsObject(GsonHelper.java:476) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at net.minecraft.world.level.storage.loot.LootPool$Serializer.deserialize(LootPool.java:201) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at net.minecraft.world.level.storage.loot.LootPool$Serializer.deserialize(LootPool.java:198) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter.read(TreeTypeAdapter.java:76) ~[gson-2.10.jar%23130!/:?]
+	at com.google.gson.internal.bind.TypeAdapterRuntimeTypeWrapper.read(TypeAdapterRuntimeTypeWrapper.java:40) ~[gson-2.10.jar%23130!/:?]
+	at com.google.gson.internal.bind.ArrayTypeAdapter.read(ArrayTypeAdapter.java:72) ~[gson-2.10.jar%23130!/:?]
+	at com.google.gson.Gson.fromJson(Gson.java:1214) ~[gson-2.10.jar%23130!/:?]
+	at com.google.gson.Gson.fromJson(Gson.java:1319) ~[gson-2.10.jar%23130!/:?]
+	at com.google.gson.Gson.fromJson(Gson.java:1290) ~[gson-2.10.jar%23130!/:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter$GsonContextImpl.deserialize(TreeTypeAdapter.java:179) ~[gson-2.10.jar%23130!/:?]
+	at net.minecraft.util.GsonHelper.convertToObject(GsonHelper.java:468) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at net.minecraft.util.GsonHelper.getAsObject(GsonHelper.java:485) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at net.minecraft.world.level.storage.loot.LootTable$Serializer.deserialize(LootTable.java:312) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at net.minecraft.world.level.storage.loot.LootTable$Serializer.deserialize(LootTable.java:309) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter.read(TreeTypeAdapter.java:76) ~[gson-2.10.jar%23130!/:?]
+	at com.google.gson.Gson.fromJson(Gson.java:1214) ~[gson-2.10.jar%23130!/:?]
+	at com.google.gson.Gson.fromJson(Gson.java:1319) ~[gson-2.10.jar%23130!/:?]
+	at com.google.gson.Gson.fromJson(Gson.java:1261) ~[gson-2.10.jar%23130!/:?]
+	at net.minecraftforge.common.ForgeHooks.loadLootTable(ForgeHooks.java:873) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23190%23197!/:?]
+	at net.minecraftforge.common.ForgeHooks.lambda$getLootTableDeserializer$3(ForgeHooks.java:850) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23190%23197!/:?]
+	at net.minecraft.world.level.storage.loot.LootDataType.deserialize(LootDataType.java:45) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at net.minecraft.world.level.storage.loot.LootDataManager.lambda$scheduleElementParse$4(LootDataManager.java:56) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at java.util.HashMap.forEach(HashMap.java:1421) ~[?:?]
+	at net.minecraft.world.level.storage.loot.LootDataManager.lambda$scheduleElementParse$5(LootDataManager.java:55) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?]
+	at java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[?:?]
+	at java.util.concurrent.CompletableFuture$AsyncRun.exec(CompletableFuture.java:1796) ~[?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373) ~[?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655) ~[?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622) ~[?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165) ~[?:?]
+[22Oct2024 08:39:58.085] [Render thread/ERROR] [net.minecraft.world.item.crafting.RecipeManager/]: Parsing error loading recipe parcool:patchouli_parcool_guide
+com.google.gson.JsonSyntaxException: Invalid or unsupported recipe type 'patchouli:shapeless_book_recipe'
+	at net.minecraft.world.item.crafting.RecipeManager.lambda$fromJson$9(RecipeManager.java:179) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at java.util.Optional.orElseThrow(Optional.java:403) ~[?:?]
+	at net.minecraft.world.item.crafting.RecipeManager.fromJson(RecipeManager.java:178) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.world.item.crafting.RecipeManager.apply(RecipeManager.java:73) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.world.item.crafting.RecipeManager.apply(RecipeManager.java:34) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.server.packs.resources.SimplePreparableReloadListener.lambda$reload$1(SimplePreparableReloadListener.java:12) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java:718) ~[?:?]
+	at java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:482) ~[?:?]
+	at net.minecraft.server.packs.resources.SimpleReloadInstance.lambda$new$3(SimpleReloadInstance.java:65) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.util.thread.BlockableEventLoop.doRunTask(BlockableEventLoop.java:166) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.util.thread.ReentrantBlockableEventLoop.doRunTask(ReentrantBlockableEventLoop.java:22) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.util.thread.BlockableEventLoop.pollTask(BlockableEventLoop.java:132) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.util.thread.BlockableEventLoop.managedBlock(BlockableEventLoop.java:145) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.client.gui.screens.worldselection.WorldOpenFlows.loadWorldDataBlocking(WorldOpenFlows.java:163) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.client.gui.screens.worldselection.WorldOpenFlows.loadWorldStem(WorldOpenFlows.java:113) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.client.gui.screens.worldselection.WorldOpenFlows.doLoadLevel(WorldOpenFlows.java:181) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.client.gui.screens.worldselection.WorldOpenFlows.doLoadLevel(WorldOpenFlows.java:169) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.client.gui.screens.worldselection.WorldOpenFlows.loadLevel(WorldOpenFlows.java:65) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.client.gui.screens.worldselection.WorldSelectionList$WorldListEntry.loadWorld(WorldSelectionList.java:602) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.client.gui.screens.worldselection.WorldSelectionList$WorldListEntry.joinWorld(WorldSelectionList.java:501) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.client.gui.screens.worldselection.WorldSelectionList$WorldListEntry.mouseClicked(WorldSelectionList.java:440) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.client.gui.components.AbstractSelectionList.mouseClicked(AbstractSelectionList.java:319) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.client.gui.components.events.ContainerEventHandler.mouseClicked(ContainerEventHandler.java:53) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.client.MouseHandler.lambda$onPress$0(MouseHandler.java:97) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.client.gui.screens.Screen.wrapScreenError(Screen.java:455) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.client.MouseHandler.onPress(MouseHandler.java:94) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.client.MouseHandler.lambda$setup$4(MouseHandler.java:199) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.util.thread.BlockableEventLoop.execute(BlockableEventLoop.java:106) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.client.MouseHandler.lambda$setup$5(MouseHandler.java:198) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at org.lwjgl.glfw.GLFWMouseButtonCallbackI.callback(GLFWMouseButtonCallbackI.java:43) ~[lwjgl-glfw-3.3.1.jar:build 7]
+	at org.lwjgl.system.JNI.invokeV(Native Method) ~[lwjgl-3.3.1.jar:build 7]
+	at org.lwjgl.glfw.GLFW.glfwWaitEventsTimeout(GLFW.java:3474) ~[lwjgl-glfw-3.3.1.jar:build 7]
+	at com.mojang.blaze3d.systems.RenderSystem.limitDisplayFPS(RenderSystem.java:207) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:1199) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:723) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at net.minecraft.client.main.Main.main(Main.java:218) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at net.minecraftforge.fml.loading.targets.CommonLaunchHandler.runTarget(CommonLaunchHandler.java:111) ~[fmlloader-1.20.1-47.2.30.jar:?]
+	at net.minecraftforge.fml.loading.targets.CommonLaunchHandler.clientService(CommonLaunchHandler.java:99) ~[fmlloader-1.20.1-47.2.30.jar:?]
+	at net.minecraftforge.fml.loading.targets.ForgeClientUserdevLaunchHandler.devService(ForgeClientUserdevLaunchHandler.java:19) ~[fmlloader-1.20.1-47.2.30.jar:?]
+	at net.minecraftforge.fml.loading.targets.CommonDevLaunchHandler.lambda$makeService$7(CommonDevLaunchHandler.java:135) ~[fmlloader-1.20.1-47.2.30.jar:?]
+	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:30) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:53) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:71) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.Launcher.run(Launcher.java:108) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.Launcher.main(Launcher.java:78) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:26) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:23) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:141) ~[bootstraplauncher-1.1.2.jar:?]
+[22Oct2024 08:39:58.134] [Render thread/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 7 recipes
+[22Oct2024 08:39:58.251] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 1272 advancements
+[22Oct2024 08:39:58.645] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Starting integrated minecraft server version 1.20.1
+[22Oct2024 08:39:58.645] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
+[22Oct2024 08:39:58.984] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
+[22Oct2024 08:40:00.829] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[22Oct2024 08:40:00.830] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[22Oct2024 08:40:00.830] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[22Oct2024 08:40:00.830] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[22Oct2024 08:40:00.999] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[22Oct2024 08:40:01.502] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 35%
+[22Oct2024 08:40:01.810] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
+[22Oct2024 08:40:01.814] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 2829 ms
+[22Oct2024 08:40:01.977] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing view distance to 12, from 10
+[22Oct2024 08:40:01.981] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing simulation distance to 12, from 0
+[22Oct2024 08:40:02.100] [Render thread/WARN] [io.netty.util.internal.SystemPropertyUtil/]: Unable to parse the boolean system property 'java.net.preferIPv6Addresses':system - using the default value: false
+[22Oct2024 08:40:02.578] [Netty Local Client IO #0/INFO] [net.minecraftforge.network.NetworkHooks/]: Connected to a modded server.
+[22Oct2024 08:40:02.705] [Server thread/INFO] [net.minecraft.server.players.PlayerList/]: Dev[local:E:3075abde] logged in with entity id 25 at (600.5646464690138, -60.0, 355.5675697778635)
+[22Oct2024 08:40:02.815] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev joined the game
+[22Oct2024 08:40:02.954] [Server thread/INFO] [mixin/]: Mixing EnchantmentHelperMixin from mixins.icv.json into net.minecraft.world.item.enchantment.EnchantmentHelper
+[22Oct2024 08:40:03.115] [Server thread/INFO] [com.alrex.parcool.ParCool/]: Limitation of 380df991-f603-344c-a090-369bad2a924a was loaded
+[22Oct2024 08:40:03.380] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 225 advancements
+[22Oct2024 08:40:04.011] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[22Oct2024 08:40:04.035] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:overworld
+[22Oct2024 08:40:04.305] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:the_nether
+[22Oct2024 08:40:04.306] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:the_end
+[22Oct2024 08:40:40.411] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[22Oct2024 08:40:40.419] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:overworld
+[22Oct2024 08:40:40.424] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:the_nether
+[22Oct2024 08:40:40.425] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:the_end
+[22Oct2024 08:40:41.011] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Dev lost connection: Disconnected
+[22Oct2024 08:40:41.012] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev left the game
+[22Oct2024 08:40:41.013] [Server thread/INFO] [com.alrex.parcool.ParCool/]: Limitation of 380df991-f603-344c-a090-369bad2a924a was unloaded
+[22Oct2024 08:40:41.026] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Stopping singleplayer server as player logged out
+[22Oct2024 08:40:41.064] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
+[22Oct2024 08:40:41.064] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
+[22Oct2024 08:40:41.064] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
+[22Oct2024 08:40:41.251] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:overworld
+[22Oct2024 08:40:41.265] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:the_nether
+[22Oct2024 08:40:41.265] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[testingworld]'/minecraft:the_end
+[22Oct2024 08:40:41.282] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (testingworld): All chunks are saved
+[22Oct2024 08:40:41.282] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[22Oct2024 08:40:41.282] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[22Oct2024 08:40:41.283] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved
+[22Oct2024 08:40:42.759] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!

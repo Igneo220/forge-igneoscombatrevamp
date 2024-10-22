@@ -35,7 +35,7 @@ public class ParryC2SPacket {
             ServerLevel level = player.serverLevel();
 
             player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(PlayerEnchantmentActions::setParryTime);
-            level.playSound(null, player.blockPosition(), ModSounds.COUNTERWEIGHTED_MISS.get(), SoundSource.PLAYERS);
+            //level.playSound(null, player.blockPosition(), ModSounds.COUNTERWEIGHTED_MISS.get(), SoundSource.PLAYERS);
         });
         return true;
     }

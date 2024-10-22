@@ -75,8 +75,8 @@
     "enchantment.icv.momentum": "Momentum",
     "enchantment.icv.momentum.desc": "Gain a speed boost up to 3 times while sprinting, resets on taking damage, or slowing down",
 
-    "enchantment.icv.parry": "Parry",
-    "enchantment.icv.parry.desc": "Block the next instance of damage for a quarter of a second",
+    "enchantment.icv.parry": "DO NOT USE, ALMOST USELESS",
+    "enchantment.icv.parry.desc": "Rolling properly does the same thing now",
     "key.icv.parry": "Activate Parry",
 
     "enchantment.icv.phantom_pain": "Phantom Pain",

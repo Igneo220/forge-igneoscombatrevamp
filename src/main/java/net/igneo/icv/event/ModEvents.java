@@ -1,5 +1,9 @@
 package net.igneo.icv.event;
 
+import com.alrex.parcool.client.input.KeyBindings;
+import com.alrex.parcool.common.action.impl.Dodge;
+import com.alrex.parcool.common.action.impl.Roll;
+import com.alrex.parcool.common.capability.Parkourability;
 import net.igneo.icv.ICV;
 import net.igneo.icv.client.EnchantmentHudOverlay;
 import net.igneo.icv.config.ICVCommonConfigs;
@@ -45,6 +49,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLEnvironment;
@@ -159,10 +164,14 @@ public class ModEvents {
         }
         return f;
     }
+    @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void onKeyInputEvent(InputEvent.Key event){
         if (!Minecraft.getInstance().options.keyJump.isDown()) {
             boosted = false;
+        }
+        if(Minecraft.getInstance().player != null && Parkourability.get(Minecraft.getInstance().player).get(Dodge.class).isDoing()) {
+            ModMessages.sendToServer(new ParryC2SPacket());
         }
     }
 
@@ -179,14 +188,10 @@ public class ModEvents {
         if (event.getEntity() instanceof ServerPlayer) {
             ServerPlayer player = (ServerPlayer) event.getEntity();
             player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-                if (EnchantmentHelper.getEnchantments(player.getInventory().getArmor(2)).containsKey(ModEnchantments.PARRY.get())) {
-                    if (System.currentTimeMillis() <= enchVar.getParryTime() + 250) {
+                    if (System.currentTimeMillis() <= enchVar.getParryTime() + 100) {
                         ServerLevel level = player.serverLevel();
-                        level.playSound(null,player.blockPosition(),ModSounds.PARRY.get(), SoundSource.PLAYERS,30,0.9F);
-                        level.sendParticles(ModParticles.PARRY_PARTICLE.get(), player.getX(),player.getEyeY(),player.getZ(),5,0,0,0,1);
                         event.setCanceled(true);
                     }
-                }
                 int trimCount = 0;
                 for (int j = 0; j < 4; ++j) {
                     if (!player.getInventory().getArmor(j).toString().contains("air") && player.getInventory().getArmor(j).serializeNBT().toString().contains("Trim")) {

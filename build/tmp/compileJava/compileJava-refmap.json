@@ -4,7 +4,8 @@
       "releaseUsing": "Lnet/minecraft/world/item/TridentItem;m_5551_(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V"
     },
     "net/igneo/icv/mixin/PlayerMixin": {
-      "attack": "Lnet/minecraft/world/entity/player/Player;m_5706_(Lnet/minecraft/world/entity/Entity;)V"
+      "attack": "Lnet/minecraft/world/entity/player/Player;m_5706_(Lnet/minecraft/world/entity/Entity;)V",
+      "hurt": "Lnet/minecraft/world/entity/player/Player;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
     },
     "net/igneo/icv/mixin/AnvilMenuMixin": {
       "createResult": "Lnet/minecraft/world/inventory/AnvilMenu;m_6640_()V"
@@ -16,7 +17,8 @@
       "hurt": "Lnet/minecraft/world/entity/LivingEntity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
     },
     "net/igneo/icv/mixin/LocalPlayerMixin": {
-      "aiStep": "Lnet/minecraft/client/player/LocalPlayer;m_8107_()V"
+      "aiStep": "Lnet/minecraft/client/player/LocalPlayer;m_8107_()V",
+      "hasEnoughFoodToStartSprinting": "Lnet/minecraft/client/player/LocalPlayer;m_255269_()Z"
     },
     "net/igneo/icv/mixin/ThrownTridentMixin": {
       "tick": "Lnet/minecraft/world/entity/projectile/ThrownTrident;m_8119_()V",
@@ -35,7 +37,8 @@
         "releaseUsing": "Lnet/minecraft/world/item/TridentItem;m_5551_(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V"
       },
       "net/igneo/icv/mixin/PlayerMixin": {
-        "attack": "Lnet/minecraft/world/entity/player/Player;m_5706_(Lnet/minecraft/world/entity/Entity;)V"
+        "attack": "Lnet/minecraft/world/entity/player/Player;m_5706_(Lnet/minecraft/world/entity/Entity;)V",
+        "hurt": "Lnet/minecraft/world/entity/player/Player;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
       },
       "net/igneo/icv/mixin/AnvilMenuMixin": {
         "createResult": "Lnet/minecraft/world/inventory/AnvilMenu;m_6640_()V"
@@ -47,7 +50,8 @@
         "hurt": "Lnet/minecraft/world/entity/LivingEntity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
       },
       "net/igneo/icv/mixin/LocalPlayerMixin": {
-        "aiStep": "Lnet/minecraft/client/player/LocalPlayer;m_8107_()V"
+        "aiStep": "Lnet/minecraft/client/player/LocalPlayer;m_8107_()V",
+        "hasEnoughFoodToStartSprinting": "Lnet/minecraft/client/player/LocalPlayer;m_255269_()Z"
       },
       "net/igneo/icv/mixin/ThrownTridentMixin": {
         "tick": "Lnet/minecraft/world/entity/projectile/ThrownTrident;m_8119_()V",
