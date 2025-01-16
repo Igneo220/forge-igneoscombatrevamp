@@ -1,11 +1,7 @@
 package net.igneo.icv.networking.packet;
 
-import net.igneo.icv.enchantment.TempoTheftEnchantment;
+import net.igneo.icv.enchantment.weapon.TempoTheftEnchantment;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.UUID;

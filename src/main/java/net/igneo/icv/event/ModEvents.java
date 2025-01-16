@@ -1,15 +1,22 @@
 package net.igneo.icv.event;
 
-import com.alrex.parcool.client.input.KeyBindings;
 import com.alrex.parcool.common.action.impl.Dodge;
-import com.alrex.parcool.common.action.impl.Roll;
 import com.alrex.parcool.common.capability.Parkourability;
 import net.igneo.icv.ICV;
 import net.igneo.icv.client.EnchantmentHudOverlay;
 import net.igneo.icv.config.ICVCommonConfigs;
 import net.igneo.icv.enchantment.*;
+import net.igneo.icv.enchantment.armor.*;
+import net.igneo.icv.enchantment.ranged.RendEnchantment;
+import net.igneo.icv.enchantment.weapon.ICVEnchantment;
+import net.igneo.icv.enchantment.weapon.KineticEnchantment;
+import net.igneo.icv.enchantment.weapon.TempoTheftEnchantment;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActions;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
+import net.igneo.icv.enchantmentActions.enchantManagers.EnchantmentManager;
+import net.igneo.icv.enchantmentActions.enchantManagers.armor.ArmorEnchantManager;
+import net.igneo.icv.enchantmentActions.enchantManagers.armor.BlackHoleManager;
+import net.igneo.icv.entity.blackHole.BlackHoleEntity;
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.*;
@@ -34,6 +41,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
@@ -44,26 +52,27 @@ import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
-import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import static java.lang.Math.abs;
-import static net.igneo.icv.enchantment.BlitzEnchantment.ATTACK_SPEED_MODIFIER_UUID;
-import static net.igneo.icv.enchantment.BackPedalEnchantment.hit;
-import static net.igneo.icv.enchantment.MomentumEnchantment.loopCount;
-import static net.igneo.icv.enchantment.MomentumEnchantment.spedUp;
-import static net.igneo.icv.enchantment.SiphonEnchantment.consumeClick;
+import static net.igneo.icv.enchantment.weapon.BlitzEnchantment.ATTACK_SPEED_MODIFIER_UUID;
+import static net.igneo.icv.enchantment.weapon.BackPedalEnchantment.hit;
+import static net.igneo.icv.enchantment.armor.MomentumEnchantment.loopCount;
+import static net.igneo.icv.enchantment.armor.MomentumEnchantment.spedUp;
+import static net.igneo.icv.enchantment.armor.SiphonEnchantment.consumeClick;
 
 @Mod.EventBusSubscriber(modid = ICV.MOD_ID)
 public class ModEvents {
@@ -87,6 +96,93 @@ public class ModEvents {
     public static BlockPos usedEnchTable;
     public static int enchShift = 0;
     public static int enchLength = 0;
+
+    //----------------------------------------
+
+    @SubscribeEvent
+    public static void equipEvent(LivingEquipmentChangeEvent event) {
+        if (event.getEntity() instanceof Player player) {
+            ModMessages.sendToPlayer(new EquipmentUpdateS2CPacket(event.getSlot().getFilterFlag()), (ServerPlayer) player);
+            updateManager(player,event.getSlot().getFilterFlag());
+        }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static void directUpdate(int pSlot) {
+        if (uniPlayer != null) {
+            updateManager(uniPlayer, pSlot);
+        }
+    }
+
+    public static void updateManager(Player player, int pSlot) {
+        player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+            System.out.println(player.level());
+            int slot = pSlot;
+            if (pSlot == 0) {
+                slot = 4;
+            } else if (pSlot <= 4) {
+                --slot;
+            }
+            List<Enchantment> enchList = new ArrayList<>();
+            switch (slot) {
+                case 0,1,2,3 -> enchList = player.getInventory().getArmor(slot).getAllEnchantments().keySet().stream().toList();
+                case 4 -> enchList = player.getMainHandItem().getAllEnchantments().keySet().stream().toList();
+                case 5 -> enchList = player.getOffhandItem().getAllEnchantments().keySet().stream().toList();
+            }
+            if (!enchList.isEmpty()) {
+                for (Enchantment enchantment : enchList) {
+                    if (enchantment instanceof ICVEnchantment enchant) {
+                        enchVar.setManager(enchant.getManager(player), slot);
+                    }
+                }
+            } else {
+                enchVar.setManager(null, slot);
+            }
+        });
+    }
+
+    public static void useEnchant(Player player, int slot) {
+        player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+            if (enchVar.getManager(slot) != null) {
+                enchVar.getManager(slot).use();
+            }
+        });
+    }
+
+    @SubscribeEvent
+    public static void onItemUseEvent(PlayerInteractEvent.RightClickItem event) {
+        if (event.getEntity().isCrouching()) {
+            if (!event.getEntity().getOffhandItem().getAllEnchantments().isEmpty()) {
+                useEnchant(event.getEntity(), 5);
+                ModMessages.sendToServer(new EnchantUseC2SPacket(5));
+            } else {
+                useEnchant(event.getEntity(), 4);
+                ModMessages.sendToServer(new EnchantUseC2SPacket(4));
+            }
+        } else {
+            useEnchant(event.getEntity(), 0);
+            ModMessages.sendToServer(new EnchantUseC2SPacket(4));
+        }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static void tryBlackHoleUpdate(int ID) {
+        Minecraft.getInstance().player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+            if (enchVar.getManager(3) instanceof BlackHoleManager manager) {
+                if (Minecraft.getInstance().level.getEntity(ID) instanceof BlackHoleEntity blackHole) {
+                    manager.child = blackHole;
+                    blackHole.setOwner(Minecraft.getInstance().player);
+                }
+            }
+        });
+    }
+
+
+
+
+
+    //-------------------------------------------------------------
+
 
     @SubscribeEvent
     public static void renderTooltips(ItemTooltipEvent event) {
@@ -167,12 +263,28 @@ public class ModEvents {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void onKeyInputEvent(InputEvent.Key event){
+        if (Keybindings.boots.isDown()) {
+            useEnchant(uniPlayer,0);
+            ModMessages.sendToServer(new EnchantUseC2SPacket(0));
+        }
+        if (Keybindings.leggings.isDown()) {
+            useEnchant(uniPlayer,1);
+            ModMessages.sendToServer(new EnchantUseC2SPacket(1));
+        }
+        if (Keybindings.chestplate.isDown()) {
+            useEnchant(uniPlayer,2);
+            ModMessages.sendToServer(new EnchantUseC2SPacket(2));
+        }
+        if (Keybindings.helmet.isDown()) {
+            useEnchant(uniPlayer,3);
+            ModMessages.sendToServer(new EnchantUseC2SPacket(3));
+        }
+
+
         if (!Minecraft.getInstance().options.keyJump.isDown()) {
             boosted = false;
         }
-        if(Minecraft.getInstance().player != null && Parkourability.get(Minecraft.getInstance().player).get(Dodge.class).isDoing()) {
-            ModMessages.sendToServer(new ParryC2SPacket());
-        }
+
     }
 
     @SubscribeEvent
@@ -183,12 +295,18 @@ public class ModEvents {
             event.setCanceled(true);
         }
     }
+
     @SubscribeEvent
     public static void livingHurtEvent(LivingHurtEvent event) {
-        if (event.getEntity() instanceof ServerPlayer) {
-            ServerPlayer player = (ServerPlayer) event.getEntity();
+
+        if (event.getSource().getEntity() instanceof Player player) {
+            sendCooldownDamageBonuses(player);
+            ModMessages.sendToPlayer(new EnchantHitS2CPacket(), (ServerPlayer) player);
+        }
+
+        if (event.getEntity() instanceof ServerPlayer player) {
             player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-                    if (System.currentTimeMillis() <= enchVar.getParryTime() + 100) {
+                    if (Parkourability.get(player).get(Dodge.class).isDoing()) {
                         ServerLevel level = player.serverLevel();
                         event.setCanceled(true);
                     }
@@ -210,6 +328,22 @@ public class ModEvents {
             });
         }
     }
+
+    @OnlyIn(Dist.CLIENT)
+    public static void clientCooldownDamageBonuses() {
+        sendCooldownDamageBonuses(uniPlayer);
+    }
+
+    public static void sendCooldownDamageBonuses(Player player) {
+        player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+            for (EnchantmentManager manager : enchVar.getManagers()) {
+                if (manager instanceof ArmorEnchantManager aManager) {
+                    aManager.targetDamaged();
+                }
+            }
+        });
+    }
+
     @SubscribeEvent
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {
         if(event.getObject() instanceof Player) {
@@ -340,7 +474,18 @@ public class ModEvents {
     
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+
         event.player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+            for (EnchantmentManager manager : enchVar.getManagers()) {
+                if (manager instanceof ArmorEnchantManager aManager) {
+                    aManager.tick();
+                }
+            }
+
+
+
+
+
             if (event.player.level() instanceof ServerLevel) {
                 ServerPlayer player = (ServerPlayer) event.player;
                 ServerLevel level = player.serverLevel();
@@ -421,7 +566,9 @@ public class ModEvents {
                 enchVar.setAcrobatBonus(false);
             }
 
-            if (FMLEnvironment.dist.isClient() && uniPlayer != null) {
+            if (FMLEnvironment.dist.isClient() && false) {
+
+
                 enchantmentTick();
 
                 if (Minecraft.getInstance().mouseHandler.isLeftPressed()) {
@@ -569,7 +716,7 @@ public class ModEvents {
             }
             switch (enchVar.getHelmetID()) {
                 case 1:
-                    BlackHoleEnchantment.onKeyInputEvent();
+                    //BlackHoleEnchantment.onKeyInputEvent();
                     break;
                 case 2:
                     BlizzardEnchantment.onClientTick();
@@ -668,4 +815,6 @@ public class ModEvents {
             }
         });
     }
+
+
 }

@@ -2,10 +2,8 @@ package net.igneo.icv.mixin;
 
 import net.igneo.icv.enchantment.ModEnchantments;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
-import net.igneo.icv.particle.ModParticles;
-import net.igneo.icv.sound.ModSounds;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundSource;
+import net.minecraft.core.BlockPos;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
@@ -14,15 +12,20 @@ import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.concurrent.atomic.AtomicReference;
 
 @Mixin(value = Player.class,priority = 999999999)
 public abstract class PlayerMixin extends LivingEntity{
+
+    private int checkTicks = 0;
 
     protected PlayerMixin(EntityType<? extends LivingEntity> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -31,8 +34,6 @@ public abstract class PlayerMixin extends LivingEntity{
     @Shadow
     public void disableShield(boolean pBecauseOfAxe) {
     }
-
-    @Shadow public abstract void resetAttackStrengthTicker();
 
     /**
      * @author Igneo
@@ -43,6 +44,11 @@ public abstract class PlayerMixin extends LivingEntity{
         if (EnchantmentHelper.getEnchantments(pEntity.getMainHandItem()).containsKey(ModEnchantments.BREAKTHROUGH.get())) {
             disableShield(true);
         }
+    }
+
+    @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;resetAttackStrengthTicker()V"))
+    public void tick(Player instance) {
+
     }
 
     @ModifyVariable(method = "attack", at = @At(value = "STORE"), index = 4)
@@ -86,4 +92,7 @@ public abstract class PlayerMixin extends LivingEntity{
             }
         });
     }
+
+
+
 }

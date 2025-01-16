@@ -4,7 +4,9 @@
       "releaseUsing": "Lnet/minecraft/world/item/TridentItem;m_5551_(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V"
     },
     "net/igneo/icv/mixin/PlayerMixin": {
+      "Lnet/minecraft/world/entity/player/Player;resetAttackStrengthTicker()V": "Lnet/minecraft/world/entity/player/Player;m_36334_()V",
       "attack": "Lnet/minecraft/world/entity/player/Player;m_5706_(Lnet/minecraft/world/entity/Entity;)V",
+      "tick": "Lnet/minecraft/world/entity/player/Player;m_8119_()V",
       "hurt": "Lnet/minecraft/world/entity/player/Player;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
     },
     "net/igneo/icv/mixin/AnvilMenuMixin": {
@@ -37,7 +39,9 @@
         "releaseUsing": "Lnet/minecraft/world/item/TridentItem;m_5551_(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V"
       },
       "net/igneo/icv/mixin/PlayerMixin": {
+        "Lnet/minecraft/world/entity/player/Player;resetAttackStrengthTicker()V": "Lnet/minecraft/world/entity/player/Player;m_36334_()V",
         "attack": "Lnet/minecraft/world/entity/player/Player;m_5706_(Lnet/minecraft/world/entity/Entity;)V",
+        "tick": "Lnet/minecraft/world/entity/player/Player;m_8119_()V",
         "hurt": "Lnet/minecraft/world/entity/player/Player;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
       },
       "net/igneo/icv/mixin/AnvilMenuMixin": {

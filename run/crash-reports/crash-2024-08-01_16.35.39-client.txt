@@ -74,14 +74,6 @@ Stacktrace:
 	at cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:141) ~[bootstraplauncher-1.1.2.jar:?] {}
 
 
--- Affected level --
-Details:
-	All players: 1 total; [LocalPlayer['Dev'/1, l='ClientLevel', x=624.14, y=-60.00, z=300.56]]
-	Chunk stats: 961, 609
-	Level dimension: minecraft:overworld
-	Level spawn location: World: (631,-60,359), Section: (at 7,4,7 in 39,-4,22; chunk contains blocks 624,-64,352 to 639,319,367), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,-64,0 to 1023,319,511)
-	Level time: 1062954 game time, 24905 day time
-	Server brand: forge
 	Server type: Integrated singleplayer server
 Stacktrace:
 	at net.minecraft.client.multiplayer.ClientLevel.fillReportDetails(ClientLevel.java:470) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:classloading,pl:runtimedistcleaner:A}

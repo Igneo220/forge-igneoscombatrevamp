@@ -1,0 +1,35 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"idle": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"blackhole": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.5": {
+							"vector": [0, 360, 0]
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, -1, 0]
+						},
+						"0.25": {
+							"vector": [0, 1, 0],
+							"easing": "easeInOutCirc"
+						},
+						"0.5": {
+							"vector": [0, -1, 0],
+							"easing": "easeInOutCirc"
+						}
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

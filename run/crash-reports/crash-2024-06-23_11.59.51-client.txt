@@ -48,14 +48,7 @@ Stacktrace:
 	at net.minecraft.world.entity.player.Player.getMainArm(Player.java:2426) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:mixin,pl:accesstransformer:B,re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:mixins.icv.json:PlayerMixin,pl:mixin:A}
 	at net.minecraft.client.renderer.ItemInHandRenderer.renderArmWithItem(ItemInHandRenderer.java:365) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:runtimedistcleaner:A}
 	at net.minecraft.client.renderer.ItemInHandRenderer.renderHandsWithItems(ItemInHandRenderer.java:320) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:runtimedistcleaner:A}
-	at net.minecraft.client.renderer.GameRenderer.renderItemInHand(GameRenderer.java:873) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
-	at net.minecraft.client.renderer.GameRenderer.renderLevel(GameRenderer.java:1153) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
--- Affected level --
-Details:
-	All players: 1 total; [LocalPlayer['Dev'/18, l='ClientLevel', x=218.34, y=-60.00, z=-16.98]]
-	Chunk stats: 961, 366
-	Level dimension: minecraft:overworld
-	Level spawn location: World: (0,-60,0), Section: (at 0,4,0 in 0,-4,0; chunk contains blocks 0,-64,0 to 15,319,15), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,-64,0 to 511,319,511)
+	at net.minecraft.cl0,-60,0), Section: (at 0,4,0 in 0,-4,0; chunk contains blocks 0,-64,0 to 15,319,15), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,-64,0 to 511,319,511)
 	Level time: 86111 game time, 24905 day time
 	Server brand: forge
 	Server type: Integrated singleplayer server

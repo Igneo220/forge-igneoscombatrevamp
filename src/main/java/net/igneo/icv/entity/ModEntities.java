@@ -1,6 +1,7 @@
 package net.igneo.icv.entity;
 
 import net.igneo.icv.ICV;
+import net.igneo.icv.entity.blackHole.BlackHoleEntity;
 import net.igneo.icv.entity.custom.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;

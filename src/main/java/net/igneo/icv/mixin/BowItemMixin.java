@@ -2,7 +2,7 @@ package net.igneo.icv.mixin;
 
 import com.sun.jna.platform.unix.LibC;
 import net.igneo.icv.enchantment.ModEnchantments;
-//import net.igneo.icv.enchantment.WardenScreamEnchantment;
+//import net.igneo.icv.enchantment.armor.WardenScreamEnchantment;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.AccelerateS2CPacket;
 import net.igneo.icv.networking.packet.BackpedalS2CPacket;

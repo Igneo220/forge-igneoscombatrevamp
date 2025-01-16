@@ -1,14 +1,6 @@
 ---- Minecraft Crash Report ----
 // I let you down. Sorry :(
-
-Time: 2024-07-18 23:40:44
-Description: Unexpected error
-
-java.lang.NullPointerException: Cannot invoke "net.minecraft.client.player.LocalPlayer.getInventory()" because "net.minecraft.client.Minecraft.getInstance().player" is null
-	at net.igneo.icv.event.ModEvents.Key(ModEvents.java:87) ~[%23196!/:?] {re:classloading}
-	at net.igneo.icv.event.__ModEvents_Key_Key.invoke(.dynamic) ~[%23196!/:?] {re:classloading,pl:eventbus:B}
-	at net.minecraftforge.eventbus.ASMEventHandler.invoke(ASMEventHandler.java:73) ~[eventbus-6.0.5.jar:?] {}
-	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:315) ~[eventbus-6.0.5.jar:?] {}
+EventBus.java:315) ~[eventbus-6.0.5.jar:?] {}
 	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:296) ~[eventbus-6.0.5.jar:?] {}
 	at net.minecraftforge.client.ForgeHooksClient.onKeyInput(ForgeHooksClient.java:738) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:classloading}
 	at net.minecraft.client.KeyboardHandler.keyPress(KeyboardHandler.java:431) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:classloading,pl:runtimedistcleaner:A}

@@ -4,7 +4,7 @@
 Time: 2024-07-09 20:34:27
 Description: Ticking player
 
-java.lang.NullPointerException: Cannot invoke "net.minecraft.client.player.LocalPlayer.getInventory()" because "pPlayer" is null
+java.lang.NullPointerException: Cannot invoke "net.minecraft.client.plagetInventory()" because "pPlayer" is null
 	at net.igneo.icv.enchantment.CrushEnchantment.onClientTick(CrushEnchantment.java:35) ~[%23196!/:?] {re:classloading}
 	at net.igneo.icv.event.ModEvents.lambda$onPlayerTick$2(ModEvents.java:156) ~[%23196!/:?] {re:classloading}
 	at net.minecraftforge.common.util.LazyOptional.ifPresent(LazyOptional.java:137) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23190%23197!/:?] {re:mixin,re:classloading}

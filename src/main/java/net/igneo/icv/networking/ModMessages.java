@@ -28,6 +28,11 @@ public class ModMessages {
             return true;
         }).simpleChannel();
         INSTANCE = net;
+        net.messageBuilder(EnchantUseC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(EnchantUseC2SPacket::new)
+                .encoder(EnchantUseC2SPacket::toBytes)
+                .consumerMainThread(EnchantUseC2SPacket::handle)
+                .add();
         net.messageBuilder(MakeMeGlowC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(MakeMeGlowC2SPacket::new)
                 .encoder(MakeMeGlowC2SPacket::toBytes)
@@ -37,11 +42,6 @@ public class ModMessages {
                 .decoder(DoubleJumpC2SPacket::new)
                 .encoder(DoubleJumpC2SPacket::toBytes)
                 .consumerMainThread(DoubleJumpC2SPacket::handle)
-                .add();
-        net.messageBuilder(BlockHoleMoveC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(BlockHoleMoveC2SPacket::new)
-                .encoder(BlockHoleMoveC2SPacket::toBytes)
-                .consumerMainThread(BlockHoleMoveC2SPacket::handle)
                 .add();
         net.messageBuilder(SkyChargeC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(SkyChargeC2SPacket::new)
@@ -252,6 +252,21 @@ public class ModMessages {
                 .decoder(AccelerateS2CPacket::new)
                 .encoder(AccelerateS2CPacket::toBytes)
                 .consumerMainThread(AccelerateS2CPacket::handle)
+                .add();
+        net.messageBuilder(EquipmentUpdateS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(EquipmentUpdateS2CPacket::new)
+                .encoder(EquipmentUpdateS2CPacket::toBytes)
+                .consumerMainThread(EquipmentUpdateS2CPacket::handle)
+                .add();
+        net.messageBuilder(BlackHoleSyncS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(BlackHoleSyncS2CPacket::new)
+                .encoder(BlackHoleSyncS2CPacket::toBytes)
+                .consumerMainThread(BlackHoleSyncS2CPacket::handle)
+                .add();
+        net.messageBuilder(EnchantHitS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(EnchantHitS2CPacket::new)
+                .encoder(EnchantHitS2CPacket::toBytes)
+                .consumerMainThread(EnchantHitS2CPacket::handle)
                 .add();
     }
 

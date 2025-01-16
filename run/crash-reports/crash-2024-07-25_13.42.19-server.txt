@@ -3,12 +3,7 @@
 
 Time: 2024-07-25 13:42:19
 Description: Ticking player
-
-java.lang.NullPointerException: Cannot invoke "net.minecraft.client.player.LocalPlayer.getInventory()" because "net.minecraft.client.Minecraft.getInstance().player" is null
-	at net.igneo.icv.enchantment.IncapacitateEnchantment.onKeyInputEvent(IncapacitateEnchantment.java:22) ~[%23196!/:?] {re:classloading}
-	at net.igneo.icv.event.ModEvents.lambda$onPlayerTick$3(ModEvents.java:226) ~[%23196!/:?] {re:mixin,re:classloading}
-	at net.minecraftforge.common.util.LazyOptional.ifPresent(LazyOptional.java:137) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23190%23197!/:?] {re:mixin,re:classloading}
-	at net.igneo.icv.event.ModEvents.onPlayerTick(ModEvents.java:127) ~[%23196!/:?] {re:mixin,re:classloading}
+classloading}
 	at net.igneo.icv.event.__ModEvents_onPlayerTick_PlayerTickEvent.invoke(.dynamic) ~[%23196!/:?] {re:classloading,pl:eventbus:B}
 	at net.minecraftforge.eventbus.ASMEventHandler.invoke(ASMEventHandler.java:73) ~[eventbus-6.0.5.jar%23114!/:?] {}
 	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:315) ~[eventbus-6.0.5.jar%23114!/:?] {}

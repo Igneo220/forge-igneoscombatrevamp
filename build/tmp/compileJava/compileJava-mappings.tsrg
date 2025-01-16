@@ -58,6 +58,5 @@ net/igneo/icv/mixin/LivingEntityMixin isBlocking ()Z m_21254_
 net/igneo/icv/mixin/LivingEntityMixin canDisableShield ()Z m_213824_
 net/igneo/icv/mixin/LocalPlayerMixin hasEnoughFoodToStartSprinting ()Z m_255269_
 net/igneo/icv/mixin/PlayerMixin disableShield (Z)V m_36384_
-net/igneo/icv/mixin/PlayerMixin resetAttackStrengthTicker ()V m_36334_
 net/igneo/icv/mixin/PlayerMixin blockUsingShield (Lnet/minecraft/world/entity/LivingEntity;)V m_6728_
 net/igneo/icv/mixin/TridentItemMixin getUseDuration (Lnet/minecraft/world/item/ItemStack;)I m_8105_

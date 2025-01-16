@@ -38,16 +38,7 @@ Thread: Render thread
 Suspected Mods: NONE
 Stacktrace:
 	at net.minecraft.client.renderer.LevelRenderer.checkPoseStack(LevelRenderer.java:1461) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
-	at net.minecraft.client.renderer.LevelRenderer.renderLevel(LevelRenderer.java:1255) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
-	at net.minecraft.client.renderer.GameRenderer.renderLevel(GameRenderer.java:1147) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
--- Affected level --
-Details:
-	All players: 1 total; [LocalPlayer['Dev'/1, l='ClientLevel', x=-246.65, y=-59.74, z=-431.78]]
-	Chunk stats: 961, 228
-	Level dimension: minecraft:overworld
-	Level spawn location: World: (631,-60,359), Section: (at 7,4,7 in 39,-4,22; chunk contains blocks 624,-64,352 to 639,319,367), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,-64,0 to 1023,319,511)
-	Level time: 267121 game time, 24905 day time
-	Server brand: forge
+	at net.minecraft.c
 	Server type: Integrated singleplayer server
 Stacktrace:
 	at net.minecraft.client.multiplayer.ClientLevel.fillReportDetails(ClientLevel.java:470) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:classloading,pl:runtimedistcleaner:A}

@@ -5,7 +5,7 @@ import net.igneo.icv.config.ICVClientConfigs;
 import net.igneo.icv.config.ICVCommonConfigs;
 import net.igneo.icv.enchantment.ModEnchantments;
 import net.igneo.icv.entity.ModEntities;
-import net.igneo.icv.entity.client.BlackHoleRenderer;
+import net.igneo.icv.entity.blackHole.BlackHoleRenderer;
 import net.igneo.icv.entity.client.BoltRenderer;
 import net.igneo.icv.entity.client.CometRenderer;
 import net.igneo.icv.entity.client.IcicleRenderer;
@@ -14,12 +14,9 @@ import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.sound.ModSounds;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -30,9 +27,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Mod(ICV.MOD_ID)
 public class ICV
@@ -73,6 +67,8 @@ public class ICV
             EntityRenderers.register(ModEntities.ICICLE.get(), IcicleRenderer::new);
             EntityRenderers.register(ModEntities.BOLT.get(), BoltRenderer::new);
             EntityRenderers.register(ModEntities.FIRE.get(), ThrownItemRenderer::new);
+            //EntityRenderers.register(ModEntities.BLACK_HOLE.get(), BlackHoleRenderer::new);
+
             EntityRenderers.register(ModEntities.BLACK_HOLE.get(), BlackHoleRenderer::new);
         }
 

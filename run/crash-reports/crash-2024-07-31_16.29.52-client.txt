@@ -3,8 +3,7 @@
 
 Time: 2024-07-31 16:29:52
 Description: Ticking entity
-
-java.lang.NullPointerException: Cannot invoke "net.minecraft.client.player.LocalPlayer.onGround()" because "net.igneo.icv.event.ModEvents.uniPlayer" is null
+onGround()" because "net.igneo.icv.event.ModEvents.uniPlayer" is null
 	at net.igneo.icv.enchantment.SmiteEnchantment.onKeyInputEvent(SmiteEnchantment.java:42) ~[%23196!/:?] {re:classloading}
 	at net.igneo.icv.event.ModEvents.lambda$onPlayerTick$3(ModEvents.java:395) ~[%23196!/:?] {re:mixin,re:classloading}
 	at net.minecraftforge.common.util.LazyOptional.ifPresent(LazyOptional.java:137) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23190%23197!/:?] {re:mixin,re:classloading}
@@ -15,9 +14,7 @@ java.lang.NullPointerException: Cannot invoke "net.minecraft.client.player.Local
 	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:296) ~[eventbus-6.0.5.jar:?] {}
 	at net.minecraftforge.event.ForgeEventFactory.onPlayerPreTick(ForgeEventFactory.java:915) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:mixin,re:classloading}
 	at net.minecraft.world.entity.player.Player.tick(Player.java:218) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:mixin,pl:accesstransformer:B,re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:mixins.icv.json:PlayerMixin,pl:mixin:A}
-	at net.minecraft.client.player.AbstractClientPlayer.tick(AbstractClientPlayer.java:79) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:classloading,pl:runtimedistcleaner:A}
-	at net.minecraft.client.player.LocalPlayer.tick(LocalPlayer.java:229) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
-	at net.minecraft.client.multiplayer.ClientLevel.tickNonPassenger(ClientLevel.java:280) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:classloading,pl:runtimedistcleaner:A}
+	at net.r(ClientLevel.java:280) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:classloading,pl:runtimedistcleaner:A}
 	at net.minecraft.world.level.Level.guardEntityTick(Level.java:522) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
 	at net.minecraft.client.multiplayer.ClientLevel.lambda$tickEntities$4(ClientLevel.java:262) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:classloading,pl:runtimedistcleaner:A}
 	at net.minecraft.world.level.entity.EntityTickList.forEach(EntityTickList.java:53) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:classloading}
@@ -60,19 +57,10 @@ Stacktrace:
 	at net.igneo.icv.event.__ModEvents_onPlayerTick_PlayerTickEvent.invoke(.dynamic) ~[%23196!/:?] {re:classloading,pl:eventbus:B}
 	at net.minecraftforge.eventbus.ASMEventHandler.invoke(ASMEventHandler.java:73) ~[eventbus-6.0.5.jar%23114!/:?] {}
 	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:315) ~[eventbus-6.0.5.jar%23114!/:?] {}
-	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:296) ~[eventbus-6.0.5.jar%23114!/:?] {}
-	at net.minecraftforge.event.ForgeEventFactory.onPlayerPreTick(ForgeEventFactory.java:915) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23190%23197!/:?] {re:mixin,re:classloading}
-	at net.minecraft.world.entity.player.Player.tick(Player.java:218) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:mixin,pl:accesstransformer:B,re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:mixins.icv.json:PlayerMixin,pl:mixin:A}
-	at net.minecraft.client.player.AbstractClientPlayer.tick(AbstractClientPlayer.java:79) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:runtimedistcleaner:A}
-	at net.minecraft.client.player.LocalPlayer.tick(LocalPlayer.java:229) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
-	at net.minecraft.client.multiplayer.ClientLevel.tickNonPassenger(ClientLevel.java:280) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:runtimedistcleaner:A}
-	at net.minecraft.world.level.Level.guardEntityTick(Level.java:522) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
-	at net.minecraft.client.multiplayer.ClientLevel.lambda$tickEntities$4(ClientLevel.java:262) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:runtimedistcleaner:A}
-	at net.minecraft.world.level.entity.EntityTickList.forEach(EntityTickList.java:53) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading}
-	at net.minecraft.client.multiplayer.ClientLevel.tickEntities(ClientLevel.java:260) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at net.minecraftforge.eventbus.EClientLevel.java:260) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:runtimedistcleaner:A}
 -- Entity being ticked --
 Details:
-	Entity Type: minecraft:player (net.minecraft.client.player.LocalPlayer)
+	Entity Type: minecraft:player (
 	Entity ID: 1
 	Entity Name: Dev
 	Entity's Exact location: 564.90, -60.00, 425.87
@@ -109,7 +97,7 @@ Stacktrace:
 
 -- Affected level --
 Details:
-	All players: 1 total; [LocalPlayer['Dev'/1, l='ClientLevel', x=564.90, y=-60.00, z=425.87]]
+	/1, l='ClientLevel', x=564.90, y=-60.00, z=425.87]]
 	Chunk stats: 961, 609
 	Level dimension: minecraft:overworld
 	Level spawn location: World: (631,-60,359), Section: (at 7,4,7 in 39,-4,22; chunk contains blocks 624,-64,352 to 639,319,367), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,-64,0 to 1023,319,511)

@@ -42,15 +42,7 @@ Stacktrace:
 	at net.minecraft.world.entity.LivingEntity.getBoundingBoxForCulling(LivingEntity.java:3601) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:mixin,re:classloading,pl:mixin:A}
 	at net.minecraft.client.renderer.entity.EntityRenderer.shouldRender(EntityRenderer.java:52) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:runtimedistcleaner:A}
 	at net.minecraft.client.renderer.entity.EntityRenderDispatcher.shouldRender(EntityRenderDispatcher.java:128) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
-	at net.minecraft.client.renderer.LevelRenderer.renderLevel(LevelRenderer.java:1225) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
-	at net.minecraft.client.renderer.GameRenderer.renderLevel(GameRenderer.java:1147) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
--- Affected level --
-Details:
-	All players: 1 total; [LocalPlayer['Dev'/18, l='ClientLevel', x=8.50, y=65.00, z=8.50]]
-	Chunk stats: 961, 0
-	Level dimension: minecraft:overworld
-	Level spawn location: World: (8,64,8), Section: (at 8,0,8 in 0,4,0; chunk contains blocks 0,-64,0 to 15,319,15), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,-64,0 to 511,319,511)
-	Level time: 0 game time, 0 day time
+	at net.minecraftme
 	Server brand: ~~NULL~~
 	Server type: Integrated singleplayer server
 Stacktrace:

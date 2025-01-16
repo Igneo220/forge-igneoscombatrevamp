@@ -44,7 +44,7 @@ Stacktrace:
 	at net.minecraft.client.renderer.GameRenderer.renderLevel(GameRenderer.java:1153) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
 -- Affected level --
 Details:
-	All players: 1 total; [LocalPlayer['Dev'/18, l='ClientLevel', x=202.36, y=-60.00, z=19.98]]
+	All players: 1 total;ev'/18, l='ClientLevel', x=202.36, y=-60.00, z=19.98]]
 	Chunk stats: 961, 487
 	Level dimension: minecraft:overworld
 	Level spawn location: World: (0,-60,0), Section: (at 0,4,0 in 0,-4,0; chunk contains blocks 0,-64,0 to 15,319,15), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,-64,0 to 511,319,511)

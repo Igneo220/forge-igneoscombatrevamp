@@ -1,17 +1,10 @@
 package net.igneo.icv.particle.custom;
 
-import net.igneo.icv.entity.ModEntities;
-import net.igneo.icv.entity.custom.BlackHoleEntity;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
-import net.minecraft.world.level.entity.EntityTypeTest;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.List;
 
 public class BlackHoleParticles extends TextureSheetParticle {
     private long orbitTime;

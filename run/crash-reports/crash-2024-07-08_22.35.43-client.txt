@@ -1,14 +1,6 @@
 ---- Minecraft Crash Report ----
 // Daisy, daisy...
-
-Time: 2024-07-08 22:35:43
-Description: Unexpected error
-
-java.lang.ClassCastException: class net.minecraft.client.player.LocalPlayer cannot be cast to class net.minecraft.server.level.ServerPlayer (net.minecraft.client.player.LocalPlayer and net.minecraft.server.level.ServerPlayer are in module minecraft@1.20.1 of loader 'TRANSFORMER' @6a0f2853)
-	at net.igneo.icv.enchantment.PhantomPainEnchantment.lambda$doPostAttack$0(PhantomPainEnchantment.java:31) ~[main/:?] {re:classloading}
-	at net.minecraftforge.common.util.LazyOptional.ifPresent(LazyOptional.java:137) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:mixin,re:classloading}
-	at net.igneo.icv.enchantment.PhantomPainEnchantment.doPostAttack(PhantomPainEnchantment.java:29) ~[main/:?] {re:classloading}
-	at net.minecraft.world.item.enchantment.EnchantmentHelper.lambda$doPostDamageEffects$5(EnchantmentHelper.java:212) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:mixin,re:classloading,pl:mixin:APP:mixins.icv.json:EnchantmentHelperMixin,pl:mixin:A}
+chantment.EnchantmentHelper.lambda$doPostDamageEffects$5(EnchantmentHelper.java:212) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:mixin,re:classloading,pl:mixin:APP:mixins.icv.json:EnchantmentHelperMixin,pl:mixin:A}
 	at net.minecraft.world.item.enchantment.EnchantmentHelper.runIterationOnItem(EnchantmentHelper.java:144) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:mixin,re:classloading,pl:mixin:APP:mixins.icv.json:EnchantmentHelperMixin,pl:mixin:A}
 	at net.minecraft.world.item.enchantment.EnchantmentHelper.runIterationOnInventory(EnchantmentHelper.java:166) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:mixin,re:classloading,pl:mixin:APP:mixins.icv.json:EnchantmentHelperMixin,pl:mixin:A}
 	at net.minecraft.world.item.enchantment.EnchantmentHelper.doPostDamageEffects(EnchantmentHelper.java:215) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar:?] {re:mixin,re:classloading,pl:mixin:APP:mixins.icv.json:EnchantmentHelperMixin,pl:mixin:A}
@@ -60,10 +52,7 @@ Stacktrace:
 	at net.minecraft.client.Minecraft.handleKeybinds(Minecraft.java:2019) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
 -- Affected level --
 Details:
-	All players: 1 total; [LocalPlayer['Dev'/5, l='ClientLevel', x=732.87, y=-58.83, z=390.09]]
-	Chunk stats: 961, 609
-	Level dimension: minecraft:overworld
-	Level spawn location: World: (631,-60,359), Section: (at 7,4,7 in 39,-4,22; chunk contains blocks 624,-64,352 to 639,319,367), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,-64,0 to 1023,319,511)
+	All players: 1 to31,-60,359), Section: (at 7,4,7 in 39,-4,22; chunk contains blocks 624,-64,352 to 639,319,367), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,-64,0 to 1023,319,511)
 	Level time: 288694 game time, 24905 day time
 	Server brand: forge
 	Server type: Integrated singleplayer server

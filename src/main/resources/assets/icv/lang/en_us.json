@@ -149,5 +149,9 @@
     "icv.vex.desc": "Faster regeneration on a delay",
     "icv.ward.desc": "Explosion and projectile protection",
     "icv.wayfinder.desc": "Speed increase, but less damage",
-    "icv.wild.desc": "Health increase"
+    "icv.wild.desc": "Health increase",
+    "key.icv.helmet": "Use Helmet",
+    "key.icv.chestplate": "Use Chestplate Enchantment",
+    "key.icv.leggings": "Use Leggings Enchant",
+    "key.icv.boots": "Use Boot enchantments"
 }

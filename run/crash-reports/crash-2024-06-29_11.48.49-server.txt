@@ -7,7 +7,7 @@ Description: Ticking entity
 java.lang.NullPointerException: Cannot invoke "net.minecraft.server.level.ServerPlayer.level()" because "pPlayer" is null
 	at net.minecraft.server.level.ServerLevel.sendParticles(ServerLevel.java:1121) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
 	at net.minecraft.server.level.ServerLevel.sendParticles(ServerLevel.java:1117) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
-	at net.igneo.icv.entity.custom.BlackHoleEntity.tick(BlackHoleEntity.java:57) ~[%23196!/:?] {re:classloading}
+	at net.igneo.icv.entity.custom.OldBlackHoleEntity.tick(BlackHoleEntity.java:57) ~[%23196!/:?] {re:classloading}
 	at net.minecraft.server.level.ServerLevel.tickNonPassenger(ServerLevel.java:702) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
 	at net.minecraft.world.level.Level.guardEntityTick(Level.java:522) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
 	at net.minecraft.server.level.ServerLevel.lambda$tick$6(ServerLevel.java:346) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
@@ -28,11 +28,11 @@ A detailed walkthrough of the error, its code path and all known details is as f
 Thread: Server thread
 Suspected Mod: 
 	Igneo's Combat Revamp (icv), Version: 1.1.7
-		at TRANSFORMER/icv@1.1.7/net.igneo.icv.entity.custom.BlackHoleEntity.tick(BlackHoleEntity.java:57)
+		at TRANSFORMER/icv@1.1.7/net.igneo.icv.entity.custom.OldBlackHoleEntity.tick(BlackHoleEntity.java:57)
 Stacktrace:
 	at net.minecraft.server.level.ServerLevel.sendParticles(ServerLevel.java:1121) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
 	at net.minecraft.server.level.ServerLevel.sendParticles(ServerLevel.java:1117) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
-	at net.igneo.icv.entity.custom.BlackHoleEntity.tick(BlackHoleEntity.java:57) ~[%23196!/:?] {re:classloading}
+	at net.igneo.icv.entity.custom.OldBlackHoleEntity.tick(BlackHoleEntity.java:57) ~[%23196!/:?] {re:classloading}
 	at net.minecraft.server.level.ServerLevel.tickNonPassenger(ServerLevel.java:702) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
 	at net.minecraft.world.level.Level.guardEntityTick(Level.java:522) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
 	at net.minecraft.server.level.ServerLevel.lambda$tick$6(ServerLevel.java:346) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
@@ -40,7 +40,7 @@ Stacktrace:
 	at net.minecraft.server.level.ServerLevel.tick(ServerLevel.java:326) ~[forge-1.20.1-47.2.30_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
 -- Entity being ticked --
 Details:
-	Entity Type: icv:black_hole (net.igneo.icv.entity.custom.BlackHoleEntity)
+	Entity Type: icv:black_hole (net.igneo.icv.entity.custom.OldBlackHoleEntity)
 	Entity ID: 2
 	Entity Name: entity.icv.black_hole
 	Entity's Exact location: 658.07, -57.81, 379.54

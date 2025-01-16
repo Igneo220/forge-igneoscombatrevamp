@@ -2,30 +2,32 @@ package net.igneo.icv.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.igneo.icv.ICV;
+import net.igneo.icv.client.indicators.EnchantIndicator;
 import net.igneo.icv.config.ICVClientConfigs;
 import net.igneo.icv.enchantment.ModEnchantments;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
-import static net.igneo.icv.enchantment.BlizzardEnchantment.doBeIcin;
-import static net.igneo.icv.enchantment.BlizzardEnchantment.iceTime;
-import static net.igneo.icv.enchantment.ConcussionEnchantment.concussTime;
-import static net.igneo.icv.enchantment.FlamethrowerEnchantment.flameTime;
-import static net.igneo.icv.enchantment.FlamethrowerEnchantment.flameo;
-import static net.igneo.icv.enchantment.FlareEnchantment.chargeTime;
-import static net.igneo.icv.enchantment.FlareEnchantment.charging;
-import static net.igneo.icv.enchantment.IncapacitateEnchantment.incaCool;
-import static net.igneo.icv.enchantment.JudgementEnchantment.judgeTime;
-import static net.igneo.icv.enchantment.ParryEnchantment.parryCooldown;
-import static net.igneo.icv.enchantment.SmiteEnchantment.smiteTime;
-import static net.igneo.icv.enchantment.SmiteEnchantment.smiting;
-import static net.igneo.icv.enchantment.TrainDashEnchantment.dashing;
-import static net.igneo.icv.enchantment.TrainDashEnchantment.trainDelay;
-import static net.igneo.icv.enchantment.WardenScreamEnchantment.wardenTime;
+import static net.igneo.icv.enchantment.armor.BlizzardEnchantment.doBeIcin;
+import static net.igneo.icv.enchantment.armor.BlizzardEnchantment.iceTime;
+import static net.igneo.icv.enchantment.armor.ConcussionEnchantment.concussTime;
+import static net.igneo.icv.enchantment.armor.FlamethrowerEnchantment.flameTime;
+import static net.igneo.icv.enchantment.armor.FlamethrowerEnchantment.flameo;
+import static net.igneo.icv.enchantment.armor.FlareEnchantment.chargeTime;
+import static net.igneo.icv.enchantment.armor.FlareEnchantment.charging;
+import static net.igneo.icv.enchantment.armor.IncapacitateEnchantment.incaCool;
+import static net.igneo.icv.enchantment.armor.JudgementEnchantment.judgeTime;
+import static net.igneo.icv.enchantment.armor.ParryEnchantment.parryCooldown;
+import static net.igneo.icv.enchantment.armor.SmiteEnchantment.smiteTime;
+import static net.igneo.icv.enchantment.armor.SmiteEnchantment.smiting;
+import static net.igneo.icv.enchantment.armor.TrainDashEnchantment.dashing;
+import static net.igneo.icv.enchantment.armor.TrainDashEnchantment.trainDelay;
+import static net.igneo.icv.enchantment.armor.WardenScreamEnchantment.wardenTime;
 
 public class EnchantmentHudOverlay {
     public static long animTime = 0;
@@ -70,16 +72,46 @@ public class EnchantmentHudOverlay {
             "textures/gui/enchantments/judge.png");
 
     public static final IGuiOverlay HUD_ENCHANTMENTS = ((gui, poseStack, partialTick, width, height) -> {
-        if (animTime == 0) {
-            animTime = System.currentTimeMillis();
-        }
 
         int x = width / 2;
         int y = height;
 
+        Minecraft.getInstance().player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+           for (int slot = 0; slot < 4; ++slot) {
+               EnchantIndicator indicator = enchVar.indicators[slot];
+               if (indicator != null) {
+                   int offset = 16 * indicator.slot;
+                   offset = offset > 0 ? ++offset : 0;
+                   int pX = x - 94 + offset;
+                   int pY = y - 65;
+                   if (indicator.shouldRender()) {
+                       poseStack.blit(
+                               indicator.image,
+                               pX,
+                               pY,
+                               0,
+                               16 * indicator.getFrame(),
+                               16,
+                               16,
+                               16,
+                               indicator.getHeight());
+                   }
+               }
+           }
+        });
+
+
+        //----------------------------------
+
+        if (animTime == 0) {
+            animTime = System.currentTimeMillis();
+        }
+
+
+
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, BLIZZARD);
+       // RenderSystem.setShaderTexture(0, BLIZZARD);
         //for(int i = 0; i < 10; i++) {
         //GuiGraphics graphic = new GuiGraphics(gui.getMinecraft(),gui.getMinecraft().renderBuffers().bufferSource());
         //if(Minecraft.getInstance().options.keyUp.isDown()) {

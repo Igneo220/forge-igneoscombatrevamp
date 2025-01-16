@@ -124,6 +124,23 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
+    // This is the repositories block in your build.gradle. NOT the one in publishing, or in buildscript. If it does not exist already, create it.
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("com.eliotlash.mclib")
+        }
+    }
+
+    maven {
+        name = "firstdarkMavenSnapshots"
+        url = uri("https://maven.firstdarkdev.xyz/snapshots")
+    }
+
+
+
     maven {
         url "https://cursemaven.com"
         content {
@@ -141,6 +158,9 @@ repositories {
 }
 
 dependencies {
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}")
+    implementation("com.eliotlash.mclib:mclib:20")
+
     // Specify the version of Minecraft to use.
     // Any artifact can be supplied so long as it has a "userdev" classifier artifact and is a compatible patcher artifact.
     // The "userdev" classifier will be requested and setup by ForgeGradle.
@@ -149,6 +169,14 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation fg.deobf("curse.maven:parcool-482378:5714134")
+
+    implementation fg.deobf("com.lowdragmc.photon:photon-forge-1.20.1:1.0.7.a") {
+        transitive = false
+    }
+    implementation fg.deobf("com.lowdragmc.ldlib:ldlib-forge-1.20.1:1.0.22") {
+        transitive = false
+    }
+
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")

@@ -1,12 +1,60 @@
 package net.igneo.icv.enchantmentActions;
 
+import net.igneo.icv.client.indicators.EnchantIndicator;
+import net.igneo.icv.enchantmentActions.enchantManagers.EnchantmentManager;
+import net.igneo.icv.enchantmentActions.enchantManagers.armor.ArmorEnchantManager;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
-
-import java.awt.*;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 public class PlayerEnchantmentActions {
+
+    /*
+            0=boots
+            1=leggings
+            2=chestplate
+            3=helmet
+            4=mainhand
+            5=offhand
+     */
+    private EnchantmentManager[] managers = new EnchantmentManager[6];
+
+    public EnchantmentManager getManager(int slot) {
+        return managers[slot];
+    }
+    public EnchantmentManager[] getManagers() {
+        return managers;
+    }
+
+
+    public void setManager(EnchantmentManager manager, int slot) {
+        this.managers[slot] = manager;
+        if (slot < 4 && FMLEnvironment.dist.isClient()) {
+            System.out.println("adding new indicator...");
+            if (manager instanceof ArmorEnchantManager aManager) {
+                System.out.println("done! at slot: " + slot);
+                System.out.println(aManager.getIndicator());
+                indicators[slot] = aManager.getIndicator();
+            } else {
+                System.out.println("invalid enchant, nullifying at slot: " + slot);
+                indicators[slot] = null;
+            }
+        }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public EnchantIndicator[] indicators = new EnchantIndicator[4];
+
+
+
+    //--------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    
+    
     private boolean concussed = false;
     public boolean getConcussed() {
         return this.concussed;
@@ -356,4 +404,7 @@ public class PlayerEnchantmentActions {
         stoneLookZ = nbt.getInt("stoneLookZ");
         stoneCeiling = nbt.getInt("stoneCeiling");
     }
+
+
+
 }
