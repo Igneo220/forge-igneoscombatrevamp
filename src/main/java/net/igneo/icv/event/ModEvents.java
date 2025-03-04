@@ -2,13 +2,19 @@ package net.igneo.icv.event;
 
 import com.alrex.parcool.common.action.impl.Dodge;
 import com.alrex.parcool.common.capability.Parkourability;
+import dev.kosmx.playerAnim.api.layered.IAnimation;
+import dev.kosmx.playerAnim.api.layered.KeyframeAnimationPlayer;
+import dev.kosmx.playerAnim.api.layered.ModifierLayer;
+import dev.kosmx.playerAnim.minecraftApi.PlayerAnimationAccess;
+import dev.kosmx.playerAnim.minecraftApi.PlayerAnimationRegistry;
 import net.igneo.icv.ICV;
 import net.igneo.icv.client.EnchantmentHudOverlay;
+import net.igneo.icv.client.animation.EnchantAnimationPlayer;
 import net.igneo.icv.config.ICVCommonConfigs;
 import net.igneo.icv.enchantment.*;
 import net.igneo.icv.enchantment.armor.*;
 import net.igneo.icv.enchantment.ranged.RendEnchantment;
-import net.igneo.icv.enchantment.weapon.ICVEnchantment;
+import net.igneo.icv.enchantment.ICVEnchantment;
 import net.igneo.icv.enchantment.weapon.KineticEnchantment;
 import net.igneo.icv.enchantment.weapon.TempoTheftEnchantment;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActions;
@@ -24,6 +30,7 @@ import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.sound.ModSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -55,6 +62,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -151,18 +159,20 @@ public class ModEvents {
 
     @SubscribeEvent
     public static void onItemUseEvent(PlayerInteractEvent.RightClickItem event) {
-        if (event.getEntity().isCrouching()) {
-            if (!event.getEntity().getOffhandItem().getAllEnchantments().isEmpty()) {
-                useEnchant(event.getEntity(), 5);
-                ModMessages.sendToServer(new EnchantUseC2SPacket(5));
+        event.getEntity().getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+            if (event.getEntity().isCrouching()) {
+                if (enchVar.getManager(5) != null) {
+                    useEnchant(event.getEntity(), 5);
+                    //ModMessages.sendToServer(new EnchantUseC2SPacket(5));
+                } else {
+                    useEnchant(event.getEntity(), 4);
+                    //ModMessages.sendToServer(new EnchantUseC2SPacket(4));
+                }
             } else {
                 useEnchant(event.getEntity(), 4);
-                ModMessages.sendToServer(new EnchantUseC2SPacket(4));
+                //ModMessages.sendToServer(new EnchantUseC2SPacket(4));
             }
-        } else {
-            useEnchant(event.getEntity(), 0);
-            ModMessages.sendToServer(new EnchantUseC2SPacket(4));
-        }
+        });
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -476,9 +486,12 @@ public class ModEvents {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
 
         event.player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+
+
+
             for (EnchantmentManager manager : enchVar.getManagers()) {
-                if (manager instanceof ArmorEnchantManager aManager) {
-                    aManager.tick();
+                if (manager != null) {
+                    manager.tick();
                 }
             }
 
@@ -585,7 +598,7 @@ public class ModEvents {
                     IncapacitateEnchantment.incaCool = System.currentTimeMillis();
                     EnchantmentHudOverlay.incaFrames = 0;
 
-                    JudgementEnchantment.judgeTime = System.currentTimeMillis();
+
                     EnchantmentHudOverlay.judgeFrames = 0;
 
                     refreshLegs = false;
@@ -661,7 +674,7 @@ public class ModEvents {
         uniPlayer.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
             switch (enchVar.getBootID()) {
                 case 1:
-                    CometStrikeEnchantment.onKeyInputEvent();
+                    //CometStrikeEnchantment.onKeyInputEvent();
                     break;
                 case 2:
                     DoubleJumpEnchantment.onClientTick();
@@ -687,7 +700,6 @@ public class ModEvents {
                     IncapacitateEnchantment.onKeyInputEvent();
                     break;
                 case 4:
-                    JudgementEnchantment.onKeyInputEvent();
                     break;
                 case 5:
                     TrainDashEnchantment.onClientTick();

@@ -57,6 +57,15 @@ public abstract class ICVEntity extends Projectile implements GeoEntity {
     public double getAirFriction() {
         return 0.001;
     }
+    public double getWaterFriction() {
+        return 0.01;
+    }
+    public double getGravity() {
+        return -0.05;
+    }
+    public boolean hasFriction() {
+        return true;
+    }
 
     @Override
     public void tick() {
@@ -66,20 +75,21 @@ public abstract class ICVEntity extends Projectile implements GeoEntity {
 
     public void runPhysics() {
         if (!this.onGround() && !this.isNoGravity()) {
-            this.addDeltaMovement(new Vec3(0, -0.05, 0));
+            this.addDeltaMovement(new Vec3(0, getGravity(), 0));
         }
-        Vec3 currentVelocity = this.getDeltaMovement();
-        double friction = this.onGround() ? getGroundFriction() : getAirFriction();
+        if (hasFriction()) {
+            Vec3 currentVelocity = this.getDeltaMovement();
+            double friction = this.onGround() ? getGroundFriction() : getAirFriction();
 
-        friction = this.level().getBlockState(this.blockPosition()).isAir() ? friction : 0.01;
-        currentVelocity = new Vec3(currentVelocity.scale(friction).x, 0, currentVelocity.scale(friction).z);
-        currentVelocity = this.getDeltaMovement().subtract(currentVelocity);
+            friction = this.level().getBlockState(this.blockPosition()).isAir() ? friction : getWaterFriction();
+            currentVelocity = new Vec3(currentVelocity.scale(friction).x, 0, currentVelocity.scale(friction).z);
+            currentVelocity = this.getDeltaMovement().subtract(currentVelocity);
 
-        // Stop movement if velocity is very small
-        if (currentVelocity.lengthSqr() < 0.0001) {
-            this.setDeltaMovement(Vec3.ZERO);
-        } else {
-            this.setDeltaMovement(currentVelocity);
+            if (currentVelocity.lengthSqr() < 0.0001) {
+                this.setDeltaMovement(Vec3.ZERO);
+            } else {
+                this.setDeltaMovement(currentVelocity);
+            }
         }
 
         this.move(MoverType.SELF, this.getDeltaMovement().scale(1.5));

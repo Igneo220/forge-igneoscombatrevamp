@@ -1,8 +1,10 @@
 package net.igneo.icv.enchantmentActions;
 
 import net.igneo.icv.client.indicators.EnchantIndicator;
+import net.igneo.icv.enchantment.EnchantType;
 import net.igneo.icv.enchantmentActions.enchantManagers.EnchantmentManager;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.ArmorEnchantManager;
+import net.igneo.icv.enchantmentActions.enchantManagers.weapon.WeaponEnchantManager;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
@@ -10,6 +12,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerEnchantmentActions {
 
@@ -29,20 +34,29 @@ public class PlayerEnchantmentActions {
     public EnchantmentManager[] getManagers() {
         return managers;
     }
-
+    public boolean animated = false;
 
     public void setManager(EnchantmentManager manager, int slot) {
-        this.managers[slot] = manager;
-        if (slot < 4 && FMLEnvironment.dist.isClient()) {
-            System.out.println("adding new indicator...");
-            if (manager instanceof ArmorEnchantManager aManager) {
-                System.out.println("done! at slot: " + slot);
-                System.out.println(aManager.getIndicator());
-                indicators[slot] = aManager.getIndicator();
-            } else {
-                System.out.println("invalid enchant, nullifying at slot: " + slot);
-                indicators[slot] = null;
+        if (manager == null || EnchantType.applicableSlot(manager.getType(),slot)) {
+            if (this.managers[slot] != null) {
+                this.managers[slot].onRemove();
             }
+            this.managers[slot] = manager;
+            if (manager != null) {
+                manager.onEquip();
+            }
+            if (slot < 4 && FMLEnvironment.dist.isClient()) {
+                if (manager instanceof ArmorEnchantManager aManager) {
+                    indicators[slot] = aManager.getIndicator();
+                } else {
+                    indicators[slot] = null;
+                }
+            }
+        } else {
+            if (this.managers[slot] != null) {
+                this.managers[slot].onRemove();
+            }
+            this.managers[slot] = null;
         }
     }
 

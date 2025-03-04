@@ -53,10 +53,10 @@ public class ModMessages {
                 .encoder(ParryC2SPacket::toBytes)
                 .consumerMainThread(ParryC2SPacket::handle)
                 .add();
-        net.messageBuilder(CometStrikeC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(CometStrikeC2SPacket::new)
-                .encoder(CometStrikeC2SPacket::toBytes)
-                .consumerMainThread(CometStrikeC2SPacket::handle)
+        net.messageBuilder(AnimatedSyncC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(AnimatedSyncC2SPacket::new)
+                .encoder(AnimatedSyncC2SPacket::toBytes)
+                .consumerMainThread(AnimatedSyncC2SPacket::handle)
                 .add();
         net.messageBuilder(KineticC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(KineticC2SPacket::new)

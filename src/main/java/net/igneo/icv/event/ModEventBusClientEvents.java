@@ -78,7 +78,6 @@ public class ModEventBusClientEvents {
     }
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event){
-        event.registerLayerDefinition(ModModelLayers.COMET_LAYER, CometModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.ICICLE_LAYER, IcicleModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BOLT_LAYER, BoltModel::createBodyLayer);
     }

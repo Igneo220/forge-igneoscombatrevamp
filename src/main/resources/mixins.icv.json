@@ -4,8 +4,8 @@
   "minVersion": "0.7",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "ThrownTridentRendererMixin",
-    "LocalPlayerMixin"
+    "LocalPlayerMixin",
+    "ThrownTridentRendererMixin"
   ],
   "mixins": [
     "AnvilMenuMixin",
@@ -17,6 +17,7 @@
     "EnchantmentScreenMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
+    "MinecraftMixin",
     "PlayerMixin",
     "ThrownPotionMixin",
     "ThrownTridentMixin",

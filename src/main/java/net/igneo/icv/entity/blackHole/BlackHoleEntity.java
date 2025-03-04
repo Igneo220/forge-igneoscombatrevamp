@@ -41,6 +41,7 @@ public class BlackHoleEntity extends ICVEntity {
         super(pEntityType, pLevel);
         FX fx = FXHelper.getFX(new ResourceLocation(ICV.MOD_ID,"blackhole"));
         EntityEffect effect = new EntityEffect(fx,this.level(),this);
+        effect.setAllowMulti(true);
         effect.start();
     }
 
@@ -57,9 +58,10 @@ public class BlackHoleEntity extends ICVEntity {
     @Override
     public void tick() {
         super.tick();
-        if (this.tickCount > 400) {
+        if (this.tickCount > 400 || this.getOwner() == null) {
             FX fx = FXHelper.getFX(new ResourceLocation(ICV.MOD_ID,"blackholedissapate"));
             BlockEffect effect = new BlockEffect(fx,this.level(),this.blockPosition());
+            effect.setAllowMulti(true);
             effect.start();
             this.discard();
         }

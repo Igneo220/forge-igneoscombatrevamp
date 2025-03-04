@@ -169,7 +169,7 @@ public class ModEnchantments {
     public static RegistryObject<Enchantment> COMET_STRIKE =
             ENCHANTMENTS.register("comet_strike",
                     () -> new CometStrikeEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET));
+                            EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
     public static RegistryObject<Enchantment> DOUBLE_JUMP =
             ENCHANTMENTS.register("double_jump",
                     () -> new DoubleJumpEnchantment(Enchantment.Rarity.UNCOMMON,

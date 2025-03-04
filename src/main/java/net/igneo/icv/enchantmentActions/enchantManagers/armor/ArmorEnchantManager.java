@@ -1,6 +1,5 @@
 package net.igneo.icv.enchantmentActions.enchantManagers.armor;
 
-import com.lowdragmc.photon.client.fx.EntityEffect;
 import net.igneo.icv.client.indicators.EnchantIndicator;
 import net.igneo.icv.enchantment.EnchantType;
 import net.igneo.icv.enchantmentActions.enchantManagers.EnchantmentManager;
@@ -10,7 +9,7 @@ import net.minecraft.world.entity.player.Player;
 
 public abstract class ArmorEnchantManager extends EnchantmentManager {
     protected ArmorEnchantManager(EnchantType type, int enchCoolDown, int coolDownDamageBonus, boolean dualUse, Player player) {
-        super(type,player);
+        super(type, player);
         this.maxCoolDown = enchCoolDown;
         this.coolDown = enchCoolDown;
         this.coolDownDamageBonus = coolDownDamageBonus;
@@ -77,7 +76,9 @@ public abstract class ArmorEnchantManager extends EnchantmentManager {
         addCoolDown(coolDownDamageBonus);
     }
 
+    @Override
     public void tick() {
+        super.tick();
         tickCoolDown(player);
         if (isOffCoolDown()) {
             whileOffCoolDown();

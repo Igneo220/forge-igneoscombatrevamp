@@ -21,7 +21,6 @@ import static net.igneo.icv.enchantment.armor.FlamethrowerEnchantment.flameo;
 import static net.igneo.icv.enchantment.armor.FlareEnchantment.chargeTime;
 import static net.igneo.icv.enchantment.armor.FlareEnchantment.charging;
 import static net.igneo.icv.enchantment.armor.IncapacitateEnchantment.incaCool;
-import static net.igneo.icv.enchantment.armor.JudgementEnchantment.judgeTime;
 import static net.igneo.icv.enchantment.armor.ParryEnchantment.parryCooldown;
 import static net.igneo.icv.enchantment.armor.SmiteEnchantment.smiteTime;
 import static net.igneo.icv.enchantment.armor.SmiteEnchantment.smiting;
@@ -181,12 +180,6 @@ public class EnchantmentHudOverlay {
             poseStack.blit(TRAIN_DASH, x - 94 + (1) + 32 + ICVClientConfigs.LEGGINGS_X.get(), y - 65 + ICVClientConfigs.LEGGINGS_Y.get(), 0, 16 * trainFrames, 16, 16, 16, 1040);
             if (System.currentTimeMillis() >= animTime + 125) {
                 ++trainFrames;
-            }
-        }
-        if(System.currentTimeMillis() < judgeTime + 15000 && EnchantmentHelper.getEnchantments(Minecraft.getInstance().player.getInventory().getArmor(1)).containsKey(ModEnchantments.JUDGEMENT.get()) && (judgeFrames * 16) < 928) {
-            poseStack.blit(JUDGEMENT, x - 94 + (1) + 32 + ICVClientConfigs.LEGGINGS_X.get(), y - 65 + ICVClientConfigs.LEGGINGS_Y.get(), 0, 16 * judgeFrames, 16, 16, 16, 928);
-            if (System.currentTimeMillis() >= animTime + 125) {
-                ++judgeFrames;
             }
         }
 

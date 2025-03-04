@@ -1,5 +1,6 @@
 package net.igneo.icv.entity.custom;
 
+import net.igneo.icv.entity.comet.CometEntity;
 import net.igneo.icv.particle.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;

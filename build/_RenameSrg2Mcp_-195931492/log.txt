@@ -1,0 +1,15 @@
+Java Launcher: C:\Users\Igneo\.gradle\jdks\adoptium-17-x64-hotspot-windows\jdk-17.0.8+7\bin\java.exe
+Arguments: '--task, SRG_TO_MCP, --input, C:\Users\Igneo\.gradle\caches\modules-2\files-2.1\com.lowdragmc.photon\photon-common-1.20.1\1.0.7.a\60f5ee0f1090a5035b1838a690382e34c5d2f25a\photon-common-1.20.1-1.0.7.a.jar, --output, C:\Users\Igneo\.gradle\caches\forge_gradle\deobf_dependencies\com\lowdragmc\photon\photon-common-1.20.1\1.0.7.a_mapped_parchment_2023.09.03-1.20.1\photon-common-1.20.1-1.0.7.a_mapped_parchment_2023.09.03-1.20.1.jar, --mcp, C:\Users\Igneo\.gradle\caches\parchmentgradle\org\parchmentmc\data\parchment-1.20.1\2023.09.03\parchment-1.20.1-2023.09.03.zip, --strip-signatures'
+Classpath:
+ - C:\Users\Igneo\.gradle\caches\forge_gradle\maven_downloader\net\minecraftforge\installertools\1.4.4\installertools-1.4.4-fatjar.jar
+Working directory: C:\Users\Igneo\OneDrive\Desktop\mods\forge-igneoscombatrevamp\build\_RenameSrg2Mcp_-195931492
+Main class: net.minecraftforge.installertools.ConsoleTool
+====================================
+Task: SRG_TO_MCP
+Input:  C:\Users\Igneo\.gradle\caches\modules-2\files-2.1\com.lowdragmc.photon\photon-common-1.20.1\1.0.7.a\60f5ee0f1090a5035b1838a690382e34c5d2f25a\photon-common-1.20.1-1.0.7.a.jar
+Output: C:\Users\Igneo\.gradle\caches\forge_gradle\deobf_dependencies\com\lowdragmc\photon\photon-common-1.20.1\1.0.7.a_mapped_parchment_2023.09.03-1.20.1\photon-common-1.20.1-1.0.7.a_mapped_parchment_2023.09.03-1.20.1.jar
+MCP:    C:\Users\Igneo\.gradle\caches\parchmentgradle\org\parchmentmc\data\parchment-1.20.1\2023.09.03\parchment-1.20.1-2023.09.03.zip
+Loading MCP Data
+Processing ZIP file
+Stripped Manifest of sha digests
+Process complete

@@ -7,6 +7,7 @@ import net.igneo.icv.ICV;
 import net.igneo.icv.client.indicators.BlackHoleIndicator;
 import net.igneo.icv.client.indicators.EnchantIndicator;
 import net.igneo.icv.enchantment.EnchantType;
+import net.igneo.icv.enchantmentActions.PlayerEnchantmentActions;
 import net.igneo.icv.entity.ModEntities;
 import net.igneo.icv.entity.blackHole.BlackHoleEntity;
 import net.igneo.icv.networking.ModMessages;
@@ -48,8 +49,10 @@ public class BlackHoleManager extends ArmorEnchantManager {
     @Override
     public void onOffCoolDown(Player player) {
         FX fx = FXHelper.getFX(new ResourceLocation(ICV.MOD_ID,"blackholehalo"));
-        EntityEffect effect = new EntityEffect(fx,player.level(),player);
-        effect.start();
+        if (fx != null) {
+            EntityEffect effect = new EntityEffect(fx,player.level(),player);
+            effect.start();
+        }
     }
 
     @Override
@@ -79,5 +82,10 @@ public class BlackHoleManager extends ArmorEnchantManager {
                 child.setDeltaMovement(pushVec.normalize().scale(0.3));
             }
         }
+    }
+
+    @Override
+    public void onRemove() {
+        if (this.child != null) this.child.discard();
     }
 }

@@ -1,6 +1,6 @@
 package net.igneo.icv.enchantment.armor;
 
-import net.igneo.icv.enchantment.weapon.ICVEnchantment;
+import net.igneo.icv.enchantment.ICVEnchantment;
 import net.igneo.icv.enchantmentActions.enchantManagers.EnchantmentManager;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.BlackHoleManager;
 import net.minecraft.world.entity.EquipmentSlot;
