@@ -1,7 +1,5 @@
 package net.igneo.icv.networking.packet;
 
-import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkEvent;
@@ -10,17 +8,17 @@ import java.util.function.Supplier;
 
 import static net.igneo.icv.event.ModEvents.uniPlayer;
 
-public class AccelerateS2CPacket {
+public class MovePlayerS2CPacket {
 
     private final double x;
     private final double y;
     private final double z;
-    public AccelerateS2CPacket(Vec3 lookDirection){
-        this.x = lookDirection.x;
-        this.y = lookDirection.y;
-        this.z = lookDirection.z;
+    public MovePlayerS2CPacket(Vec3 setDirection){
+        this.x = setDirection.x;
+        this.y = setDirection.y;
+        this.z = setDirection.z;
     }
-    public AccelerateS2CPacket(FriendlyByteBuf buf) {
+    public MovePlayerS2CPacket(FriendlyByteBuf buf) {
         this.x = buf.readInt();
         this.y = buf.readInt();
         this.z = buf.readInt();
@@ -35,8 +33,8 @@ public class AccelerateS2CPacket {
     public boolean handle(Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
-            Vec3 enemyLook = new Vec3(x,y,z);;
-            uniPlayer.setDeltaMovement(enemyLook);
+            Vec3 setVec = new Vec3(x,y,z);;
+            uniPlayer.setDeltaMovement(setVec);
         });
         return true;
     }

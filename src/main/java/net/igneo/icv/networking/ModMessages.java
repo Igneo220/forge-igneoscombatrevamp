@@ -248,10 +248,10 @@ public class ModMessages {
                 .encoder(ArmorS2CPacket::toBytes)
                 .consumerMainThread(ArmorS2CPacket::handle)
                 .add();
-        net.messageBuilder(AccelerateS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(AccelerateS2CPacket::new)
-                .encoder(AccelerateS2CPacket::toBytes)
-                .consumerMainThread(AccelerateS2CPacket::handle)
+        net.messageBuilder(PushPlayerS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PushPlayerS2CPacket::new)
+                .encoder(PushPlayerS2CPacket::toBytes)
+                .consumerMainThread(PushPlayerS2CPacket::handle)
                 .add();
         net.messageBuilder(EquipmentUpdateS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(EquipmentUpdateS2CPacket::new)
@@ -267,6 +267,16 @@ public class ModMessages {
                 .decoder(EnchantHitS2CPacket::new)
                 .encoder(EnchantHitS2CPacket::toBytes)
                 .consumerMainThread(EnchantHitS2CPacket::handle)
+                .add();
+        net.messageBuilder(EnchantAttackS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(EnchantAttackS2CPacket::new)
+                .encoder(EnchantAttackS2CPacket::toBytes)
+                .consumerMainThread(EnchantAttackS2CPacket::handle)
+                .add();
+        net.messageBuilder(MovePlayerS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(MovePlayerS2CPacket::new)
+                .encoder(MovePlayerS2CPacket::toBytes)
+                .consumerMainThread(MovePlayerS2CPacket::handle)
                 .add();
     }
 

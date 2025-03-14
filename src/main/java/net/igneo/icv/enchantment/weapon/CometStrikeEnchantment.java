@@ -1,4 +1,4 @@
-package net.igneo.icv.enchantment.armor;
+package net.igneo.icv.enchantment.weapon;
 
 import net.igneo.icv.enchantment.weapon.WeaponEnchantment;
 import net.igneo.icv.enchantmentActions.enchantManagers.EnchantmentManager;

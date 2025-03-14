@@ -2,14 +2,8 @@ package net.igneo.icv.event;
 
 import com.alrex.parcool.common.action.impl.Dodge;
 import com.alrex.parcool.common.capability.Parkourability;
-import dev.kosmx.playerAnim.api.layered.IAnimation;
-import dev.kosmx.playerAnim.api.layered.KeyframeAnimationPlayer;
-import dev.kosmx.playerAnim.api.layered.ModifierLayer;
-import dev.kosmx.playerAnim.minecraftApi.PlayerAnimationAccess;
-import dev.kosmx.playerAnim.minecraftApi.PlayerAnimationRegistry;
 import net.igneo.icv.ICV;
 import net.igneo.icv.client.EnchantmentHudOverlay;
-import net.igneo.icv.client.animation.EnchantAnimationPlayer;
 import net.igneo.icv.config.ICVCommonConfigs;
 import net.igneo.icv.enchantment.*;
 import net.igneo.icv.enchantment.armor.*;
@@ -30,7 +24,6 @@ import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.sound.ModSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -62,7 +55,6 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -76,8 +68,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static java.lang.Math.abs;
-import static net.igneo.icv.enchantment.weapon.BlitzEnchantment.ATTACK_SPEED_MODIFIER_UUID;
-import static net.igneo.icv.enchantment.weapon.BackPedalEnchantment.hit;
+import static net.igneo.icv.enchantment.weapon.FinesseEnchantment.hit;
 import static net.igneo.icv.enchantment.armor.MomentumEnchantment.loopCount;
 import static net.igneo.icv.enchantment.armor.MomentumEnchantment.spedUp;
 import static net.igneo.icv.enchantment.armor.SiphonEnchantment.consumeClick;
@@ -553,24 +544,6 @@ public class ModEvents {
                 if (enchVar.getStoneTime() != 0) {
                     if (System.currentTimeMillis() >= enchVar.getStoneTime() + 10000) {
                         breakStone(level,player);
-                    }
-                }
-            }
-
-            if (enchVar.getBlitzBoostCount() > 0) {
-                if (System.currentTimeMillis() >= enchVar.getBlitzTime() + 1000) {
-                    if (!(event.player instanceof ServerPlayer)) {
-                        enchVar.resetBoostCount();
-                        enchVar.setBlitzTime(System.currentTimeMillis());
-                    } else {
-                        ServerPlayer player = (ServerPlayer) event.player;
-                        ServerLevel level = player.serverLevel();
-                        enchVar.resetBoostCount();
-                        enchVar.setBlitzTime(System.currentTimeMillis());
-                        System.out.println("resetting");
-                        player.getAttributes().getInstance(Attributes.ATTACK_SPEED).removeModifier(ATTACK_SPEED_MODIFIER_UUID);
-                        level.playSound(null, player.blockPosition(), SoundEvents.CREEPER_DEATH, SoundSource.PLAYERS, 4F, 0.2F);
-                        ModMessages.sendToPlayer(new BlitzNBTUpdateS2CPacket(enchVar.getBlitzBoostCount(), enchVar.getBlitzTime()), player);
                     }
                 }
             }

@@ -1,5 +1,7 @@
 package net.igneo.icv.enchantment.weapon;
 
+import net.igneo.icv.enchantmentActions.enchantManagers.EnchantmentManager;
+import net.igneo.icv.enchantmentActions.enchantManagers.weapon.GustManager;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.GustC2SPacket;
 import net.igneo.icv.networking.packet.GustS2CPacket;
@@ -11,33 +13,22 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
-public class GustEnchantment extends Enchantment {
-    private static long gustDelay = 0;
+public class GustEnchantment extends WeaponEnchantment {
     public GustEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot... pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
 
     @Override
-    public void doPostAttack(LivingEntity pTarget, Entity pAttacker, int pLevel) {
-        if (pTarget.level() instanceof ServerLevel) {
-            if (System.currentTimeMillis() >= gustDelay + 2000) {
-                if (pAttacker instanceof ServerPlayer) {
-                    ModMessages.sendToPlayer(new GustS2CPacket(),(ServerPlayer) pAttacker);
-                } else {
-                    pAttacker.setDeltaMovement(pAttacker.getDeltaMovement().x, 0.8, pAttacker.getDeltaMovement().z);
-                }
-                //ModMessages.sendToServer(new GustC2SPacket());
-                gustDelay = System.currentTimeMillis();
-                if (pTarget.level() instanceof ServerLevel) {
-                    ServerLevel level = (ServerLevel) pTarget.level();
-                    level.playSound(null, pTarget.blockPosition(), ModSounds.GUST.get(), SoundSource.PLAYERS);
-                    level.sendParticles(ParticleTypes.EXPLOSION, pAttacker.getX(), pAttacker.getY(), pAttacker.getZ(), 5, 0, 0, 0, 1);
-                }
-            }
-        }
-        super.doPostHurt(pTarget, pAttacker, pLevel);
+    public EnchantmentManager getManager(Player player) {
+        return new GustManager(player);
+    }
+
+    @Override
+    public boolean performBonusCheck() {
+        return true;
     }
 }

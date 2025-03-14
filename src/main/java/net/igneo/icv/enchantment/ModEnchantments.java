@@ -18,20 +18,24 @@ public class ModEnchantments {
 
     public static RegistryObject<Enchantment> BRUTE_TOUCH =
             ENCHANTMENTS.register("brute_touch",
-                    () -> new BlitzEnchantment(Enchantment.Rarity.UNCOMMON,
+                    () -> new BurstEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND));
 
-    public static RegistryObject<Enchantment> BLITZ =
-            ENCHANTMENTS.register("blitz",
-                    () -> new BlitzEnchantment(Enchantment.Rarity.UNCOMMON,
+    public static RegistryObject<Enchantment> BURST =
+            ENCHANTMENTS.register("burst",
+                    () -> new BurstEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
+    public static RegistryObject<Enchantment> TUNGESTEN_CORE =
+            ENCHANTMENTS.register("tungesten_core",
+                    () -> new TungstenCoreEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
     public static RegistryObject<Enchantment> BREAKTHROUGH =
             ENCHANTMENTS.register("breakthrough",
                     () -> new BreakthroughEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
-    public static RegistryObject<Enchantment> BACKPEDAL =
-            ENCHANTMENTS.register("backpedal",
-                    () -> new BackPedalEnchantment(Enchantment.Rarity.UNCOMMON,
+    public static RegistryObject<Enchantment> FINESSE =
+            ENCHANTMENTS.register("finesse",
+                    () -> new FinesseEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
     public static RegistryObject<Enchantment> GUST =
             ENCHANTMENTS.register("gust",

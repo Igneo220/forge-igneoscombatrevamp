@@ -452,9 +452,9 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
             BOOT_ENCHANTS.add(ModEnchantments.STONE_CALLER.get());
         }
         if (WEAPON_ENCHANTS.isEmpty()) {
-            WEAPON_ENCHANTS.add(ModEnchantments.BLITZ.get());
+            WEAPON_ENCHANTS.add(ModEnchantments.BURST.get());
             WEAPON_ENCHANTS.add(ModEnchantments.BREAKTHROUGH.get());
-            WEAPON_ENCHANTS.add(ModEnchantments.BACKPEDAL.get());
+            WEAPON_ENCHANTS.add(ModEnchantments.FINESSE.get());
             WEAPON_ENCHANTS.add(ModEnchantments.GUST.get());
             WEAPON_ENCHANTS.add(ModEnchantments.KINETIC.get());
             WEAPON_ENCHANTS.add(ModEnchantments.PHANTOM_PAIN.get());

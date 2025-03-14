@@ -25,6 +25,7 @@ public abstract class WeaponEnchantManager extends EnchantmentManager {
 
     @OnlyIn(Dist.CLIENT)
     public KeyframeAnimationPlayer animation;
+    public Entity target;
 
 
     protected WeaponEnchantManager(EnchantType setSlot, Player player, ResourceLocation animation) {
@@ -74,5 +75,9 @@ public abstract class WeaponEnchantManager extends EnchantmentManager {
             this.animator.setAnimation(new EnchantAnimationPlayer(PlayerAnimationRegistry.getAnimation(new ResourceLocation(ICV.MOD_ID, "comet_strike"))));
         }
         active = true;
+    }
+
+    public float getDamageBonus() {
+        return 0;
     }
 }
