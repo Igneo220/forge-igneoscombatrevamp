@@ -438,7 +438,7 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
             CHEST_ENCHANTS.add(ModEnchantments.WARDENSPINE.get());
         }
         if (LEG_ENCHANTS.isEmpty()) {
-            LEG_ENCHANTS.add(ModEnchantments.ACROBATIC.get());
+            LEG_ENCHANTS.add(ModEnchantments.TEMPEST.get());
             LEG_ENCHANTS.add(ModEnchantments.CRUSH.get());
             LEG_ENCHANTS.add(ModEnchantments.INCAPACITATE.get());
             LEG_ENCHANTS.add(ModEnchantments.JUDGEMENT.get());
@@ -448,7 +448,6 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
             BOOT_ENCHANTS.add(ModEnchantments.COMET_STRIKE.get());
             BOOT_ENCHANTS.add(ModEnchantments.DOUBLE_JUMP.get());
             BOOT_ENCHANTS.add(ModEnchantments.MOMENTUM.get());
-            BOOT_ENCHANTS.add(ModEnchantments.SKY_CHARGE.get());
             BOOT_ENCHANTS.add(ModEnchantments.STONE_CALLER.get());
         }
         if (WEAPON_ENCHANTS.isEmpty()) {

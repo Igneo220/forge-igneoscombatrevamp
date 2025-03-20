@@ -147,9 +147,9 @@ public class ModEnchantments {
 
 
 
-    public static RegistryObject<Enchantment> ACROBATIC =
-            ENCHANTMENTS.register("acrobatic",
-                    () -> new AcrobaticEnchantment(Enchantment.Rarity.UNCOMMON,
+    public static RegistryObject<Enchantment> TEMPEST =
+            ENCHANTMENTS.register("tempest",
+                    () -> new TempestEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_LEGS, EquipmentSlot.LEGS));
     public static RegistryObject<Enchantment> CRUSH =
             ENCHANTMENTS.register("crush",
@@ -182,9 +182,9 @@ public class ModEnchantments {
             ENCHANTMENTS.register("momentum",
                     () -> new MomentumEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET));
-    public static RegistryObject<Enchantment> SKY_CHARGE =
-            ENCHANTMENTS.register("sky_charge",
-                    () -> new SkyChargeEnchantment(Enchantment.Rarity.UNCOMMON,
+    public static RegistryObject<Enchantment> STASIS =
+            ENCHANTMENTS.register("stasis",
+                    () -> new StasisEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET));
     public static RegistryObject<Enchantment> STONE_CALLER =
             ENCHANTMENTS.register("stone_caller",

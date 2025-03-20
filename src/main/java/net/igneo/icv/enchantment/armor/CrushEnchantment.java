@@ -59,7 +59,7 @@ public class CrushEnchantment extends Enchantment {
             if (floatTime == 0) {
                 floatTime = System.currentTimeMillis();
             }
-            if (EnchantmentHelper.getEnchantments(uniPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.STONE_CALLER.get()) || EnchantmentHelper.getEnchantments(uniPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.SKY_CHARGE.get())) {
+            if (EnchantmentHelper.getEnchantments(uniPlayer.getInventory().getArmor(0)).containsKey(ModEnchantments.STONE_CALLER.get())) {
                 if (uniPlayer.getDeltaMovement().y < 0) {
                     if (System.currentTimeMillis() < floatTime + 150) {
                         uniPlayer.setDeltaMovement(0, 0, 0);

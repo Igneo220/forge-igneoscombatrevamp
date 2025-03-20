@@ -32,17 +32,17 @@ public abstract class WeaponEnchantment extends ICVEnchantment {
     public void doPostAttack(LivingEntity pAttacker, Entity pTarget, int pLevel) {
         if (!pAttacker.level().isClientSide) {
             currentLevel = (ServerLevel) pAttacker.level();
-        }
-        if (pAttacker instanceof Player player) {
-            player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-                if (enchVar.getManager(4).getClass() == this.getManager(player).getClass()) {
-                    ((WeaponEnchantManager) enchVar.getManager(4)).onAttack(pTarget);
-                    ModMessages.sendToPlayer(new EnchantAttackS2CPacket(4,pTarget.getId()), (ServerPlayer) player);
-                } else if (enchVar.getManager(5).getClass() == this.getManager(player).getClass()) {
-                    ((WeaponEnchantManager) enchVar.getManager(5)).onAttack(pTarget);
-                    ModMessages.sendToPlayer(new EnchantAttackS2CPacket(5,pTarget.getId()), (ServerPlayer) player);
-                }
-            });
+            if (pAttacker instanceof Player player) {
+                player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+                    if (enchVar.getManager(4).getClass() == this.getManager(player).getClass()) {
+                        ((WeaponEnchantManager) enchVar.getManager(4)).onAttack(pTarget);
+                        ModMessages.sendToPlayer(new EnchantAttackS2CPacket(4, pTarget.getId()), (ServerPlayer) player);
+                    } else if (enchVar.getManager(5).getClass() == this.getManager(player).getClass()) {
+                        ((WeaponEnchantManager) enchVar.getManager(5)).onAttack(pTarget);
+                        ModMessages.sendToPlayer(new EnchantAttackS2CPacket(5, pTarget.getId()), (ServerPlayer) player);
+                    }
+                });
+            }
         }
     }
 

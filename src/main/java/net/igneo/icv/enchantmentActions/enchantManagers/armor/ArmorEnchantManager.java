@@ -90,6 +90,7 @@ public abstract class ArmorEnchantManager extends EnchantmentManager {
 
     @Override
     public void use() {
+        System.out.println(canUse());
         if (canUse()) {
             if (isOffCoolDown()) {
                 activate();

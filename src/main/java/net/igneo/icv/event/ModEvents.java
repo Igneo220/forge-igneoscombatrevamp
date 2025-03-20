@@ -16,6 +16,7 @@ import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.igneo.icv.enchantmentActions.enchantManagers.EnchantmentManager;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.ArmorEnchantManager;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.BlackHoleManager;
+import net.igneo.icv.enchantmentActions.enchantManagers.armor.StasisManager;
 import net.igneo.icv.entity.blackHole.BlackHoleEntity;
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
@@ -38,6 +39,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
@@ -52,9 +54,11 @@ import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -115,7 +119,6 @@ public class ModEvents {
 
     public static void updateManager(Player player, int pSlot) {
         player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-            System.out.println(player.level());
             int slot = pSlot;
             if (pSlot == 0) {
                 slot = 4;
@@ -294,6 +297,19 @@ public class ModEvents {
             event.getLevel().setBlock(event.getPos(),Blocks.AIR.defaultBlockState(),2);
             event.getPlayer().getMainHandItem().setDamageValue(event.getPlayer().getMainHandItem().getDamageValue() + 1);
             event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void hurtEvent(AttackEntityEvent event) {
+        if (!(event.getTarget() instanceof LivingEntity)) {
+            event.getEntity().getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
+                if (enchVar.getManager(0) instanceof StasisManager manager) {
+                    if (manager.entityData.containsKey(event.getTarget())) {
+                        manager.addMovement(event.getTarget(),event.getEntity().getLookAngle().normalize().scale(0.2));
+                    }
+                }
+            });
         }
     }
 
@@ -664,7 +680,7 @@ public class ModEvents {
             }
             switch (enchVar.getLegID()) {
                 case 1:
-                    AcrobaticEnchantment.onClientTick();
+                    //TempestEnchantment.onClientTick();
                     break;
                 case 2:
                     CrushEnchantment.onClientTick();
