@@ -12,6 +12,10 @@ import net.igneo.icv.entity.blackHole.BlackHoleRenderer;
 import net.igneo.icv.entity.client.BoltRenderer;
 import net.igneo.icv.entity.client.IcicleRenderer;
 import net.igneo.icv.entity.comet.CometRenderer;
+import net.igneo.icv.entity.snakeBite.SnakeBiteRenderer;
+import net.igneo.icv.entity.soulOrb.SoulOrbEntity;
+import net.igneo.icv.entity.soulOrb.SoulOrbRenderer;
+import net.igneo.icv.entity.soulSpider.SoulSpiderRenderer;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.sound.ModSounds;
@@ -72,10 +76,14 @@ public class ICV
             EntityRenderers.register(ModEntities.ICICLE.get(), IcicleRenderer::new);
             EntityRenderers.register(ModEntities.BOLT.get(), BoltRenderer::new);
             EntityRenderers.register(ModEntities.FIRE.get(), ThrownItemRenderer::new);
-            //EntityRenderers.register(ModEntities.BLACK_HOLE.get(), BlackHoleRenderer::new);
+
+
 
             EntityRenderers.register(ModEntities.COMET.get(), CometRenderer::new);
             EntityRenderers.register(ModEntities.BLACK_HOLE.get(), BlackHoleRenderer::new);
+            EntityRenderers.register(ModEntities.SNAKE_BITE.get(), SnakeBiteRenderer::new);
+            EntityRenderers.register(ModEntities.SOUL_ORB.get(), SoulOrbRenderer::new);
+            EntityRenderers.register(ModEntities.SOUL_SPIDER.get(), SoulSpiderRenderer::new);
 
 
             PlayerAnimationFactory.ANIMATION_DATA_FACTORY.registerFactory(

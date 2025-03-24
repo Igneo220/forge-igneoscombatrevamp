@@ -258,10 +258,10 @@ public class ModMessages {
                 .encoder(EquipmentUpdateS2CPacket::toBytes)
                 .consumerMainThread(EquipmentUpdateS2CPacket::handle)
                 .add();
-        net.messageBuilder(BlackHoleSyncS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(BlackHoleSyncS2CPacket::new)
-                .encoder(BlackHoleSyncS2CPacket::toBytes)
-                .consumerMainThread(BlackHoleSyncS2CPacket::handle)
+        net.messageBuilder(EntitySyncS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(EntitySyncS2CPacket::new)
+                .encoder(EntitySyncS2CPacket::toBytes)
+                .consumerMainThread(EntitySyncS2CPacket::handle)
                 .add();
         net.messageBuilder(EnchantHitS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(EnchantHitS2CPacket::new)

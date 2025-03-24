@@ -7,26 +7,25 @@ import net.igneo.icv.ICV;
 import net.igneo.icv.client.indicators.BlackHoleIndicator;
 import net.igneo.icv.client.indicators.EnchantIndicator;
 import net.igneo.icv.enchantment.EnchantType;
-import net.igneo.icv.enchantmentActions.PlayerEnchantmentActions;
+import net.igneo.icv.enchantmentActions.EntityTracker;
+import net.igneo.icv.entity.ICVEntity;
 import net.igneo.icv.entity.ModEntities;
 import net.igneo.icv.entity.blackHole.BlackHoleEntity;
 import net.igneo.icv.networking.ModMessages;
-import net.igneo.icv.networking.packet.BlackHoleSyncS2CPacket;
+import net.igneo.icv.networking.packet.EntitySyncS2CPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 
-public class BlackHoleManager extends ArmorEnchantManager {
+public class BlackHoleManager extends ArmorEnchantManager implements EntityTracker {
     public BlackHoleManager(Player player) {
         super(EnchantType.HELMET,900,-30,true,player);
     }
-    public static void onKeyInputEvent() {
 
-    }
-
-    public BlackHoleEntity child = null;
+    public ICVEntity child = null;
 
     @Override
     public void tick() {
@@ -68,7 +67,7 @@ public class BlackHoleManager extends ArmorEnchantManager {
             child.setPos(player.getEyePosition());
             child.setDeltaMovement(player.getLookAngle().scale(0.4));
             player.level().addFreshEntity(child);
-            ModMessages.sendToPlayer(new BlackHoleSyncS2CPacket(child.getId()), (ServerPlayer) player);
+            syncClientChild((ServerPlayer) player,child,this);
         }
     }
 
@@ -87,5 +86,15 @@ public class BlackHoleManager extends ArmorEnchantManager {
     @Override
     public void onRemove() {
         if (this.child != null) this.child.discard();
+    }
+
+    @Override
+    public ICVEntity getChild() {
+        return child;
+    }
+
+    @Override
+    public void setChild(ICVEntity entity) {
+        child = entity;
     }
 }

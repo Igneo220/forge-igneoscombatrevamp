@@ -24,7 +24,7 @@ public class StasisManager extends ArmorEnchantManager{
         System.out.println("activating");
         for (Entity entity : player.level().getEntities(null,player.getBoundingBox().inflate(20))) {
             if (!(entity instanceof LivingEntity) && !blackList.contains(entity)) {
-                entityData.put(entity,new StasisEntityDataManager(Vec3.ZERO,entity.position(),entity.getLookAngle()));
+                entityData.put(entity,new StasisEntityDataManager(Vec3.ZERO,entity.position(),entity.getYRot(),entity.getXRot()));
                 entity.addTag("stasis");
             }
         }
@@ -76,8 +76,8 @@ public class StasisManager extends ArmorEnchantManager{
                 entity.setPos(entityData.get(entity).position);
                 entityData.get(entity).addMovement(entity.getDeltaMovement());
                 entity.setDeltaMovement(Vec3.ZERO);
-                float yaw = (float) (Mth.atan2(-entityData.get(entity).look.x, entityData.get(entity).look.z) * (180.0F / Math.PI));
-                float pitch = (float) (Mth.atan2(-entityData.get(entity).look.y, entityData.get(entity).look.horizontalDistance()) * (180.0F / Math.PI));
+                float yaw = entityData.get(entity).YRot;
+                float pitch = entityData.get(entity).XRot;
 
                 // Apply new look angles
                 entity.setYRot(yaw);
@@ -98,12 +98,14 @@ public class StasisManager extends ArmorEnchantManager{
     class StasisEntityDataManager {
         private Vec3 movement;
         public Vec3 position;
-        public Vec3 look;
-        StasisEntityDataManager(Vec3 movement, Vec3 position, Vec3 look) {
+        public float YRot;
+        public float XRot;
+        StasisEntityDataManager(Vec3 movement, Vec3 position, float YRot, float XRot) {
             this.movement = new Vec3(movement.x,0, movement.z);
             addMovement(Vec3.ZERO);
             this.position = position;
-            this.look = look;
+            this.YRot = YRot;
+            this.XRot = XRot;
         }
         public Vec3 getMovement() {
             return movement;

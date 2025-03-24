@@ -10,6 +10,8 @@ import net.igneo.icv.client.animation.EnchantAnimationPlayer;
 import net.igneo.icv.client.indicators.BlackHoleIndicator;
 import net.igneo.icv.client.indicators.EnchantIndicator;
 import net.igneo.icv.enchantment.EnchantType;
+import net.igneo.icv.init.ICVUtils;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -24,13 +26,9 @@ public class TempestManager extends ArmorEnchantManager{
 
     @Override
     public void activate() {
-        double yaw = Math.toRadians(player.getYRot());
-        double x = -Math.sin(yaw);
-        double y = 0.5;
-        double z = Math.cos(yaw);
-        double scale = 2;
-        Vec3 flatDirection = new Vec3(x*scale, y, z*scale);
-        player.setDeltaMovement(flatDirection);
+        if (player.level().isClientSide) {
+            player.setDeltaMovement(ICVUtils.getFlatInputDirection(player.getYRot(),1.5F,0.5));
+        }
     }
 
     @Override

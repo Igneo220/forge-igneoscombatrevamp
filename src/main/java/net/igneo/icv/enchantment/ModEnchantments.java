@@ -57,6 +57,10 @@ public class ModEnchantments {
             ENCHANTMENTS.register("tempo_theft",
                     () -> new TempoTheftEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
+    public static RegistryObject<Enchantment> VIPER =
+            ENCHANTMENTS.register("viper",
+                    () -> new ViperEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
 
 
 
@@ -143,6 +147,10 @@ public class ModEnchantments {
     public static RegistryObject<Enchantment> WARDENSPINE =
             ENCHANTMENTS.register("wardenspine",
                     () -> new WardenspineEnchantment(Enchantment.Rarity.UNCOMMON,
+                            EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
+    public static RegistryObject<Enchantment> SOUL_EMITTER =
+            ENCHANTMENTS.register("soul_emitter",
+                    () -> new SoulEmitterEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
 
 

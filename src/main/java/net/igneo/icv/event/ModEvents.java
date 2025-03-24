@@ -11,12 +11,14 @@ import net.igneo.icv.enchantment.ranged.RendEnchantment;
 import net.igneo.icv.enchantment.ICVEnchantment;
 import net.igneo.icv.enchantment.weapon.KineticEnchantment;
 import net.igneo.icv.enchantment.weapon.TempoTheftEnchantment;
+import net.igneo.icv.enchantmentActions.EntityTracker;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActions;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.igneo.icv.enchantmentActions.enchantManagers.EnchantmentManager;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.ArmorEnchantManager;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.BlackHoleManager;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.StasisManager;
+import net.igneo.icv.entity.ICVEntity;
 import net.igneo.icv.entity.blackHole.BlackHoleEntity;
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
@@ -54,7 +56,6 @@ import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -170,12 +171,17 @@ public class ModEvents {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static void tryBlackHoleUpdate(int ID) {
+    public static void syncClientEntity(int ID, int slot) {
         Minecraft.getInstance().player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-            if (enchVar.getManager(3) instanceof BlackHoleManager manager) {
-                if (Minecraft.getInstance().level.getEntity(ID) instanceof BlackHoleEntity blackHole) {
-                    manager.child = blackHole;
-                    blackHole.setOwner(Minecraft.getInstance().player);
+            if (enchVar.getManager(slot) instanceof EntityTracker manager) {
+                System.out.println(Minecraft.getInstance().level.getEntity(ID));
+                System.out.println(ID);
+                if (ID == -1) {
+                    manager.setChild(null);
+                } else if (Minecraft.getInstance().level.getEntity(ID) instanceof ICVEntity entity) {
+                    System.out.println("synced!");
+                    entity.setOwner(Minecraft.getInstance().player);
+                    manager.setChild(entity);
                 }
             }
         });

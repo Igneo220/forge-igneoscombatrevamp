@@ -4,6 +4,9 @@ import net.igneo.icv.ICV;
 import net.igneo.icv.entity.blackHole.BlackHoleEntity;
 import net.igneo.icv.entity.comet.CometEntity;
 import net.igneo.icv.entity.custom.*;
+import net.igneo.icv.entity.snakeBite.SnakeBiteEntity;
+import net.igneo.icv.entity.soulOrb.SoulOrbEntity;
+import net.igneo.icv.entity.soulSpider.SoulSpiderEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -21,6 +24,15 @@ public class ModEntities {
     public static final RegistryObject<EntityType<BlackHoleEntity>> BLACK_HOLE =
             ENTITY_TYPES.register("black_hole",() -> EntityType.Builder.<BlackHoleEntity>of(BlackHoleEntity::new, MobCategory.MISC)
                     .sized(1f,1f).build("black_hole"));
+    public static final RegistryObject<EntityType<SnakeBiteEntity>> SNAKE_BITE =
+            ENTITY_TYPES.register("snake_bite",() -> EntityType.Builder.<SnakeBiteEntity>of(SnakeBiteEntity::new, MobCategory.MISC)
+                    .sized(1f,1f).build("snake_bite"));
+    public static final RegistryObject<EntityType<SoulOrbEntity>> SOUL_ORB =
+            ENTITY_TYPES.register("soul_orb",() -> EntityType.Builder.<SoulOrbEntity>of(SoulOrbEntity::new, MobCategory.MISC)
+                    .sized(1f,1f).build("soul_orb"));
+    public static final RegistryObject<EntityType<SoulSpiderEntity>> SOUL_SPIDER =
+            ENTITY_TYPES.register("soul_spider",() -> EntityType.Builder.<SoulSpiderEntity>of(SoulSpiderEntity::new, MobCategory.MISC)
+                    .sized(1f,1f).build("soul_spider"));
     public static final RegistryObject<EntityType<FireEntity>> FIRE =
             ENTITY_TYPES.register("fire",() -> EntityType.Builder.<FireEntity>of(FireEntity::new, MobCategory.MISC)
                     .sized(1.2f,1.2f).build("fire"));
