@@ -9,19 +9,12 @@ import net.igneo.icv.entity.ModEntities;
 import net.igneo.icv.init.ICVUtils;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.Vec3;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-public class SoulEmitterManager extends ArmorEnchantManager implements EntityTracker {
+public class HauntManager extends ArmorEnchantManager implements EntityTracker {
     private ICVEntity child;
     private boolean nullCheck;
-    public SoulEmitterManager(Player player) {
+    public HauntManager(Player player) {
         super(EnchantType.CHESTPLATE, 300, -10, true, player);
     }
     @Override

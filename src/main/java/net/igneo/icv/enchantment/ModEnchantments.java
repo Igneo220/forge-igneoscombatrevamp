@@ -148,9 +148,9 @@ public class ModEnchantments {
             ENCHANTMENTS.register("wardenspine",
                     () -> new WardenspineEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
-    public static RegistryObject<Enchantment> SOUL_EMITTER =
-            ENCHANTMENTS.register("soul_emitter",
-                    () -> new SoulEmitterEnchantment(Enchantment.Rarity.UNCOMMON,
+    public static RegistryObject<Enchantment> HAUNT =
+            ENCHANTMENTS.register("haunt",
+                    () -> new HauntEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
 
 
