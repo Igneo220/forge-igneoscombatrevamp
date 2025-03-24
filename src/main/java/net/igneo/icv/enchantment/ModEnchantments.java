@@ -21,6 +21,10 @@ public class ModEnchantments {
                     () -> new BurstEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND));
 
+    public static RegistryObject<Enchantment> CASCADE =
+      ENCHANTMENTS.register("cascade",
+        () -> new CascadeEnchantment(Enchantment.Rarity.UNCOMMON,
+          EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
     public static RegistryObject<Enchantment> BURST =
             ENCHANTMENTS.register("burst",
                     () -> new BurstEnchantment(Enchantment.Rarity.UNCOMMON,
@@ -198,6 +202,10 @@ public class ModEnchantments {
             ENCHANTMENTS.register("stone_caller",
                     () -> new StoneCallerEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET));
+    public static RegistryObject<Enchantment> BLINK =
+      ENCHANTMENTS.register("blink",
+        () -> new BlinkEnchantment(Enchantment.Rarity.UNCOMMON,
+          EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET));
 
 
 
