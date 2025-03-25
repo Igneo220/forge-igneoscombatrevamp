@@ -13,10 +13,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class ICVUtils {
-
+    
     public static Vec3 getFlatInputDirection(float rot,float scale,double yVelocity) {
         int rotation = 0;
+<<<<<<< Updated upstream
 
+=======
+        
+>>>>>>> Stashed changes
         if (Minecraft.getInstance().options.keyLeft.isDown()) {
             if (Minecraft.getInstance().options.keyUp.isDown()) {
                 rotation = 315;
@@ -35,6 +39,7 @@ public class ICVUtils {
                 rotation = 90;
             }
         }
+<<<<<<< Updated upstream
         if (Minecraft.getInstance().options.keyDown.isDown()) rotation = 180;
 
         double yaw = Math.toRadians(rot + rotation);
@@ -51,26 +56,44 @@ public class ICVUtils {
 
         if (Minecraft.getInstance().options.keyLeft.isDown()) rotation = 270;
         if (Minecraft.getInstance().options.keyRight.isDown()) rotation = 90;
+=======
+>>>>>>> Stashed changes
         if (Minecraft.getInstance().options.keyDown.isDown()) rotation = 180;
-
+        
         double yaw = Math.toRadians(rot + rotation);
         double x = -Math.sin(yaw);
         double y = yVelocity;
         double z = Math.cos(yaw);
-
+        
         return new Vec3(x*scale, y, z*scale);
     }
-
+    
+    //ND stands for no diagonal
+    public static Vec3 getFlatInputDirectionND(float rot,float scale,double yVelocity) {
+        int rotation = 0;
+        
+        if (Minecraft.getInstance().options.keyLeft.isDown()) rotation = 270;
+        if (Minecraft.getInstance().options.keyRight.isDown()) rotation = 90;
+        if (Minecraft.getInstance().options.keyDown.isDown()) rotation = 180;
+        
+        double yaw = Math.toRadians(rot + rotation);
+        double x = -Math.sin(yaw);
+        double y = yVelocity;
+        double z = Math.cos(yaw);
+        
+        return new Vec3(x*scale, y, z*scale);
+    }
+    
     public static Vec3 getFlatDirection(float rot,float scale,double yVelocity) {
-
+        
         double yaw = Math.toRadians(rot);
         double x = -Math.sin(yaw);
         double y = yVelocity;
         double z = Math.cos(yaw);
-
+        
         return new Vec3(x*scale, y, z*scale);
     }
-
+    
     public static <T extends EnchantmentManager> EnchantmentManager getManagerForType(Player player, Class<T> desiredManager) {
         AtomicReference<T> returnManager= new AtomicReference<>(null);
         player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
@@ -82,7 +105,7 @@ public class ICVUtils {
         });
         return ((T) returnManager.get());
     }
-
+    
     public static <T extends EnchantmentManager> int getSlotForType(Player player, Class<T> desiredManager) {
         AtomicInteger slot = new AtomicInteger(-1);
         player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
@@ -96,9 +119,17 @@ public class ICVUtils {
         });
         return slot.get();
     }
+<<<<<<< Updated upstream
 
+=======
+    
+>>>>>>> Stashed changes
     public static List<Entity> collectEntitiesBox(Player player, Vec3 position, double radius) {
         Vec3 scale = new Vec3(radius,radius,radius);
         return player.level().getEntities(null,new AABB(position.subtract(scale),position.add(scale)));
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
