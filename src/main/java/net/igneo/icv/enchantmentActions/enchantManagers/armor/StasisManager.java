@@ -25,7 +25,6 @@ public class StasisManager extends ArmorEnchantManager{
         for (Entity entity : player.level().getEntities(null,player.getBoundingBox().inflate(20))) {
             if (!(entity instanceof LivingEntity) && !blackList.contains(entity)) {
                 entityData.put(entity,new StasisEntityDataManager(Vec3.ZERO,entity.position(),entity.getYRot(),entity.getXRot()));
-                entity.addTag("stasis");
             }
         }
         active = true;

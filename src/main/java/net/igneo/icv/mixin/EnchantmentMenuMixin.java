@@ -434,7 +434,7 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
             CHEST_ENCHANTS.add(ModEnchantments.CONCUSSION.get());
             CHEST_ENCHANTS.add(ModEnchantments.FLARE.get());
             CHEST_ENCHANTS.add(ModEnchantments.PARRY.get());
-            CHEST_ENCHANTS.add(ModEnchantments.SIPHON.get());
+            CHEST_ENCHANTS.add(ModEnchantments.PLANAR_SHIFT.get());
             CHEST_ENCHANTS.add(ModEnchantments.WARDENSPINE.get());
         }
         if (LEG_ENCHANTS.isEmpty()) {

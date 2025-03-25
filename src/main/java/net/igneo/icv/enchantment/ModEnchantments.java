@@ -140,9 +140,9 @@ public class ModEnchantments {
             ENCHANTMENTS.register("parry",
                     () -> new ParryEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
-    public static RegistryObject<Enchantment> SIPHON =
-            ENCHANTMENTS.register("siphon",
-                    () -> new SiphonEnchantment(Enchantment.Rarity.UNCOMMON,
+    public static RegistryObject<Enchantment> PLANAR_SHIFT =
+            ENCHANTMENTS.register("planar_shift",
+                    () -> new PlanarShiftEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
     public static RegistryObject<Enchantment> WARDENSPINE =
             ENCHANTMENTS.register("wardenspine",

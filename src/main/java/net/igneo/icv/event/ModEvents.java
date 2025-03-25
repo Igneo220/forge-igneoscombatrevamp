@@ -16,10 +16,8 @@ import net.igneo.icv.enchantmentActions.PlayerEnchantmentActions;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.igneo.icv.enchantmentActions.enchantManagers.EnchantmentManager;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.ArmorEnchantManager;
-import net.igneo.icv.enchantmentActions.enchantManagers.armor.BlackHoleManager;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.StasisManager;
 import net.igneo.icv.entity.ICVEntity;
-import net.igneo.icv.entity.blackHole.BlackHoleEntity;
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.*;
@@ -76,7 +74,6 @@ import static java.lang.Math.abs;
 import static net.igneo.icv.enchantment.weapon.FinesseEnchantment.hit;
 import static net.igneo.icv.enchantment.armor.MomentumEnchantment.loopCount;
 import static net.igneo.icv.enchantment.armor.MomentumEnchantment.spedUp;
-import static net.igneo.icv.enchantment.armor.SiphonEnchantment.consumeClick;
 
 @Mod.EventBusSubscriber(modid = ICV.MOD_ID)
 public class ModEvents {
@@ -711,11 +708,6 @@ public class ModEvents {
                     ParryEnchantment.onKeyInputEvent();
                     break;
                 case 4:
-                    if (Keybindings.siphon.isDown()) {
-                        SiphonEnchantment.onKeyInputEvent();
-                    } else {
-                        consumeClick = false;
-                    }
                     break;
                 case 5:
                     WardenspineEnchantment.onClientTick();
