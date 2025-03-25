@@ -34,6 +34,11 @@ public class ModEventBusClientEvents {
         event.register(Keybindings.train_dash);
         event.register(Keybindings.wardenscream);
         event.register(Keybindings.wardenspine);
+        
+        event.register(Keybindings.helmet);
+        event.register(Keybindings.chestplate);
+        event.register(Keybindings.leggings);
+        event.register(Keybindings.boots);
     }
     @SubscribeEvent
     public static void registerParticleFactories(final RegisterParticleProvidersEvent event) {
