@@ -2,7 +2,6 @@ package net.igneo.icv.event;
 
 import com.mojang.authlib.yggdrasil.response.HasJoinedMinecraftServerResponse;
 import net.igneo.icv.ICV;
-import net.igneo.icv.entity.client.*;
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.particle.custom.*;
@@ -20,21 +19,6 @@ public class ModEventBusClientEvents {
 
     @SubscribeEvent
     public static void onKeyRegister(RegisterKeyMappingsEvent event) {
-        event.register(Keybindings.black_hole);
-        event.register(Keybindings.blizzard);
-        event.register(Keybindings.comet_strike);
-        event.register(Keybindings.concussion);
-        event.register(Keybindings.flamethrower);
-        event.register(Keybindings.flare);
-        event.register(Keybindings.incapacitate);
-        event.register(Keybindings.judgement);
-        event.register(Keybindings.parry);
-        event.register(Keybindings.siphon);
-        event.register(Keybindings.smite);
-        event.register(Keybindings.train_dash);
-        event.register(Keybindings.wardenscream);
-        event.register(Keybindings.wardenspine);
-        
         event.register(Keybindings.helmet);
         event.register(Keybindings.chestplate);
         event.register(Keybindings.leggings);
@@ -80,10 +64,5 @@ public class ModEventBusClientEvents {
                 SiphonParticles.Provider::new);
         event.registerSpriteSet(ModParticles.SMITE_PARTICLE.get(),
                 SmiteParticles.Provider::new);
-    }
-    @SubscribeEvent
-    public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event){
-        event.registerLayerDefinition(ModModelLayers.ICICLE_LAYER, IcicleModel::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.BOLT_LAYER, BoltModel::createBodyLayer);
     }
 }

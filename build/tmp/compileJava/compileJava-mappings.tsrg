@@ -19,20 +19,11 @@ net/igneo/icv/mixin/LivingEntityMixin DATA_LIVING_ENTITY_FLAGS f_20909_
 net/igneo/icv/mixin/LivingEntityMixin useItem f_20935_
 net/igneo/icv/mixin/LivingEntityMixin useItemRemaining f_20936_
 net/igneo/icv/mixin/LocalPlayerMixin input f_108618_
-net/igneo/icv/mixin/ThrownTridentMixin ID_LOYALTY f_37558_
-net/igneo/icv/mixin/ThrownTridentMixin ID_FOIL f_37554_
-net/igneo/icv/mixin/ThrownTridentMixin tridentItem f_37555_
-net/igneo/icv/mixin/ThrownTridentRendererMixin TRIDENT_LOCATION f_116094_
 net/igneo/icv/mixin/AnvilMenuMixin mayPickup (Lnet/minecraft/world/entity/player/Player;Z)Z m_6560_
 net/igneo/icv/mixin/AnvilMenuMixin onTake (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V m_142365_
 net/igneo/icv/mixin/AnvilMenuMixin isValidBlock (Lnet/minecraft/world/level/block/state/BlockState;)Z m_8039_
 net/igneo/icv/mixin/AnvilMenuMixin createResult ()V m_6640_
 net/igneo/icv/mixin/AnvilMenuMixin createInputSlotDefinitions ()Lnet/minecraft/world/inventory/ItemCombinerMenuSlotDefinition; m_266183_
-net/igneo/icv/mixin/ArrowMixin getPickupItem ()Lnet/minecraft/world/item/ItemStack; m_7941_
-net/igneo/icv/mixin/BowItemMixin getUseDuration (Lnet/minecraft/world/item/ItemStack;)I m_8105_
-net/igneo/icv/mixin/BowItemMixin getPowerForTime (I)F m_40661_
-net/igneo/icv/mixin/BowItemMixin releaseUsing (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V m_5551_
-net/igneo/icv/mixin/CrossbowItemMixin shootProjectile (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;FZFFF)V m_40894_
 net/igneo/icv/mixin/EnchantmentHelperMixin getKnockbackBonus (Lnet/minecraft/world/entity/LivingEntity;)I m_44894_
 net/igneo/icv/mixin/EnchantmentHelperMixin getDamageProtection (Ljava/lang/Iterable;Lnet/minecraft/world/damagesource/DamageSource;)I m_44856_
 net/igneo/icv/mixin/EnchantmentHelperMixin getDepthStrider (Lnet/minecraft/world/entity/LivingEntity;)I m_44922_
@@ -55,8 +46,5 @@ net/igneo/icv/mixin/LivingEntityMixin getItemBySlot (Lnet/minecraft/world/entity
 net/igneo/icv/mixin/LivingEntityMixin hurt (Lnet/minecraft/world/damagesource/DamageSource;F)Z m_6469_
 net/igneo/icv/mixin/LivingEntityMixin isUsingItem ()Z m_6117_
 net/igneo/icv/mixin/LivingEntityMixin isBlocking ()Z m_21254_
-net/igneo/icv/mixin/LivingEntityMixin canDisableShield ()Z m_213824_
 net/igneo/icv/mixin/LocalPlayerMixin hasEnoughFoodToStartSprinting ()Z m_255269_
 net/igneo/icv/mixin/PlayerMixin disableShield (Z)V m_36384_
-net/igneo/icv/mixin/PlayerMixin blockUsingShield (Lnet/minecraft/world/entity/LivingEntity;)V m_6728_
-net/igneo/icv/mixin/TridentItemMixin getUseDuration (Lnet/minecraft/world/item/ItemStack;)I m_8105_

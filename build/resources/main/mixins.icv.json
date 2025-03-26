@@ -4,14 +4,10 @@
   "minVersion": "0.7",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "LocalPlayerMixin",
-    "ThrownTridentRendererMixin"
+    "LocalPlayerMixin"
   ],
   "mixins": [
     "AnvilMenuMixin",
-    "ArrowMixin",
-    "BowItemMixin",
-    "CrossbowItemMixin",
     "EnchantmentHelperMixin",
     "EnchantmentMenuMixin",
     "EnchantmentScreenMixin",
@@ -19,9 +15,7 @@
     "LivingEntityMixin",
     "MinecraftMixin",
     "PlayerMixin",
-    "ThrownPotionMixin",
-    "ThrownTridentMixin",
-    "TridentItemMixin"
+    "ThrownPotionMixin"
   ],
   "injectors": {
     "defaultRequire": 1

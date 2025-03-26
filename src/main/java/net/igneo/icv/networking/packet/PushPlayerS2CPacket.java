@@ -1,12 +1,11 @@
 package net.igneo.icv.networking.packet;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
-
-import static net.igneo.icv.event.ModEvents.uniPlayer;
 
 public class PushPlayerS2CPacket {
 
@@ -34,7 +33,7 @@ public class PushPlayerS2CPacket {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
             Vec3 pushVec = new Vec3(x,y,z);;
-            uniPlayer.setDeltaMovement(pushVec);
+            Minecraft.getInstance().player.setDeltaMovement(pushVec);
         });
         return true;
     }

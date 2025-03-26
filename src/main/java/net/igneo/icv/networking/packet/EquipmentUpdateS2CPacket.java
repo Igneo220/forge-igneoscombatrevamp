@@ -11,6 +11,7 @@ import net.minecraftforge.network.NetworkEvent;
 import java.util.function.Supplier;
 
 import static net.igneo.icv.event.ModEvents.*;
+import static net.igneo.icv.init.ICVUtils.directUpdate;
 
 public class EquipmentUpdateS2CPacket {
     private final int slot;

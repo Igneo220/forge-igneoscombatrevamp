@@ -3,7 +3,7 @@ package net.igneo.icv.enchantmentActions.enchantManagers.weapon;
 import net.igneo.icv.ICV;
 import net.igneo.icv.enchantment.EnchantType;
 import net.igneo.icv.networking.ModMessages;
-import net.igneo.icv.networking.packet.GustS2CPacket;
+import net.igneo.icv.networking.packet.MovePlayerS2CPacket;
 import net.igneo.icv.sound.ModSounds;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -69,7 +69,7 @@ public class GustManager extends WeaponEnchantManager {
       entity.hurtMarked = true;
       
       if (entity instanceof ServerPlayer serverPlayer) {
-        ModMessages.sendToPlayer(new GustS2CPacket(), serverPlayer);
+        ModMessages.sendToPlayer(new MovePlayerS2CPacket(new Vec3(0,1,0)), serverPlayer);
       }
       
       level.sendParticles(ParticleTypes.CLOUD, entity.getX(), entity.getY(), entity.getZ(),

@@ -1,6 +1,7 @@
 package net.igneo.icv.networking.packet;
 
 import net.igneo.icv.event.ModEvents;
+import net.igneo.icv.init.ICVUtils;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 
@@ -28,7 +29,7 @@ public class EntitySyncS2CPacket {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
             System.out.println("syncing");
-            ModEvents.syncClientEntity(entityID, slot);
+            ICVUtils.syncClientEntity(entityID, slot);
         });
         return true;
     }

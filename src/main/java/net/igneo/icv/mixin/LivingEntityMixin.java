@@ -74,14 +74,6 @@ public abstract class LivingEntityMixin extends Entity {
      * @author Igneo
      * @reason changing shield breaking
      */
-    @Overwrite
-    public boolean canDisableShield() {
-        return EnchantmentHelper.getEnchantments(this.getMainHandItem()).containsKey(ModEnchantments.BREAKTHROUGH.get());
-    }
-    /**
-     * @author Igneo
-     * @reason changing shield breaking
-     */
 
     @Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
     public void hurt(DamageSource pSource, float pAmount, CallbackInfoReturnable<Boolean> cir) {

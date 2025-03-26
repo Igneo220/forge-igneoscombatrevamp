@@ -1,9 +1,6 @@
 package net.igneo.icv.mixin;
 
-import net.igneo.icv.enchantment.ModEnchantments;
-import net.igneo.icv.event.ModEvents;
 import net.igneo.icv.networking.ModMessages;
-import net.igneo.icv.networking.packet.EnchTableUpdateS2CPacket;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -26,7 +23,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EnchantmentTableBlock;
@@ -179,7 +175,7 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
                 this.localEnchShift = 0;
             }
             if (pPlayer instanceof ServerPlayer) {
-                ModMessages.sendToPlayer(new EnchTableUpdateS2CPacket(this.localEnchShift), (ServerPlayer) pPlayer);
+                //ModMessages.sendToPlayer(new EnchTableUpdateS2CPacket(this.localEnchShift), (ServerPlayer) pPlayer);
                 this.player = (ServerPlayer) pPlayer;
             }
             slotsChanged(enchantSlots);
@@ -193,7 +189,7 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
     @Overwrite
     public void slotsChanged(Container pInventory) {
         if (this.player != null) {
-            ModMessages.sendToPlayer(new EnchTableUpdateS2CPacket(this.localEnchShift), (ServerPlayer) player);
+            //ModMessages.sendToPlayer(new EnchTableUpdateS2CPacket(this.localEnchShift), (ServerPlayer) player);
         }
         updateEnchantmentLists();
         if (pInventory == this.enchantSlots) {
@@ -284,13 +280,11 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
     @Overwrite
     public void removed(Player pPlayer) {
         super.removed(pPlayer);
-        ModEvents.usedEnchTable = null;
         this.localEnchShift = 0;
         if (pPlayer instanceof ServerPlayer) {
-            ModMessages.sendToPlayer(new EnchTableUpdateS2CPacket(this.localEnchShift), (ServerPlayer) pPlayer);
+            //ModMessages.sendToPlayer(new EnchTableUpdateS2CPacket(this.localEnchShift), (ServerPlayer) pPlayer);
         }
         this.localLength = 0;
-        ModEvents.enchLength = 0;
         this.access.execute((p_39469_, p_39470_) -> {
             this.clearContainer(pPlayer, this.enchantSlots);
         });
@@ -421,8 +415,10 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
         }
         return false;
     }
+
     @Unique
     private void updateEnchantmentLists() {
+        /*
         if (HELM_ENCHANTS.isEmpty()) {
             HELM_ENCHANTS.add(ModEnchantments.BLACK_HOLE.get());
             HELM_ENCHANTS.add(ModEnchantments.BLIZZARD.get());
@@ -478,6 +474,6 @@ public class EnchantmentMenuMixin extends AbstractContainerMenu {
         if (TOOL_ENCHANTS.isEmpty()) {
             TOOL_ENCHANTS.add(Enchantments.SILK_TOUCH);
             TOOL_ENCHANTS.add(ModEnchantments.BRUTE_TOUCH.get());
-        }
+        }*/
     }
 }

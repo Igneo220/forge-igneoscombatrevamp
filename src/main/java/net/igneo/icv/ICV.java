@@ -9,11 +9,8 @@ import net.igneo.icv.config.ICVCommonConfigs;
 import net.igneo.icv.enchantment.ModEnchantments;
 import net.igneo.icv.entity.ModEntities;
 import net.igneo.icv.entity.blackHole.BlackHoleRenderer;
-import net.igneo.icv.entity.client.BoltRenderer;
-import net.igneo.icv.entity.client.IcicleRenderer;
 import net.igneo.icv.entity.comet.CometRenderer;
 import net.igneo.icv.entity.snakeBite.SnakeBiteRenderer;
-import net.igneo.icv.entity.soulOrb.SoulOrbEntity;
 import net.igneo.icv.entity.soulOrb.SoulOrbRenderer;
 import net.igneo.icv.entity.soulSpider.SoulSpiderRenderer;
 import net.igneo.icv.networking.ModMessages;
@@ -72,13 +69,6 @@ public class ICV
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-
-            EntityRenderers.register(ModEntities.ICICLE.get(), IcicleRenderer::new);
-            EntityRenderers.register(ModEntities.BOLT.get(), BoltRenderer::new);
-            EntityRenderers.register(ModEntities.FIRE.get(), ThrownItemRenderer::new);
-
-
-
             EntityRenderers.register(ModEntities.COMET.get(), CometRenderer::new);
             EntityRenderers.register(ModEntities.BLACK_HOLE.get(), BlackHoleRenderer::new);
             EntityRenderers.register(ModEntities.SNAKE_BITE.get(), SnakeBiteRenderer::new);
@@ -91,9 +81,6 @@ public class ICV
                     42,
                     ICV::registerPlayerAnimation);
         }
-
-
-
         @SubscribeEvent
         public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
             event.registerAboveAll("enchantments", EnchantmentHudOverlay.HUD_ENCHANTMENTS);

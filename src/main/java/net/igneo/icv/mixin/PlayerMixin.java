@@ -40,17 +40,6 @@ public abstract class PlayerMixin extends LivingEntity{
     public void disableShield(boolean pBecauseOfAxe) {
     }
 
-    /**
-     * @author Igneo
-     * @reason changing shield breaking
-     */
-    @Overwrite
-    protected void blockUsingShield(LivingEntity pEntity) {
-        if (EnchantmentHelper.getEnchantments(pEntity.getMainHandItem()).containsKey(ModEnchantments.BREAKTHROUGH.get())) {
-            disableShield(true);
-        }
-    }
-
     @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;resetAttackStrengthTicker()V"))
     public void tick(Player instance) {
 
@@ -72,49 +61,4 @@ public abstract class PlayerMixin extends LivingEntity{
             }
         });
     }
-
-    @ModifyVariable(method = "attack", at = @At(value = "STORE"), index = 4)
-    private float attack(float f1, Entity pTarget) {
-        float tempf = f1;
-        if (pTarget instanceof LivingEntity) {
-            AtomicReference<Float> tempf1 = new AtomicReference<>((float) 0);
-            if (EnchantmentHelper.getEnchantments(this.getMainHandItem()).containsKey(ModEnchantments.SKEWERING.get()) && !pTarget.onGround() && !pTarget.isInFluidType() && !pTarget.isPassenger()) {
-                tempf = 1.35F;
-            } else if (EnchantmentHelper.getEnchantments(this.getMainHandItem()).containsKey(ModEnchantments.KINETIC.get())) {
-                this.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-                    float speedDamage = (float) (((Math.abs(enchVar.getKinX()) + Math.abs(enchVar.getKinZ()))));
-                    if (speedDamage >= 0.35F) {
-                        speedDamage = 0.35F;
-                    }
-                    tempf1.set(speedDamage/2);
-                    //enchVar.setKinX(0);
-                    //enchVar.setKinZ(0);
-                });
-            }
-
-            AtomicReference<Float> tempf2 = new AtomicReference<>((float) 0);
-            this.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-                if (enchVar.getAcrobatBonus()) {
-                    tempf2.set(0.2F);
-                }
-            });
-            tempf += tempf1.get() + tempf2.get();
-            if (tempf > 1.4) {
-                tempf = 1.4F;
-            }
-        }
-        return tempf;
-    }
-
-    @Inject(at = @At("HEAD"), method = "hurt", cancellable = true)
-    public void hurt(DamageSource pSource, float pAmount, CallbackInfoReturnable<Boolean> cir) {
-        this.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
-            if (System.currentTimeMillis() <= enchVar.getParryTime() + 100) {
-                cir.setReturnValue(false);
-            }
-        });
-    }
-
-
-
 }

@@ -80,8 +80,9 @@ public abstract class ICVEntity extends Projectile implements GeoEntity {
 
     private void runHit() {
         HitResult hitresult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
-        this.onHit(hitresult);
-
+        if (hitresult.getType() != HitResult.Type.MISS) {
+            this.onHit(hitresult);
+        }
     }
 
     public void runPhysics() {

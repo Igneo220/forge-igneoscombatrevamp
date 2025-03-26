@@ -79,7 +79,7 @@ public class EnchantmentScreenMixin extends AbstractContainerScreen<EnchantmentM
         for(int k = 0; k < 3; ++k) {
             double d0 = pMouseX - (double)(i + 60);
             double d1 = pMouseY - (double)(j + 14 + 19 * k);
-            int l = k + ModEvents.enchShift;
+            int l = k;
             if (d0 >= 0.0D && d1 >= 0.0D && d0 < 108.0D && d1 < 19.0D && this.menu.clickMenuButton(this.minecraft.player, l)) {
                 this.minecraft.gameMode.handleInventoryButtonClick((this.menu).containerId, l);
                 return true;

@@ -3,7 +3,6 @@ package net.igneo.icv.entity;
 import net.igneo.icv.ICV;
 import net.igneo.icv.entity.blackHole.BlackHoleEntity;
 import net.igneo.icv.entity.comet.CometEntity;
-import net.igneo.icv.entity.custom.*;
 import net.igneo.icv.entity.snakeBite.SnakeBiteEntity;
 import net.igneo.icv.entity.soulOrb.SoulOrbEntity;
 import net.igneo.icv.entity.soulSpider.SoulSpiderEntity;
@@ -33,15 +32,6 @@ public class ModEntities {
     public static final RegistryObject<EntityType<SoulSpiderEntity>> SOUL_SPIDER =
             ENTITY_TYPES.register("soul_spider",() -> EntityType.Builder.<SoulSpiderEntity>of(SoulSpiderEntity::new, MobCategory.MISC)
                     .sized(1f,1f).build("soul_spider"));
-    public static final RegistryObject<EntityType<FireEntity>> FIRE =
-            ENTITY_TYPES.register("fire",() -> EntityType.Builder.<FireEntity>of(FireEntity::new, MobCategory.MISC)
-                    .sized(1.2f,1.2f).build("fire"));
-    public static final RegistryObject<EntityType<IcicleEntity>> ICICLE =
-            ENTITY_TYPES.register("icicle",() -> EntityType.Builder.<IcicleEntity>of(IcicleEntity::new, MobCategory.MISC)
-                    .sized(1f,1f).build("black_hole"));
-    public static final RegistryObject<EntityType<BoltEntity>> BOLT =
-            ENTITY_TYPES.register("bolt",() -> EntityType.Builder.<BoltEntity>of(BoltEntity::new, MobCategory.MISC)
-                    .sized(1f,1f).build("black_hole"));
 
 
     public static void register(IEventBus eventBus) {

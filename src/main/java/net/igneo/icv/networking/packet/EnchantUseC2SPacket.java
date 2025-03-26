@@ -7,7 +7,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-import static net.igneo.icv.event.ModEvents.useEnchant;
+import static net.igneo.icv.init.ICVUtils.useEnchant;
 
 
 public class EnchantUseC2SPacket {

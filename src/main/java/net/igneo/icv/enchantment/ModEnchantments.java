@@ -2,7 +2,6 @@ package net.igneo.icv.enchantment;
 
 import net.igneo.icv.ICV;
 import net.igneo.icv.enchantment.armor.*;
-import net.igneo.icv.enchantment.ranged.*;
 import net.igneo.icv.enchantment.weapon.*;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -33,10 +32,6 @@ public class ModEnchantments {
             ENCHANTMENTS.register("tungesten_core",
                     () -> new TungstenCoreEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
-    public static RegistryObject<Enchantment> BREAKTHROUGH =
-            ENCHANTMENTS.register("breakthrough",
-                    () -> new BreakthroughEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
     public static RegistryObject<Enchantment> FINESSE =
             ENCHANTMENTS.register("finesse",
                     () -> new FinesseEnchantment(Enchantment.Rarity.UNCOMMON,
@@ -45,22 +40,6 @@ public class ModEnchantments {
             ENCHANTMENTS.register("gust",
                     () -> new GustEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
-    public static RegistryObject<Enchantment> KINETIC =
-            ENCHANTMENTS.register("kinetic",
-                    () -> new KineticEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
-    public static RegistryObject<Enchantment> PHANTOM_PAIN =
-            ENCHANTMENTS.register("phantom_pain",
-                    () -> new PhantomPainEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
-    public static RegistryObject<Enchantment> SKEWERING =
-            ENCHANTMENTS.register("skewering",
-                    () -> new SkeweringEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
-    public static RegistryObject<Enchantment> TEMPO_THEFT =
-            ENCHANTMENTS.register("tempo_theft",
-                    () -> new TempoTheftEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
     public static RegistryObject<Enchantment> VIPER =
             ENCHANTMENTS.register("viper",
                     () -> new ViperEnchantment(Enchantment.Rarity.UNCOMMON,
@@ -68,89 +47,16 @@ public class ModEnchantments {
 
 
 
-    public static RegistryObject<Enchantment> MITOSIS =
-            ENCHANTMENTS.register("mitosis",
-                    () -> new MitosisEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.CROSSBOW, EquipmentSlot.MAINHAND));
-    public static RegistryObject<Enchantment> REND =
-            ENCHANTMENTS.register("rend",
-                    () -> new RendEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.CROSSBOW, EquipmentSlot.MAINHAND));
-    public static RegistryObject<Enchantment> SCATTER =
-            ENCHANTMENTS.register("scatter",
-                    () -> new ScatterEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.CROSSBOW, EquipmentSlot.MAINHAND));
-
-
-
-    public static RegistryObject<Enchantment> ACCELERATE =
-            ENCHANTMENTS.register("accelerate",
-                    () -> new AccelerateEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.BOW, EquipmentSlot.MAINHAND));
-    public static RegistryObject<Enchantment> PHASING =
-            ENCHANTMENTS.register("phasing",
-                    () -> new PhasingEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.BOW, EquipmentSlot.MAINHAND));
-    public static RegistryObject<Enchantment> WHISTLER =
-            ENCHANTMENTS.register("whistler",
-                    () -> new WhistlerEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.BOW, EquipmentSlot.MAINHAND));
-
-
-
-    public static RegistryObject<Enchantment> EXTRACT =
-            ENCHANTMENTS.register("extract",
-                    () -> new ExtractEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.TRIDENT, EquipmentSlot.MAINHAND));
-    public static RegistryObject<Enchantment> RECOIL =
-            ENCHANTMENTS.register("recoil",
-                    () -> new RecoilEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.TRIDENT, EquipmentSlot.MAINHAND));
-
-
-
     public static RegistryObject<Enchantment> BLACK_HOLE =
             ENCHANTMENTS.register("black_hole",
                     () -> new BlackHoleEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_HEAD, EquipmentSlot.HEAD));
-    public static RegistryObject<Enchantment> BLIZZARD =
-            ENCHANTMENTS.register("blizzard",
-                    () -> new BlizzardEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.ARMOR_HEAD, EquipmentSlot.HEAD));
-    public static RegistryObject<Enchantment> FLAMETHROWER =
-            ENCHANTMENTS.register("flamethrower",
-                    () -> new FlamethrowerEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.ARMOR_HEAD, EquipmentSlot.HEAD));
-    public static RegistryObject<Enchantment> SMITE =
-            ENCHANTMENTS.register("smite",
-                    () -> new SmiteEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.ARMOR_HEAD, EquipmentSlot.HEAD));
-    public static RegistryObject<Enchantment> WARDEN_SCREAM =
-            ENCHANTMENTS.register("warden_scream",
-                    () -> new WardenScreamEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.ARMOR_HEAD, EquipmentSlot.HEAD));
 
 
 
-    public static RegistryObject<Enchantment> CONCUSSION =
-            ENCHANTMENTS.register("concussion",
-                    () -> new ConcussionEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
-    public static RegistryObject<Enchantment> FLARE =
-            ENCHANTMENTS.register("flare",
-                    () -> new FlareEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
-    public static RegistryObject<Enchantment> PARRY =
-            ENCHANTMENTS.register("parry",
-                    () -> new ParryEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
     public static RegistryObject<Enchantment> PLANAR_SHIFT =
             ENCHANTMENTS.register("planar_shift",
                     () -> new PlanarShiftEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
-    public static RegistryObject<Enchantment> WARDENSPINE =
-            ENCHANTMENTS.register("wardenspine",
-                    () -> new WardenspineEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_CHEST, EquipmentSlot.CHEST));
     public static RegistryObject<Enchantment> HAUNT =
             ENCHANTMENTS.register("haunt",
@@ -163,21 +69,9 @@ public class ModEnchantments {
             ENCHANTMENTS.register("tempest",
                     () -> new TempestEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_LEGS, EquipmentSlot.LEGS));
-    public static RegistryObject<Enchantment> CRUSH =
-            ENCHANTMENTS.register("crush",
-                    () -> new CrushEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.ARMOR_LEGS, EquipmentSlot.LEGS));
-    public static RegistryObject<Enchantment> INCAPACITATE =
-            ENCHANTMENTS.register("incapacitate",
-                    () -> new CrushEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.ARMOR_LEGS, EquipmentSlot.LEGS));
     public static RegistryObject<Enchantment> JUDGEMENT =
             ENCHANTMENTS.register("judgement",
                     () -> new JudgementEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.ARMOR_LEGS, EquipmentSlot.LEGS));
-    public static RegistryObject<Enchantment> TRAIN_DASH =
-            ENCHANTMENTS.register("train_dash",
-                    () -> new TrainDashEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_LEGS, EquipmentSlot.LEGS));
 
 
@@ -186,21 +80,9 @@ public class ModEnchantments {
             ENCHANTMENTS.register("comet_strike",
                     () -> new CometStrikeEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
-    public static RegistryObject<Enchantment> DOUBLE_JUMP =
-            ENCHANTMENTS.register("double_jump",
-                    () -> new DoubleJumpEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET));
-    public static RegistryObject<Enchantment> MOMENTUM =
-            ENCHANTMENTS.register("momentum",
-                    () -> new MomentumEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET));
     public static RegistryObject<Enchantment> STASIS =
             ENCHANTMENTS.register("stasis",
                     () -> new StasisEnchantment(Enchantment.Rarity.UNCOMMON,
-                            EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET));
-    public static RegistryObject<Enchantment> STONE_CALLER =
-            ENCHANTMENTS.register("stone_caller",
-                    () -> new StoneCallerEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET));
     public static RegistryObject<Enchantment> BLINK =
       ENCHANTMENTS.register("blink",
