@@ -24,7 +24,7 @@ public class ICVUtils {
     
     public static Vec3 getFlatInputDirection(float rot,float scale,double yVelocity) {
         int rotation = 0;
-
+        
         if (Minecraft.getInstance().options.keyLeft.isDown()) {
             if (Minecraft.getInstance().options.keyUp.isDown()) {
                 rotation = 315;
@@ -43,24 +43,24 @@ public class ICVUtils {
                 rotation = 90;
             }
         }
-
+        
         if (Minecraft.getInstance().options.keyDown.isDown()) rotation = 180;
-
+        
         double yaw = Math.toRadians(rot + rotation);
         double x = -Math.sin(yaw);
         double y = yVelocity;
         double z = Math.cos(yaw);
-
+        
         return new Vec3(x*scale, y, z*scale);
     }
-
+    
     //ND stands for no diagonal
     public static Vec3 getFlatInputDirectionND(float rot,float scale,double yVelocity) {
         int rotation = 0;
-
+        
         if (Minecraft.getInstance().options.keyLeft.isDown()) rotation = 270;
         if (Minecraft.getInstance().options.keyRight.isDown()) rotation = 90;
-
+        
         if (Minecraft.getInstance().options.keyDown.isDown()) rotation = 180;
         
         double yaw = Math.toRadians(rot + rotation);
@@ -106,12 +106,12 @@ public class ICVUtils {
         });
         return slot.get();
     }
-
+    
     public static List<Entity> collectEntitiesBox(Player player, Vec3 position, double radius) {
         Vec3 scale = new Vec3(radius,radius,radius);
         return player.level().getEntities(null,new AABB(position.subtract(scale),position.add(scale)));
     }
-
+    
     @OnlyIn(Dist.CLIENT)
     public static void directUpdate(int pSlot) {
         if (Minecraft.getInstance().player != null) {
@@ -143,7 +143,7 @@ public class ICVUtils {
             }
         });
     }
-
+    
     public static void useEnchant(Player player, int slot) {
         player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
             if (enchVar.getManager(slot) != null) {
@@ -151,7 +151,7 @@ public class ICVUtils {
             }
         });
     }
-
+    
     @OnlyIn(Dist.CLIENT)
     public static void syncClientEntity(int ID, int slot) {
         Minecraft.getInstance().player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
@@ -168,7 +168,7 @@ public class ICVUtils {
             }
         });
     }
-
+    
     @OnlyIn(Dist.CLIENT)
     public static void clientCooldownDamageBonuses() {
         sendCooldownDamageBonuses(Minecraft.getInstance().player);
@@ -183,4 +183,3 @@ public class ICVUtils {
         });
     }
 }
-
