@@ -1,0 +1,29 @@
+# gradle
+
+build/
+out/
+
+# idea
+
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# vscode
+
+.settings/
+.vscode/
+bin/
+.classpath
+.project
+
+# forge
+
+run/
+
+# macOS
+
+.DS_Store
+.AppleDouble
+.LSOverride
