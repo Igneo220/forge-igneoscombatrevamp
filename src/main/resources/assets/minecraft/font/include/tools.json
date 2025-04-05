@@ -1,0 +1,13 @@
+{
+  "providers": [
+    {
+      "type": "bitmap",
+      "file": "icons:include/tools.png",
+      "ascent": 8,
+      "height": 10,
+      "chars": [
+        "\uA000\uA001\uA002\uA003\uA004\uA005\uA006\uA007\uA008\uA009\uA010\uA011"
+      ]
+    }
+  ]
+}

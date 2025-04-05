@@ -57,8 +57,8 @@ public class ModEnchantments {
             ENCHANTMENTS.register("burst",
                     () -> new BurstEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
-    public static RegistryObject<Enchantment> TUNGESTEN_CORE =
-            ENCHANTMENTS.register("tungesten_core",
+    public static RegistryObject<Enchantment> TUNGSTEN_CORE =
+            ENCHANTMENTS.register("tungsten_core",
                     () -> new TungstenCoreEnchantment(Enchantment.Rarity.UNCOMMON,
                             EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
     public static RegistryObject<Enchantment> FINESSE =
