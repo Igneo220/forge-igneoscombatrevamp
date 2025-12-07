@@ -5,9 +5,9 @@ import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
 
 public class StonePillarModel extends GeoModel<StonePillarEntity> {
-    private final ResourceLocation model = new ResourceLocation(ICV.MOD_ID, "geo/placeholder.geo.json");
-    private final ResourceLocation texture = new ResourceLocation(ICV.MOD_ID, "textures/entity/placeholder.png");
-    private final ResourceLocation animations = new ResourceLocation(ICV.MOD_ID, "animations/placeholder.animation.json");
+    private final ResourceLocation model = new ResourceLocation(ICV.MOD_ID, "geo/stone_pillar.geo.json");
+    private final ResourceLocation texture = new ResourceLocation(ICV.MOD_ID, "textures/entity/stone_pillar.png");
+    private final ResourceLocation animations = new ResourceLocation(ICV.MOD_ID, "animations/stone_pillar.animation.json");
     
     @Override
     public ResourceLocation getModelResource(StonePillarEntity surfWaveEntity) {

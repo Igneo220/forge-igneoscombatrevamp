@@ -14,7 +14,7 @@ import net.minecraft.world.phys.Vec3;
 
 public class BlackHoleManager extends ArmorEnchantManager implements EntityTracker {
     public BlackHoleManager(Player player) {
-        super(EnchantType.HELMET, 900, -30, true, player);
+        super(EnchantType.HELMET, 1, -30, true, player);
     }
     
     public ICVEntity child = null;

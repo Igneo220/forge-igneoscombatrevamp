@@ -44,7 +44,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<SoulOrbEntity>> SOUL_ORB = registerEntity("soul_orb", SoulOrbEntity::new, 1f, 1f);
     public static final RegistryObject<EntityType<SoulSpiderEntity>> SOUL_SPIDER = registerEntity("soul_spider", SoulSpiderEntity::new, 1f, 1f);
     public static final RegistryObject<EntityType<SurfWaveEntity>> SURF_WAVE = registerEntity("surf_wave", SurfWaveEntity::new, 1f, 1f);
-    public static final RegistryObject<EntityType<StonePillarEntity>> STONE_PILLAR = registerEntity("stone_pillar", StonePillarEntity::new, 2.5f, 4f);
+    public static final RegistryObject<EntityType<StonePillarEntity>> STONE_PILLAR = registerEntity("stone_pillar", StonePillarEntity::new, 2f, 4f);
     public static final RegistryObject<EntityType<SoulEmberEntity>> SOUL_EMBER = registerEntity("soul_ember", SoulEmberEntity::new, 1f, 1f);
     public static final RegistryObject<EntityType<AbyssStoneEntity>> ABYSS_STONE = registerEntity("abyss_stone", AbyssStoneEntity::new, 2.5f, 4f);
     public static final RegistryObject<EntityType<WaveEntity>> WAVE = registerEntity("wave", WaveEntity::new, 1f, 1f);

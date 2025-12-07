@@ -18,7 +18,7 @@ public abstract class ArmorEnchantManager extends EnchantmentManager {
     
     private final boolean dualUse;
     public int coolDownDamageBonus;
-    // 60 is roughly 1 second
+    // 80 is roughly 1 second
     public final int maxCoolDown;
     private int coolDown;
     

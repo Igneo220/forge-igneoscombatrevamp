@@ -18,7 +18,7 @@ public class BlinkPostProcessor extends MultiInstancePostProcessor<BlinkFx> {
     
     @Override
     public ResourceLocation getPostChainLocation() {
-        return new ResourceLocation(ICV.MOD_ID, "tint_post");
+        return new ResourceLocation(ICV.MOD_ID, "blink_post");
     }
     
     // Max amount of FxInstances that can be added to the post processor at once

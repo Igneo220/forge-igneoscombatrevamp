@@ -10,6 +10,7 @@ import net.igneo.icv.enchantment.ModEnchantments;
 import net.igneo.icv.entity.ModEntities;
 import net.igneo.icv.entity.ModEntityRenderers;
 import net.igneo.icv.networking.ModMessages;
+import net.igneo.icv.particle.LodestoneModParticles;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.shader.ModShaders;
 import net.igneo.icv.sound.ModSounds;
@@ -44,6 +45,7 @@ public class ICV {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ICVCommonConfigs.SPEC, "icv-common.toml");
         
         ModEnchantments.register(modEventBus);
+        LodestoneModParticles.register(modEventBus);
         ModParticles.register(modEventBus);
         ModSounds.register(modEventBus);
         ModEntities.register(modEventBus);

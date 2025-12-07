@@ -82,8 +82,7 @@ public class ModEnchantments {
     public static final RegistryObject<Enchantment> SURF = registerEnchantment("surf", () -> new SurfEnchantment(UNCOMMON, ARMOR_FEET, FEET));
     public static final RegistryObject<Enchantment> BLINK = registerEnchantment("blink", () -> new BlinkEnchantment(UNCOMMON, ARMOR_FEET, FEET));
     public static final RegistryObject<Enchantment> STONE_CALLER = registerEnchantment("stone_caller", () -> new StoneCallerEnchantment(UNCOMMON, ARMOR_FEET, FEET));
-    public static final RegistryObject<Enchantment> CURB_STOMP = registerEnchantment("curb_stomp", () -> new CurbStompEnchantment(UNCOMMON, ARMOR_FEET, FEET));
-    public static final RegistryObject<Enchantment> SOUL_EMBER = registerEnchantment("soul_ember", () -> new SoulEmberEnchantment(UNCOMMON, ARMOR_FEET, FEET));
+    public static final RegistryObject<Enchantment> ASCENSION = registerEnchantment("ascension", () -> new AscensionEnchantment(UNCOMMON, ARMOR_FEET, FEET));
     
     public static void register(IEventBus eventBus) {
         ENCHANTMENTS.register(eventBus);

@@ -9,7 +9,7 @@ import net.minecraft.world.entity.Entity;
 public class FollowingSound extends AbstractTickableSoundInstance {
     Entity entity;
     public FollowingSound(SoundEvent sound, Entity entity) {
-        super(sound, SoundSource.PLAYERS, RandomSource.create()); // Or AMBIENT if you prefer
+        super(sound, SoundSource.PLAYERS, RandomSource.create());
         this.entity = entity;
         this.delay = 0;
         this.x = entity.getX();

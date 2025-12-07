@@ -44,8 +44,7 @@ public class ParticleShapes {
     }
     
     public static ArrayList<Vec3> renderSphereList(Level level, Vec3 center, int latitudeSteps, int longitudeSteps, float radius) {
-        int estimatedSize = (latitudeSteps + 1) * longitudeSteps * 4;
-        ArrayList<Vec3> posList = new ArrayList<>(estimatedSize);
+        ArrayList<Vec3> posList = new ArrayList<>();
         processSphere(center, latitudeSteps, longitudeSteps, radius, posList::add);
         return posList;
     }

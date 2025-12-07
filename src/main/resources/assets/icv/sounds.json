@@ -244,5 +244,77 @@
     "sounds": [
       "icv:surf_pickup"
     ]
+  },
+  "stone_caller_activate": {
+    "subtitles": "sounds.icv.stone_caller_activate",
+    "sounds": [
+      "icv:stone_caller_activate"
+    ]
+  },
+  "stone_caller_break": {
+    "subtitles": "sounds.icv.stone_caller_break",
+    "sounds": [
+      "icv:stone_caller_break"
+    ]
+  },
+  "stone_caller_despawn": {
+    "subtitles": "sounds.icv.stone_caller_despawn",
+    "sounds": [
+      "icv:stone_caller_despawn"
+    ]
+  },
+  "stone_caller_hit": {
+    "subtitles": "sounds.icv.stone_caller_hit",
+    "sounds": [
+      "icv:stone_caller_hit"
+    ]
+  },
+  "stone_caller_recharge": {
+    "subtitles": "sounds.icv.stone_caller_recharge",
+    "sounds": [
+      "icv:stone_caller_recharge"
+    ]
+  },
+  "stasis_activate": {
+    "subtitles": "sounds.icv.stasis_activate",
+    "sounds": [
+      "icv:stasis_activate"
+    ]
+  },
+  "stasis_break": {
+    "subtitles": "sounds.icv.stasis_break",
+    "sounds": [
+      "icv:stasis_break"
+    ]
+  },
+  "stasis_idle": {
+    "subtitles": "sounds.icv.stasis_idle",
+    "sounds": [
+      "icv:stasis_idle"
+    ]
+  },
+  "stasis_recharge": {
+    "subtitles": "sounds.icv.stasis_recharge",
+    "sounds": [
+      "icv:stasis_recharge"
+    ]
+  },
+  "stasis_hit": {
+    "subtitles": "sounds.icv.stasis_hit",
+    "sounds": [
+      "icv:stasis_hit"
+    ]
+  },
+  "ascension_use": {
+    "subtitles": "sounds.icv.ascension_use",
+    "sounds": [
+      "icv:ascension_use"
+    ]
+  },
+  "ascension_recharge": {
+    "subtitles": "sounds.icv.ascension_recharge",
+    "sounds": [
+      "icv:ascension_recharge"
+    ]
   }
 }

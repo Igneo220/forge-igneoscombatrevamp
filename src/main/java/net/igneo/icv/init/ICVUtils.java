@@ -61,9 +61,7 @@ public class ICVUtils {
         AtomicReference<T> returnManager = new AtomicReference<>(null);
         player.getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
             for (EnchantmentManager manager : enchVar.getManagers()) {
-                System.out.println("testing manager: " + manager + " for type: " + desiredManager);
                 if (manager != null && manager.getClass().equals(desiredManager)) {
-                    System.out.println("returning the manager");
                     returnManager.set((T) manager);
                 }
             }

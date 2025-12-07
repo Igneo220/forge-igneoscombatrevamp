@@ -5,7 +5,7 @@
   ],
   "passes": [
     {
-      "name": "icv:tint",
+      "name": "icv:blink",
       "intarget": "minecraft:main",
       "outtarget": "final",
       "auxtargets": [

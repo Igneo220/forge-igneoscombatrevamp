@@ -15,15 +15,22 @@ import net.igneo.icv.networking.packet.EnchantHitS2CPacket;
 import net.igneo.icv.networking.packet.EnchantUseC2SPacket;
 import net.igneo.icv.networking.packet.EquipmentUpdateS2CPacket;
 import net.igneo.icv.networking.packet.InputSyncC2SPacket;
+import net.igneo.icv.sound.ModSounds;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputEvent;
@@ -135,7 +142,11 @@ public class ModEvents {
             event.getEntity().getCapability(PlayerEnchantmentActionsProvider.PLAYER_ENCHANTMENT_ACTIONS).ifPresent(enchVar -> {
                 if (enchVar.getManager(0) instanceof StasisManager manager) {
                     if (manager.entityData.containsKey(event.getTarget())) {
-                        manager.addMovement(event.getTarget(), event.getEntity().getLookAngle().normalize().scale(0.2));
+                        double m = event.getEntity().getMainHandItem().getAttributeModifiers(EquipmentSlot.MAINHAND).get(Attributes.ATTACK_DAMAGE).stream().findFirst().get().getAmount()/4;
+                        System.out.println(m);
+                        Vec3 multVec = new Vec3(m,m,m);
+                        event.getTarget().level().playSound(null, BlockPos.containing(event.getTarget().position()),ModSounds.STASIS_HIT.get(), SoundSource.PLAYERS ,6F, (float) Math.random() + 0.5F);
+                        manager.addMovement(event.getTarget(), event.getEntity().getLookAngle().normalize().scale(0.2).multiply(multVec));
                     }
                 }
             });
