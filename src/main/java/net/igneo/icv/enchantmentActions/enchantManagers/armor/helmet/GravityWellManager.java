@@ -1,7 +1,7 @@
 package net.igneo.icv.enchantmentActions.enchantManagers.armor.helmet;
 
 import net.igneo.icv.client.indicators.EnchantIndicator;
-import net.igneo.icv.client.indicators.StasisCooldownIndicator;
+import net.igneo.icv.client.indicators.boots.StasisCooldownIndicator;
 import net.igneo.icv.enchantment.EnchantType;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.ArmorEnchantManager;
 import net.igneo.icv.init.ICVUtils;

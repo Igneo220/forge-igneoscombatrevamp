@@ -9,6 +9,8 @@ import net.igneo.icv.enchantmentActions.PlayerEnchantmentActions;
 import net.igneo.icv.enchantmentActions.PlayerEnchantmentActionsProvider;
 import net.igneo.icv.enchantmentActions.enchantManagers.EnchantmentManager;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.boots.StasisManager;
+import net.igneo.icv.enchantmentActions.enchantManagers.armor.leggings.JudgementManager;
+import net.igneo.icv.init.ICVUtils;
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.EnchantHitS2CPacket;
@@ -25,7 +27,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -50,7 +51,13 @@ import static net.igneo.icv.init.ICVUtils.*;
 
 @Mod.EventBusSubscriber (modid = ICV.MOD_ID)
 public class ModEvents {
-    
+
+    static long bootsInputTime = 0;
+    static long leggingsInputTime = 0;
+    static long chestplateInputTime = 0;
+    static long helmetInputTime = 0;
+    static int inputCooldown = 300;
+
     private static int storedInput;
     
     @SubscribeEvent
@@ -80,19 +87,23 @@ public class ModEvents {
     @OnlyIn (Dist.CLIENT)
     @SubscribeEvent
     public static void onKeyInputEvent(InputEvent.Key event) {
-        if (Keybindings.boots.isDown()) {
+        if (Keybindings.boots.isDown() && bootsInputTime + inputCooldown < System.currentTimeMillis()) {
+            bootsInputTime = System.currentTimeMillis();
             useEnchant(Minecraft.getInstance().player, 0);
             ModMessages.sendToServer(new EnchantUseC2SPacket(0));
         }
-        if (Keybindings.leggings.isDown()) {
+        if (Keybindings.leggings.isDown() && leggingsInputTime + inputCooldown < System.currentTimeMillis()) {
+            leggingsInputTime = System.currentTimeMillis();
             useEnchant(Minecraft.getInstance().player, 1);
             ModMessages.sendToServer(new EnchantUseC2SPacket(1));
         }
-        if (Keybindings.chestplate.isDown()) {
+        if (Keybindings.chestplate.isDown() && chestplateInputTime + inputCooldown < System.currentTimeMillis()) {
+            chestplateInputTime = System.currentTimeMillis();
             useEnchant(Minecraft.getInstance().player, 2);
             ModMessages.sendToServer(new EnchantUseC2SPacket(2));
         }
-        if (Keybindings.helmet.isDown()) {
+        if (Keybindings.helmet.isDown() && helmetInputTime + inputCooldown < System.currentTimeMillis()) {
+            helmetInputTime = System.currentTimeMillis();
             useEnchant(Minecraft.getInstance().player, 3);
             ModMessages.sendToServer(new EnchantUseC2SPacket(3));
         }
@@ -164,6 +175,12 @@ public class ModEvents {
                 if (Parkourability.get(player).get(Dodge.class).isDoing()) {
                     ServerLevel level = player.serverLevel();
                     event.setCanceled(true);
+                } else {
+                    JudgementManager manager = (JudgementManager) ICVUtils.getManagerForType(player,JudgementManager.class);
+                    System.out.println(manager);
+                    if (manager != null && manager.kicking) {
+                        event.setCanceled(true);
+                    }
                 }
             });
         }

@@ -1,11 +1,14 @@
 package net.igneo.icv.init;
 
+import dev.kosmx.playerAnim.core.util.Vec3d;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import org.joml.*;
 
+import java.lang.Math;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
@@ -157,5 +160,53 @@ public class ParticleShapes {
                 pointConsumer.accept(particlePos);
             }
         }
+    }
+
+    public static ArrayList<Vec3> renderRotatedRingList(Vec3 preAxis, Vec3 center, float radius, int iterations,boolean randomize) {
+        Vec3 axis = preAxis.normalize();
+        ArrayList<Vec3> list = new ArrayList<>();
+        Vector3f reference =
+                Math.abs(axis.y) < 0.99
+                        ? new Vector3f(0, 1, 0)
+                        : new Vector3f(1, 0, 0);
+
+        Vec3 pioneer = axis.cross(new Vec3(reference)).normalize().scale(radius);
+        if (randomize) {
+            float theta = (float) (Math.PI * 2.0 * Math.random());
+            Vector3f v = new Vector3f(
+                    (float)pioneer.x,
+                    (float)pioneer.y,
+                    (float)pioneer.z
+            ).rotateAxis(
+                    theta,
+                    (float)axis.x,
+                    (float)axis.y,
+                    (float)axis.z
+            );
+
+            pioneer = new Vec3(v.x(), v.y(), v.z());
+        }
+
+        list.add(center.add(pioneer));
+        list.add(center.add(pioneer.reverse()));
+        for (int i = 1; i <= iterations; ++i) {
+            float theta = (float) (Math.PI * 2.0/iterations)*i;
+
+            Vector3f v = new Vector3f(
+                    (float)pioneer.x,
+                    (float)pioneer.y,
+                    (float)pioneer.z
+            ).rotateAxis(
+                    theta,
+                    (float)axis.x,
+                    (float)axis.y,
+                    (float)axis.z
+            );
+
+            Vec3 product = new Vec3(v.x(), v.y(), v.z()).add(center);
+            list.add(product);
+            list.add(product.reverse());
+        }
+        return list;
     }
 }

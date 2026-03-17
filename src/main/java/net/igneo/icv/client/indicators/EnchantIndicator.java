@@ -13,11 +13,17 @@ public abstract class EnchantIndicator {
      */
     public int slot;
     public ResourceLocation image;
+    public ResourceLocation overlay() {
+        return null;
+    }
+    public int charges() {
+        return 0;
+    }
     private int frame = 0;
     private final int loopFrame;
     public ArmorEnchantManager manager;
     
-    EnchantIndicator(int totalFrames, int chargeFrames, int loopFrame, int slot, ResourceLocation image, ArmorEnchantManager manager) {
+    public EnchantIndicator(int totalFrames, int chargeFrames, int loopFrame, int slot, ResourceLocation image, ArmorEnchantManager manager) {
         this.totalFrames = totalFrames;
         this.chargeFrames = chargeFrames;
         this.slot = slot;
@@ -50,5 +56,13 @@ public abstract class EnchantIndicator {
     
     public boolean shouldRender() {
         return !this.manager.canUse() || frame <= totalFrames;
+    }
+
+    public boolean hasCharges() {
+        return charges() > 0;
+    }
+
+    public int maxCharges() {
+        return 0;
     }
 }

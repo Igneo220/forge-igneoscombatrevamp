@@ -1,32 +1,24 @@
 package net.igneo.icv.enchantmentActions.enchantManagers.armor.boots;
 
-import dev.kosmx.playerAnim.api.layered.IAnimation;
-import dev.kosmx.playerAnim.api.layered.KeyframeAnimationPlayer;
-import dev.kosmx.playerAnim.api.layered.ModifierLayer;
-import dev.kosmx.playerAnim.minecraftApi.PlayerAnimationAccess;
 import dev.kosmx.playerAnim.minecraftApi.PlayerAnimationRegistry;
 import net.igneo.icv.ICV;
 import net.igneo.icv.client.animation.EnchantAnimationPlayer;
-import net.igneo.icv.client.indicators.BlackHoleIndicator;
 import net.igneo.icv.client.indicators.EnchantIndicator;
-import net.igneo.icv.client.indicators.SurfIndicator;
+import net.igneo.icv.client.indicators.leggings.TsunamiIndicator;
 import net.igneo.icv.enchantment.EnchantType;
 import net.igneo.icv.enchantmentActions.EntityTracker;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.ArmorEnchantManager;
 import net.igneo.icv.entity.ICVEntity;
 import net.igneo.icv.entity.ModEntities;
-import net.igneo.icv.init.ICVUtils;
 import net.igneo.icv.init.LodestoneParticles;
 import net.igneo.icv.init.ParticleShapes;
 import net.igneo.icv.sound.ModSounds;
 import net.igneo.icv.sound.tickable.FollowingSound;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
@@ -66,7 +58,7 @@ public class SurfManager extends ArmorEnchantManager implements EntityTracker {
     
     @Override
     public EnchantIndicator getIndicator() {
-        return new SurfIndicator(this);
+        return new TsunamiIndicator(this);
     }
     
     @Override
@@ -80,7 +72,7 @@ public class SurfManager extends ArmorEnchantManager implements EntityTracker {
         if (player.level() instanceof ServerLevel level) {
             level.playSound(null, player.position().x, player.position().y, player.position().z,
                     ModSounds.SURF_COOLDOWN.get(),
-                    net.minecraft.sounds.SoundSource.PLAYERS, 0.5f, 1.0f);
+                    net.minecraft.sounds.SoundSource.PLAYERS, 0.3f, 1.0f);
         }
     }
     

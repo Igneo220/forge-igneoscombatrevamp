@@ -1,6 +1,7 @@
 package net.igneo.icv.init;
 
 import net.igneo.icv.particle.LodestoneModParticles;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.registry.common.particle.LodestoneParticleRegistry;
@@ -12,6 +13,7 @@ import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
 import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
 import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
 import team.lodestar.lodestone.systems.particle.world.options.WorldParticleOptions;
+import team.lodestar.lodestone.systems.particle.world.type.LodestoneWorldParticleType;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -25,6 +27,40 @@ public class LodestoneParticles {
                 .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
                 .setScaleData(GenericParticleData.create(0.5F, 2, 0.1F).build())
                 .setSpinData(SpinParticleData.create(0, 0, 1).build())
+                .spawn(level, pos.x, pos.y, pos.z);
+    }
+
+    public static void judgementParticles(Level level, Vec3 pos) {
+        WorldParticleBuilder.create(LodestoneParticleRegistry.SPARKLE_PARTICLE)
+                .setLifetime(12)
+                .setColorData(ColorParticleData.create(new Color(180, 255, 245, 255)).build())
+                .setTransparencyData(GenericParticleData.create(1f, 1f).setEasing(Easing.SINE_IN).build())
+                .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
+                .setScaleData(GenericParticleData.create(3, 3, 0F).build())
+                .setSpinData(SpinParticleData.create(0, 0, 3).build())
+                .spawn(level, pos.x, pos.y, pos.z);
+    }
+    public static void tempestParticles(Level level, Vec3 pos, Vec3 dir) {
+        WorldParticleBuilder.create(LodestoneModParticles.TEMPEST_PARTICLE)
+                .setLifetime(20)
+                .setRenderType(LodestoneWorldParticleRenderType.PARTICLE_SHEET_TRANSLUCENT)
+                .setTransparencyData(GenericParticleData.create(1f, 1f).setEasing(Easing.SINE_IN).build())
+                .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
+                .setScaleData(GenericParticleData.create(0.3F).build())
+                .setTransparencyData(GenericParticleData.create(1,0).build())
+                .setMotion(dir.normalize().scale(Math.random()/2))
+                .spawn(level, pos.x + Math.random() - 1, pos.y + Math.random()*2, pos.z + Math.random() - 1);
+    }
+
+    public static void galeParticles(Level level, Vec3 pos, Vec3 dir) {
+        WorldParticleBuilder.create(LodestoneModParticles.TEMPEST_PARTICLE)
+                .setLifetime(20)
+                .setRenderType(LodestoneWorldParticleRenderType.PARTICLE_SHEET_TRANSLUCENT)
+                .setTransparencyData(GenericParticleData.create(1f, 1f).setEasing(Easing.SINE_IN).build())
+                .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
+                .setScaleData(GenericParticleData.create(0.3F).build())
+                .setTransparencyData(GenericParticleData.create(1,0).build())
+                .setMotion(dir.normalize().scale(Math.random()/2))
                 .spawn(level, pos.x, pos.y, pos.z);
     }
 
@@ -99,7 +135,6 @@ public class LodestoneParticles {
                 .setFrictionStrength(0.05F)
                 .setNoClip(false)
                 .disableCull()
-                .setLightLevel(6)
                 .setColorData(ColorParticleData.create(startingColor, endingColor).build())
                 .spawn(level, pos.x, pos.y, pos.z);
     }

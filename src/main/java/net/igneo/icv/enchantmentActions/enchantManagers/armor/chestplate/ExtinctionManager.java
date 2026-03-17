@@ -1,7 +1,7 @@
 package net.igneo.icv.enchantmentActions.enchantManagers.armor.chestplate;
 
 import net.igneo.icv.client.indicators.EnchantIndicator;
-import net.igneo.icv.client.indicators.StasisCooldownIndicator;
+import net.igneo.icv.client.indicators.boots.StasisCooldownIndicator;
 import net.igneo.icv.enchantment.EnchantType;
 import net.igneo.icv.enchantmentActions.EntityTracker;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.ArmorEnchantManager;

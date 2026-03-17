@@ -17,7 +17,6 @@ import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.loading.json.raw.Bone;
 
 import java.util.ArrayList;
 
@@ -74,7 +73,7 @@ public class SurfWaveEntity extends ICVEntity {
         } else {
             this.discard();
         }
-        faceDirection(this.getDeltaMovement());
+        faceFlatDirection(this.getDeltaMovement());
 
 
         float scale = 3F;

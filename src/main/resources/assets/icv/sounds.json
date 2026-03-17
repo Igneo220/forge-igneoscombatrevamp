@@ -316,5 +316,49 @@
     "sounds": [
       "icv:ascension_recharge"
     ]
+  },
+  "tempest_use": {
+    "subtitles": "sounds.icv.tempest_use",
+    "sounds": [
+      "icv:tempest_1",
+      "icv:tempest_2",
+      "icv:tempest_3"
+    ]
+  },
+  "tempest_recharge": {
+    "subtitles": "sounds.icv.tempest_recharge",
+    "sounds": [
+      "icv:tempest_recharge"
+    ]
+  },
+  "gale_use": {
+    "subtitles": "sounds.icv.gale_use",
+    "sounds": [
+      "icv:gale_use"
+    ]
+  },
+  "gale_recharge": {
+    "subtitles": "sounds.icv.gale_recharge",
+    "sounds": [
+      "icv:gale_recharge"
+    ]
+  },
+  "judgement_hit": {
+    "subtitles": "sounds.icv.judgement_hit",
+    "sounds": [
+      "icv:judgement_hit"
+    ]
+  },
+  "judgement_use": {
+    "subtitles": "sounds.icv.judgement_use",
+    "sounds": [
+      "icv:judgement_use"
+    ]
+  },
+  "judgement_launch": {
+    "subtitles": "sounds.icv.judgement_launch",
+    "sounds": [
+      "icv:judgement_launch"
+    ]
   }
 }

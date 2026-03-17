@@ -75,7 +75,6 @@ public class ModEnchantments {
     public static final RegistryObject<Enchantment> GALE = registerEnchantment("gale", () -> new GaleEnchantment(UNCOMMON, ARMOR_LEGS, LEGS));
     public static final RegistryObject<Enchantment> TSUNAMI = registerEnchantment("tsunami", () -> new TsunamiEnchantment(UNCOMMON, ARMOR_LEGS, LEGS));
     public static final RegistryObject<Enchantment> VOID_WAKE = registerEnchantment("void_wake", () -> new VoidWakeEnchantment(UNCOMMON, ARMOR_LEGS, LEGS));
-    public static final RegistryObject<Enchantment> HURRICANE = registerEnchantment("hurricane", () -> new HurricaneEnchantment(UNCOMMON, ARMOR_LEGS, LEGS));
     
     // Boots Enchantments
     public static final RegistryObject<Enchantment> STASIS = registerEnchantment("stasis", () -> new StasisEnchantment(UNCOMMON, ARMOR_FEET, FEET));

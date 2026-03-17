@@ -103,7 +103,7 @@ public abstract class ICVEntity extends Projectile implements GeoEntity {
         this.move(MoverType.SELF, this.getDeltaMovement().scale(1.5));
     }
     
-    public void faceDirection(Vec3 dir) {
+    public void faceFlatDirection(Vec3 dir) {
         double dx = dir.x;
         double dy = dir.y;
         double dz = dir.z;
@@ -111,5 +111,15 @@ public abstract class ICVEntity extends Projectile implements GeoEntity {
         float yaw = (float) (Math.toDegrees(Math.atan2(-dx, dz)));
         
         this.setYRot(yaw);
+    }
+
+    public void faceDirection(Vec3 dir) {
+        double dx = dir.x;
+        double dy = dir.y;
+        double dz = dir.z;
+
+        float yaw = (float) (Math.toDegrees(Math.atan2(-dx, dz)));
+
+        this.setRot(yaw,0);
     }
 }

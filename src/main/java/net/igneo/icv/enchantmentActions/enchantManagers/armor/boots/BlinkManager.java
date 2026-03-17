@@ -1,6 +1,6 @@
 package net.igneo.icv.enchantmentActions.enchantManagers.armor.boots;
 
-import net.igneo.icv.client.indicators.BlinkCooldownIndicator;
+import net.igneo.icv.client.indicators.boots.BlinkCooldownIndicator;
 import net.igneo.icv.client.indicators.EnchantIndicator;
 import net.igneo.icv.enchantment.EnchantType;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.ArmorEnchantManager;

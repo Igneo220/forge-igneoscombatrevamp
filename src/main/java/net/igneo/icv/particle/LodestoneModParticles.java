@@ -30,6 +30,8 @@ public class LodestoneModParticles {
             PARTICLE_TYPES.register("stasis_break_particle", LodestoneWorldParticleType::new);
     public static final RegistryObject<LodestoneWorldParticleType> UP_PARTICLE =
             PARTICLE_TYPES.register("up_particle", LodestoneWorldParticleType::new);
+    public static final RegistryObject<LodestoneWorldParticleType> TEMPEST_PARTICLE =
+            PARTICLE_TYPES.register("tempest_particle", LodestoneWorldParticleType::new);
 
 
 

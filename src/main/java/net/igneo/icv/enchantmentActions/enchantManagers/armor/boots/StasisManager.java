@@ -1,7 +1,7 @@
 package net.igneo.icv.enchantmentActions.enchantManagers.armor.boots;
 
 import net.igneo.icv.client.indicators.EnchantIndicator;
-import net.igneo.icv.client.indicators.StasisCooldownIndicator;
+import net.igneo.icv.client.indicators.boots.StasisCooldownIndicator;
 import net.igneo.icv.enchantment.EnchantType;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.ArmorEnchantManager;
 import net.igneo.icv.init.ICVUtils;
@@ -9,7 +9,6 @@ import net.igneo.icv.init.LodestoneParticles;
 import net.igneo.icv.init.ParticleShapes;
 import net.igneo.icv.networking.ModMessages;
 import net.igneo.icv.networking.packet.SendStasisShaderS2CPacket;
-import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.sound.ModSounds;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
@@ -20,8 +19,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.loading.FMLEnvironment;
 
 import java.util.ArrayList;
 import java.util.HashMap;

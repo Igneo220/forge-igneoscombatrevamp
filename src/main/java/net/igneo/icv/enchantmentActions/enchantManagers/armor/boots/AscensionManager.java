@@ -1,7 +1,6 @@
 package net.igneo.icv.enchantmentActions.enchantManagers.armor.boots;
 
-import net.igneo.icv.client.indicators.AscensionCooldownIndicator;
-import net.igneo.icv.client.indicators.BlackHoleIndicator;
+import net.igneo.icv.client.indicators.boots.AscensionCooldownIndicator;
 import net.igneo.icv.client.indicators.EnchantIndicator;
 import net.igneo.icv.enchantment.EnchantType;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.ArmorEnchantManager;
@@ -9,7 +8,6 @@ import net.igneo.icv.init.ICVUtils;
 import net.igneo.icv.init.LodestoneParticles;
 import net.igneo.icv.init.ParticleShapes;
 import net.igneo.icv.networking.ModMessages;
-import net.igneo.icv.networking.packet.MovePlayerS2CPacket;
 import net.igneo.icv.networking.packet.PushPlayerS2CPacket;
 import net.igneo.icv.particle.ModParticles;
 import net.igneo.icv.sound.ModSounds;
@@ -20,7 +18,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 import java.awt.*;
@@ -114,4 +111,5 @@ public class AscensionManager extends ArmorEnchantManager {
         System.out.println("resettin");
         
     }
+
 }

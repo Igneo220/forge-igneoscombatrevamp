@@ -32,6 +32,18 @@ public class EnchantmentHudOverlay {
                                 16,
                                 16,
                                 indicator.getHeight());
+                        if (indicator.hasCharges()) {
+                            poseStack.blit(
+                                    indicator.overlay(),
+                                    pX,
+                                    pY,
+                                    0,
+                                    16 * (indicator.charges()-1),
+                                    16,
+                                    16,
+                                    16,
+                                    16*indicator.maxCharges());
+                        }
                     }
                 }
             }

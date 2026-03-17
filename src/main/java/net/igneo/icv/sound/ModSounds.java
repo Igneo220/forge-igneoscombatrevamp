@@ -43,6 +43,16 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> ASCENSION_USE = registerSoundEvents("ascension_use");
     public static final RegistryObject<SoundEvent> ASCENSION_RECHARGE = registerSoundEvents("ascension_recharge");
 
+    public static final RegistryObject<SoundEvent> TEMPEST_USE = registerSoundEvents("tempest_use");
+    public static final RegistryObject<SoundEvent> TEMPEST_RECHARGE = registerSoundEvents("tempest_recharge");
+
+    public static final RegistryObject<SoundEvent> GALE_USE = registerSoundEvents("gale_use");
+    public static final RegistryObject<SoundEvent> GALE_RECHARGE = registerSoundEvents("gale_recharge");
+
+    public static final RegistryObject<SoundEvent> JUDGEMENT_HIT = registerSoundEvents("judgement_hit");
+    public static final RegistryObject<SoundEvent> JUDGEMENT_USE = registerSoundEvents("judgement_use");
+    public static final RegistryObject<SoundEvent> JUDGEMENT_LAUNCH = registerSoundEvents("judgement_launch");
+
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ICV.MOD_ID, name)));
     }

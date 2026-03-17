@@ -1,13 +1,16 @@
 package net.igneo.icv.enchantmentActions.enchantManagers.armor.leggings;
 
 import net.igneo.icv.client.indicators.EnchantIndicator;
-import net.igneo.icv.client.indicators.StasisCooldownIndicator;
+import net.igneo.icv.client.indicators.boots.StasisCooldownIndicator;
 import net.igneo.icv.enchantment.EnchantType;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.ArmorEnchantManager;
 import net.igneo.icv.entity.ModEntities;
 import net.igneo.icv.entity.leggings.voidSpike.VoidSpikeEntity;
+import net.igneo.icv.init.ICVUtils;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -17,7 +20,7 @@ import java.util.ArrayList;
 
 public class VoidWakeManager extends ArmorEnchantManager {
     public VoidWakeManager(Player player) {
-        super(EnchantType.LEGGINGS, 300, -10, true, player);
+        super(EnchantType.LEGGINGS, 1, -10, true, player);
     }
     
     private int storedtick = 0;
@@ -74,21 +77,25 @@ public class VoidWakeManager extends ArmorEnchantManager {
     public void dualActivate() {
         super.dualActivate();
         if (player.level() instanceof ServerLevel level) {
-            HitResult hitResult = player.pick(30, 0f, false);
-            Vec3 position = player.position().add(player.getLookAngle().scale(2));
+            Vec3 target = Vec3.ZERO;
+            HitResult hitResult = ICVUtils.raycastFromPlayer(player,500);
+
             if (hitResult.getType() == HitResult.Type.BLOCK) {
                 BlockHitResult blockHitResult = (BlockHitResult) hitResult;
-                position = blockHitResult.getLocation();
+                target = blockHitResult.getLocation();
             } else if (hitResult.getType() == HitResult.Type.ENTITY) {
                 EntityHitResult entityHitResult = (EntityHitResult) hitResult;
-                position = entityHitResult.getEntity().position();
+                target = entityHitResult.getEntity().position();
             }
-            for (VoidSpikeEntity entity : spikes) {
+            for (VoidSpikeEntity spike : spikes) {
+                if (target.length() == 0) {
+                    target = spike.position().add(player.getLookAngle().scale(2));
+                }
                 System.out.println(hitResult.getType());
-                System.out.println(position);
-                Vec3 pushVec = position.subtract(entity.position()).normalize().scale(3);
-                entity.setDeltaMovement(new Vec3(pushVec.x, position.y - entity.position().y + 0.3, pushVec.z));
-                entity.launched = true;
+                System.out.println(target);
+                Vec3 pushVec = (target.subtract(spike.position()).normalize().scale(2.2));
+                spike.setDeltaMovement(new Vec3(pushVec.x, 0.3, pushVec.z));
+                spike.launched = true;
             }
         }
         active = false;

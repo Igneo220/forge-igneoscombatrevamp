@@ -1,6 +1,7 @@
-package net.igneo.icv.client.indicators;
+package net.igneo.icv.client.indicators.boots;
 
 import net.igneo.icv.ICV;
+import net.igneo.icv.client.indicators.EnchantIndicator;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.ArmorEnchantManager;
 import net.minecraft.resources.ResourceLocation;
 

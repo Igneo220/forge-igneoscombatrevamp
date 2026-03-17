@@ -10,6 +10,7 @@ import net.igneo.icv.enchantmentActions.enchantManagers.EnchantmentManager;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.ArmorEnchantManager;
 import net.igneo.icv.entity.ICVEntity;
 import net.igneo.icv.networking.ModMessages;
+import net.igneo.icv.particle.ModParticles;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -19,10 +20,12 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -86,6 +89,15 @@ public class ICVUtils {
     public static List<Entity> collectEntitiesBox(Level level, Vec3 position, double radius) {
         Vec3 scale = new Vec3(radius, radius, radius);
         return level.getEntities(null, new AABB(position.subtract(scale), position.add(scale)));
+    }
+
+    public static void explode(Vec3 pos, ServerLevel level) {
+        for (ServerPlayer player: level.players()) {
+            if (player.distanceToSqr(pos) < 500) {
+                level.sendParticles(player, ModParticles.BLAST_WAVE.get(), true, player.getX(), player.getY(), player.getZ(), 1, 0, 0, 0, 0);
+                level.sendParticles(player, ModParticles.BLAST_FIRE_BALL.get(), true, player.getX(), player.getY(), player.getZ(), 1, 0, 0, 0, 0);
+            }
+        }
     }
     
     @OnlyIn (Dist.CLIENT)
@@ -196,5 +208,20 @@ public class ICVUtils {
         for (ServerPlayer player : level.players()) {
             if (player.distanceToSqr(pos) < range) ModMessages.sendToPlayer(message, player);
         }
+    }
+
+    public static HitResult raycastFromPlayer(Player player,double distance) {
+        HitResult result = ProjectileUtil.getEntityHitResult(
+                player,
+                player.getEyePosition(),
+                player.getEyePosition().add(player.getLookAngle().scale(distance)),
+                player.getBoundingBox().inflate(distance),
+                Entity::isPickable,
+                distance
+        );
+        if (result == null) {
+            result = player.pick(40, 10f, false);
+        }
+        return result;
     }
 }

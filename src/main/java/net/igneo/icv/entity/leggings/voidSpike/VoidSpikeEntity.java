@@ -6,6 +6,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.Vec3;
 
 public class VoidSpikeEntity extends ICVEntity {
     public VoidSpikeEntity(EntityType<? extends Projectile> pEntityType, Level pLevel) {
@@ -14,6 +15,7 @@ public class VoidSpikeEntity extends ICVEntity {
     
     private int lifetime = 0;
     public boolean launched = false;
+    public Vec3 facing = new Vec3(0,1,0);
     
     @Override
     public void tick() {
@@ -21,7 +23,6 @@ public class VoidSpikeEntity extends ICVEntity {
         if (lifetime < 400) {
             ++lifetime;
         } else {
-            System.out.println("lifetime");
             this.discard();
         }
         if (this.onGround() && launched) {
@@ -32,7 +33,7 @@ public class VoidSpikeEntity extends ICVEntity {
     @Override
     protected void onHitEntity(EntityHitResult pResult) {
         if (!pResult.getEntity().equals(this.getOwner()) && pResult.getEntity() instanceof LivingEntity entity && !this.level().isClientSide) {
-            entity.hurt(this.damageSources().fellOutOfWorld(), 5);
+            entity.hurt(this.damageSources().magic(), 6);
             System.out.println("on hit");
             discard();
         }

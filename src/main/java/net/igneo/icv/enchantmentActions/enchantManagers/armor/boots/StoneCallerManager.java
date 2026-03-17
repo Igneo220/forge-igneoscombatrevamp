@@ -1,7 +1,7 @@
 package net.igneo.icv.enchantmentActions.enchantManagers.armor.boots;
 
 import net.igneo.icv.client.indicators.EnchantIndicator;
-import net.igneo.icv.client.indicators.StoneCallerCooldownIndicator;
+import net.igneo.icv.client.indicators.boots.StoneCallerCooldownIndicator;
 import net.igneo.icv.enchantment.EnchantType;
 import net.igneo.icv.enchantmentActions.Input;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.ArmorEnchantManager;

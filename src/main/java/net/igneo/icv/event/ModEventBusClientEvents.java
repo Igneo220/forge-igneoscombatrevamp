@@ -4,8 +4,7 @@ import net.igneo.icv.ICV;
 import net.igneo.icv.init.Keybindings;
 import net.igneo.icv.particle.LodestoneModParticles;
 import net.igneo.icv.particle.ModParticles;
-import net.igneo.icv.particle.custom.AscensionRune;
-import net.igneo.icv.particle.custom.StasisRune;
+import net.igneo.icv.particle.custom.*;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
@@ -34,10 +33,17 @@ public class ModEventBusClientEvents {
         Minecraft.getInstance().particleEngine.register(LodestoneModParticles.STASIS_BREAK_PARTICLE.get(), LodestoneWorldParticleType.Factory::new);
         Minecraft.getInstance().particleEngine.register(LodestoneModParticles.STASIS_DIR_PARTICLE.get(), LodestoneWorldParticleType.Factory::new);
         Minecraft.getInstance().particleEngine.register(LodestoneModParticles.UP_PARTICLE.get(), LodestoneWorldParticleType.Factory::new);
+        Minecraft.getInstance().particleEngine.register(LodestoneModParticles.TEMPEST_PARTICLE.get(), LodestoneWorldParticleType.Factory::new);
 
         Minecraft.getInstance().particleEngine.register(ModParticles.STASIS_RUNE.get(),
                 StasisRune.Provider::new);
         Minecraft.getInstance().particleEngine.register(ModParticles.ASCENSION_RUNE.get(),
                 AscensionRune.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ModParticles.GALE_RUNE.get(),
+                GaleRune.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ModParticles.BLAST_WAVE.get(),
+                BlastWave.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ModParticles.BLAST_FIRE_BALL.get(),
+                BlastFireBall.Provider::new);
     }
 }
