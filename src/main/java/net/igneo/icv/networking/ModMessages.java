@@ -83,6 +83,11 @@ public class ModMessages {
                 .encoder(SendStasisShaderS2CPacket::toBytes)
                 .consumerMainThread(SendStasisShaderS2CPacket::handle)
                 .add();
+        net.messageBuilder(SendBlackHoleShaderS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(SendBlackHoleShaderS2CPacket::new)
+                .encoder(SendBlackHoleShaderS2CPacket::toBytes)
+                .consumerMainThread(SendBlackHoleShaderS2CPacket::handle)
+                .add();
     }
     
     public static <MSG> void sendToServer(MSG message) {

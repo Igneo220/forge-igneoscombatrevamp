@@ -48,7 +48,7 @@ public class BlackHoleEntity extends ICVEntity {
     
     private void pull() {
         for (Entity entity : this.level().getEntities(null, this.getBoundingBox().inflate(6))) {
-            if (entity != this && entity != this.getOwner()) {
+            if (!(entity instanceof BlackHoleEntity) && entity != this.getOwner()) {
                 double scale = 0.05;
                 Vec3 pushVec = entity.position().subtract(this.position()).reverse();
                 pushVec = pushVec.normalize().scale(scale);

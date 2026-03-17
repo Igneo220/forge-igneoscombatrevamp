@@ -7,6 +7,8 @@ import net.igneo.icv.enchantmentActions.EntityTracker;
 import net.igneo.icv.enchantmentActions.enchantManagers.armor.ArmorEnchantManager;
 import net.igneo.icv.entity.ICVEntity;
 import net.igneo.icv.entity.ModEntities;
+import net.igneo.icv.networking.ModMessages;
+import net.igneo.icv.networking.packet.SendBlackHoleShaderS2CPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -55,6 +57,7 @@ public class BlackHoleManager extends ArmorEnchantManager implements EntityTrack
             child.setDeltaMovement(player.getLookAngle().scale(0.4));
             player.level().addFreshEntity(child);
             syncClientChild((ServerPlayer) player, child, this);
+            ModMessages.sendToPlayer(new SendBlackHoleShaderS2CPacket(child.getId()), (ServerPlayer) player);
         }
     }
     
