@@ -104,7 +104,7 @@ void main() {
             vec2 scaledCenter   = vec2(centerCoord.x, centerCoord.y / aspect);
 
             distance = length(scaledTexCoord - scaledCenter);
-            radius = (1.0 / length(center - cameraPos)) * t;
+            radius = 2.2 * (1.0 / length(center - cameraPos)) + time/12;
 
             vec2 warpedTex = texCoord;
 
@@ -114,16 +114,16 @@ void main() {
 
             float distNorm = distance / radius;
 
-            float pull = (1.0 - distNorm * distNorm);
+            float pull = 1 - abs(clamp((1.0 - distNorm * distNorm),0,1) - clamp((distNorm * distNorm),0,1));
 
-            warpedTex += normalize(dir) * pull * 0.05;
+            warpedTex += normalize(dir) * pull * 0.2;
 
 
 
             fragColor.rgb = texture(DiffuseSampler, warpedTex).rgb;
 
-            vec3 color = vec3(1,0,0);
-            float colorfalloff = pow(clamp(distance / radius, 0.0, 1.0), 3);
+            vec3 color = vec3(0.8,0.1,0.1);
+            float colorfalloff = pow(1 - clamp(distance / (radius * 2), 0.0, 1.0), 3);
             fragColor.rgb *= (color*2 * (1-colorfalloff) + 1.0 + ((colorfalloff*-1.2)/2))/2;
 
         }
